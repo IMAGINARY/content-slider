@@ -73,5 +73,67 @@ table{
 /* GO! */
 body{
     background-color: #777777;
+    font-size: 32pt;
+}
+
+.page_header {
     font-size: 128pt;
+}
+
+.page_footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 128pt;
+}
+
+.content_slider {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 2160px;
+    height: 1400px;
+}
+
+.app_wrapper {
+    cursor: move;
+    position: absolute;
+    overflow: hidden;
+    left: 0px;
+    top: 0px;
+    width: 2160px;
+    height: 1400px;
+}
+
+.app {
+    position: absolute;
+    overflow: hidden;
+    left: 0px;
+    top: 0px;
+    width: 2160px;
+    height: 1215px;
+    width:100%;
+}
+
+.app_name {
+    background-color: red;
+    color: green;
+    position: absolute;
+    overflow: hidden;
+    left: 0px;
+    top: 1215px;
+    width: 50%;
+    height: 185px;
+    text-align: left;
+}
+.app_credits {
+    background-color: blue;
+    color: green;
+    position: absolute;
+    overflow: hidden;
+    right: 0px;
+    top: 1215px;
+    width: 50%;
+    height: 185px;
+    text-align: right;
 }

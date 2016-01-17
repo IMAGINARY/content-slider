@@ -8,7 +8,8 @@
     <script>
         jssor_slider1_starter = function (containerId) {
             var options = {
-                $AutoPlay: true,
+                $AutoPlay: false,
+                $DragOrientation: 0,
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
@@ -46,7 +47,9 @@
             <div style="background-color:green;">
                 <object type="text/html" data="http://scripty2.com/demos/touch/touchspector/" style="width: 100%; height: 100%;" ></object>
             </div>
-            <div style="background-color:yellow;">Content Slide 3 - bottom</div>
+            <div style="background-color:yellow;">
+                <script src="content/canvas-paint.js"></script>
+            </div>
         </div>
 
         <!--#region Bullet Navigator Skin Begin -->
@@ -130,8 +133,19 @@
         </span>
         <!--#endregion Arrow Navigator Skin End -->
 
-        <!-- Trigger -->
-        <script>jssor_slider1_starter('slider1_container');</script>
     </div>
+
+    <hr />
+
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 2160px; height: 1215px;">
+		<script>
+	        document.write( document.getElementById( "slider1_container" ).innerHTML );
+	    </script>
+    </div>
+    <!-- Copy first slider and trigger -->
+    <script>
+        jssor_slider1_starter('slider1_container');
+        jssor_slider1_starter('slider2_container');
+    </script>
 </body>
 </html>

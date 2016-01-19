@@ -71,6 +71,8 @@
         jssor_app_slider_starter = function (containerId) {
                 var options = {
                     $AutoPlay: false,
+                    $Idle: 3 * 60 * 1000,
+                    $PauseOnHover: 12,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -89,7 +91,40 @@
                         $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                     }
                 };
+
+                var container = document.getElementById( containerId );
+                console.log(container);
+
+                container.addEventListener('mouseup', non_idle_handler, true);
+                container.addEventListener('mousemove', non_idle_handler, true);
+                container.addEventListener('mousedown', non_idle_handler, true);
+                container.addEventListener("touchstart", non_idle_handler, true);
+                container.addEventListener("touchend", non_idle_handler, true);
+                container.addEventListener("touchcancel", non_idle_handler, true);
+                container.addEventListener("touchmove", non_idle_handler, true);
+
+                // implemented idle timeout myself since JSSOR idle mode does not
+                // reset the timeout on interruption
+                var idle_timer = null;
+                function init_idle_timer()
+                {
+                    if( idle_timer != null )
+                        clearTimeout( idle_timer );
+                    idle_timer = setTimeout( idle_handler, options.$Idle );
+                }
+                function non_idle_handler( evt ) {
+                    console.log("non_idle_handler");
+                    init_idle_timer();
+                }
+                function idle_handler() {
+                    console.log("idle_handler");
+                    jssor_slider.$Next();
+                    init_idle_timer();
+                }
+                init_idle_timer();
+
                 var jssor_slider = new $JssorSlider$(containerId, options);
+                return jssor_slider;
             };
         </script>
     </head>

@@ -130,6 +130,14 @@ body{
     color: white;
     background-color: var( --fg-color );
 }
+
+.app_description {
+    position: relative;
+    overflow: hidden;
+    left: 0px;
+    width: 100%;
+    float: left;
+    text-align: justify;
 }
 
 .app_name {

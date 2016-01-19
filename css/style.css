@@ -71,69 +71,146 @@ table{
     $MAIN
 \*------------------------------------*/
 /* GO! */
+
+:root{
+    --fg-color: #022F53;
+    --bg-color: #A6D6C8;
+}
+
 body{
-    background-color: #777777;
+    font-family: sans-serif;
+    color: var( --fg-color );
+    background-color: var( --bg-color );
     font-size: 32pt;
 }
 
 .page_header {
+    text-align: center;
     font-size: 128pt;
 }
 
 .page_footer {
+    text-align: center;
     position: absolute;
+    width: 100%;
     bottom: 0px;
     left: 0px;
-    font-size: 128pt;
 }
 
-.content_slider {
-    position: relative;
-    top: 0px;
+[class^=content_slider] {
+    position: absolute;
     left: 0px;
     width: 2160px;
-    height: 1400px;
+    height: 1170px;
+}
+
+.content_slider0 {
+    top: 830px;
+}
+
+.content_slider1 {
+    top: 2305px;
 }
 
 .app_wrapper {
     cursor: move;
     position: absolute;
     overflow: hidden;
-    left: 0px;
+    left: 300px;
     top: 0px;
-    width: 2160px;
-    height: 1400px;
+    width: 1560px;
+    height: 1475px;
 }
 
 .app {
-    position: absolute;
+    position: relative;
     overflow: hidden;
-    left: 0px;
-    top: 0px;
-    width: 2160px;
-    height: 1215px;
+    height: 1170px;
     width:100%;
+    color: white;
+    background-color: var( --fg-color );
+}
 }
 
 .app_name {
-    background-color: red;
-    color: green;
-    position: absolute;
+    position: relative;
     overflow: hidden;
     left: 0px;
-    top: 1215px;
     width: 50%;
-    height: 185px;
+    float: left;
     text-align: left;
 }
+
 .app_credits {
-    background-color: blue;
-    color: green;
-    position: absolute;
+    position: relative;
     overflow: hidden;
     right: 0px;
-    top: 1215px;
     width: 50%;
-    height: 185px;
     text-align: right;
+}
+
+
+
+/*------------------------------------*\
+    jssor slider bullet navigator skin 10 css
+\*------------------------------------*/
+/*
+.jssorb10 div           (normal)
+.jssorb10 div:hover     (normal mouseover)
+.jssorb10 .av           (active)
+.jssorb10 .av:hover     (active mouseover)
+.jssorb10 .dn           (mousedown)
+*/
+.jssorb10 {
+    position: absolute;
+}
+.jssorb10 div, .jssorb10 div:hover, .jssorb10 .av {
+    position: absolute;
+    /* size of bullet elment */
+    width: 30px;
+    height: 30px;
+    border: 3px solid var( --fg-color );
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: var( --fg-color ); }
+
+/*------------------------------------*\
+    jssor slider arrow navigator skin 06 css
+\*------------------------------------*/
+/*
+.jssora06l                  (normal)
+.jssora06r                  (normal)
+.jssora06l:hover            (normal mouseover)
+.jssora06r:hover            (normal mouseover)
+.jssora06l.jssora06ldn      (mousedown)
+.jssora06r.jssora06rdn      (mousedown)
+*/
+
+[class^=jssor_arrow]{
+    position: absolute;
+    top: 0px;
+    /* size of arrow element */
+    width: 300px;
+    height: 1170px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.svg_arrow {
+    display: inline-block;
+    margin: auto;
+    position: absolute;
+    left:0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+.svg_arrow_polyline {
+    fill:none;
+    stroke: var( --fg-color );
+    stroke-width:10;
 }

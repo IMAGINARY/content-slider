@@ -78,7 +78,7 @@
                     $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
                         $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                         $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                        $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                        //$AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                         $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                     }
                 };
@@ -92,9 +92,10 @@
         <div class="page_header">
             <h1>Page title</h1>
         </div>
+
 <?php
 for( $s = 0; $s < 2; $s++ ) {
-    echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider\">\n";
+    echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider{$s}\">\n";
 ?>
         <!-- Slides Container -->
             <div u="slides" class="app_wrapper">
@@ -107,36 +108,8 @@ for( $s = 0; $s < 2; $s++ ) {
 
             <!--#region Bullet Navigator Skin Begin -->
             <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
-            <style>
-                /* jssor slider bullet navigator skin 10 css */
-                /*
-                .jssorb10 div           (normal)
-                .jssorb10 div:hover     (normal mouseover)
-                .jssorb10 .av           (active)
-                .jssorb10 .av:hover     (active mouseover)
-                .jssorb10 .dn           (mousedown)
-                */
-                .jssorb10 {
-                    position: absolute;
-                }
-                .jssorb10 div, .jssorb10 div:hover, .jssorb10 .av {
-                    position: absolute;
-                    /* size of bullet elment */
-                    width: 30px;
-                    height: 30px;
-                    border: 3px solid black;
-                    border-radius: 50%;
-                    background: green;
-                    overflow: hidden;
-                    cursor: pointer;
-                }
-                .jssorb10 div { background: red; }
-                .jssorb10 div:hover, .jssorb10 .av:hover { background: white; }
-                .jssorb10 .av { background: blue; }
-                .jssorb10 .dn, .jssorb10 .dn:hover { background: black; }
-            </style>
             <!-- bullet navigator container -->
-            <div u="navigator" class="jssorb10" style="bottom: 45px;">
+            <div u="navigator" class="jssorb10" style="bottom: -200px;">
                 <!-- bullet navigator item prototype -->
                 <div u="prototype"></div>
             </div>
@@ -144,48 +117,18 @@ for( $s = 0; $s < 2; $s++ ) {
 
             <!--#region Arrow Navigator Skin Begin -->
             <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
-            <style>
-                /* jssor slider arrow navigator skin 06 css */
-                /*
-                .jssora06l                  (normal)
-                .jssora06r                  (normal)
-                .jssora06l:hover            (normal mouseover)
-                .jssora06r:hover            (normal mouseover)
-                .jssora06l.jssora06ldn      (mousedown)
-                .jssora06r.jssora06rdn      (mousedown)
-                */
-
-                [class^=jssora06]{  /* Arrows @RCB */
-                    /*border:       solid currentColor;*/
-                    border:       solid green;
-                    border-width: 0 .2em .2em 0;
-                    display:      inline-block;
-                    padding:      .20em;
-                    display: block;
-                    position: absolute;
-                    /* size of arrow element */
-                    width: 50px;
-                    height: 50px;
-                    cursor: pointer;
-                    overflow: hidden;
-
-                }
-                .jssora06r {transform:rotate(-45deg);}
-                .jssora06l  {transform:rotate(135deg);}
-
-                .jssora06l { background-position: -8px -38px; }
-                .jssora06r { background-position: -68px -38px; }
-                .jssora06l:hover { background-position: -128px -38px; }
-                .jssora06r:hover { background-position: -188px -38px; }
-                .jssora06l.jssora06ldn { background-position: -248px -38px; }
-                .jssora06r.jssora06rdn { background-position: -308px -38px; }
-            </style>
             <!-- Arrow Left -->
-            <span u="arrowleft" class="jssora06l" style="left: 50px;">
-            </span>
+            <div u="arrowleft" class="jssor_arrow" style="left:0px;">
+                <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
+                    <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                </svg>
+            </div>
             <!-- Arrow Right -->
-            <span u="arrowright" class="jssora06r" style="right: 50px;">
-            </span>
+            <div u="arrowright" class="jssor_arrow" style="right:0px;">
+                <svg width="110" height="700" class="svg_arrow">
+                    <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                </svg>
+            </div>
             <!--#endregion Arrow Navigator Skin End -->
 
         </div>

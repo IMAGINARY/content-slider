@@ -222,3 +222,26 @@ body{
     stroke: var( --fg-color );
     stroke-width:10;
 }
+
+.top_slider {
+    position: relative;
+    top: 20px;
+    left: 0px;
+    width: 2160px;
+    height: 300px;
+}
+
+.top_slider_slides {
+    cursor: move;
+    position: absolute;
+    overflow: hidden;
+    left: 0px;
+    top: 0px;
+    width: 2160px;
+    height: 300px;
+}
+
+.top_slider_slides div {
+    padding-left: 100px;
+    padding-right: 100px;
+}

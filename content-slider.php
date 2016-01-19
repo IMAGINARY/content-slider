@@ -61,7 +61,14 @@
     	<link rel="stylesheet" href="css/style.css">
         <script src="js/jssor.slider.min.js"></script>
         <script>
-            jssor_slider1_starter = function (containerId) {
+        jssor_top_slider_starter = function (containerId) {
+            var options = {
+                $AutoPlay: true,
+                $DragOrientation: 0,
+            };
+            var jssor_slider = new $JssorSlider$(containerId, options);
+        };
+        jssor_app_slider_starter = function (containerId) {
                 var options = {
                     $AutoPlay: false,
                     $DragOrientation: 0,
@@ -82,7 +89,7 @@
                         $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                     }
                 };
-                var jssor_slider1 = new $JssorSlider$(containerId, options);
+                var jssor_slider = new $JssorSlider$(containerId, options);
             };
         </script>
     </head>
@@ -91,6 +98,17 @@
 
         <div class="page_header">
             <h1>Page title</h1>
+        </div>
+
+        <div id="slider_top" class="top_slider">
+            <!-- Slides Container -->
+            <div u="slides" class="top_slider_slides">
+                <div>Motivating text 1</div>
+                <div>Motivating text 2</div>
+                <div>Motivating text 3</div>
+            </div>
+            <!-- Trigger -->
+            <script>jssor_top_slider_starter('slider_top');</script>
         </div>
 
 <?php
@@ -134,7 +152,7 @@ for( $s = 0; $s < 2; $s++ ) {
         </div>
 <?php
     echo "\t\t<script>\n";
-    echo "\t\t\tjssor_slider1_starter('slider{$s}_container');\n";
+    echo "\t\t\tjssor_app_slider_starter('slider{$s}_container');\n";
     echo "\t\t</script>\n";
     echo "\t\t<br />\n";
 }

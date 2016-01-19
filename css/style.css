@@ -82,6 +82,11 @@ body{
     color: var( --fg-color );
     background-color: var( --bg-color );
     font-size: 32pt;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 2160px;
+    height: 3840px;
 }
 
 .page_header {

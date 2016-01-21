@@ -61,6 +61,9 @@
     	<link rel="stylesheet" href="css/style.css">
         <script src="js/jssor.slider.min.js"></script>
         <script>
+        var content_sliders = [];
+        var content_slides = [];
+
         function refreshAt(hours, minutes, seconds) {
             var now = new Date();
             var then = new Date();
@@ -142,6 +145,30 @@
                 init_idle_timer();
 
                 var jssor_slider = new $JssorSlider$(containerId, options);
+                var slides = current_content_slides
+                var slide_restart_timer = null;
+                jssor_slider.$On( $JssorSlider$.$EVT_PARK, function( slideIndex, fromIndex ) {
+                    for( i = 0; i < slides.length; i++ )
+                    {
+                        if( i == slideIndex )
+                            slides[ i ].resume();
+                        else
+                            slides[ i ].pause();
+                        if( slide_restart_timer !== null )
+                            window.clearTimeout( slide_restart_timer );
+                        slide_restart_timer = window.setTimeout( slide_restart_handler, 10 * 1000 );
+                    }
+                } );
+                function slide_restart_handler() {
+                    if( !jssor_slider.$IsSliding() )
+                    {
+                        for( i = 0; i < slides.length; i++ )
+                        {
+                            if( i != jssor_slider.$CurrentIndex() )
+                                slides[ i ].restart( true );
+                        }
+                    }
+                }
                 return jssor_slider;
             };
         </script>
@@ -169,12 +196,18 @@ for( $s = 0; $s < 2; $s++ ) {
     echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider{$s}\">\n";
 ?>
         <!-- Slides Container -->
-            <div u="slides" class="app_wrapper">
-<?php for( $i = 0; $i < count( $content[ $s ] ); $i++ ) { ?>
-                <div>
-<?php include( $content[ $s ][ $i ] ); ?>
-                </div>
-<?php } ?>
+<?php
+echo "\t\t\t<div u=\"slides\" id=\"slides{$s}\" class=\"app_wrapper\">\n";
+echo "\t\t\t<script>\n";
+echo "\t\t\t\tcontent_slides[{$s}] = [];\n";
+echo "\t\t\t\tvar current_content_slides = content_slides[{$s}];\n";
+echo "\t\t\t</script>\n";
+for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
+    echo "\t\t\t\t<div>\n";
+    include( $content[ $s ][ $i ] );
+    echo "\t\t\t</div>\n";
+}
+?>
             </div>
 
             <!--#region Bullet Navigator Skin Begin -->
@@ -205,7 +238,7 @@ for( $s = 0; $s < 2; $s++ ) {
         </div>
 <?php
     echo "\t\t<script>\n";
-    echo "\t\t\tjssor_app_slider_starter('slider{$s}_container');\n";
+    echo "\t\t\tcontent_sliders[{$s}] = jssor_app_slider_starter('slider{$s}_container');\n";
     echo "\t\t</script>\n";
     echo "\t\t<br />\n";
 }

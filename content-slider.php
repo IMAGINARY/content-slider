@@ -50,6 +50,13 @@
             $content[1][0] = "app1.inc";
             $content[1][1] = "app2.inc";
             $content[1][2] = "app3.inc";
+        case "Test":
+            $content[0][0] = "app4.inc";
+            $content[0][1] = "app3.inc";
+            $content[0][2] = "app3.inc";
+            $content[1][0] = "app3.inc";
+            $content[1][1] = "app3.inc";
+            $content[1][2] = "app3.inc";
             break;
     }
 ?>

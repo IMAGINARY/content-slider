@@ -195,17 +195,24 @@
 for( $s = 0; $s < 2; $s++ ) {
     echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider{$s}\">\n";
 ?>
-        <!-- Slides Container -->
+            <!-- Slides Container -->
 <?php
 echo "\t\t\t<div u=\"slides\" id=\"slides{$s}\" class=\"app_wrapper\">\n";
-echo "\t\t\t<script>\n";
-echo "\t\t\t\tcontent_slides[{$s}] = [];\n";
-echo "\t\t\t\tvar current_content_slides = content_slides[{$s}];\n";
-echo "\t\t\t</script>\n";
+echo "\t\t\t\t<script>\n";
+echo "\t\t\t\t\tcontent_slides[{$s}] = [];\n";
+echo "\t\t\t\t\tvar current_content_slides = content_slides[{$s}];\n";
+echo "\t\t\t\t</script>\n";
 for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
     echo "\t\t\t\t<div>\n";
+
+    // buffer output and indent
+    ob_start();
     include( $content[ $s ][ $i ] );
-    echo "\t\t\t</div>\n";
+    $result = ob_get_contents();
+    ob_end_clean();
+    print str_replace( "\n", "\n\t\t\t\t\t", "\t\t\t\t\t" . trim( $result ) );
+
+    echo "\n\t\t\t\t</div>\n";
 }
 ?>
             </div>

@@ -72,15 +72,10 @@ table{
 \*------------------------------------*/
 /* GO! */
 
-:root{
-    --fg-color: #022F53;
-    --bg-color: #A6D6C8;
-}
-
 body{
     font-family: sans-serif;
-    color: var( --fg-color );
-    background-color: var( --bg-color );
+    color: #022F53;
+    background-color: #A6D6C8;
     font-size: 32pt;
     position: absolute;
     left: 0px;
@@ -133,7 +128,7 @@ body{
     height: 1170px;
     width:100%;
     color: white;
-    background-color: var( --fg-color );
+    background-color: #022F53;
 }
 
 .app_description {
@@ -182,12 +177,12 @@ body{
     /* size of bullet elment */
     width: 30px;
     height: 30px;
-    border: 3px solid var( --fg-color );
+    border: 3px solid #022F53;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
 }
-.jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: var( --fg-color ); }
+.jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: #022F53; }
 
 /*------------------------------------*\
     jssor slider arrow navigator skin 06 css
@@ -224,7 +219,7 @@ body{
 
 .svg_arrow_polyline {
     fill:none;
-    stroke: var( --fg-color );
+    stroke: #022F53;
     stroke-width:10;
 }
 

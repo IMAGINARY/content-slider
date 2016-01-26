@@ -100,7 +100,6 @@
                 var options = {
                     $AutoPlay: false,
                     $Idle: 3 * 60 * 1000,
-                    $PauseOnHover: 12,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance

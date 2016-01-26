@@ -112,6 +112,16 @@ body{
     top: 2305px;
 }
 
+.app_wrapper_bg {
+    position: absolute;
+    overflow: hidden;
+    left: 300px;
+    top: 0px;
+    width: 1560px;
+    height: 1170px;
+    background-color: #022F53;    
+}
+
 .app_wrapper {
     cursor: move;
     position: absolute;

@@ -203,6 +203,9 @@ for( $s = 0; $s < 2; $s++ ) {
     echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider{$s}\">\n";
 ?>
             <!-- Slides Container -->
+            <div class="app_wrapper_bg">
+                <!-- ensure bg color between slides -->
+            </div>
 <?php
 echo "\t\t\t<div u=\"slides\" id=\"slides{$s}\" class=\"app_wrapper\">\n";
 echo "\t\t\t\t<script>\n";

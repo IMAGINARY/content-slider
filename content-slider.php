@@ -1,6 +1,5 @@
 <?php
     $day_of_week = date( 'l' );
-    echo "<!-- {$day_of_week} -->\n";
     switch( $day_of_week )
     {
         case "Monday": // monday
@@ -61,6 +60,7 @@
     }
 ?>
 <!DOCTYPE html>
+<?php echo "<!-- {$day_of_week} -->\n"; ?>
 <html>
     <head>
     	<meta charset="utf-8">

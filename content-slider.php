@@ -60,7 +60,7 @@
     }
 ?>
 <!DOCTYPE html>
-<?php echo "<!-- {$day_of_week} -->\n"; ?>
+<!-- <?=$day_of_week?> -->
 <html>
     <head>
     	<meta charset="utf-8">
@@ -70,35 +70,35 @@
     	<link rel="stylesheet" href="css/style.css">
         <script src="js/jssor.slider.min.js"></script>
         <script>
-        var content_sliders = [];
-        var content_slides = [];
+            var content_sliders = [];
+            var content_slides = [];
 
-        function refreshAt(hours, minutes, seconds) {
-            var now = new Date();
-            var then = new Date();
+            function refreshAt(hours, minutes, seconds) {
+                var now = new Date();
+                var then = new Date();
 
-            if(now.getHours() > hours ||
-               (now.getHours() == hours && now.getMinutes() > minutes) ||
-                now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds) {
-                then.setDate(now.getDate() + 1);
+                if(now.getHours() > hours ||
+                   (now.getHours() == hours && now.getMinutes() > minutes) ||
+                    now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds) {
+                    then.setDate(now.getDate() + 1);
+                }
+                then.setHours(hours);
+                then.setMinutes(minutes);
+                then.setSeconds(seconds);
+
+                var timeout = (then.getTime() - now.getTime());
+                setTimeout(function() { window.location.reload(true); }, timeout);
             }
-            then.setHours(hours);
-            then.setMinutes(minutes);
-            then.setSeconds(seconds);
+            refreshAt( 0, 0, 0 );
 
-            var timeout = (then.getTime() - now.getTime());
-            setTimeout(function() { window.location.reload(true); }, timeout);
-        }
-        refreshAt( 0, 0, 0 );
-
-        jssor_top_slider_starter = function (containerId) {
-            var options = {
-                $AutoPlay: true,
-                $DragOrientation: 0,
+            jssor_top_slider_starter = function (containerId) {
+                var options = {
+                    $AutoPlay: true,
+                    $DragOrientation: 0,
+                };
+                var jssor_slider = new $JssorSlider$(containerId, options);
             };
-            var jssor_slider = new $JssorSlider$(containerId, options);
-        };
-        jssor_app_slider_starter = function (containerId) {
+            jssor_app_slider_starter = function (containerId) {
                 var options = {
                     $AutoPlay: false,
                     $PauseOnHover: 1,
@@ -123,7 +123,6 @@
                 };
 
                 var container = document.getElementById( containerId );
-                console.log(container);
 
                 container.addEventListener('mouseup', non_idle_handler, true);
                 container.addEventListener('mousemove', non_idle_handler, true);
@@ -201,31 +200,36 @@
         </div>
 
 <?php
-for( $s = 0; $s < 2; $s++ ) {
-    echo "\t\t<div id=\"slider{$s}_container\" class=\"content_slider{$s}\">\n";
+        for( $s = 0; $s < 2; $s++ ) :
 ?>
+        <!-- BEGIN slider <?=$s?> -->
+        <div id="slider<?=$s?>_container" class="content_slider<?=$s?>">
             <!-- Slides Container -->
             <div class="app_wrapper_bg">
                 <!-- ensure bg color between slides -->
             </div>
+
+            <div u="slides" id="slides<?=$s?>" class="app_wrapper">;
+                <script>
+                    content_slides[<?=$s?>] = [];
+                    var current_content_slides = content_slides[<?=$s?>];
+                </script>
+
 <?php
-echo "\t\t\t<div u=\"slides\" id=\"slides{$s}\" class=\"app_wrapper\">\n";
-echo "\t\t\t\t<script>\n";
-echo "\t\t\t\t\tcontent_slides[{$s}] = [];\n";
-echo "\t\t\t\t\tvar current_content_slides = content_slides[{$s}];\n";
-echo "\t\t\t\t</script>\n";
-for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
-    echo "\t\t\t\t<div>\n";
-
-    // buffer output and indent
-    ob_start();
-    include( $content[ $s ][ $i ] );
-    $result = ob_get_contents();
-    ob_end_clean();
-    print str_replace( "\n", "\n\t\t\t\t\t", "\t\t\t\t\t" . trim( $result ) );
-
-    echo "\n\t\t\t\t</div>\n";
-}
+                $tab = '    ';
+                $ind7n = str_repeat( $tab, 4 );
+                for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
+                    echo $ind7n."<!-- BEGIN slide {$s}_{$i} -->\n";
+                    echo $ind7n."<div>\n";
+                    // buffer output and indent
+                    ob_start();
+                    include( $content[ $s ][ $i ] );
+                    $result = ob_get_contents();
+                    ob_end_clean();
+                    print str_replace( "\n", "\n".$tab.$ind7n , $tab.$ind7n.trim( $result ) )."\n";
+                    echo $ind7n."</div>\n";
+                    echo $ind7n."<!-- END slide {$s}_{$i} -->\n";
+                }
 ?>
             </div>
 
@@ -234,22 +238,22 @@ for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
             <!-- bullet navigator container -->
             <div u="navigator" class="jssorb10" style="bottom: -200px;">
                 <!-- bullet navigator item prototype -->
-<?php echo "                <div u=\"prototype\" ontouchend=\"content_sliders[{$s}].\$PlayTo( Array.prototype.indexOf.call(this.parentNode.children,this) );\"></div>\n"; ?>
+                <div u="prototype" ontouchend="content_sliders[<?=$s?>].$PlayTo( Array.prototype.indexOf.call(this.parentNode.children,this) );"></div>
             </div>
             <!--#endregion Bullet Navigator Skin End -->
 
             <!--#region Arrow Navigator Skin Begin -->
             <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
             <!-- Arrow Left -->
-<?php echo "           <div ontouchend=\"content_sliders[{$s}].\$Prev(); event.preventDefault();\">\n"; ?>
-<?php echo "                <div id=\"slider{$s}_arrowleft\" u=\"arrowleft\" class=\"jssor_arrow\" style=\"left:0px;\">"; ?>
+            <div ontouchend="content_sliders[<?=$s?>].$Prev(); event.preventDefault();">
+                <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
                     <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                         <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
                     </svg>
                 </div>
             </div>
             <!-- Arrow Right -->
-<?php echo "           <div ontouchend=\"content_sliders[{$s}].\$Next(); event.preventDefault();\">\n"; ?>
+            <div ontouchend="content_sliders[<?=$s?>].$Next(); event.preventDefault();">
                 <div u="arrowright" class="jssor_arrow" style="right:0px;">
                     <svg width="110" height="700" class="svg_arrow">
                         <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
@@ -258,16 +262,18 @@ for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
             </div>
             <!--#endregion Arrow Navigator Skin End -->
 
+            <script>
+                content_sliders[<?=$s?>] = jssor_app_slider_starter('slider<?=$s?>_container');
+            </script>
         </div>
+        <!-- END slider <?=$s?> -->
+
 <?php
-    echo "\t\t<script>\n";
-    echo "\t\t\tcontent_sliders[{$s}] = jssor_app_slider_starter('slider{$s}_container');\n";
-    echo "\t\t</script>\n";
-    echo "\t\t<br />\n";
-}
+        endfor;
 ?>
-    <div class="page_footer">
-        Page footer
-    </div>
+
+        <div class="page_footer">
+            Page footer
+        </div>
     </body>
 </html>

@@ -234,23 +234,27 @@ for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
             <!-- bullet navigator container -->
             <div u="navigator" class="jssorb10" style="bottom: -200px;">
                 <!-- bullet navigator item prototype -->
-                <div u="prototype"></div>
+<?php echo "                <div u=\"prototype\" ontouchend=\"content_sliders[{$s}].\$PlayTo( Array.prototype.indexOf.call(this.parentNode.children,this) );\"></div>\n"; ?>
             </div>
             <!--#endregion Bullet Navigator Skin End -->
 
             <!--#region Arrow Navigator Skin Begin -->
             <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
             <!-- Arrow Left -->
-            <div u="arrowleft" class="jssor_arrow" style="left:0px;">
-                <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
-                    <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
-                </svg>
+<?php echo "           <div ontouchend=\"content_sliders[{$s}].\$Prev(); event.preventDefault();\">\n"; ?>
+<?php echo "                <div id=\"slider{$s}_arrowleft\" u=\"arrowleft\" class=\"jssor_arrow\" style=\"left:0px;\">"; ?>
+                    <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                    </svg>
+                </div>
             </div>
             <!-- Arrow Right -->
-            <div u="arrowright" class="jssor_arrow" style="right:0px;">
-                <svg width="110" height="700" class="svg_arrow">
-                    <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
-                </svg>
+<?php echo "           <div ontouchend=\"content_sliders[{$s}].\$Next(); event.preventDefault();\">\n"; ?>
+                <div u="arrowright" class="jssor_arrow" style="right:0px;">
+                    <svg width="110" height="700" class="svg_arrow">
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                    </svg>
+                </div>
             </div>
             <!--#endregion Arrow Navigator Skin End -->
 

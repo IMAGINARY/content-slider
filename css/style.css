@@ -82,6 +82,7 @@ body{
     top: 0px;
     width: 2160px;
     height: 3840px;
+    overflow: hidden;
 }
 
 .page_header {

@@ -183,7 +183,7 @@
         </script>
     </head>
 
-    <body id="home">
+    <body id="home" oncontextmenu="return false;" ontouchstart="return false;">
 
         <div class="page_header">
             <h1>Page title</h1>

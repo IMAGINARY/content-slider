@@ -111,7 +111,7 @@
             jssor_app_slider_starter = function (containerId) {
                 var options = {
                     $AutoPlay: false,
-                    $PauseOnHover: 1,
+                    $PauseOnHover: 0,
                     $Idle: 3 * 60 * 1000,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not

@@ -209,7 +209,7 @@
         </script>
     </head>
 
-    <body id="home" oncontextmenu="return false;" ontouchstart="return false;">
+    <body id="home" oncontextmenu="return false;" ontouchstart="return false;" class="noselect">
         <div id="wrapper">
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->

@@ -192,6 +192,7 @@ body{
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    background: transparent;
 }
 .jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: #022F53; }
 

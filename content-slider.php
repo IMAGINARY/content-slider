@@ -177,6 +177,23 @@
                         }
                     }
                 }
+
+                // only fire if touch ended on a node that is equal to or is a child node of element
+                jssor_slider.fix_touchend_action = function( event, element, action, preventDefault ) {
+                    var changedTouch = event.changedTouches[ 0 ];
+                    var elementBelow = document.elementFromPoint( changedTouch.clientX, changedTouch.clientY );
+
+                    while( elementBelow != null && elementBelow != element )
+                        elementBelow = elementBelow.parentElement;
+
+                    if( elementBelow == element )
+                    {
+                        action();
+                        if( preventDefault )
+                            event.preventDefault();
+                    }
+                }
+
                 return jssor_slider;
             };
         </script>
@@ -238,14 +255,14 @@
             <!-- bullet navigator container -->
             <div u="navigator" class="jssorb10" style="bottom: -200px;">
                 <!-- bullet navigator item prototype -->
-                <div u="prototype" ontouchend="content_sliders[<?=$s?>].$PlayTo( Array.prototype.indexOf.call(this.parentNode.children,this) );"></div>
+                <div u="prototype" ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[<?=$s?>].fix_touchend_action( event, this, function() { content_sliders[<?=$s?>].$PlayTo( index ); }, false );"></div>
             </div>
             <!--#endregion Bullet Navigator Skin End -->
 
             <!--#region Arrow Navigator Skin Begin -->
             <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
             <!-- Arrow Left -->
-            <div ontouchend="content_sliders[<?=$s?>].$Prev(); event.preventDefault();">
+            <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Prev, true );">
                 <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
                     <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                         <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
@@ -253,7 +270,7 @@
                 </div>
             </div>
             <!-- Arrow Right -->
-            <div ontouchend="content_sliders[<?=$s?>].$Next(); event.preventDefault();">
+            <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
                 <div u="arrowright" class="jssor_arrow" style="right:0px;">
                     <svg width="110" height="700" class="svg_arrow">
                         <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />

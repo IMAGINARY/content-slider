@@ -303,7 +303,6 @@
 ?>
 
         <div class="page_footer">
-            Page footer
         </div>
     </body>
 </html>

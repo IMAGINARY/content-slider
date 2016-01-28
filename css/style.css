@@ -162,7 +162,6 @@ body{
 }
 
 .app_wrapper {
-    cursor: move;
     position: relative;
     overflow: hidden;
     left: 300px;
@@ -242,7 +241,6 @@ body{
     border: 3px solid #666;
     border-radius: 50%;
     overflow: hidden;
-    cursor: pointer;
 }
 .jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: #666; }
 
@@ -264,7 +262,6 @@ body{
     /* size of arrow element */
     width: 300px;
     height: 1170px;
-    cursor: pointer;
     overflow: hidden;
     background-color: transparent;
 }
@@ -308,7 +305,6 @@ body{
 
 
 .top_slider_slides {
-    cursor: move;
     position: absolute;
     overflow: hidden;
     left: 0px;

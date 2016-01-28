@@ -83,6 +83,10 @@ body{
     width: 2160px;
     height: 3840px;
     overflow: hidden;
+#wrapper {
+	overflow: hidden;
+    width: 2160px;
+    height: 3840px;
 }
 
 .page_header {

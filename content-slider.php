@@ -210,6 +210,7 @@
     </head>
 
     <body id="home" oncontextmenu="return false;" ontouchstart="return false;">
+        <div id="wrapper">
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
             <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px;"></iframe>
@@ -231,79 +232,80 @@
         </div>
 
 <?php
-        for( $s = 0; $s < 2; $s++ ) :
+            for( $s = 0; $s < 2; $s++ ) :
 ?>
-        <!-- BEGIN slider <?=$s?> -->
-        <div id="slider<?=$s?>_container" class="content_slider<?=$s?>">
-            <!-- Slides Container -->
-            <div class="app_wrapper_bg">
-                <!-- ensure bg color between slides -->
-            </div>
+            <!-- BEGIN slider <?=$s?> -->
+            <div id="slider<?=$s?>_container" class="content_slider<?=$s?>">
+                <!-- Slides Container -->
+                <div class="app_wrapper_bg">
+                    <!-- ensure bg color between slides -->
+                </div>
 
-            <div u="slides" id="slides<?=$s?>" class="app_wrapper">;
+                <div u="slides" id="slides<?=$s?>" class="app_wrapper">;
+                    <script>
+                        content_slides[<?=$s?>] = [];
+                        var current_content_slides = content_slides[<?=$s?>];
+                    </script>
+
+<?php
+                    $tab = '    ';
+                    $ind7n = str_repeat( $tab, 4 );
+                    for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
+                        echo $ind7n."<!-- BEGIN slide {$s}_{$i} -->\n";
+                        echo $ind7n."<div>\n";
+                        // buffer output and indent
+                        ob_start();
+                        include( $content[ $s ][ $i ] );
+                        $result = ob_get_contents();
+                        ob_end_clean();
+                        print str_replace( "\n", "\n".$tab.$ind7n , $tab.$ind7n.trim( $result ) )."\n";
+                        echo $ind7n."</div>\n";
+                        echo $ind7n."<!-- END slide {$s}_{$i} -->\n";
+                    }
+?>
+                </div>
+
+                <!--#region Bullet Navigator Skin Begin -->
+                <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
+                <!-- bullet navigator container -->
+                <div u="navigator" class="jssorb10">
+                    <!-- bullet navigator item prototype -->
+                    <div u="prototype" ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[<?=$s?>].fix_touchend_action( event, this, function() { content_sliders[<?=$s?>].$PlayTo( index ); }, false );"></div>
+                </div>
+                <!--#endregion Bullet Navigator Skin End -->
+
+                <!--#region Arrow Navigator Skin Begin -->
+                <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
+                <!-- Arrow Left -->
+                <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Prev, true );">
+                    <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
+                        <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
+                            <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Arrow Right -->
+                <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
+                    <div u="arrowright" class="jssor_arrow" style="right:0px;">
+                        <svg width="110" height="700" class="svg_arrow">
+                            <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                        </svg>
+                    </div>
+                </div>
+                <!--#endregion Arrow Navigator Skin End -->
+
                 <script>
-                    content_slides[<?=$s?>] = [];
-                    var current_content_slides = content_slides[<?=$s?>];
+                    content_sliders[<?=$s?>] = jssor_app_slider_starter('slider<?=$s?>_container');
                 </script>
+            </div>
+            <!-- END slider <?=$s?> -->
 
 <?php
-                $tab = '    ';
-                $ind7n = str_repeat( $tab, 4 );
-                for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
-                    echo $ind7n."<!-- BEGIN slide {$s}_{$i} -->\n";
-                    echo $ind7n."<div>\n";
-                    // buffer output and indent
-                    ob_start();
-                    include( $content[ $s ][ $i ] );
-                    $result = ob_get_contents();
-                    ob_end_clean();
-                    print str_replace( "\n", "\n".$tab.$ind7n , $tab.$ind7n.trim( $result ) )."\n";
-                    echo $ind7n."</div>\n";
-                    echo $ind7n."<!-- END slide {$s}_{$i} -->\n";
-                }
-?>
-            </div>
-
-            <!--#region Bullet Navigator Skin Begin -->
-            <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
-            <!-- bullet navigator container -->
-            <div u="navigator" class="jssorb10" style="bottom: -200px;">
-                <!-- bullet navigator item prototype -->
-                <div u="prototype" ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[<?=$s?>].fix_touchend_action( event, this, function() { content_sliders[<?=$s?>].$PlayTo( index ); }, false );"></div>
-            </div>
-            <!--#endregion Bullet Navigator Skin End -->
-
-            <!--#region Arrow Navigator Skin Begin -->
-            <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
-            <!-- Arrow Left -->
-            <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Prev, true );">
-                <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
-                    <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
-                    </svg>
-                </div>
-            </div>
-            <!-- Arrow Right -->
-            <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
-                <div u="arrowright" class="jssor_arrow" style="right:0px;">
-                    <svg width="110" height="700" class="svg_arrow">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
-                    </svg>
-                </div>
-            </div>
-            <!--#endregion Arrow Navigator Skin End -->
-
-            <script>
-                content_sliders[<?=$s?>] = jssor_app_slider_starter('slider<?=$s?>_container');
-            </script>
-        </div>
-        <!-- END slider <?=$s?> -->
-
-<?php
-        endfor;
+            endfor;
 ?>
 
-        <div class="page_footer">
-        </div>
+            <div class="page_footer">
+            </div>
+        <div>
     </body>
 </html>

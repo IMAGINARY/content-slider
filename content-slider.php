@@ -214,9 +214,10 @@
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
             <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px;"></iframe>
 
-        <div class="page_header">
-            <h1>Page title</h1>
-        </div>
+            <div class="page_header">
+                Touch-Screen-Station: IMAGINARY, Dr. Christian Stussak (www.imaginary.org)<br>
+                Programme: Cinderella, Prof. Dr. Dr. Jürgen Richter-Gebert (www.cinderella.de)
+            </div>
 
         <div id="slider_top" class="top_slider">
             <!-- Slides Container -->

@@ -7,7 +7,7 @@
         (function() {
             // BEGIN your app related variables and methods
             var div = document.createElement("div");
-            div.style = "font-size: 64pt;"
+            div.style.fontSize = '64px';
             document.currentScript.parentNode.appendChild( div );
 
             var number = 0;

@@ -72,6 +72,18 @@ table{
 \*------------------------------------*/
 /* GO! */
 
+
+@font-face {
+    font-family: 'regular';
+    src: url('../fonts/BrownStd-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Brown-Regular.woff') format('woff') /* Pretty Modern Browsers */
+}
+
+@font-face {
+    font-family: 'light';
+    src: url('../fonts/brown-light-webfont.woff2') format('woff2') /* Pretty Modern Browsers */
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -83,16 +95,19 @@ table{
 }
 
 body{
-    font-family: sans-serif;
-    color: #022F53;
-    background-color: #A6D6C8;
-    font-size: 32pt;
+    font-family: 'regular';
+    color: #666;
+    font-size: 24px;
+    line-height: 28px;
     position: absolute;
     left: 0px;
     top: 0px;
     width: 2160px;
     height: 3840px;
-    overflow: hidden;
+    outline: 1px solid gray;
+    background-color: #f2f2f2;
+}
+
 #wrapper {
 	overflow: hidden;
     width: 2160px;
@@ -101,8 +116,27 @@ body{
 
 .page_header {
     text-align: center;
-    font-size: 128pt;
+    font-size: 14px;
+    line-height:20px;
+    padding: 50px 0 50px 0;
+    background-color: white;
+    color: #999;
+    z-index: 10000;
+    position: relative;
 }
+
+
+#canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+
+
+
+
 
 .page_footer {
     text-align: center;
@@ -127,19 +161,9 @@ body{
     top: 2305px;
 }
 
-.app_wrapper_bg {
-    position: absolute;
-    overflow: hidden;
-    left: 300px;
-    top: 0px;
-    width: 1560px;
-    height: 1170px;
-    background-color: #022F53;    
-}
-
 .app_wrapper {
     cursor: move;
-    position: absolute;
+    position: relative;
     overflow: hidden;
     left: 300px;
     top: 0px;
@@ -147,39 +171,51 @@ body{
     height: 1475px;
 }
 
+
+
 .app {
     position: relative;
     overflow: hidden;
     height: 1170px;
     width:100%;
     color: white;
-    background-color: #022F53;
+    /*background-color: var( --fg-color );*/
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.app_name {
+    position: absolute;
+    left: 0px;
+    width: 40%;
+    height: 100px;
+    float: left;
+    text-align: left;
+    font-size: 70px;
+    font-family: "light";
+    margin: 10px 0 0 0;
+
 }
 
 .app_description {
-    position: relative;
+    position: absolute;
     overflow: hidden;
-    left: 0px;
-    width: 100%;
+    left: 40%;
+    width: 60%;
+    margin: 0;
     float: left;
     text-align: justify;
 }
 
-.app_name {
-    position: relative;
-    overflow: hidden;
-    left: 0px;
-    width: 50%;
-    float: left;
-    text-align: left;
-}
+
 
 .app_credits {
-    position: relative;
+    position: absolute;
     overflow: hidden;
     right: 0px;
     width: 50%;
     text-align: right;
+    display: none;
 }
 
 
@@ -196,19 +232,19 @@ body{
 */
 .jssorb10 {
     position: absolute;
+    bottom: -160px !important;
 }
 .jssorb10 div, .jssorb10 div:hover, .jssorb10 .av {
     position: absolute;
     /* size of bullet elment */
     width: 30px;
     height: 30px;
-    border: 3px solid #022F53;
+    border: 3px solid #666;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    background: transparent;
 }
-.jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: #022F53; }
+.jssorb10 div:hover, .jssorb10 .av:hover, .jssorb10 .av, .jssorb10 .dn, .jssorb10 .dn:hover { background: #666; }
 
 /*------------------------------------*\
     jssor slider arrow navigator skin 06 css
@@ -245,17 +281,31 @@ body{
 
 .svg_arrow_polyline {
     fill:none;
-    stroke: #022F53;
-    stroke-width:10;
+    stroke: #666;
+    stroke-width:5;
 }
+
+
+
+
+
+
 
 .top_slider {
     position: relative;
-    top: 20px;
+    top: 200px;
     left: 0px;
     width: 2160px;
-    height: 300px;
+    height: 340px;
+	font-size: 90px;
+	line-height: 110px;
+	font-family: "light";
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 4px;
 }
+
+
 
 .top_slider_slides {
     cursor: move;
@@ -263,11 +313,11 @@ body{
     overflow: hidden;
     left: 0px;
     top: 0px;
-    width: 2160px;
-    height: 300px;
+    width: 100%;
+    height: 400px;
 }
 
 .top_slider_slides div {
-    padding-left: 100px;
-    padding-right: 100px;
+    text-align: center;
+    margin: auto;
 }

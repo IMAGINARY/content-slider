@@ -97,8 +97,6 @@ table{
 body{
     font-family: 'regular';
     color: #666;
-    font-size: 24px;
-    line-height: 28px;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -191,6 +189,7 @@ body{
     float: left;
     text-align: left;
     font-size: 70px;
+    line-height: 28px;
     font-family: "light";
     margin: 10px 0 0 0;
 
@@ -204,6 +203,8 @@ body{
     margin: 0;
     float: left;
     text-align: justify;
+    font-size: 24px;
+    line-height: 28px;
 }
 
 
@@ -215,6 +216,8 @@ body{
     width: 50%;
     text-align: right;
     display: none;
+    font-size: 24px;
+    line-height: 28px;
 }
 
 

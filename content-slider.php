@@ -1,5 +1,6 @@
 <?php
     $day_of_week = date( 'l' );
+    $day_of_week = 'Cindy';
     switch( $day_of_week )
     {
         case "Monday": // monday
@@ -57,6 +58,14 @@
             $content[1][1] = "app3.inc";
             $content[1][2] = "app3.inc";
             break;
+        case "Cindy":
+            $content[0][0] = "app_cinderella_A3.inc";
+            $content[0][1] = "app_cinderella_E3.inc";
+            $content[0][2] = "app_cinderella_G3.inc";
+            $content[1][0] = "app_cinderella_E1.inc";
+            $content[1][1] = "app_cinderella_B3.inc";
+            $content[1][2] = "app_cinderella_G4.inc";
+            break;
     }
 ?>
 <!DOCTYPE html>
@@ -68,6 +77,20 @@
 
     	<title>Content Slider</title>
     	<link rel="stylesheet" href="css/style.css">
+<?php
+        {
+            $tab = '    ';
+            $ind7n = str_repeat( $tab, 2 );
+            echo $ind7n."<!-- BEGIN common app header -->\n";
+            // buffer output and indent
+            ob_start();
+            include( 'app_common.inc' );
+            $result = ob_get_contents();
+            ob_end_clean();
+            print str_replace( "\n", "\n".$ind7n , $ind7n.trim( $result ) )."\n";
+            echo $ind7n."<!-- END common app header -->\n";
+        }
+?>
         <script src="js/jssor.slider.min.js"></script>
         <script>
             var content_sliders = [];

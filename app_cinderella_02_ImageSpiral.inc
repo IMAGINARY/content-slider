@@ -12,6 +12,20 @@ if(|p,mouse().xy|<3,sel=#)
 ;
 </script>
 <script id="app_cinderella_02_csdraw" type="text/x-cindyscript">
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-11,-14);
+maxpt=(18,16);
+//draw(minpt,maxpt);
+//draw(minpt);
+//draw(maxpt);
+restrict(C,minpt,maxpt);
+restrict(B,minpt,maxpt);
+
+
 E.xy=(E-D)/|E-D|*3+D;
 
 if(G.y<=F.y,G.xy=F.xy);

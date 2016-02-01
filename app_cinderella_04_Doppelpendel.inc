@@ -1,5 +1,20 @@
 <div class="app">
  <script id="app_cinderella_04_csdraw" type="text/x-cindyscript">
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-11,-20);
+maxpt=(31,11.5);
+//draw(minpt,maxpt);
+//draw(minpt);
+//draw(maxpt);
+restrict(B,minpt,maxpt);
+restrict(C,minpt,maxpt);
+restrict(F,minpt,maxpt);
+restrict(G,minpt,maxpt);
+
  Dummy.xy=0;
  fillpoly(button1,color->gray(if(pressed1,.3,.5)));
 drawpoly(button1,color->gray(.8),size->4);

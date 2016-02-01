@@ -19,6 +19,22 @@ forall(1..length(images),
 ;
 </script>
 <script id="app_cinderella_01_csdraw" type="text/x-cindyscript">
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-22,-17);
+maxpt=(19,17);
+//draw(minpt,maxpt);
+//draw(minpt);
+//draw(maxpt);
+restrict(A,minpt,maxpt);
+restrict(B,minpt,maxpt);
+restrict(G,minpt,maxpt);
+restrict(D,minpt,maxpt);
+restrict(E,minpt,maxpt);
+
 bild=images_sel_2;
 
 if(M.x<=C.x,M.xy=C.xy);

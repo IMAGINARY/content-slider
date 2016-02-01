@@ -1,5 +1,20 @@
 <div class="app">
 <script id="app_cinderella_03_csdraw" type="text/x-cindyscript">
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-16,-12);
+maxpt=(26,19);
+//draw(minpt,maxpt);
+//draw(minpt);
+//draw(maxpt);
+restrict(D,minpt,maxpt);
+restrict(A,minpt,maxpt);
+restrict(B,minpt,maxpt);
+restrict(C,minpt,maxpt);
+
 
 E.xy=(E-D)/|E-D|*3+D;
 if(mover()==D,E.xy=D+diff);

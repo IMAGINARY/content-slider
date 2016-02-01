@@ -59,12 +59,12 @@
             $content[1][2] = "app3.inc";
             break;
         case "Cindy":
-            $content[0][0] = "app_cinderella_A3.inc";
-            $content[0][1] = "app_cinderella_E3.inc";
-            $content[0][2] = "app_cinderella_G3.inc";
-            $content[1][0] = "app_cinderella_E1.inc";
-            $content[1][1] = "app_cinderella_B3.inc";
-            $content[1][2] = "app_cinderella_G4.inc";
+            $content[0][0] = "app_cinderella_01_Kaleidoskope.inc";
+            $content[0][1] = "app_cinderella_04_Doppelpendel.inc";
+            $content[0][2] = "app_cinderella_05_Solitaire.inc";
+            $content[1][0] = "app_cinderella_03_SphereChaos.inc";
+            $content[1][1] = "app_cinderella_02_ImageSpiral.inc";
+            $content[1][2] = "app_cinderella_06_Ausparken.inc";
             break;
     }
 ?>

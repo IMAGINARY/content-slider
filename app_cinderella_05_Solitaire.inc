@@ -1,5 +1,5 @@
 <div class="app">
-    <script id="app_cinderella_G3_csmouseup" type="text/x-cindyscript">
+    <script id="app_cinderella_05_csmouseup" type="text/x-cindyscript">
         if(pressed,reset());
         pressed=false;
     if(moving,
@@ -37,7 +37,7 @@
 
     ;
     </script>
-    <script id="app_cinderella_G3_csdraw" type="text/x-cindyscript">
+    <script id="app_cinderella_05_csdraw" type="text/x-cindyscript">
     if(!animating,
         drawstuff(mouse().xy),
         drawstuff(animpos)
@@ -52,7 +52,7 @@
 
     ;
     </script>
-    <script id="app_cinderella_G3_csmousedown" type="text/x-cindyscript">
+    <script id="app_cinderella_05_csmousedown" type="text/x-cindyscript">
     mpo=mouse().xy;
     if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
        mpo.y>rect_1_2 & mpo.y<rect_3_2,pressed=true);
@@ -72,7 +72,7 @@
 
 
     </script>
-    <script id="app_cinderella_G3_csmousedrag" type="text/x-cindyscript">
+    <script id="app_cinderella_05_csmousedrag" type="text/x-cindyscript">
     mpo=mouse().xy;
     if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
        mpo.y>rect_1_2 & mpo.y<rect_3_2&!moving,pressed=true,pressed=false);
@@ -82,7 +82,7 @@
 
     ;
     </script>
-    <script id="app_cinderella_G3_csinit" type="text/x-cindyscript">
+    <script id="app_cinderella_05_csinit" type="text/x-cindyscript">
     animating=false;
 
     rect=[[16,4.5],[23,4.5],[23,6.3],[16,6.3]];
@@ -199,7 +199,7 @@
     ;
     </script>
 
-    <script id="app_cinderella_G3_cstick" type="text/x-cindyscript">
+    <script id="app_cinderella_05_cstick" type="text/x-cindyscript">
     animating=true;
 
     animpos=animation_startindex;
@@ -217,17 +217,17 @@
     	</script>
 <script type="text/javascript">
     (function(){
-        var uid = 'app_cinderella_G3_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
+        var uid = 'app_cinderella_05_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-        var cdy = createCindy({
-          scripts: "app_cinderella_G3_cs*",
+        var cdy05 = createCindy({
+          scripts: "app_cinderella_05_cs*",
           defaultAppearance: {},
           images: {
-            balls: "app_cinderella_G3/balls.png",
-            boardAX: "app_cinderella_G3/boardAX.png",
-            boardB: "app_cinderella_G3/boardB.png",
-            boardC: "app_cinderella_G3/boardC.png"
+            balls: "app_cinderella_05/balls.png",
+            boardAX: "app_cinderella_05/boardAX.png",
+            boardB: "app_cinderella_05/boardB.png",
+            boardC: "app_cinderella_05/boardC.png"
           },
           ports: [{
             id: uid,
@@ -245,5 +245,5 @@
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_G3</div>
+<div class="app_name">Solitaire Spiel</div>
 <div class="app_credits"></div>

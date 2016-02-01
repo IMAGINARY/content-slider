@@ -1,5 +1,5 @@
 <div class="app">
- <script id="app_cinderella_E3_csdraw" type="text/x-cindyscript">
+ <script id="app_cinderella_04_csdraw" type="text/x-cindyscript">
  Dummy.xy=0;
  fillpoly(button1,color->gray(if(pressed1,.3,.5)));
 drawpoly(button1,color->gray(.8),size->4);
@@ -30,7 +30,7 @@ l=[];
 
 ;
 </script>
-<script id="app_cinderella_E3_csmousedown" type="text/x-cindyscript">
+<script id="app_cinderella_04_csmousedown" type="text/x-cindyscript">
 mpo=mouse().xy;
 if(mpo.x>button1_1_1 & mpo.x<button1_2_1 & mpo.y>button1_1_2 & mpo.y<button1_3_2,
 if(pressed1,stopanimation(),playanimation());
@@ -39,7 +39,7 @@ if(mpo.x>button2_1_1 & mpo.x<button2_2_1 & mpo.y>button2_1_2 & mpo.y<button2_3_2
 
 ;
 </script>
-<script id="app_cinderella_E3_csinit" type="text/x-cindyscript">
+<script id="app_cinderella_04_csinit" type="text/x-cindyscript">
 l=[];
 button1=[[14+9,7],[20+9,7],[20+9,8.7],[14+9,8.7]];
 button2=[[14+9,4],[20+9,4],[20+9,5.7],[14+9,5.7]];
@@ -59,8 +59,8 @@ pressed2=false;
         var uid = 'app_cinderella_B3_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-        var cdy = createCindy({
-        scripts: "app_cinderella_E3_cs*",
+        var cdy04 = createCindy({
+        scripts: "app_cinderella_04_cs*",
         defaultAppearance: {},
         ports: [{
          id: uid,
@@ -91,5 +91,5 @@ pressed2=false;
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_E3</div>
+<div class="app_name">Doppelpendel</div>
 <div class="app_credits"></div>

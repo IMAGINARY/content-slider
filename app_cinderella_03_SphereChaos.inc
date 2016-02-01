@@ -1,5 +1,5 @@
 <div class="app">
-<script id="app_cinderella_E1_csdraw" type="text/x-cindyscript">
+<script id="app_cinderella_03_csdraw" type="text/x-cindyscript">
 
 E.xy=(E-D)/|E-D|*3+D;
 if(mover()==D,E.xy=D+diff);
@@ -84,27 +84,23 @@ if(length(l)>0,(
 alpha=alpha*dim;
 );
 
-
-
-
-
-
-
-
-
-
-;
 </script>
-<script id="app_cinderella_E1_csmousedown" type="text/x-cindyscript">
+<script id="app_cinderella_03_csmousedown" type="text/x-cindyscript">
 </script>
+
+
+<script id="app_cinderella_03_csinit" type="text/x-cindyscript">
+</script>
+
+
 
 <script type="text/javascript">
     (function(){
-        var uid = 'app_cinderella_E1_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
+        var uid = 'app_cinderella_03_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-            var cdy = createCindy({
-            scripts: "app_cinderella_E1_cs*",
+            var cdy03 = createCindy({
+            scripts: "app_cinderella_03_cs*",
             defaultAppearance: {},
             ports: [{
             id: uid,
@@ -128,5 +124,5 @@ alpha=alpha*dim;
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_E1</div>
+<div class="app_name">Lichtstrahl</div>
 <div class="app_credits"></div>

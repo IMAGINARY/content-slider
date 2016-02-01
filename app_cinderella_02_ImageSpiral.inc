@@ -1,5 +1,5 @@
 <div class="app">
-    <script id="app_cinderella_B3_csmouseup" type="text/x-cindyscript">
+    <script id="app_cinderella_02_csmouseup" type="text/x-cindyscript">
 forall(1..length(images),
 p=images_#_1;
 if(|p,mouse().xy|<3,sel=#)
@@ -11,7 +11,7 @@ if(|p,mouse().xy|<3,sel=#)
 
 ;
 </script>
-<script id="app_cinderella_B3_csdraw" type="text/x-cindyscript">
+<script id="app_cinderella_02_csdraw" type="text/x-cindyscript">
 E.xy=(E-D)/|E-D|*3+D;
 
 if(G.y<=F.y,G.xy=F.xy);
@@ -56,9 +56,9 @@ angle->-w);
 
 ;
 </script>
-<script id="app_cinderella_B3_csmousedown" type="text/x-cindyscript">
+<script id="app_cinderella_02_csmousedown" type="text/x-cindyscript">
 </script>
-<script id="app_cinderella_B3_csinit" type="text/x-cindyscript">
+<script id="app_cinderella_02_csinit" type="text/x-cindyscript">
 sel=1;
 ss=1.6;
 images=[
@@ -79,19 +79,19 @@ images=[
 
 <script type="text/javascript">
     (function(){
-        var uid = 'app_cinderella_B3_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
+        var uid = 'app_cinderella_02_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-        var cdy = createCindy({
-            scripts: "app_cinderella_B3_cs*",
+        var cdy02 = createCindy({
+            scripts: "app_cinderella_02_cs*",
             defaultAppearance: {},
             images: {
-            test1: "app_cinderella_B3/test1.png",
-            test2: "app_cinderella_B3/test2.png",
-            test3: "app_cinderella_B3/test3.png",
-            test4: "app_cinderella_B3/test4.png",
-            test5: "app_cinderella_B3/test5.png",
-            test6: "app_cinderella_B3/test6.png"
+            test1: "app_cinderella_02/test1.png",
+            test2: "app_cinderella_02/test2.png",
+            test3: "app_cinderella_02/test3.png",
+            test4: "app_cinderella_02/test4.png",
+            test5: "app_cinderella_02/test5.png",
+            test6: "app_cinderella_02/test6.png"
             },
             ports: [{
             id: uid,
@@ -114,5 +114,5 @@ images=[
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_B3</div>
+<div class="app_name">Spirale</div>
 <div class="app_credits"></div>

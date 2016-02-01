@@ -1,5 +1,5 @@
 <div class="app">
-    <script id="app_cinderella_A3_csmouseup" type="text/x-cindyscript">
+    <script id="app_cinderella_01_csmouseup" type="text/x-cindyscript">
 if(|mouse().xy,hot1|<3,type=1);
 if(|mouse().xy,hot2|<3,type=2);
 if(|mouse().xy,hot3|<3,type=3);
@@ -18,7 +18,7 @@ forall(1..length(images),
 
 ;
 </script>
-<script id="app_cinderella_A3_csdraw" type="text/x-cindyscript">
+<script id="app_cinderella_01_csdraw" type="text/x-cindyscript">
 bild=images_sel_2;
 
 if(M.x<=C.x,M.xy=C.xy);
@@ -341,9 +341,9 @@ apply(1..4,ind=images_#;
 
 ;
 </script>
-<script id="app_cinderella_A3_csmousedown" type="text/x-cindyscript">
+<script id="app_cinderella_01_csmousedown" type="text/x-cindyscript">
 </script>
-<script id="app_cinderella_A3_csinit" type="text/x-cindyscript">
+<script id="app_cinderella_01_csinit" type="text/x-cindyscript">
 type=1;
 
 
@@ -365,19 +365,19 @@ images=[
 
     <script type="text/javascript">
     (function(){
-        var uid = 'app_cinderella_A3_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
+        var uid = 'app_cinderella_01_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-        var cdy = createCindy({
-          scripts: "app_cinderella_A3_cs*",
+        var cdy01 = createCindy({
+          scripts: "app_cinderella_01_cs*",
           defaultAppearance: {},
           images: {
-            bild: "app_cinderella_A3/bild.png",
-            bild2: "app_cinderella_A3/bild2.png",
-            bild3: "app_cinderella_A3/bild3.png",
-            bild4: "app_cinderella_A3/bild4.png",
-            bild4X: "app_cinderella_A3/bild4X.png",
-            bildX: "app_cinderella_A3/bildX.png"
+            bild: "app_cinderella_01/bild.png",
+            bild2: "app_cinderella_01/bild2.png",
+            bild3: "app_cinderella_01/bild3.png",
+            bild4: "app_cinderella_01/bild4.png",
+            bild4X: "app_cinderella_01/bild4X.png",
+            bildX: "app_cinderella_01/bildX.png"
           },
           ports: [{
             id: uid,
@@ -404,5 +404,5 @@ images=[
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_A3</div>
+<div class="app_name">Kaleidoskop</div>
 <div class="app_credits"></div>

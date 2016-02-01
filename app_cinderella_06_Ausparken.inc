@@ -1,6 +1,6 @@
 <div class="app">
 
-    <script id="app_cinderella_G4_cstick" type="text/x-cindyscript">
+    <script id="app_cinderella_06_cstick" type="text/x-cindyscript">
 
 
     move=animation_startindex;
@@ -16,18 +16,18 @@
     	</script>
 
 
-        <script id="app_cinderella_G4_csmouseup" type="text/x-cindyscript">
+        <script id="app_cinderella_06_csmouseup" type="text/x-cindyscript">
 
     upaction();
 
     </script>
-    <script id="app_cinderella_G4_csdraw" type="text/x-cindyscript">
+    <script id="app_cinderella_06_csdraw" type="text/x-cindyscript">
 
     allthedrawing();
 
     ;
     </script>
-    <script id="app_cinderella_G4_csmousedown" type="text/x-cindyscript">
+    <script id="app_cinderella_06_csmousedown" type="text/x-cindyscript">
     if(downpending,
       upaction();
     );
@@ -36,7 +36,7 @@
 
 
     </script>
-    <script id="app_cinderella_G4_csmousedrag" type="text/x-cindyscript">
+    <script id="app_cinderella_06_csmousedrag" type="text/x-cindyscript">
     if(moving,
 
       move=(mouse().xy-pos)/2;
@@ -61,7 +61,7 @@
 
     ;
     </script>
-    <script id="app_cinderella_G4_csinit" type="text/x-cindyscript">
+    <script id="app_cinderella_06_csinit" type="text/x-cindyscript">
 
     downpending=false;
 
@@ -510,33 +510,33 @@
 
  <script type="text/javascript">
     (function(){
-        var uid = 'app_cinderella_G4_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
+        var uid = 'app_cinderella_06_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-        var cdy = createCindy({
-          scripts: "app_cinderella_G4_cs*",
+        var cdy06 = createCindy({
+          scripts: "app_cinderella_06_cs*",
           defaultAppearance: {},
           images: {
-            a1: "app_cinderella_G4/a1.png",
-            a10: "app_cinderella_G4/a10.png",
-            a11: "app_cinderella_G4/a11.png",
-            a12: "app_cinderella_G4/a12.png",
-            a2: "app_cinderella_G4/a2.png",
-            a3: "app_cinderella_G4/a3.png",
-            a4: "app_cinderella_G4/a4.png",
-            a5: "app_cinderella_G4/a5.png",
-            a6: "app_cinderella_G4/a6.png",
-            a7: "app_cinderella_G4/a7.png",
-            a8: "app_cinderella_G4/a8.png",
-            a9: "app_cinderella_G4/a9.png",
-            my: "app_cinderella_G4/my.png",
-            t1: "app_cinderella_G4/t1.png",
-            t2: "app_cinderella_G4/t2.png",
-            t3: "app_cinderella_G4/t3.png",
-            t4: "app_cinderella_G4/t4.png",
-            t5: "app_cinderella_G4/t5.png",
-            t6: "app_cinderella_G4/t6.png",
-            t7: "app_cinderella_G4/t7.png"
+            a1: "app_cinderella_06/a1.png",
+            a10: "app_cinderella_06/a10.png",
+            a11: "app_cinderella_06/a11.png",
+            a12: "app_cinderella_06/a12.png",
+            a2: "app_cinderella_06/a2.png",
+            a3: "app_cinderella_06/a3.png",
+            a4: "app_cinderella_06/a4.png",
+            a5: "app_cinderella_06/a5.png",
+            a6: "app_cinderella_06/a6.png",
+            a7: "app_cinderella_06/a7.png",
+            a8: "app_cinderella_06/a8.png",
+            a9: "app_cinderella_06/a9.png",
+            my: "app_cinderella_06/my.png",
+            t1: "app_cinderella_06/t1.png",
+            t2: "app_cinderella_06/t2.png",
+            t3: "app_cinderella_06/t3.png",
+            t4: "app_cinderella_06/t4.png",
+            t5: "app_cinderella_06/t5.png",
+            t6: "app_cinderella_06/t6.png",
+            t7: "app_cinderella_06/t7.png"
           },
           ports: [{
             id: uid,
@@ -566,5 +566,5 @@
 </script>
 </div>
 <div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Cindy_G4</div>
+<div class="app_name">Ausparken</div>
 <div class="app_credits"></div>

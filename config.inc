@@ -13,6 +13,10 @@ $idle_delay = 15;
 $auto_slide_delay = 3 * 60;
 $app_restart_delay = 10;
 
+// variables subject to heartbeat
+$heartbeat_interval = 2;
+$heartbeat_url = 'http://localhost:8081';
+
 /******************************
  * END configuration
  ******************************/

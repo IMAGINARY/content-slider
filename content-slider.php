@@ -235,6 +235,8 @@
         id="home"
         reload-delay="<?=$reload_delay ?>"
         idle-delay="<?=$idle_delay ?>"
+        heartbeat-interval="<?=$heartbeat_interval ?>"
+        heartbeat-url="<?=$heartbeat_url?>"
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
@@ -343,6 +345,7 @@
             </div>
 
             <script src="js/auto-page-reloader.js"></script>
+            <script src="js/heartbeat.js"></script>
         <div>
     </body>
 </html>

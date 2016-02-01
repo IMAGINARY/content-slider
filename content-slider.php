@@ -231,8 +231,21 @@
         </script>
     </head>
 
-    <body id="home" oncontextmenu="return false;" ontouchstart="return false;" class="noselect">
-        <div id="wrapper">
+    <body
+        id="home"
+        reload-delay="<?=$reload_delay ?>"
+        idle-delay="<?=$idle_delay ?>"
+        oncontextmenu="return false;"
+        ontouchstart="return false;"
+        class="noselect"
+    >
+        <div
+            id="wrapper"
+            class="fade-in with-delay"
+            style="-webkit-animation-delay: <?=$fadein_on_load_delay ?>s;
+                -moz-animation-delay: <?=$fadein_on_load_delay ?>s;
+                animation-delay: <?=$fadein_on_load_delay ?>s;"
+        >
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
             <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
@@ -328,6 +341,8 @@
 
             <div class="page_footer">
             </div>
+
+            <script src="js/auto-page-reloader.js"></script>
         <div>
     </body>
 </html>

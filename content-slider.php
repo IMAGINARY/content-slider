@@ -1,4 +1,12 @@
 <?php
+    require( 'config.inc' );
+
+    // missing config.local.inc is ok
+    // allows to overwrite config values with local
+    // values that are not stored in the VCS
+    // config.local.inc should be ignored via .gitignore
+    include( 'config.local.inc' );
+
     $day_of_week = date( 'l' );
     switch( $day_of_week )
     {
@@ -126,7 +134,7 @@
                 var options = {
                     $AutoPlay: false,
                     $PauseOnHover: 0,
-                    $Idle: 3 * 60 * 1000,
+                    $Idle: (<?=$auto_slide_delay ?>) * 1000,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -188,7 +196,7 @@
                             slides[ i ].pause();
                         if( slide_restart_timer !== null )
                             window.clearTimeout( slide_restart_timer );
-                        slide_restart_timer = window.setTimeout( slide_restart_handler, 10 * 1000 );
+                        slide_restart_timer = window.setTimeout( slide_restart_handler, (<?=$app_restart_delay ?>) * 1000 );
                     }
                 } );
                 function slide_restart_handler() {

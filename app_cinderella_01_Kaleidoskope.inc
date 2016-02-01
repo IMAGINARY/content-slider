@@ -408,7 +408,7 @@ sel=1;
           },
           ports: [{
             id: uid,
-            background: "rgb(0,0,0)",
+            background: "rgb(0,0,0,0)",
             transform: [{visibleRect: [-24.77777777777778, 20.944444444444443, 32.111111111111114, -21.72222222222222]}]
           }],
           geometry: [

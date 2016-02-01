@@ -127,7 +127,7 @@ E.homog=(13, -3, 1);
             defaultAppearance: {},
             ports: [{
             id: uid,
-            background: "#000000",
+            background: "rgba(0,0,0,0)",
 
             transform: [{visibleRect: [-16.291666666666668, 19.5, 26.375, -12.5]}]
             }],

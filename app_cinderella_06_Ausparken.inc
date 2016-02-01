@@ -556,7 +556,7 @@ reset():=(
           },
           ports: [{
             id: uid,
-            background: "#000000",
+            background: "rgba(0,0,0,0)",
             transform: [{visibleRect: [-0.7280283924068959, 15.687837617026014, 23.320393343872503, -2.3484786851835353]}]
           }],
           geometry: [

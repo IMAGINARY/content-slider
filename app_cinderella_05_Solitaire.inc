@@ -231,7 +231,7 @@
           },
           ports: [{
             id: uid,
-            background: "#000000",
+            background: "rgba(0,0,0,0)",
             transform: [{visibleRect: [-10.635445120621503, 13.61908146108596, 30.41961350747239, -17.17221250998446]}]
           }],
           geometry: [

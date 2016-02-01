@@ -100,7 +100,7 @@ resume():=(
         defaultAppearance: {},
         ports: [{
          id: uid,
-         background: "#000000",
+         background: "rgba(0,0,0,0)",
          transform: [{visibleRect: [-11.125, 11.916666666666666, 31.541666666666668, -20.083333333333332]}]
         }],
         geometry: [

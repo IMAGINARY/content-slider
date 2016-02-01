@@ -26,7 +26,9 @@ draw(F,G, arrow->true,size->7,color->(1,1,1));
 
 if(pressed2,
 n=300;
-l=[C.xy]++l;
+if(l_1!=C.xy,
+  l=[C.xy]++l;
+);
 
 if(length(l)>n,
 l=apply(1..(length(l)-1),l_#);
@@ -66,7 +68,26 @@ pressed2=false;
 
 
 
-;
+reset():=(
+
+stopanimation();
+A.homog=(4, -2.40740, 0.462962);
+B.homog=(8, 4, 1);
+C.homog=(9, 7, 1);
+F.homog=(3.4, -4, -0.5);
+G.homog=(4, -2.1882352, -0.588235);
+l=[];
+pressed1=false;
+pressed2=false;
+    );
+
+pause():=(
+  pauseanimation();
+);
+resume():=(
+  if(pressed1, playanimation(););
+);
+
 </script>
 
  <script type="text/javascript">
@@ -102,6 +123,25 @@ pressed2=false;
          {name: "c", behavior: {type: "Gravity", strength: 0.01}}
         ]
         });
+
+ current_content_slides.push(
+             new function () {
+                 return {
+                    pause: function() { 
+                        console.log( 'pause pendel' ); 
+                        cdy04.evokeCS('pause();');
+                    },
+                    resume: function() { 
+                        console.log( 'resume pendel' );                         
+                        cdy04.evokeCS('resume();');
+                    },
+                    restart: function( pause_after_restart ) { 
+                        console.log( 'restart pendel' ); 
+                        cdy04.evokeCS('reset();');
+                    }
+                 }
+             }
+         );
     })();
 </script>
 </div>

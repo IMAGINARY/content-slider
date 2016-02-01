@@ -105,6 +105,14 @@ alpha=alpha*dim;
 
 
 <script id="app_cinderella_03_csinit" type="text/x-cindyscript">
+reset():=(
+
+A.homog=(1.485714, -4, 1.408163);
+B.homog=(-1.2, 9, 1);
+C.homog=(12.043333, 6.035, 1);
+D.homog=(4, -1.5, 0.2192982);
+E.homog=(13, -3, 1);
+    );
 </script>
 
 
@@ -132,9 +140,26 @@ alpha=alpha*dim;
             {name: "C2", type: "CircleMr", args: ["C"], radius: 7, size: 3, color: [1, 1, 0], alpha: 0.8999999761581421},
             {name: "D", type: "Free", pos: [4, -1.5, 0.2192982456140351], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9},
             {name: "C3", type: "CircleMr", args: ["D"], radius: 1, size: 3, color: [0, 0, 1], alpha: 0},
-            {name: "E", type: "Free", args: ["C3"], pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1]}
+            {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1]}
             ]
             });
+current_content_slides.push(
+             new function () {
+                 return {
+                     pause: function() { 
+                        console.log( 'pause spheres' ); 
+                     },
+                     resume: function() { 
+                        console.log( 'resume spheres' );
+                     },
+                     restart: function( pause_after_restart ) { 
+                        console.log( 'restart spheres' );
+                        cdy03.evokeCS('reset();');
+                      }
+                 }
+             }
+         );
+
         })();
 </script>
 </div>

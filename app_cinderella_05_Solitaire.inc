@@ -241,6 +241,19 @@
             {name: "D", type: "Free", pos: [4, -2.460850111856823, 0.2237136465324385], color: [1, 0, 0], labeled: true, visible: false}
           ]
         });
+ current_content_slides.push(
+             new function () {
+                 return {
+                    pause: function() { console.log( 'pause peg' ); },
+                    resume: function() { console.log( 'resume peg' ); },
+                    restart: function( pause_after_restart ) { 
+                      console.log( 'restart peg' ); 
+                      cdy05.evokeCS('reset();');
+                    }
+                 }
+             }
+         );
+
     })();
 </script>
 </div>

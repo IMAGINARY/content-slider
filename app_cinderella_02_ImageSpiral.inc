@@ -81,14 +81,19 @@ images=[
 [(21,-4.5),"test3",.8/ss],
 [(26,-4.5),"test4",.7/ss],
 [(21,-10),"test5",.7/ss],
-[(26,-10),"test6",.5/ss]]
+[(26,-10),"test6",.5/ss]];
 
 
+reset():=(
 
+B.homog=(4, -0.3346613, 0.39840637);
+C.homog=(4, 1.22893871, 0.43593195);
+D.homog=(4, 1.9, 0.179533);
+E.homog=(5, 3.1, 0.2085930);
+G.homog=(4, 1.8, 0.1488095);
+sel=1;
+    );
 
-
-
-;
 </script>
 
 <script type="text/javascript">
@@ -117,13 +122,30 @@ images=[
             {name: "C", type: "Free", pos: [4, 1.2289387168822175, 0.4359319522866157], size: 9, color: [0, 1, 0]},
             {name: "D", type: "Free", pos: [4, 1.9, 0.17953321364452424], pinned: true, size: 3, color: [1, 1, 1], labeled: true, visible: false},
             {name: "C0", type: "CircleMr", args: ["D"], radius: 3, pinned: true, size: 3, color: [1, 1, 1], printname: "$C_{0}$"},
-            {name: "E", type: "Free", args: ["C0"], pos: [5, 3.1, 0.20859302441322417], pinned: false, size: 5, color: [1, 1, 1]},
+            {name: "E", type: "Free", pos: [5, 3.1, 0.20859302441322417], pinned: false, size: 5, color: [1, 1, 1]},
             {name: "A", type: "Free", pos: [4, 2, 0.14880952380952378], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "F", type: "Free", pos: [4, 1.1, 0.14880952380952378], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "a", type: "Segment", args: ["A", "F"], pos: [-0.1488095238095238, 0, 4], size: 3, color: [1, 1, 1], labeled: true},
             {name: "G", type: "PointOnLine", args: ["a"], pos: [4, 1.8, 0.1488095238095238], size: 7, color: [1, 1, 1], labeled: true}
             ]
         });
+current_content_slides.push(
+             new function () {
+                 return {
+                     pause: function() { 
+                        console.log( 'pause spheres' ); 
+                     },
+                     resume: function() { 
+                        console.log( 'resume spheres' );
+                     },
+                     restart: function( pause_after_restart ) { 
+                        console.log( 'restart spheres' );
+                        cdy02.evokeCS('reset();');
+                      }
+                 }
+             }
+         );
+
     })();
 </script>
 </div>

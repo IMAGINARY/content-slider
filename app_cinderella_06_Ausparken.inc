@@ -500,6 +500,22 @@
     //  solved=false;
     //  special=[];
     );
+reset():=(
+    N.homog=(4, 0.2861021, 0.201765);
+
+    //COPY PASTE
+    sel=round(|M,N|/|M,L|*(n-1));
+    N.xy=sel*(L-M)/(n-1)+M;
+    devlevel(levels_(sel+1));
+    solved=false;
+
+    selold=sel;
+    apply(alldata,c,drawobj(c,1));
+
+    if(special!=[],
+     drawobj(special,.9);
+    );
+);
 
 
     </script>
@@ -562,6 +578,25 @@
             {name: "Dummy", type: "Free", pos: [0, 0.355889724310776, -0.2506265664160401], pinned: false, color: [1, 0, 0], visible: false}
           ]
         });
+
+current_content_slides.push(
+             new function () {
+                 return {
+                     pause: function() { 
+                        console.log( 'pause cars' ); 
+                     },
+                     resume: function() { 
+                        console.log( 'resume cars' );
+                     },
+                     restart: function( pause_after_restart ) { 
+                        console.log( 'restart cars' );
+                        cdy06.evokeCS('reset();');
+                      }
+                 }
+             }
+         );
+
+
     })();
 </script>
 </div>

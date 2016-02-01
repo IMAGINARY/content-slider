@@ -369,14 +369,25 @@ images=[
 [(28,-8),"bild2",.7],
 [(28,-12),"bild3",.5],
 [(28,-16),"bild4",.5]
-]
+];
+
+reset():=(
+
+A.homog=(4, 0.63313657, -1.04065347);
+B.homog=(0.9043478, -4, 0.6749865);
+D.homog=(-3.2947, -4, 0.289674);
+E.homog=(4, -1.4651206, 0.23502179);
+G.homog=(4, -1.81823465, -0.2468792697);
+M.homog=(4, 0, 0.13995);
+L.homog=(4, -2.09576888, 0.181818);
+
+type=1;
+sel=1;
+	);
 
 
 
 
-
-
-;
 </script>
 
     <script type="text/javascript">
@@ -416,6 +427,24 @@ images=[
             {name: "M", type: "PointOnLine", args: ["a"], pos: [4, 0, 0.13995342517954137], narrow: true, size: 7, color: [1, 1, 1]}
           ]
         });
+
+ current_content_slides.push(
+             new function () {
+                 return {
+                     pause: function() { 
+                     	console.log( 'pause kaleido' ); 
+                     },
+                     resume: function() { 
+                     	console.log( 'resume kaleido' );
+                     },
+                     restart: function( pause_after_restart ) { 
+                     	console.log( 'restart kaleido' );
+                     	cdy01.evokeCS('reset();');
+                      }
+                 }
+             }
+         );
+
     })();
 </script>
 </div>

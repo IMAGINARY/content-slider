@@ -68,6 +68,7 @@
             $content[1][1] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][2] = "app_cinderella_06_Ausparken.inc";
             $content[1][3] = "app_cinderella_08_PolytopeMorpher.inc";
+            $content[1][4] = "app_cinderella_10_Tree.inc";
             break;
     }
 ?>

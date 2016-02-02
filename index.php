@@ -15,6 +15,7 @@
     if( php_sapi_name() == 'cli-server' )
     {
         // act as cli web server - serve files or process heartbeat
+        $path = pathinfo($_SERVER["SCRIPT_FILENAME"]);
         if( strpos( $_SERVER["REQUEST_URI"], '/heartbeat' ) === 0 )
         {
             // reply to heartbeat
@@ -28,6 +29,24 @@
         {
             // serve index.html
             readfile( 'index.html' );
+        }
+        else if( $path["extension"] == "woff" )
+        {
+            // server woff web font
+            header( "Content-Type: application/font-woff" );
+            readfile( $_SERVER["SCRIPT_FILENAME"] );
+        }
+        else if( $path["extension"] == "woff2" )
+        {
+            // server woff2 web font
+            header( "Content-Type: application/font-woff2" );
+            readfile( $_SERVER["SCRIPT_FILENAME"] );
+        }
+        else if( $path["extension"] == "eot" )
+        {
+            // server eot web font
+            header( "Content-Type: application/vnd.ms-fontobject" );
+            readfile( $_SERVER["SCRIPT_FILENAME"] );
         }
         else
         {

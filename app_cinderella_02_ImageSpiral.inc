@@ -149,6 +149,6 @@ current_content_slides.push(
     })();
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
+<div class="app_description">Ein Bild wird um ein Zentrum gedreht und gestaucht oder gestreckt, das nennt man eine <em>Drehstreckung</em>. Das so veränderte Bild wird wieder gedreht und um denselben Faktor gestaucht oder gestreckt und so weiter. Dadurch entstehen wie von selbst faszinierende Bilder.</div>
 <div class="app_name">Spirale</div>
 <div class="app_credits"></div>

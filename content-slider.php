@@ -240,6 +240,7 @@
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
+        style="<?php if( $hide_cursor ) echo "cursor: none;" ?>"
     >
         <div
             id="wrapper"
@@ -251,6 +252,8 @@
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
             <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
+
+            <div class="bg-overlay"></div>
 
             <div class="page_header">
                 Touch-Screen-Station: IMAGINARY, Dr. Christian Stussak (www.imaginary.org)<br>

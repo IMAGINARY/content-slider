@@ -112,6 +112,15 @@ body{
     height: 3840px;
 }
 
+#bg-overlay {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 3840px;
+    height: 2160px;
+    background-color: transparent;
+}
+
 .page_header {
     text-align: center;
     font-size: 14px;

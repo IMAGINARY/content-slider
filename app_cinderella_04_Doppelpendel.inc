@@ -145,6 +145,6 @@ resume():=(
     })();
 </script>
 </div>
-<div class="app_description">An einem Pendel ist ein weiteres Pendel aufgehängt. Dadurch entsteht ein einfaches System, das deterministisches Chaos aufweist. Wie sich das System mit der Zeit verhält, hängt stark von der Startposition, den Längen und Massen der beiden Pendel ab.</div>
+<div class="app_description">An einem Pendel ist ein weiteres Pendel aufgehängt. Dadurch entsteht ein einfaches System, das <em>deterministisches Chaos</em> aufweist. Wie sich das System mit der Zeit verhält, hängt stark von der Startposition, den Längen und Massen der beiden Pendel ab.</div>
 <div class="app_name">Doppelpendel</div>
 <div class="app_credits"></div>

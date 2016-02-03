@@ -40,8 +40,11 @@
 
                 container.appendChild(renderer.domElement);
 
-                var geometry = new THREE.Geometry();
-                for (var i = 0; i < 50; i++) {
+                var numVertices = 50;
+                var geometry = new THREE.BufferGeometry();
+                var vertices = new Float32Array( numVertices * 3 );
+
+                for (var i = 0; i < numVertices; i++) {
 
                     var position = new THREE.Vector3();
                     position.x = Math.random() * 2 - 1;
@@ -50,10 +53,11 @@
                     position.normalize();
                     position.multiplyScalar(Math.random() * 10 + 450);
 
-                    geometry.vertices.push(position);
-
+                    vertices[ i * 3 + 0 ] = position.x;
+                    vertices[ i * 3 + 1 ] = position.y;
+                    vertices[ i * 3 + 2 ] = position.z;
                 }
-                geometry.vertices.push(geometry.vertices[0]);
+                geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
                 var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
                     color: 0xffffff,

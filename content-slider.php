@@ -11,59 +11,59 @@
     switch( $day_of_week )
     {
         case "Monday": // monday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Tuesday": // tuesday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Wednesday": // wednesday
-            $content[0][0] = "app3.inc";
-            $content[1][0] = "app1.inc";
+            $content[0][] = "app3.inc";
+            $content[1][] = "app1.inc";
             break;
         case "Thursday": // thursday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
             break;
         case "Friday": // friday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Saturday": // saturday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Sunday": // sunday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
         case "Test":
-            $content[0][0] = "app4.inc";
-            $content[0][1] = "app3.inc";
-            $content[0][2] = "app3.inc";
-            $content[1][0] = "app3.inc";
-            $content[1][1] = "app3.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app4.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[1][] = "app3.inc";
+            $content[1][] = "app3.inc";
+            $content[1][] = "app3.inc";
             break;
     }
 ?>

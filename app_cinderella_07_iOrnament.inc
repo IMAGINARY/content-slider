@@ -1577,6 +1577,6 @@ var setuptexture=function(image,slot,mipmap){
 
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
+<div class="app_description">Zeichnen Sie symmetrische Ornamente! Erstaunlicherweise gibt es, sofern ein Flächenornament Verschiebesymmetrien in mindestens zwei Richtungen aufweist, genau 17 strukturell unterschiedliche Typen solcher Flächenornamente. Man spricht von den 17 <i>kristallographischen Gruppen</i>.</div>
 <div class="app_name">iOrnament</div>
 <div class="app_credits"></div>

@@ -7,7 +7,8 @@
     // config.local.inc should be ignored via .gitignore
     include( 'config.local.inc' );
 
-    $day_of_week = date( 'l' );
+//    $day_of_week = date( 'l' );
+    $day_of_week = 'Test';
     switch( $day_of_week )
     {
         case "Monday": // monday

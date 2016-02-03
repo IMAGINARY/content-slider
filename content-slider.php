@@ -60,11 +60,11 @@
             $content[1][] = "app3.inc";
         case "Test":
             $content[0][] = "app4.inc";
-            $content[0][] = "app3.inc";
-            $content[0][] = "app3.inc";
-            $content[1][] = "app3.inc";
-            $content[1][] = "app3.inc";
-            $content[1][] = "app3.inc";
+            $content[0][] = "app4.inc";
+            $content[0][] = "app4.inc";
+            $content[1][] = "app4.inc";
+            $content[1][] = "app4.inc";
+            $content[1][] = "app4.inc";
             break;
     }
 ?>

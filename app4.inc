@@ -8,6 +8,7 @@
             // BEGIN your app related variables and methods
             var div = document.createElement("div");
             div.style.fontSize = '64px';
+            div.style.color = '#'+Math.floor(Math.random()*16777215).toString(16);
             document.currentScript.parentNode.appendChild( div );
 
             var number = 0;

@@ -9,7 +9,7 @@
         </script>
 
                <script id='app_cinderella_11_csinit' type='cindyscript'>
-               playanimation();
+             //  playanimation();
                               feed=false;
 
                pts=allmasses()--[K,L,J];
@@ -30,6 +30,8 @@ resume():=(
         </script>
 
 <script id='app_cinderella_11_csmove' type='cindyscript'>
+err("FISH");
+
 
           x=S.x;
           if(x<S1.x,x=S1.x);
@@ -248,11 +250,13 @@ for(var i=0;i<nn;i++){
                         console.log( 'pause fish' );
                         cdy11.evokeCS('pause();');
                     },
-                    resume: function() { 
+                    resume: function() {
                         console.log( 'resume fish' );
                         cdy11.evokeCS('resume();');
                     },
                     restart: function( pause_after_restart ) {
+                        if(!pause)
+                            cdy11.evokeCS('resume();');
                         console.log( 'restart fish' );
                     }
                  }

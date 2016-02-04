@@ -44,13 +44,17 @@ if [ $# -ne 0 ]; then
 	kill $UNCLUTTER_PID
 	wait
 else
-	echo "launch background task that always switches back to vt8"
-	(while true; do sleep 10; chvt 8; done) &
-	BG_PIG=$!
+	while true; do
+		echo "launch background task that always switches back to vt8"
+		(while true; do sleep 10; chvt 8; done) &
+		BG_PID=$!
 
-	echo "starting new X server :1 on vt8"
-	xinit ./$(basename "$0") launch -- :1 vt8
+		echo "starting new X server :1 on vt8"
+		xinit ./$(basename "$0") launch -- :1 vt8
 
-	kill $BG_PID
-	wait
+		kill $BG_PID
+		wait
+
+		echo "X server exited; starting again"
+	done
 fi

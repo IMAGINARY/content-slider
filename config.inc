@@ -7,6 +7,9 @@
 // show or hide cursor
 $hide_cursor = true;
 
+// disable scrolling
+$disable_scrolling = true;
+
 // variables subject to automatic page reload
 $fadein_on_load_delay = 15;
 $reload_delay = 3 * 60 * 60;

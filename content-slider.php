@@ -251,10 +251,14 @@
         idle-delay="<?=$idle_delay ?>"
         heartbeat-interval="<?=$heartbeat_interval ?>"
         heartbeat-url="<?=$heartbeat_url?>"
+        fadein-on-load-delay="<?=$fadein_on_load_delay?>"
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
-        style="<?php if( $hide_cursor ) echo "cursor: none;" ?>"
+        style="<?php
+            if( $hide_cursor ) echo "cursor: none;";
+            if( $disable_scrolling ) echo "overflow: hidden;";
+        ?>"
     >
         <div
             id="wrapper"

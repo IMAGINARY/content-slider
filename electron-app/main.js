@@ -14,7 +14,7 @@ function sw() {
     // app.commandLine.appendSwitch('enable-apps-show-on-first-paint');
     // app.commandLine.appendSwitch('enable-embedded-extension-options');
     // app.commandLine.appendSwitch('enable-experimental-canvas-features');
-    // app.commandLine.appendSwitch('enable-gpu-rasterization');
+    app.commandLine.appendSwitch('enable-gpu-rasterization');
     app.commandLine.appendSwitch('javascript-harmony');
     app.commandLine.appendSwitch('enable-pinch');
     app.commandLine.appendSwitch('enable-settings-window');

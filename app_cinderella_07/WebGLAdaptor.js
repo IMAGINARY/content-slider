@@ -245,8 +245,8 @@ function onWindowResize( event ) {
     
 	canvaswebgl.width = window.innerWidth;
 	canvaswebgl.height = window.innerHeight;
-	canvaswebgl.width = 800;
-	canvaswebgl.height = 800;
+	canvaswebgl.width = 1170/2;
+	canvaswebgl.height = 1170/2;
                 
 	parameters.screenWidth = canvaswebgl.width;
 	parameters.screenHeight = canvaswebgl.height;
@@ -330,9 +330,9 @@ function renderwebgl() {
 
 	gl.uniform2f( gl.getUniformLocation( currentProgram, 'mouse' ), parameters.mouseX, parameters.mouseY);
 	gl.uniform2f( gl.getUniformLocation( currentProgram, 'translate' ),
-	initialmatrix.tx-181, 
-	initialmatrix.ty+canvaswebgl.height+185);
-	gl.uniform1f( gl.getUniformLocation( currentProgram, 'scale' ), initialmatrix.sdet/2.4);
+	initialmatrix.tx+3, 
+	initialmatrix.ty+canvaswebgl.height);
+	gl.uniform1f( gl.getUniformLocation( currentProgram, 'scale' ), initialmatrix.sdet/1);
 
   
 	for(var name in webglinfo.typelist) {

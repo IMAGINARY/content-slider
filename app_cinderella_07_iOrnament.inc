@@ -173,6 +173,9 @@ if(length(hits)==1,
 
 </script>
 <script id="app_cinderella_07_csdraw" type="text/x-cindyscript">
+if(|D-F|>7.8,F.xy=D+(F-D)/|F-D|*7.8);
+if(|D-F|<2,F.xy=D+(F-D)/|F-D|*2);
+
 fillcircle((0,0),100);
 
 Dummy.xy=(-10,-10);
@@ -206,18 +209,41 @@ quadrat=[D.xy,F.xy,E.xy];
 cell=quadrat;
 bas=inverse(transpose([cell_2-cell_1,cell_3-cell_1]));
 
-wsi=18;
+wsi=11;
 predrawing();
 posa=F.xy;
 posb=D.xy;
+
+ drawtile();
+
 javascript("callhandle()");
 
 renderWebGL();
-drawimage((-wsi,-wsi),(wsi,-wsi),"WEBGL");
+//drawimage((-wsi,-wsi),(wsi,-wsi),"WEBGL");
+
+
+
+mati=inverse(bas);
+if(group>12,
+   mati=mati*transpose(((1,0),(0.5,sqrt(3/4))));
+);
+
+rr=round(1/(|posa-posb|/2))+1;
+ct=0;
+apply(-5..5,xxx,
+apply(-5..5,yyy,
+  pp=mati*(xxx,yyy)*rr;
+  if(or(pp.x>-0.1,pp.y<0.1)&pp.x<20&pp.y>-20,
+    drawimage((-wsi,0)+pp,(0,0)+pp,"WEBGL");ct=ct+1;
+    )
+  )
+);
+
+
 
 drawing();
 
-
+//drawtext((-9,9),">>> "+ct,color->(1,1,1));
 
 
 
@@ -715,8 +741,8 @@ predrawing():=(
 
 anpol2(p,n,w,col):=(
    ww=360°/(2*n);
-   drawpoly(apply(0..2*n,p+(cos(#*ww+w),sin(#*ww+w))*.05*if(or(#==1,#==3),.7,1.4)),size->1.4,color->(0,0,0));
-   drawpoly(apply(0..2*n,p+(cos(#*ww+w),sin(#*ww+w))*.05*if(or(#==1,#==3),.7,1.4)),size->1,color->col);
+   drawpoly(apply(0..2*n,p+(cos(#*ww+w),sin(#*ww+w))*.05*if(or(#==1,#==3),.7,1.4)),size->1.4*.5,color->(0,0,0));
+   drawpoly(apply(0..2*n,p+(cos(#*ww+w),sin(#*ww+w))*.05*if(or(#==1,#==3),.7,1.4)),size->.5,color->col);
 
 );
 
@@ -724,9 +750,9 @@ anpol2(p,n,w,col):=(
 anpol(p,n,w,col):=(
    ww=360°/n;
    w=w+45°;
-   drawpoly(apply(0..n,p+(cos(#*ww+w),sin(#*ww+w))*.05),size->1.4,color->(0,0,0));
+   drawpoly(apply(0..n,p+(cos(#*ww+w),sin(#*ww+w))*.05),size->1.4*.5,color->(0,0,0));
 
-   drawpoly(apply(0..n,p+(cos(#*ww+w),sin(#*ww+w))*.05),size->1,color->col);
+   drawpoly(apply(0..n,p+(cos(#*ww+w),sin(#*ww+w))*.05),size->.5,color->col);
 
 );
 
@@ -739,8 +765,8 @@ adashed(p1,p2,col,n):=(
 );
 
 afull(p1,p2,col):=(
-  draw(p1,p2,color->(0,0,0),size->.5);
-  draw(p1,p2,color->col,size->.3)
+  draw(p1,p2,color->(0,0,0),size->.5*.5);
+  draw(p1,p2,color->col,size->.3*.5)
 );
 
 acolb1=(.6,0.6,1);
@@ -1126,7 +1152,7 @@ drawtile():=(
               fill(fillbounds,alpha->0.5,color->(0,0,0));
               draw(pol,color->(1,1,1));
               canvas(D,F,"annot",
-                draw(pol,color->(1,1,1),size->6,alpha->.7);
+                draw(pol,color->(1,1,1),size->3,alpha->.7);
               );
 
 
@@ -1160,8 +1186,32 @@ drawtile():=(
       );
 );
 
+drawtile2():=(
+        if(fundsel,
+            if(tiletype=="sq",
+              pol=polygon([D.xy,F.xy,E+F-D,E.xy]);
+              fillbounds=polygon([[-11,-11],[-11,11],[10,11],[10,-11]])--pol;
+              fill(fillbounds,alpha->0.5,color->(0,0,0));
+              draw(pol,color->(1,1,1));
+            );
+
+            if(tiletype=="r60",
+              verx=F-D;
+              very=E-D;
+              tri=verx*0.5+sqrt(3/4)*very;
+              pol=polygon([D.xy,F.xy,F+tri,D+tri]);
+              fillbounds=polygon([[-11,-11],[-11,11],[10,11],[10,-11]])--pol;
+              fill(fillbounds,alpha->0.5,color->(0,0,0));
+              draw(pol,color->(1,,1,1));
+             );
+      );
+);
+
+
+
 drawing():=(
-            fillpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(2/255,47/255,83/255)*.4);
+	        drawtile2(); 
+            fillpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.05);
             drawpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.3);
             xx=0;
             yy=0;
@@ -1174,8 +1224,8 @@ drawing():=(
                         fillcircle(pos,.5-.02*al,color->cols_y,alpha->.9)
                         );
                   if(pencolor==y,
-                     drawcircle(pos,.55,size->9,color->(1,1,1),alpha->1),
-                     drawcircle(pos,.55,size->9,color->(1,1,1)*.3,alpha->1)
+                     drawcircle(pos,.55,size->5,color->(1,1,1),alpha->1),
+                     drawcircle(pos,.55,size->5,color->(1,1,1)*.3,alpha->1)
 
                      );
 
@@ -1202,8 +1252,7 @@ drawing():=(
                   xx=xx+1;
                   if(xx==5,xx=0;yy=yy-1);
                   );
-            drawtile();
-
+ 
             buttonpos=[];
 
             xx=0;
@@ -1439,7 +1488,7 @@ symannot=false;
     {"name": "A","type": "Free","pos": [-10,-10],"color": [1,0,0],"visible":false,"pinned":true},
     {"name": "B","type": "Free","pos": [10,-10],"color": [1,0,0],"pinned":true,"visible":false},
     {"name": "C","type": "Free","pos": [-10,10],"color": [1,0,0],"pinned":true,"visible":false},
-    {"name": "D","type": "Free","pos": [0,0],"color": [.4,.4,.4],"pinned":false,"visible":true,"narrow":true},
+    {"name": "D","type": "Free","pos": [0,0],"color": [.4,.4,.4],"pinned":true,"visible":true,"narrow":true},
     {"name": "E","type": "Free","pos": [1,0],"color": [.4,.4,.4],"pinned":true,"visible":false},
     {"name": "F","type": "Free","pos": [5.5,1.5],"color": [1,1,1],"pinned":false,"visible":true,"narrow":true},
 

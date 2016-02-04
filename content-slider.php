@@ -1,74 +1,82 @@
 <?php
-    $day_of_week = date( 'l' );
+    require( 'config.inc' );
+
+    // missing config.local.inc is ok
+    // allows to overwrite config values with local
+    // values that are not stored in the VCS
+    // config.local.inc should be ignored via .gitignore
+    include( 'config.local.inc' );
+
+//    $day_of_week = date( 'l' );
     $day_of_week = 'Cindy';
     switch( $day_of_week )
     {
         case "Monday": // monday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Tuesday": // tuesday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Wednesday": // wednesday
-            $content[0][0] = "app3.inc";
-            $content[1][0] = "app1.inc";
+            $content[0][] = "app3.inc";
+            $content[1][] = "app1.inc";
             break;
         case "Thursday": // thursday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
             break;
         case "Friday": // friday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Saturday": // saturday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[0][2] = "app1.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[0][] = "app1.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
             break;
         case "Sunday": // sunday
-            $content[0][0] = "app3.inc";
-            $content[0][1] = "app2.inc";
-            $content[1][0] = "app1.inc";
-            $content[1][1] = "app2.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app3.inc";
+            $content[0][] = "app2.inc";
+            $content[1][] = "app1.inc";
+            $content[1][] = "app2.inc";
+            $content[1][] = "app3.inc";
         case "Test":
-            $content[0][0] = "app4.inc";
-            $content[0][1] = "app3.inc";
-            $content[0][2] = "app3.inc";
-            $content[1][0] = "app3.inc";
-            $content[1][1] = "app3.inc";
-            $content[1][2] = "app3.inc";
+            $content[0][] = "app4.inc";
+            $content[0][] = "app4.inc";
+            $content[0][] = "app4.inc";
+            $content[1][] = "app4.inc";
+            $content[1][] = "app4.inc";
+            $content[1][] = "app4.inc";
             break;
         case "Cindy":
-            $content[0][0] = "app_cinderella_01_Kaleidoskope.inc";
-            $content[0][1] = "app_cinderella_04_Doppelpendel.inc";
-            $content[0][2] = "app_cinderella_05_Solitaire.inc";
-            $content[0][3] = "app_cinderella_07_iOrnament.inc";
-            $content[0][4] = "app_cinderella_09_PlatonicSolids.inc";
-            $content[1][0] = "app_cinderella_03_SphereChaos.inc";
-            $content[1][1] = "app_cinderella_02_ImageSpiral.inc";
-            $content[1][2] = "app_cinderella_06_Ausparken.inc";
-            $content[1][3] = "app_cinderella_08_PolytopeMorpher.inc";
-            $content[1][4] = "app_cinderella_10_Tree.inc";
+            $content[0][] = "app_cinderella_01_Kaleidoskope.inc";
+            $content[0][] = "app_cinderella_04_Doppelpendel.inc";
+            $content[0][] = "app_cinderella_05_Solitaire.inc";
+            $content[0][] = "app_cinderella_07_iOrnament.inc";
+            $content[0][] = "app_cinderella_09_PlatonicSolids.inc";
+            $content[1][] = "app_cinderella_03_SphereChaos.inc";
+            $content[1][] = "app_cinderella_02_ImageSpiral.inc";
+            $content[1][] = "app_cinderella_06_Ausparken.inc";
+            $content[1][] = "app_cinderella_08_PolytopeMorpher.inc";
+            $content[1][] = "app_cinderella_10_Tree.inc";
             break;
     }
 ?>
@@ -139,7 +147,7 @@
                 var options = {
                     $AutoPlay: false,
                     $PauseOnHover: 0,
-                    $Idle: 3 * 60 * 1000,
+                    $Idle: (<?=$auto_slide_delay ?>) * 1000,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -201,7 +209,7 @@
                             slides[ i ].pause();
                         if( slide_restart_timer !== null )
                             window.clearTimeout( slide_restart_timer );
-                        slide_restart_timer = window.setTimeout( slide_restart_handler, 10 * 1000 );
+                        slide_restart_timer = window.setTimeout( slide_restart_handler, (<?=$app_restart_delay ?>) * 1000 );
                     }
                 } );
                 function slide_restart_handler() {
@@ -236,11 +244,29 @@
         </script>
     </head>
 
-    <body id="home" oncontextmenu="return false;" ontouchstart="return false;" class="noselect">
-        <div id="wrapper">
+    <body
+        id="home"
+        reload-delay="<?=$reload_delay ?>"
+        idle-delay="<?=$idle_delay ?>"
+        heartbeat-interval="<?=$heartbeat_interval ?>"
+        heartbeat-url="<?=$heartbeat_url?>"
+        oncontextmenu="return false;"
+        ontouchstart="return false;"
+        class="noselect"
+        style="<?php if( $hide_cursor ) echo "cursor: none;" ?>"
+    >
+        <div
+            id="wrapper"
+            class="fade-in with-delay"
+            style="-webkit-animation-delay: <?=$fadein_on_load_delay ?>s;
+                -moz-animation-delay: <?=$fadein_on_load_delay ?>s;
+                animation-delay: <?=$fadein_on_load_delay ?>s;"
+        >
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
-            <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px;"></iframe>
+            <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
+
+            <div class="bg-overlay"></div>
 
             <div class="page_header">
                 Touch-Screen-Station: IMAGINARY, Dr. Christian Stussak (www.imaginary.org)<br>
@@ -333,6 +359,9 @@
 
             <div class="page_footer">
             </div>
+
+            <script src="js/auto-page-reloader.js"></script>
+            <script src="js/heartbeat.js"></script>
         <div>
     </body>
 </html>

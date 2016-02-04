@@ -4,3 +4,7 @@ fonts/Brown-Regular.woff
 fonts/brown_thin-webfont.woff2
 fonts/BrownStd-Regular.eot
 fonts/BrownStd-Regular.woff
+
+# local and temporary files
+config.local.inc
+timestamp

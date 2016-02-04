@@ -193,7 +193,7 @@ body{
 .app_name {
     position: absolute;
     left: 0px;
-    width: 40%;
+    width: 41.5%;
     height: 100px;
     float: left;
     text-align: left;
@@ -207,8 +207,8 @@ body{
 .app_description {
     position: absolute;
     overflow: hidden;
-    left: 40%;
-    width: 60%;
+    left: 41.5%;
+    width: 58.5%;
     margin: 0;
     float: left;
     text-align: justify;
@@ -243,7 +243,7 @@ body{
 */
 .jssorb10 {
     position: absolute;
-    bottom: -160px !important;
+    bottom: -168px !important;
 }
 .jssorb10 div, .jssorb10 div:hover, .jssorb10 .av {
     position: absolute;

@@ -31,6 +31,10 @@ $content_slider_url = 'http://localhost:8081/index.php';
 $web_browser_cmd = "electron --set-base-background-color=0xFF000000 '".__DIR__."/electron-app' -l {$content_slider_url} > /dev/null 2>&1";
 $timestamp_file = 'timestamp';
 
+// which page to use for the animation in the background (runs in an iframe)
+// currently available: bg_webgl.html, bg_svg.html, bg_plain.html
+$background_animation_url='bg_svg.html';
+
 /******************************
  * END configuration
  ******************************/

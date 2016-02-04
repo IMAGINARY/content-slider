@@ -130,7 +130,7 @@
                 while( true )
                 {
                     echo "executing {$web_browser_cmd}\n";
-                    shell_exec( "{$web_browser_cmd}" );
+                    exec( "{$web_browser_cmd}" );
                     echo "browser terminated for some reason; respawning\n";
                 }
                 exit;

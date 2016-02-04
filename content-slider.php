@@ -70,7 +70,8 @@
             $content[0][] = "app_cinderella_01_Kaleidoskope.inc";
             $content[0][] = "app_cinderella_04_Doppelpendel.inc";
             $content[0][] = "app_cinderella_05_Solitaire.inc";
-            $content[0][] = "app_cinderella_07_iOrnament.inc";
+//            $content[0][] = "app_cinderella_07_iOrnament.inc";
+            $content[0][] = "app_cinderella_12_Conformal.inc";
             $content[0][] = "app_cinderella_09_PlatonicSolids.inc";
             $content[1][] = "app_cinderella_03_SphereChaos.inc";
             $content[1][] = "app_cinderella_02_ImageSpiral.inc";

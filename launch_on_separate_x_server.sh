@@ -25,6 +25,9 @@ if [ $# -ne 0 ]; then
 	xset s noblank
 	echo "set background color to black"
 	xsetroot -solid "#000000"
+	echo "hide mouse cursor after a couple of seconds"
+	unclutter -display "$DISPLAY"  -idle 1 -root &
+	UNCLUTTER_PID=$!
 	echo
 	echo "current configuration:"
 	echo "====================================================="
@@ -38,6 +41,8 @@ if [ $# -ne 0 ]; then
 	echo "====================================================="
 	echo "start the exhibit"
 	php index.php
+	kill $UNCLUTTER_PID
+	wait
 else
 	echo "launch background task that always switches back to vt8"
 	(while true; do sleep 10; chvt 8; done) &

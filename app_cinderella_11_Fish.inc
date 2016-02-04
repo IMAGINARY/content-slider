@@ -270,3 +270,6 @@ for(var i=0;i<nn;i++){
 
 
 	</div>
+<div class="app_description">Das Schwarmverhalten entsteht dadurch, dass jeder Fisch einfachen Regeln folgt: anderen Fischen und Hindernissen ausweichen, zu den Nachbarfischen und mit ihnen schwimmen, oder einfach weiter schwimmen. Über die Schieberegel kann man die Parameter dieser Regeln anpassen.</div>
+<div class="app_name">Schwarmsimulator</div>
+<div class="app_credits"></div>

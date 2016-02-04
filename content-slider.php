@@ -77,6 +77,7 @@
             $content[1][] = "app_cinderella_06_Ausparken.inc";
             $content[1][] = "app_cinderella_08_PolytopeMorpher.inc";
             $content[1][] = "app_cinderella_10_Tree.inc";
+            $content[1][] = "app_cinderella_11_Fish.inc";
             break;
     }
 ?>

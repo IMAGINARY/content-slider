@@ -1,7 +1,6 @@
 <div class="app">
 
         <script id='app_cinderella_10_csdraw' type='text/x-cindyscript'>
-        fillcircle((0,0),100,color->(0,0,0));
             t1=map(A,B,B,C);
             t2=map(A,B,B,D);
             col(x):=(0.6*x,(1-x)*.8,0);
@@ -47,7 +46,11 @@ D.xy=(-1.6,-2.5);
                                            ];
             var cdy10=createCindy({canvasname:uid,
                         scripts:"app_cinderella_10_cs*",
-            			transform: [{visibleRect: [-10, 10, 10, -10]}],
+                        ports: [{
+                            id: uid,
+                            background: "rgba(0,0,0,0)",
+                            transform: [{visibleRect: [-10, 10, 10, -10]}]
+                        }],
                         geometry:gslp});
 
 current_content_slides.push(

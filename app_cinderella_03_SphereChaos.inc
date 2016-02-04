@@ -163,6 +163,7 @@ current_content_slides.push(
         })();
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
+<div class="app_description">Was passiert, wenn ein Lichtstrahl zwischen Kreisförmigen hin und her reflektiert wird. Diese Form von deterministischem Chaos kann man hier beobachten. Anregung: welche
+Strukturen können entstehen, wenn der Lichtstrahl im Inneren eines Kreises startet? </div>
 <div class="app_name">Lichtstrahl</div>
 <div class="app_credits"></div>

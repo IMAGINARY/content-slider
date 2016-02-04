@@ -321,7 +321,7 @@ repeat(round(colspan/3°)-1,i,
 
 
 
-drawtext((14,9.5),"Starter:",color->(1,1,1),size->33);
+//drawtext((14,9.5),"Starter:",color->(1,1,1),size->33);
 drawtext((14,-2.5),"Flächen schrumpfen",color->(1,1,1),size->20);
 drawtext((14,-4.5),"Punkte auf Kante verschieben",color->(1,1,1),size->20);
 drawtext((14,-0.5),"Flächenmitten herausziehen",color->(1,1,1),size->20);
@@ -361,7 +361,7 @@ if(choice==4,highlight(C20));
 if(choice==6,highlight(Wand));
 
 
-drawtext((1.5,-12.5),"Körper durch Anfassen bewegen",color->(1,1,1),align->"center",size->20,family->"Arial");
+//drawtext((1.5,-12.5),"Körper durch Anfassen bewegen",color->(1,1,1),align->"center",size->20,family->"Arial");
 
 
 
@@ -934,13 +934,13 @@ var cdy08 = createCindy({
     {name: "d", type: "Segment", args: ["M", "N"], pos: [0, -4, -4], size: 3, color: [0.5019608, 0.5019608, 0.5019608]},
     {name: "O", type: "PointOnLine", args: ["d"], pos: [4, -0.28571428571428575, 0.28571428571428575], narrow: true, size: 6, color: [1, 1, 1]},
     {name: "P", type: "PointOnLine", args: ["c"], pos: [4, -0.7590984016221631, 0.2530328005407211], narrow: true, size: 6, color: [1, 1, 1]},
-    {name: "Wand", type: "Free", pos: [4, 0.5217391304347825, 0.17391304347826086], pinned: true, color: [1, 1, 1], visible: false},
-    {name: "C4", type: "Free", pos: [4, 1.8666666666666667, 0.26666666666666666], pinned: true, color: [1, 1, 1], visible: false},
-    {name: "C6", type: "Free", pos: [4, 1.4736842105263157, 0.21052631578947367], pinned: true, color: [1, 1, 1], visible: false},
-    {name: "C12", type: "Free", pos: [4, 0.8, 0.26666666666666666], pinned: true, color: [1, 1, 1], visible: false},
-    {name: "C20", type: "Free", pos: [4, 0.631578947368421, 0.21052631578947367], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "Wand", type: "Free", pos: [23, 4], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "C4", type: "Free", pos: [15, 8], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "C6", type: "Free", pos: [19, 8], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "C12", type: "Free", pos: [15,4], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "C20", type: "Free", pos: [19, 4], pinned: true, color: [1, 1, 1], visible: false},
     {name: "B8", type: "Free", pos: [4, -1.8993963782696177, 0.2012072434607646], pinned: true, color: [1, 1, 1]},
-    {name: "C8", type: "Free", pos: [4, 1.2173913043478262, 0.17391304347826086], pinned: true, color: [1, 1, 1], visible: false},
+    {name: "C8", type: "Free", pos: [23, 8], pinned: true, color: [1, 1, 1], visible: false},
     {name: "Dummy", type: "Free", pos: [0, 0, 1], pinned: false, color: [1, 1, 1], visible: false}
   ]
 });

@@ -312,10 +312,10 @@ ty3(p):=(
 fi(d,a):=(
 fill(
 polygon(screenbounds())--polygon([
- [-22-d,-17-d],
- [19+d,-17-d],
- [19+d,17+d],
- [-22-d,17+d]
+ [-24-d,-21-d],
+ [19+d,-21-d],
+ [19+d,20+d],
+ [-24-d,20+d]
 ]
 ),
 //COLOR
@@ -408,7 +408,7 @@ sel=1;
           },
           ports: [{
             id: uid,
-            background: "rgb(0,0,0,0)",
+            background: "rgba(0,0,0,0)",
             transform: [{visibleRect: [-24.77777777777778, 20.944444444444443, 32.111111111111114, -21.72222222222222]}]
           }],
           geometry: [

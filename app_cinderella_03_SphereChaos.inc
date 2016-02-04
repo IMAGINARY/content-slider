@@ -74,9 +74,9 @@ if(o_1=="circ", (
 
 stop=false;
 count=0;
-n=500;
+n=150;
 alpha=1;
-dim=0.99;
+dim=0.985;
 while(count<n & !stop,
 count=count+1;
 l=intersect(p,s,o1)++intersect(p,s,o2)++intersect(p,s,o3);

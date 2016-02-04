@@ -255,7 +255,7 @@ for(var i=0;i<nn;i++){
                         cdy11.evokeCS('resume();');
                     },
                     restart: function( pause_after_restart ) {
-                        if(!pause)
+                        if( !pause_after_restart )
                             cdy11.evokeCS('resume();');
                         console.log( 'restart fish' );
                     }

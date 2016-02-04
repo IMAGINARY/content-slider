@@ -241,7 +241,10 @@
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
-        style="<?php if( $hide_cursor ) echo "cursor: none;" ?>"
+        style="<?php
+            if( $hide_cursor ) echo "cursor: none;";
+            if( $disable_scrolling ) echo "overflow: hidden;";
+        ?>"
     >
         <div
             id="wrapper"

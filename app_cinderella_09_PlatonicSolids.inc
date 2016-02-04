@@ -3,7 +3,7 @@
 <script type="text/javascript" src="app_common/js/quickhull3d/quickhull3d.nocache.js"></script>
 
 <script id="app_cinderella_09_csmouseup" type="text/x-cindyscript">
-
+maxdepth=7;
 if(|(wx,wy)|>=0.08,
   playanimation(),
   pauseanimation();stopanimation();
@@ -17,7 +17,7 @@ if(|mouse().xy-NoEdges|<3,edges=false);
 if(|mouse().xy-YesEdges|<3,edges=true);
 
 
-addseq(i):=if(i!=sequenz_(-1),sequenz=sequenz++[i]);
+addseq(i):=if(i!=sequenz_(-1)&length(sequenz)<maxdepth+1,sequenz=sequenz++[i]);
 
 if(|mouse().xy-C4|<3,addseq(1));
 if(|mouse().xy-C6|<3,addseq(2));

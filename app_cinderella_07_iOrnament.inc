@@ -1281,7 +1281,7 @@ drawing():=(
             drawimage(Xdark-(1,0),"dark",scale->.56,alpha->.8);
             drawimage(Xalpha-(1,0),"alpha",scale->.56,alpha->.8);
             drawimage(Xblur-(1,0),"blur",scale->.56,alpha->.8);
-            if(length(strokelist)<2,drawimage((-10.5,-10.5),(-4,-10.5),"iO",scale->.4,alpha->.8));
+            if(length(strokelist)<5,drawimage((-10.5,-10.5),(-4,-10.5),"iO",scale->.4,alpha->.8));
 //draw((10,-8.4),(20,-8.4),color->(1,1,1)*.5);
             );
 
@@ -1378,6 +1378,7 @@ setglow(glowing):=if(glowing,glow(),noglow());
 //javascript("document.getElementById('pen').style.display='inline';");
 
 reset():=(
+  err("RESET ORNAMENT");
   backind=0;
   redolist=[];
   clearimage("tile");
@@ -1475,7 +1476,7 @@ symannot=false;
         var uid = 'app_cinderella_07_iOrnament_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
 
-            var cdy = createCindy({
+            var cdy07 = createCindy({
                 scripts: "app_cinderella_07_cs*",
                 defaultAppearance: {},
                   ports: [{
@@ -1569,8 +1570,14 @@ symannot=false;
              new function () {
                  return {
                      pause: function() { console.log( 'pause orna' ); },
-                     resume: function() { console.log( 'resume orna' ); },
-                     restart: function( pause_after_restart ) { console.log( 'restart orna' ); }
+                     resume: function() { console.log( 'resume orna' ); 
+                        cdy07.evokeCS('reset();strokelist=[]');
+
+                   },
+                     restart: function( pause_after_restart ) { console.log( 'restart orna' );
+                        cdy07.evokeCS('reset();strokelist=[]');
+
+                   }
                  }
              }
          );

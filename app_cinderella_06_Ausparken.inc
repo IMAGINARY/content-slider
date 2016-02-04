@@ -600,6 +600,6 @@ current_content_slides.push(
     })();
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
+<div class="app_description">Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.</div>
 <div class="app_name">Ausparken</div>
 <div class="app_credits"></div>

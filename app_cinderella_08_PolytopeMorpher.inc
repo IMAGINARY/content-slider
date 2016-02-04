@@ -966,6 +966,6 @@ var cdy08 = createCindy({
     })();
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
-<div class="app_name">Vielflächner</div>
+<div class="app_description">Ausgehend von einem platonischen Körper kann man durch das Anwenden von drei Operationen neue symmetrische Körper erzeugen. Ein Druck auf den Zauberstab übernimmt das aktuelle Objekt als neuen Ausgangspunkt für die Verformungen.</div>
+<div class="app_name">Kristalle basteln</div>
 <div class="app_credits"></div>

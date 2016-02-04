@@ -448,6 +448,6 @@ sel=1;
     })();
 </script>
 </div>
-<div class="app_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</div>
+<div class="app_description">Bei diesem Kaleidoskop mit 3 Spiegeln ergeben sich Muster, die sich ins Unendliche fortsetzen. Am großen Schiebeschalter kann man einstellen, wie oft gespiegelt werden soll. An den Punkten läßt sich die Position von Bild und Kaleidoskop verändern.</div>
 <div class="app_name">Kaleidoskop</div>
 <div class="app_credits"></div>

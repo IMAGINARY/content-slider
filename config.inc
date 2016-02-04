@@ -28,7 +28,7 @@ $heartbeat_respawn_delay = 10;
 $server_host = 'localhost';
 $server_port = 8081;
 $content_slider_url = 'http://localhost:8081/index.php';
-$web_browser_cmd = "electron '".__DIR__."/electron-app' -l {$content_slider_url} > /dev/null 2>&1";
+$web_browser_cmd = "electron --set-base-background-color=0xFF000000 '".__DIR__."/electron-app' -l {$content_slider_url} > /dev/null 2>&1";
 $timestamp_file = 'timestamp';
 
 /******************************

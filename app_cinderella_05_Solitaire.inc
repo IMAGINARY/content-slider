@@ -48,7 +48,8 @@
 
     fillpoly(rect,color->gray(if(pressed,.3,.5)));
     drawpoly(rect,color->gray(.8),size->4);
-    drawtext((17,5),"Neues Spiel",color->(1,1,1),size->34);
+
+    drawimage(rect_1+(.5,.5),rect_2+(-.5,.5),"replay",alpha->.7);
 
     ;
     </script>
@@ -85,7 +86,8 @@
     <script id="app_cinderella_05_csinit" type="text/x-cindyscript">
     animating=false;
 
-    rect=[[16,4.5],[23,4.5],[23,6.3],[16,6.3]];
+    //KNOPF POSITION
+    rect=[[23,-4],[26,-4],[26,-1],[23,-1]];
     pressed=false;
     unit=4.54;
     pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
@@ -227,7 +229,8 @@
             balls: "app_cinderella_05/balls.png",
             boardAX: "app_cinderella_05/boardAX.png",
             boardB: "app_cinderella_05/boardB.png",
-            boardC: "app_cinderella_05/boardC.png"
+            boardC: "app_cinderella_05/boardC.png",
+            replay: "app_cinderella_05/Replay.png"
           },
           ports: [{
             id: uid,

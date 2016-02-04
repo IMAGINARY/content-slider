@@ -87,12 +87,12 @@ if(length(l)>0,(
  hit=l_1;
  erg=reflect(p,s,hit_1,hit_2);
 //   draw(erg_1);
- draw(p,erg_1,color->(1,1,1),alpha->alpha,size->2);
+ draw(p,erg_1,color->(1,1,1),alpha->alpha,size->4);
 //  draw(erg_1,erg_1+erg_2*.1,color->(1,0,0),size->2);
  p=re(erg_1);
  s=re(erg_2);
 ),(
- draw(p,p+100*s,color->(1,1,1),alpha->alpha,size->2);
+ draw(p,p+100*s,color->(1,1,1),alpha->alpha,size->4);
  stop=true;
 )
 );

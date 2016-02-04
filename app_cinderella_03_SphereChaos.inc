@@ -1,5 +1,23 @@
 <div class="app">
 <script id="app_cinderella_03_csdraw" type="text/x-cindyscript">
+mou=mouse().xy;
+if(sel==0,
+  dist=|A,mou|-diffr;
+  A.xy=olda;
+  rad0=max(dist,1);
+);
+if(sel==1,
+  dist=|B,mou|-diffr;
+  B.xy=oldb;
+  rad1=max(dist,1);
+);
+if(sel==2,
+  dist=|C,mou|-diffr;
+  C.xy=oldc;
+  rad2=max(dist,1);
+);
+
+
 restrict(p,mi,ma):=(
   xx=max(min(p.x,ma.x),mi.x);
   yy=max(min(p.y,ma.y),mi.y);
@@ -20,11 +38,11 @@ E.xy=(E-D)/|E-D|*3+D;
 if(mover()==D,E.xy=D+diff);
 diff=E-D;
 m1=A.xy;
-r1=C0.radius;
+r1=rad0;
 m2=B.xy;
-r2=C1.radius;
+r2=rad1;
 m3=C.xy;
-r3=C2.radius;
+r3=rad2;
 
 fillcircle(m1,r1,color->(.25,0,0));
 fillcircle(m2,r2,color->(.25,0,0));
@@ -99,19 +117,46 @@ if(length(l)>0,(
 alpha=alpha*dim;
 );
 
+    drawcircle(A,rad0,color->(1,.9,0),size->3);
+    drawcircle(B,rad1,color->(1,.9,0),size->3);
+    drawcircle(C,rad2,color->(1,.9,0),size->3);
+//drawtext((-5,5),sel,color->(1,1,1));
+olda=A.xy;
+oldb=B.xy;
+oldc=C.xy;
+
 </script>
+<script id="app_cinderella_03_csmouseup" type="text/x-cindyscript">
+sel=-1;
+diffr=0;
+</script>
+
 <script id="app_cinderella_03_csmousedown" type="text/x-cindyscript">
+mou=mouse().xy;
+sel=-1;
+if(abs(|A,mou|-rad0)<1,sel=0;diffr=(|A,mou|-rad0));
+if(abs(|B,mou|-rad1)<1,sel=1;diffr=(|B,mou|-rad1));
+if(abs(|C,mou|-rad2)<1,sel=2;diffr=(|C,mou|-rad2));
+
 </script>
 
 
 <script id="app_cinderella_03_csinit" type="text/x-cindyscript">
+rad0=5;
+rad1=5;
+rad2=7;
+sel=-1;
 reset():=(
-
+rad0=5;
+rad1=5;
+rad2=7;
+sel=-1;
 A.homog=(1.485714, -4, 1.408163);
 B.homog=(-1.2, 9, 1);
 C.homog=(12.043333, 6.035, 1);
 D.homog=(4, -1.5, 0.2192982);
 E.homog=(13, -3, 1);
+
     );
 </script>
 
@@ -132,15 +177,13 @@ E.homog=(13, -3, 1);
             transform: [{visibleRect: [-16.291666666666668, 19.5, 26.375, -12.5]}]
             }],
             geometry: [
-            {name: "A", type: "Free", pos: [1.4857142857142855, -4, 1.4081632653061225], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9},
-            {name: "C0", type: "CircleMr", args: ["A"], radius: 5, size: 3, color: [1, 1, 0], alpha: 0.8999999761581421},
-            {name: "B", type: "Free", pos: [-1.2, 9, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9},
-            {name: "C1", type: "CircleMr", args: ["B"], radius: 5, size: 3, color: [1, 1, 0], alpha: 0.8999999761581421},
-            {name: "C", type: "Free", pos: [12.043333333333337, 6.035, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9},
-            {name: "C2", type: "CircleMr", args: ["C"], radius: 7, size: 3, color: [1, 1, 0], alpha: 0.8999999761581421},
+            {name: "A", type: "Free", pos: [1.4857142857142855, -4, 1.4081632653061225], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
+            {name: "B", type: "Free", pos: [-1.2, 9, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
+            {name: "C", type: "Free", pos: [12.043333333333337, 6.035, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
             {name: "D", type: "Free", pos: [4, -1.5, 0.2192982456140351], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9},
             {name: "C3", type: "CircleMr", args: ["D"], radius: 1, size: 3, color: [0, 0, 1], alpha: 0},
-            {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1]}
+            {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1],narrow:true},
+            {name: "Dummy", type: "Free", pos: [100,100], pinned: false, size: 0, color: [1, 1, 1]}
             ]
             });
 current_content_slides.push(

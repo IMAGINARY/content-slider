@@ -173,6 +173,7 @@ if(length(hits)==1,
 
 </script>
 <script id="app_cinderella_07_csdraw" type="text/x-cindyscript">
+D.xy=(0,0);
 if(|D-F|>7.8,F.xy=D+(F-D)/|F-D|*7.8);
 if(|D-F|<2,F.xy=D+(F-D)/|F-D|*2);
 
@@ -259,8 +260,8 @@ st=mouse().xy;
 
 dragging=(mouse().x<10 );
 
-if(|mouse().xy,F.xy|<1,dragging=false);
-if(|mouse().xy,D.xy|<1,dragging=false);
+if(|mouse().xy,F.xy|<1 & fundsel,dragging=false);
+if(|mouse().xy,D.xy|<1 & fundsel,dragging=false);
 if(dragging,
   clearredo();
   backup();
@@ -1379,7 +1380,6 @@ setglow(glowing):=if(glowing,glow(),noglow());
 //javascript("document.getElementById('pen').style.display='inline';");
 
 reset():=(
-  err("RESET ORNAMENT");
   backind=0;
   redolist=[];
   clearimage("tile");

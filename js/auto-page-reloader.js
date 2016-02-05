@@ -1,20 +1,25 @@
 (function() {
+    var reload_time_threshold = document.body.getAttribute( "reload-delay" ) * 1000;
+    var idle_time_threshold = document.body.getAttribute( "idle-delay" ) * 1000;
+    var reload_button_size = document.body.getAttribute( "reload-button-size" );
+
     var wrapper = document.getElementById( "wrapper" );
 
     var tl = document.createElement( "div" );
     tl.className = "reload_button bl";
+    tl.style.width = reload_button_size;
+    tl.style.height = reload_button_size;
     tl.addEventListener('click', fade_out_and_reload );
     tl.addEventListener('touchend', fade_out_and_reload );
     wrapper.appendChild( tl );
 
     var tr = document.createElement( "div" );
     tr.className = "reload_button br";
+    tr.style.width = reload_button_size;
+    tr.style.height = reload_button_size;
     tr.addEventListener('click', fade_out_and_reload );
     tr.addEventListener('touchend', fade_out_and_reload );
     wrapper.appendChild( tr );
-
-    var reload_time_threshold = document.body.getAttribute( "reload-delay" ) * 1000;
-    var idle_time_threshold = document.body.getAttribute( "idle-delay" ) * 1000;
 
     function fade_out_and_reload()
     {

@@ -10,10 +10,11 @@ $hide_cursor = true;
 // disable scrolling
 $disable_scrolling = true;
 
-// variables subject to automatic page reload
+// variables subject to (automatic) page reload
 $fadein_on_load_delay = 15;
 $reload_delay = 3 * 60 * 60;
 $idle_delay = 15;
+$reload_button_size = '40px';
 
 // variables subject to sliders
 $auto_slide_delay = 3 * 60;

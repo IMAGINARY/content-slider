@@ -249,6 +249,7 @@
         heartbeat-interval="<?=$heartbeat_interval ?>"
         heartbeat-url="<?=$heartbeat_url?>"
         fadein-on-load-delay="<?=$fadein_on_load_delay?>"
+        reload-button-size="<?=$reload_button_size ?>"
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"

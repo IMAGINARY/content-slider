@@ -348,8 +348,6 @@ em {
 
 .reload_button {
     position: absolute;
-    width: 20px;
-    height: 20px;
     background-color: green;
     opacity: 0;
 }

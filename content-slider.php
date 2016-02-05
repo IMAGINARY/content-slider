@@ -354,7 +354,9 @@
             </div>
 
             <script src="js/auto-page-reloader.js"></script>
+<?php if( $heartbeat_enabled ) : ?>
             <script src="js/heartbeat.js"></script>
+<?php endif ?>
         <div>
     </body>
 </html>

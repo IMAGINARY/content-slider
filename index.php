@@ -97,6 +97,9 @@
                     // second child process
                     // in charge of checking heartbeat
 
+                    if( !$heartbeat_enabled )
+                        exit;
+                        
                     // init timestamp
                     $timestamp = time();
 

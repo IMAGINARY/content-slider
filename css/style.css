@@ -330,10 +330,21 @@ em {
 }
 
 .top_slider_slides div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
     text-align: center;
     margin: auto;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(1,.89,.49,.99);
 }
 
+.top_slider_slides div.active {
+    opacity: 1;
+    transition: opacity 1s cubic-bezier(.02, .01, .47, 1) 1s;
+}
 
 .reload_button {
     position: absolute;

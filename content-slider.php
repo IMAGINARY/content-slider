@@ -261,10 +261,9 @@
     >
         <div
             id="wrapper"
-            class="fade-in with-delay"
-            style="-webkit-animation-delay: <?=$fadein_on_load_delay ?>s;
-                -moz-animation-delay: <?=$fadein_on_load_delay ?>s;
-                animation-delay: <?=$fadein_on_load_delay ?>s;"
+            class="fade-in"
+            animationend="wrapper.classList.remove( 'fade-in' ); wrapper.style.animation = 'none';"
+            style="animation-delay: <?=$fadein_on_load_delay ?>s;"
         >
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->

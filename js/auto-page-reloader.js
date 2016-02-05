@@ -25,7 +25,8 @@
 
     function fade_out_and_reload()
     {
-        wrapper.style = "";
+        wrapper.style.animationsDelay = '0s';
+        wrapper.style.animation = "";
         wrapper.className = "fade-out";
         setTimeout( function() { location.reload(); }, 1500 );
     }
@@ -54,11 +55,4 @@
         },
         reload_time_threshold
     );
-
-    setTimeout( function() {
-        document.getElementById( 'wrapper' ).className =
-            document.getElementById( 'wrapper' ).className.replace
-                ( /(?:^|\s)fade-in(?!\S)/g , '' );
-    }, ( document.body.getAttribute( "fadein-on-load-delay" ) + 2 ) * 1000 );
-
 })();

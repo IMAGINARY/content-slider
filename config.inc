@@ -41,4 +41,13 @@ $background_animation_url='bg_svg.html';
 /******************************
  * END configuration
  ******************************/
+
+// load local config file, if it exists.
+// missing config.local.inc is ok.
+// allows to overwrite config values with local
+// values that are not stored in the VCS
+// (e.g. via .gitignore).
+if( file_exists( 'config.local.inc' ) )
+    include( 'config.local.inc' );
+
 ?>

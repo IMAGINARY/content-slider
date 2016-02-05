@@ -133,7 +133,7 @@
                 var _SlideshowTransitions = [{$Duration:1000,$Opacity:2,$Easing:{$Opacity:$JssorEasing$.$EaseSwing},$Brother:{$Duration:2000,$Opacity:2,$Easing:{$Opacity:function(t){if(t>0.5){return 1.0;}else{return t*2.0;};}}}}];
                 var options = {
                     $AutoPlay: true,
-                    $Idle: 2000,
+                    $Idle: 10000,
                     $DragOrientation: 0,
                     $PauseOnHover: 0,
                     $SlideshowOptions: {
@@ -378,7 +378,9 @@
             </div>
 
             <script src="js/auto-page-reloader.js"></script>
+<?php if( $heartbeat_enabled ) : ?>
             <script src="js/heartbeat.js"></script>
+<?php endif ?>
         <div>
     </body>
 </html>

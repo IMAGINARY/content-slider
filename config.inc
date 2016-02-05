@@ -20,6 +20,7 @@ $auto_slide_delay = 3 * 60;
 $app_restart_delay = 10;
 
 // variables subject to heartbeat
+$heartbeat_enabled = true;
 $heartbeat_interval = 2;
 $heartbeat_url = 'http://localhost:8081/heartbeat';
 $heartbeat_respawn_delay = 10;

@@ -67,17 +67,19 @@
             $content[1][] = "app4.inc";
             break;
         case "Cindy":
+            $content[0][] = "app_cinderella_11_Fish.inc";
+            $content[0][] = "app_cinderella_07_iOrnament.inc";
+            $content[0][] = "app_cinderella_08_PolytopeMorpher.inc";
             $content[0][] = "app_cinderella_01_Kaleidoskope.inc";
             $content[0][] = "app_cinderella_04_Doppelpendel.inc";
-            $content[0][] = "app_cinderella_05_Solitaire.inc";
-            $content[0][] = "app_cinderella_07_iOrnament.inc";
-            $content[0][] = "app_cinderella_09_PlatonicSolids.inc";
-            $content[1][] = "app_cinderella_03_SphereChaos.inc";
+
             $content[1][] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][] = "app_cinderella_06_Ausparken.inc";
-            $content[1][] = "app_cinderella_08_PolytopeMorpher.inc";
-            $content[1][] = "app_cinderella_10_Tree.inc";
-            $content[1][] = "app_cinderella_11_Fish.inc";
+            $content[1][] = "app_cinderella_05_Solitaire.inc";
+            $content[1][] = "app_cinderella_09_PlatonicSolids.inc";
+            $content[1][] = "app_cinderella_03_SphereChaos.inc";
+
+//            $content[1][] = "app_cinderella_10_Tree.inc";
             break;
     }
 ?>

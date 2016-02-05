@@ -14,12 +14,17 @@ if [ $# -ne 0 ]; then
 	DISPLAYS=$(xrandr | grep " connected" | awk '{print $1}')
 	echo "trying to set 4k resolution"
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --mode 3840x2160
+	echo "trying to set 60Hz"
+	echo $DISPLAYS | xargs -I {} xrandr --output {} --rate 60
 	echo "rotating screen towards the left"
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate left
 	echo "rotating DISPLAX touch input towards the left"
 	xinput --list --name-only | grep -i displax | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
-	echo "turn off screen saver and screen blanking" 
-	xset s 20
+    #	echo "rotating screen towards the right"
+    #	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate right
+    #	echo "rotating DISPLAX touch input towards the right"
+    #	xinput --list --name-only | grep -i displax | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+	echo "turn off screen saver and screen blanking"
 	xset s off
 	xset -dpms
 	xset s noblank

@@ -250,6 +250,7 @@
         heartbeat-url="<?=$heartbeat_url?>"
         fadein-on-load-delay="<?=$fadein_on_load_delay?>"
         reload-button-size="<?=$reload_button_size ?>"
+        reload-button-hold-time="<?=$reload_button_hold_time ?>"
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"

@@ -2,6 +2,7 @@
     var reload_time_threshold = document.body.getAttribute( "reload-delay" ) * 1000;
     var idle_time_threshold = document.body.getAttribute( "idle-delay" ) * 1000;
     var reload_button_size = document.body.getAttribute( "reload-button-size" );
+    var reload_button_hold_time = document.body.getAttribute( "reload-button-hold-time" ) * 1000;
 
     var wrapper = document.getElementById( "wrapper" );
 
@@ -9,16 +10,17 @@
     tl.className = "reload_button bl";
     tl.style.width = reload_button_size;
     tl.style.height = reload_button_size;
-    tl.addEventListener('click', fade_out_and_reload );
-    tl.addEventListener('touchend', fade_out_and_reload );
+    tl.addEventListener('dblclick', fade_out_and_reload );
+    tl.addEventListener('touchstart', function( evt ) { evt.target.pressTimeout = setTimeout( fade_out_and_reload, reload_button_hold_time ); } );
+    tl.addEventListener('touchend', function( evt ) { clearTimeout( evt.target.pressTimeout ); return false; } );
     wrapper.appendChild( tl );
 
     var tr = document.createElement( "div" );
     tr.className = "reload_button br";
     tr.style.width = reload_button_size;
     tr.style.height = reload_button_size;
-    tr.addEventListener('click', fade_out_and_reload );
-    tr.addEventListener('touchend', fade_out_and_reload );
+    tr.addEventListener('touchstart', function( evt ) { evt.target.pressTimeout = setTimeout( fade_out_and_reload, reload_button_hold_time ); } );
+    tr.addEventListener('touchend', function( evt ) { clearTimeout( evt.target.pressTimeout ); return false; } );
     wrapper.appendChild( tr );
 
     function fade_out_and_reload()

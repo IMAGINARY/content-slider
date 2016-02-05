@@ -350,7 +350,7 @@ dehighlight(but):= fillpoly(
 );
 
 
-if(length(objx)>1500,dehighlight(Wand));
+if(length(objx)>maxobjects,dehighlight(Wand));
 
 
 if(choice==0,highlight(C4));
@@ -366,7 +366,7 @@ if(choice==6,highlight(Wand));
 
 
 ss=1.5;
-drawimage(Wand,"image1",scale->ss);
+drawimage(Wand,"image1",scale->ss,alpha->if(length(objx)>maxobjects,.6,1));
 drawimage(C4,"image2",scale->ss);
 drawimage(C6,"image3",scale->ss);
 drawimage(C8,"image4",scale->ss);
@@ -465,7 +465,7 @@ starty=yy;
 
 </script>
 <script id="app_cinderella_08_csinit" type="text/x-cindyscript">
-
+maxobjects=700;
 cache=zerovector(5000);
 fcache=zerovector(100);
 
@@ -859,7 +859,7 @@ cell20=(definepoly(cell20*1.1));
 
 
 magic():=(
-if(length(objx)<1500,
+if(length(objx)<maxobjects,
 
   id=initdirs;
 spanfactor_7=spanfactor_(choice+1);

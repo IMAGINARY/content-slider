@@ -235,7 +235,7 @@
                     for( i = 0; i < slides.length; i++ )
                         slides[ i ].restart( true );
                     slides[ 0 ].resume();
-                }, 0 );
+                }, <?=($fadein_on_load_delay < 1 ? 1 : $fadein_on_load_delay ) ?> * 750 );
 
                 return jssor_slider;
             };

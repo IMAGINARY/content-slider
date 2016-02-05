@@ -298,6 +298,7 @@ st=en;
 
 </script>
 <script id="app_cinderella_07_csinit" type="text/x-cindyscript">
+maxstrokes=25;
 createimage("WEBGL",1170,1170);
 use("WebGLExperiments");
 WebGLvariables(posa->"point",posb->"point",str->"point");
@@ -1418,7 +1419,7 @@ resetdraw():=(
 
    sc2=|D-F|;
    C.xy=A-pp(B-A)*str_2;
-   strokecount=1;
+   strokecount=max(1,length(strokelist)-maxstrokes);
    linecount=1;
    playanimation();
 

@@ -14,6 +14,8 @@ if [ $# -ne 0 ]; then
 	DISPLAYS=$(xrandr | grep " connected" | awk '{print $1}')
 	echo "trying to set 4k resolution"
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --mode 3840x2160
+	echo "trying to set 60Hz"
+	echo $DISPLAYS | xargs -I {} xrandr --output {} --rate 60
 	echo "rotating screen towards the left"
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate left
 	echo "rotating DISPLAX touch input towards the left"

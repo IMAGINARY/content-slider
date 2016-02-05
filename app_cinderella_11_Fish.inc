@@ -1,6 +1,6 @@
 <div class="app">
 
- <script id='app_cinderella_11_down' type='cindyscript'>
+ <script id='app_cinderella_11_csmousedown' type='cindyscript'>
                        feed=mouse().x<10;
 </script>
 

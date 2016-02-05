@@ -20,8 +20,7 @@ if [ $# -ne 0 ]; then
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate left
 	echo "rotating DISPLAX touch input towards the left"
 	xinput --list --name-only | grep -i displax | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
-	echo "turn off screen saver and screen blanking" 
-	xset s 20
+	echo "turn off screen saver and screen blanking"
 	xset s off
 	xset -dpms
 	xset s noblank

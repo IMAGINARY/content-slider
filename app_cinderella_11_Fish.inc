@@ -128,13 +128,13 @@ K.v=(0,0);
 J.v=(0,0);
 L.v=(0,0);
 
-drawtext(S1+(.0,-.5),"Zur Position der Nachbarn",size->22,color->(1,1,1));
-drawtext(S+(0,.7),format(others,2),size->24,color->(1,1,1));
+drawtext(S1+(.0,-.5),"Schwimm zu den Nachbarn",size->22,color->(1,1,1));
+//drawtext(S+(0,.7),format(others,2),size->24,color->(1,1,1));
 
-drawtext(R1+(.0,-.5),"Wie Richtung der Nachbarn",size->22,color->(1,1,1));
-drawtext(R+(0,.7),format(dirothers,2),size->24,color->(1,1,1));
+drawtext(R1+(.0,-.5),"Schwimm mit den Nachbarn",size->22,color->(1,1,1));
+//drawtext(R+(0,.7),format(dirothers,2),size->24,color->(1,1,1));
 
-drawtext(T1+(.0,-.5),"Anzahl Nachbarn",size->22,color->(1,1,1));
+drawtext(T1+(.0,-.5),"Anzahl der Nachbarn",size->22,color->(1,1,1));
 drawtext(T+(0,.7),format(anz,0),size->24,color->(1,1,1));
 
 drawtext(U1+(.0,-.5),"Geschwindigkeit",size->22,color->(1,1,1));

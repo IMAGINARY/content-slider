@@ -114,22 +114,24 @@
             }
             refreshAt( 0, 0, 0 );
 
-            jssor_top_slider_starter = function (containerId) {
-                var _SlideshowTransitions = [{$Duration:1000,$Opacity:2,$Easing:{$Opacity:$JssorEasing$.$EaseSwing},$Brother:{$Duration:2000,$Opacity:2,$Easing:{$Opacity:function(t){if(t>0.5){return 1.0;}else{return t*2.0;};}}}}];
-                var options = {
-                    $AutoPlay: true,
-                    $Idle: 10000,
-                    $DragOrientation: 0,
-                    $PauseOnHover: 0,
-                    $SlideshowOptions: {
-                            $Class: $JssorSlideshowRunner$,
-                            $Transitions: _SlideshowTransitions,
-                            $TransitionsOrder: 1,
-                            $ShowLink: true
-                        }
-                };
-                var jssor_slider = new $JssorSlider$(containerId, options);
-            };
+
+            function simple_fade_slider(containerID) {
+
+                var slides = document.getElementById(containerID).children[0].children;
+                var currSlide = 0;
+                function rotateSlide() {
+                    slides[currSlide].classList.remove('active');
+                    currSlide++;
+                    if(currSlide >= slides.length) {
+                        currSlide = 0;
+                    }
+                    slides[currSlide].classList.add('active');
+                }
+                setInterval(function(){
+                    rotateSlide();
+                }, 4000);
+                rotateSlide();
+            }
 
             jssor_app_slider_starter = function (containerId) {
                 var options = {
@@ -283,7 +285,7 @@
                 <div>Information und Hintergründe<br />www.mathematikon.de/imaginary</div>
             </div>
             <!-- Trigger -->
-            <script>jssor_top_slider_starter('slider_top');</script>
+            <script>simple_fade_slider('slider_top');</script>
         </div>
 
 <?php

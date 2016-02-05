@@ -128,7 +128,7 @@
                 }
                 setInterval(function(){
                     rotateSlide();
-                }, 4000);
+                }, 10000);
                 rotateSlide();
             }
 

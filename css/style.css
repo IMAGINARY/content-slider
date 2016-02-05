@@ -353,13 +353,13 @@ em {
 }
 
 .reload_button.bl {
-    bottom: 0px;
-    left: 0px;
+    bottom: 1px;
+    left: 1px;
 }
 
 .reload_button.br {
-    bottom: 0px;
-    right: 0px;
+    bottom: 1px;
+    right: 1px;
 }
 
 /********************************

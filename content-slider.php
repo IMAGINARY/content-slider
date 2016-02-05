@@ -1,12 +1,6 @@
 <?php
     require( 'config.inc' );
 
-    // missing config.local.inc is ok
-    // allows to overwrite config values with local
-    // values that are not stored in the VCS
-    // config.local.inc should be ignored via .gitignore
-    include( 'config.local.inc' );
-
 //    $day_of_week = date( 'l' );
     $day_of_week = 'Cindy';
     switch( $day_of_week )

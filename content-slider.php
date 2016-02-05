@@ -114,11 +114,6 @@
             }
             refreshAt( 0, 0, 0 );
 
-            // Remove fade in class from #wrapper
-            setTimeout(function(){
-                document.getElementById('wrapper').classList.remove('fade-in');
-            }, 5000);
-
             function simple_fade_slider(containerID) {
 
                 var slides = document.getElementById(containerID).children[0].children;

@@ -415,7 +415,7 @@
     clrscr();
     drawtext(M+(.5,0),"leicht",color->(1,1,1),size->26);
     drawtext(L+(.5,0),"schwer",color->(1,1,1),size->26);
-    drawtext(M+(-0.2,-1),"Schwierigkeitsgrad",color->(1,1,1),size->26);
+    //drawtext(M+(-0.2,-1),"Schwierigkeitsgrad",color->(1,1,1),size->26);
 
     fillpolygon(apply([A,B,C,D,E,F],#+(.03,-.03)),color->(1,1,1)*.0);
 

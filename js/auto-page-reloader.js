@@ -1,24 +1,32 @@
 (function() {
+    var reload_time_threshold = document.body.getAttribute( "reload-delay" ) * 1000;
+    var idle_time_threshold = document.body.getAttribute( "idle-delay" ) * 1000;
+    var reload_button_size = document.body.getAttribute( "reload-button-size" );
+    var reload_button_hold_time = document.body.getAttribute( "reload-button-hold-time" ) * 1000;
+
     var wrapper = document.getElementById( "wrapper" );
 
     var tl = document.createElement( "div" );
     tl.className = "reload_button bl";
-    tl.addEventListener('click', fade_out_and_reload );
-    tl.addEventListener('touchend', fade_out_and_reload );
+    tl.style.width = reload_button_size;
+    tl.style.height = reload_button_size;
+    tl.addEventListener('dblclick', fade_out_and_reload );
+    tl.addEventListener('touchstart', function( evt ) { evt.target.pressTimeout = setTimeout( fade_out_and_reload, reload_button_hold_time ); } );
+    tl.addEventListener('touchend', function( evt ) { clearTimeout( evt.target.pressTimeout ); return false; } );
     wrapper.appendChild( tl );
 
     var tr = document.createElement( "div" );
     tr.className = "reload_button br";
-    tr.addEventListener('click', fade_out_and_reload );
-    tr.addEventListener('touchend', fade_out_and_reload );
+    tr.style.width = reload_button_size;
+    tr.style.height = reload_button_size;
+    tr.addEventListener('touchstart', function( evt ) { evt.target.pressTimeout = setTimeout( fade_out_and_reload, reload_button_hold_time ); } );
+    tr.addEventListener('touchend', function( evt ) { clearTimeout( evt.target.pressTimeout ); return false; } );
     wrapper.appendChild( tr );
-
-    var reload_time_threshold = document.body.getAttribute( "reload-delay" ) * 1000;
-    var idle_time_threshold = document.body.getAttribute( "idle-delay" ) * 1000;
 
     function fade_out_and_reload()
     {
-        wrapper.style = "";
+        wrapper.style.animationsDelay = '0s';
+        wrapper.style.animation = "";
         wrapper.className = "fade-out";
         setTimeout( function() { location.reload(); }, 1500 );
     }
@@ -47,11 +55,4 @@
         },
         reload_time_threshold
     );
-
-    setTimeout( function() {
-        document.getElementById( 'wrapper' ).className =
-            document.getElementById( 'wrapper' ).className.replace
-                ( /(?:^|\s)fade-in(?!\S)/g , '' );
-    }, ( document.body.getAttribute( "fadein-on-load-delay" ) + 2 ) * 1000 );
-
 })();

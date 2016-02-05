@@ -227,6 +227,15 @@
                     }
                 }
 
+                // just put this function into the event loop to be executed
+                // at ANY LATER TIME BUT NOT NOW
+                window.setTimeout( function() {
+                    // restart all slides, but resume only slide 0
+                    for( i = 0; i < slides.length; i++ )
+                        slides[ i ].restart( true );
+                    slides[ 0 ].resume();
+                }, 0 );
+
                 return jssor_slider;
             };
         </script>

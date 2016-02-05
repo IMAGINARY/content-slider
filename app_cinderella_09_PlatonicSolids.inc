@@ -246,11 +246,11 @@ drawimage(YesEdges.xy,"image20",scale->ss);
 
 
 
-if(sequenz_(-1)==1,dehighlight(C4));
-if(sequenz_(-1)==2,dehighlight(C6));
-if(sequenz_(-1)==3,dehighlight(C8));
-if(sequenz_(-1)==4,dehighlight(C12));
-if(sequenz_(-1)==5,dehighlight(C20));
+if(sequenz_(-1)==1%length(sequenz)>maxdepth,dehighlight(C4));
+if(sequenz_(-1)==2%length(sequenz)>maxdepth,dehighlight(C6));
+if(sequenz_(-1)==3%length(sequenz)>maxdepth,dehighlight(C8));
+if(sequenz_(-1)==4%length(sequenz)>maxdepth,dehighlight(C12));
+if(sequenz_(-1)==5%length(sequenz)>maxdepth,dehighlight(C20));
 
 if(length(sequenz)==1,dehighlight(DelOut);dehighlight(DelIn));
 

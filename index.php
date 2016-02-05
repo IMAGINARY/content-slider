@@ -1,8 +1,8 @@
 <?php
     // launch script relies on
     //  - php-cli
-    //  - pslist (rkill)
-    //  - electron
+    //  - rkill
+    //  - web browser as specified in config.inc
 
     require( 'config.inc' );
 

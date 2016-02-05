@@ -10,6 +10,7 @@ var app = require('app'); // Module to control application life.
 
 function sw() {
 
+    app.commandLine.appendSwitch('--js-flags="--max_old_space_size=4096"');
     app.commandLine.appendSwitch('disable-threaded-scrolling');
     // app.commandLine.appendSwitch('enable-apps-show-on-first-paint');
     // app.commandLine.appendSwitch('enable-embedded-extension-options');

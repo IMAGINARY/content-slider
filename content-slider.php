@@ -269,7 +269,7 @@
         >
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
-            <iframe width="2160" height="3840" src="bg.html" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
+            <iframe width="2160" height="3840" src="<?=$background_animation_url ?>" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
 
             <div class="bg-overlay"></div>
 
@@ -281,9 +281,10 @@
         <div id="slider_top" class="top_slider">
             <!-- Slides Container -->
             <div u="slides" class="top_slider_slides">
-                <div>Interaktive Mathematik<br> Berühren Sie den Bildschirm!</div>
-                <div>Hands-On Mathematik<br>Berühren Sie den Bildschirm!</div>
-                <div>Mathematische Experimente<br>Berühren Sie den Bildschirm!</div>
+                <div>Interaktive Mathematik<br /> Berühren Sie den Bildschirm!</div>
+                <div>Hands-On Mathematik<br />Berühren Sie den Bildschirm!</div>
+                <div>Mathematische Experimente<br />Berühren Sie den Bildschirm!</div>
+                <div>Information und Hintergründe<br />www.mathematikon.de/imaginary</div>
             </div>
             <!-- Trigger -->
             <script>jssor_top_slider_starter('slider_top');</script>

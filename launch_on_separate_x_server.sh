@@ -19,11 +19,11 @@ if [ $# -ne 0 ]; then
 	echo "rotating screen towards the left"
 	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate left
 	echo "rotating DISPLAX touch input towards the left"
-	xinput --list --name-only | grep -i displax | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+	xinput list --long | grep XITouchClass | awk '{print $4}' | sed 's/.$//' | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
     #	echo "rotating screen towards the right"
     #	echo $DISPLAYS | xargs -I {} xrandr --output {} --rotate right
     #	echo "rotating DISPLAX touch input towards the right"
-    #	xinput --list --name-only | grep -i displax | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+    #	xinput list --long | grep XITouchClass | awk '{print $4}' | sed 's/.$//' | xargs -I {} xinput set-prop "{}" "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 	echo "turn off screen saver and screen blanking"
 	xset s off
 	xset -dpms

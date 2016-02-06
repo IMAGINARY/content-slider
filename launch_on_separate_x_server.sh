@@ -33,6 +33,10 @@ if [ $# -ne 0 ]; then
 	echo "hide mouse cursor after a couple of seconds"
 	unclutter -display "$DISPLAY"  -idle 1 -root &
 	UNCLUTTER_PID=$!
+	# uncomment if you see tearing artifacts
+	# echo "launch composition manager (compton)"
+	# compton --unredir-if-possible --backend glx --vsync opengl-swc
+	COMPTON_PID=$!
 	echo
 	echo "current configuration:"
 	echo "====================================================="
@@ -47,6 +51,7 @@ if [ $# -ne 0 ]; then
 	echo "start the exhibit"
 	php index.php
 	kill $UNCLUTTER_PID
+	kill $COMPTON_PID
 	wait
 else
 	while true; do

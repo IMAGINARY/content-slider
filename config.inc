@@ -38,6 +38,10 @@ $timestamp_file = 'timestamp';
 // currently available: bg_webgl.html, bg_svg.html, bg_plain.html
 $background_animation_url='bg_svg.html';
 
+// touch overlay debugging features
+$debugging_enabled = false;
+$debug_cursor_scale = 1;
+
 /******************************
  * END configuration
  ******************************/

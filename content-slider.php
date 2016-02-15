@@ -245,6 +245,7 @@
         fadein-on-load-delay="<?=$fadein_on_load_delay?>"
         reload-button-size="<?=$reload_button_size ?>"
         reload-button-hold-time="<?=$reload_button_hold_time ?>"
+        debug-cursor-scale="<?=$debug_cursor_scale ?>"
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
@@ -361,6 +362,9 @@
             <script src="js/auto-page-reloader.js"></script>
 <?php if( $heartbeat_enabled ) : ?>
             <script src="js/heartbeat.js"></script>
+<?php endif ?>
+<?php if( $debugging_enabled ) : ?>
+            <script src="js/debug-overlay.js"></script>
 <?php endif ?>
         <div>
     </body>

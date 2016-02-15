@@ -57,7 +57,7 @@ others=|S,S1|/|S1,S2|;
 dirothers=|R,R1|/|R1,R2|;
 anz=round(|T,T1|/|T1,T2|*14)+1;
 
-mspeed=|U,U1|/|U1,U2|;
+mspeed=|U,U1|/|U1,U2|+.1;
 
 pts=allmasses();
 pts=select(pts,(#.size)<9);

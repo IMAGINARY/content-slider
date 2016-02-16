@@ -260,6 +260,9 @@
         fadein-on-load-delay="<?=$fadein_on_load_delay?>"
         reload-button-size="<?=$reload_button_size ?>"
         reload-button-hold-time="<?=$reload_button_hold_time ?>"
+        debug-cursor-scale="<?=$debug_cursor_scale ?>"
+        touch-cursor-html="<?=htmlspecialchars( $touch_cursor_html, ENT_QUOTES, false ) ?>"
+
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
@@ -268,6 +271,9 @@
             if( $disable_scrolling ) echo "overflow: hidden;";
         ?>"
     >
+<?php if( $disable_mouse_events ) : ?>
+            <script src="js/stop-mouse-event-propagation.js"></script>
+<?php endif ?>
         <div
             id="wrapper"
             class="fade-in"
@@ -376,6 +382,12 @@
             <script src="js/auto-page-reloader.js"></script>
 <?php if( $heartbeat_enabled ) : ?>
             <script src="js/heartbeat.js"></script>
+<?php endif ?>
+<?php if( $debugging_enabled ) : ?>
+            <script src="js/debug-overlay.js"></script>
+<?php endif ?>
+<?php if( $touch_cursor_visible ) : ?>
+            <script src="js/touch-cursor.js"></script>
 <?php endif ?>
         <div>
     </body>

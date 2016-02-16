@@ -2,8 +2,21 @@
     <script id="app_cinderella_02_csmouseup" type="text/x-cindyscript">
 
 </script>
+<script id="app_cinderella_02_cstick" type="text/x-cindyscript">
+
+   
+      E.xy=gauss(complex(E-D)*exp(.03*i))+D;
+      B.xy=gauss(complex(B)*exp(.003*i));
+      C.xy=gauss(complex(C)*exp(.001*i));
+
+
+</script>
+
+
+
 <script id="app_cinderella_02_csdraw" type="text/x-cindyscript">
-err("DRAW: "+seconds());
+
+
 if(pinall,apply(1..length(allpoints()), (allpoints()_#).xy=bck_# ));
 
 restrict(p,mi,ma):=(
@@ -65,6 +78,8 @@ bck=apply(allpoints(),#.xy);
 ;
 </script>
 <script id="app_cinderella_02_csmousedown" type="text/x-cindyscript">
+pauseanimation();
+pendanimation=false;
 pinall=false;
 
 got=sort(1..length(images),p=images_#_1;|p,mouse().xy|)_1;
@@ -76,6 +91,7 @@ if(|images_got_1,mouse().xy|<5,sel=got;pinall=true;);
 <script id="app_cinderella_02_csinit" type="text/x-cindyscript">
 sel=1;
 ss=1.6;
+pendanimation=true;
 images=[
 [(21,1),"test1",.9/ss],
 [(26,1),"test2",.7/ss],
@@ -84,17 +100,25 @@ images=[
 [(21,-10),"test5",.7/ss],
 [(26,-10),"test6",.5/ss]];
 
+pause():=(
+   stopanimation();
+);
+
+resume():=(
+   if(pendanimation,playanimation());
+);
 
 reset():=(
-
 B.homog=(4, -0.3346613, 0.39840637);
 C.homog=(4, 1.22893871, 0.43593195);
 D.homog=(4, 1.9, 0.179533);
 E.homog=(5, 3.1, 0.2085930);
 G.homog=(4, 1.8, 0.1488095);
 sel=1;
-    );
+pendanimation=true;
 
+    );
+playanimation();
 </script>
 
 <script type="text/javascript">
@@ -135,9 +159,12 @@ current_content_slides.push(
                  return {
                      pause: function() { 
                         console.log( 'pause spheres' ); 
+                        cdy02.evokeCS('pause();');
                      },
                      resume: function() { 
                         console.log( 'resume spheres' );
+                        cdy02.evokeCS('resume();');
+
                      },
                      restart: function( pause_after_restart ) { 
                         console.log( 'restart spheres' );

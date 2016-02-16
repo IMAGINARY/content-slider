@@ -256,6 +256,9 @@
             if( $disable_scrolling ) echo "overflow: hidden;";
         ?>"
     >
+<?php if( $disable_mouse_events ) : ?>
+            <script src="js/stop-mouse-event-propagation.js"></script>
+<?php endif ?>
         <div
             id="wrapper"
             class="fade-in"

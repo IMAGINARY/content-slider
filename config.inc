@@ -7,6 +7,9 @@
 // show or hide cursor
 $hide_cursor = true;
 
+// stop propagation of all types of mouse events at document.body
+$disable_mouse_events = false;
+
 // disable scrolling
 $disable_scrolling = true;
 

@@ -1184,6 +1184,16 @@ function setuplisteners(canvas, data) {
 
 
     function touchMove(e) {
+
+    	var activeTouchIDList=e.changedTouches;
+        var gotit=false;
+    	for (var i=0; i < activeTouchIDList.length; i++) {
+             if(activeTouchIDList[i].identifier==activeTouchID){
+                gotit=true;
+             }
+        }  
+        if(!gotit) {return;}
+
         updatePostition(e.targetTouches[0]);
         if (mouse.down) {
             cs_mousedrag();
@@ -1192,8 +1202,19 @@ function setuplisteners(canvas, data) {
         }
         e.preventDefault();
     }
+    var activeTouchID=-1;
 
     function touchDown(e) {
+    	if(activeTouchID!=-1){
+    		return;
+    	}
+
+    	var activeTouchIDList=e.changedTouches;
+    	if(activeTouchIDList.length==0) {
+      	  return;
+    	}
+        activeTouchID=activeTouchIDList[0].identifier;
+    	
         updatePostition(e.targetTouches[0]);
         cs_mousedown();
         mouse.down = true;
@@ -1203,11 +1224,21 @@ function setuplisteners(canvas, data) {
     }
 
     function touchUp(e) {
+    	var activeTouchIDList=e.changedTouches;
+        var gotit=false;
+    	for (var i=0; i < activeTouchIDList.length; i++) {
+             if(activeTouchIDList[i].identifier==activeTouchID){
+                gotit=true;
+             }
+        }  
+
+        if(!gotit) {return;}
+		activeTouchID=-1;
         mouse.down = false;
         cindy_cancelmove();
         stateContinueFromHere();
-        updateCindy();
         cs_mouseup();
+        updateCindy();
         e.preventDefault();
     }
 

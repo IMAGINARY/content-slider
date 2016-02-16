@@ -519,6 +519,8 @@ reset():=(
     //COPY PASTE
     sel=round(|M,N|/|M,L|*(n-1));
     N.xy=sel*(L-M)/(n-1)+M;
+    special=[];
+
     devlevel(levels_(sel+1));
     solved=false;
 

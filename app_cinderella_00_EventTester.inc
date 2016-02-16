@@ -57,6 +57,7 @@ st=[];
 </script>
 
     <script type="text/javascript">
+    (function(){
 
     var uid = 'app_cinderella_10_CSCanvas_' + new Date().getTime() + '_' + Math.floor((Math.random() * 100) + 1);
         document.write( "<canvas id=\"" + uid + "\" width=\"1560\" height=\"1170\"></canvas>" );
@@ -71,6 +72,23 @@ var cdy00=createCindy({
 		{                             id: uid,
                             background: "rgba(255,255,255,1)", width: 1560, height: 1170, transform: [ { visibleRect: [ -12.38, 11.5, 20.02, -8.82 ] } ] } ], 
 	cinderella: { build: 1812, version: [ 2, 9, 1812 ] } });
+
+current_content_slides.push(
+             new function () {
+                 return {
+                     pause: function() { 
+
+                     },
+                     resume: function() { 
+
+                     },
+                     restart: function( pause_after_restart ) { 
+                      }
+                 }
+             }
+         );
+    })();
+
     </script>
 </div>
 <div class="app_description"></div>

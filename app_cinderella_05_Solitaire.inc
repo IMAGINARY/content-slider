@@ -1,6 +1,6 @@
 <div class="app">
     <script id="app_cinderella_05_csmouseup" type="text/x-cindyscript">
-//upaction();
+upaction();
     </script>
     <script id="app_cinderella_05_csdraw" type="text/x-cindyscript">
     if(!animating,
@@ -210,16 +210,13 @@ waiting=false;
     </script>
 
     <script id="app_cinderella_05_cstick" type="text/x-cindyscript">
-    err("TICK WAIT:"+waiting+" ANIMATE: "+movingfilm);
     if(waiting,
        if(seconds()-timestamp>.5,
           waiting=false;
-          err("TRIGGER UPACKTION");
-          upaction();
+         // upaction();
        )
     );
     if(movingfilm,
-              err("MOVINGFILM");
 
     animating=true;
 

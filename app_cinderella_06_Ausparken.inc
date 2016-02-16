@@ -18,6 +18,7 @@
 
         <script id="app_cinderella_06_csmouseup" type="text/x-cindyscript">
 
+      upaction();
 
     </script>
     <script id="app_cinderella_06_csdraw" type="text/x-cindyscript">

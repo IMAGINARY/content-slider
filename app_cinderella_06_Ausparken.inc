@@ -30,12 +30,21 @@
     if(downpending,
       upaction();
     );
+    if(|mouse().x-N.x|<2,
+    err("HITIT");
+       nn=mouse().xy;
+       sel=round(|M,nn|/|M,L|*(n-1));
+       N.xy=sel*(L-M)/(n-1)+M;
+    );
     downpending=true;
     downaction();
 
 
     </script>
     <script id="app_cinderella_06_csmousedrag" type="text/x-cindyscript">
+
+
+
     if(moving,
 
       move=(mouse().xy-pos)/2;

@@ -195,7 +195,7 @@ if(Zalpha.x<Xalpha.x,Zalpha.xy=Xalpha.xy);
 if(Zalpha.x>Y.x,Zalpha.xy=Yalpha.xy);
 if(Zblur.x<Xblur.x,Zblur.xy=Xblur.xy);
 if(Zblur.x>Yblur.x,Zblur.xy=Yblur.xy);
-size=(|X,Z|/|X,Y|)^1.5*2;
+size=(|X,Z|/|X,Y|)^1.5*2+.3;
 color=cols_pencolor;
 setdot();
 

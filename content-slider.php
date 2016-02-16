@@ -61,6 +61,7 @@
             $content[1][] = "app4.inc";
             break;
         case "Cindy":
+            //$content[0][] = "app_cinderella_00_EventTester.inc";
             $content[0][] = "app_cinderella_11_Fish.inc";
             $content[0][] = "app_cinderella_07_iOrnament.inc";
             $content[0][] = "app_cinderella_08_PolytopeMorpher.inc";

@@ -2,7 +2,7 @@
 
 <script type="text/javascript" src="app_common/js/quickhull3d/quickhull3d.nocache.js"></script>
     
-<script id="app_cinderella_08_csmouseup" type="text/x-cindyscript">
+<script id="app_cinderella_08_csmouseupX" type="text/x-cindyscript">
 
 if(|(wx,wy)|>0.05,
   playanimation(),
@@ -50,28 +50,6 @@ pauseanimation();stopanimation();
 
 
 
-
-
-
-
-
-
-d=1.5;
-prevchoice=choice;
-if(|mouse().xy,C4|<2,choice=0;iterdepth=0);
-if(|mouse().xy,C6|<2,choice=1;iterdepth=0);
-if(|mouse().xy,C8|<2,choice=2;iterdepth=0);
-if(|mouse().xy,C12|<2,choice=3;iterdepth=0);
-if(|mouse().xy,C20|<2,choice=4;iterdepth=0);
-
-
-if(|mouse().xy-Wand| < 1.2,magic());
-
-if((prevchoice==6)&(choice!=6), 
-  P.xy=G.xy;
-  L.xy=A.xy;
-  O.xy=M.xy;
-);
 
 
 
@@ -281,11 +259,7 @@ translate((1.3,-1.5));
 grestore();
 
 errf("A5 "+seconds());
-highlight(a):=(
-repeat(10,i,
-  fillcircle(a,-i*.1+1.9,alpha->i/10,color->(0.6,0.6,.9)*.6);
- );
-);
+
 
 //err("A4 "+seconds());
 
@@ -329,28 +303,6 @@ off=(-.05,0);
 w=1.8;
 
 //layer(4);
-highlight(but):= connect(
-    (
-      off+but+(1,1)*w,
-      off+but+(-1,1)*w,
-      off+but+(-1,-1)*w,
-      off+but+(1,-1)*w,
-      off+but+(1,1)*w
-  ),color->(1,1,1)*.7,size->2
-);
-
-dehighlight(but):= fillpoly(
-    (
-      off+but+(1,1)*w,
-      off+but+(-1,1)*w,
-      off+but+(-1,-1)*w,
-      off+but+(1,-1)*w,
-      off+but+(1,1)*w
-  ),color->(1,1,1)*.0,size->2,alpha->0.6
-);
-
-
-if(length(objx)>maxobjects,dehighlight(Wand));
 
 
 if(choice==0,highlight(C4));
@@ -366,7 +318,7 @@ if(choice==6,highlight(Wand));
 
 
 ss=1.5;
-drawimage(Wand,"image1",scale->ss,alpha->if(length(objx)>maxobjects,.6,1));
+drawimage(Wand,"image1",scale->ss);
 drawimage(C4,"image2",scale->ss);
 drawimage(C6,"image3",scale->ss);
 drawimage(C8,"image4",scale->ss);
@@ -374,6 +326,7 @@ drawimage(C12,"image5",scale->ss);
 drawimage(C20,"image6",scale->ss);
 drawimage(H,"image8",scale->1.1*ss);
 
+if(length(objx)>1500,dehighlight(Wand));
 
 
 
@@ -426,6 +379,30 @@ dragging=
 
 presstime=seconds();
 
+
+
+
+d=1.5;
+prevchoice=choice;
+if(|mouse().xy,C4|<2,choice=0;iterdepth=0);
+if(|mouse().xy,C6|<2,choice=1;iterdepth=0);
+if(|mouse().xy,C8|<2,choice=2;iterdepth=0);
+if(|mouse().xy,C12|<2,choice=3;iterdepth=0);
+if(|mouse().xy,C20|<2,choice=4;iterdepth=0);
+
+
+if(|mouse().xy-Wand| < 1.2,magic());
+
+if((prevchoice==6)&(choice!=6), 
+  P.xy=G.xy;
+  L.xy=A.xy;
+  O.xy=M.xy;
+);
+
+
+
+
+
 </script>
 <script id="app_cinderella_08_csmousedrag" type="text/x-cindyscript">
 if(dragging, 
@@ -461,11 +438,11 @@ starty=yy;
 
 );
 
-
+if(|(wx,wy)|>0.0,playanimation());
 
 </script>
 <script id="app_cinderella_08_csinit" type="text/x-cindyscript">
-maxobjects=700;
+
 cache=zerovector(5000);
 fcache=zerovector(100);
 
@@ -859,7 +836,7 @@ cell20=(definepoly(cell20*1.1));
 
 
 magic():=(
-if(length(objx)<maxobjects,
+if(length(objx)<1500,
 
   id=initdirs;
 spanfactor_7=spanfactor_(choice+1);
@@ -885,6 +862,26 @@ resetall():=(
 );
 pause():=(
    stopanimation();
+);
+
+highlight(but):= connect(
+    (
+      off+but+(1,1)*w,
+      off+but+(-1,1)*w,
+      off+but+(-1,-1)*w,
+      off+but+(1,-1)*w,
+      off+but+(1,1)*w
+  ),color->(1,1,1)*.7,size->2
+);
+
+dehighlight(but):= fillpoly(
+    (
+      off+but+(1,1)*w,
+      off+but+(-1,1)*w,
+      off+but+(-1,-1)*w,
+      off+but+(1,-1)*w,
+      off+but+(1,1)*w
+  ),color->(1,1,1)*.0,size->2,alpha->0.6
 );
 
 
@@ -917,23 +914,23 @@ var cdy08 = createCindy({
     {name: "U", type: "Free", pos: [4, -3.2, 0.26666666666666666], pinned: true, size: 2, color: [1, 1, 1], visible: false},
     {name: "V", type: "Free", pos: [4, -1.8666666666666667, 0.26666666666666666], pinned: true, size: 2, color: [1, 1, 1], visible: false},
     {name: "g", type: "Segment", args: ["U", "V"], pos: [-0.26666666666666666, 0, 4], size: 3, color: [0.5019608, 0.5019608, 0.5019608]},
-    {name: "W", type: "PointOnLine", args: ["g"], pos: [4, -2.474666666666667, 0.2666666666666667], size: 6, color: [1, 1, 1],narrow: true,},
+    {name: "W", type: "PointOnLine", args: ["g"], pos: [4, -2.474666666666667, 0.2666666666666667], size: 9, color: [1, 1, 1],narrow: 100,},
     {name: "H", type: "Free", pos: [4, -1.9074446680080486, 0.2012072434607646], pinned: true, color: [1, 1, 1]},
     {name: "C1", type: "CircleMr", args: ["H"], radius: 4, size: 1, color: [1, 1, 1], printname: "$C_{1}$", visible: false},
-    {name: "Rot", type: "Free",narrow: true,  pos: [4, -1.7819742732112895, 0.17841102347588844], plane: 3, color: [1, 1, 1]},
-    {name: "Span", type: "Free", narrow: true, pos: [4, -1.519543949003716, 0.21298655916459697], plane: 3, size: 3, color: [1, 1, 1]},
+    {name: "Rot", type: "Free",narrow: 100,  pos: [4, -1.7819742732112895, 0.17841102347588844], plane: 3, color: [1, 1, 1],size:8},
+    {name: "Span", type: "Free", narrow: 100, pos: [4, -1.519543949003716, 0.21298655916459697], plane: 3, size: 6, color: [1, 1, 1]},
     {name: "A", type: "Free", pos: [4, -1.4285714285714286, 0.2857142857142857], pinned: true, color: [1, 1, 1], visible: false},
     {name: "C", type: "Free", pos: [4, -0.8333333333333334, 0.16666666666666666], pinned: true, color: [1, 1, 1], visible: false},
     {name: "a", type: "Segment", args: ["A", "C"], pos: [0, 0.8, 4], size: 3, color: [0.5019608, 0.5019608, 0.5019608]},
     {name: "G", type: "Free", pos: [4, -0.8571428571428571, 0.2857142857142857], pinned: true, color: [1, 1, 1], visible: false},
     {name: "K", type: "Free", pos: [4, -0.5, 0.16666666666666666], pinned: true, color: [1, 1, 1], visible: false},
     {name: "c", type: "Segment", args: ["G", "K"], pos: [0, 1.3333333333333333, 4], size: 3, color: [0.5019608, 0.5019608, 0.5019608]},
-    {name: "L", type: "PointOnLine", args: ["a"], pos: [4, -1.4285714285714277, 0.2857142857142856], narrow: true, size: 6, color: [1, 1, 1]},
+    {name: "L", type: "PointOnLine", args: ["a"], pos: [4, -1.4285714285714277, 0.2857142857142856], narrow: 100, size: 9, color: [1, 1, 1]},
     {name: "M", type: "Free", pos: [4, -0.2857142857142857, 0.2857142857142857], pinned: true, color: [1, 1, 1], visible: false},
     {name: "N", type: "Free", pos: [4, -0.16666666666666666, 0.16666666666666666], pinned: true, color: [1, 1, 1], visible: false},
     {name: "d", type: "Segment", args: ["M", "N"], pos: [0, -4, -4], size: 3, color: [0.5019608, 0.5019608, 0.5019608]},
-    {name: "O", type: "PointOnLine", args: ["d"], pos: [4, -0.28571428571428575, 0.28571428571428575], narrow: true, size: 6, color: [1, 1, 1]},
-    {name: "P", type: "PointOnLine", args: ["c"], pos: [4, -0.7590984016221631, 0.2530328005407211], narrow: true, size: 6, color: [1, 1, 1]},
+    {name: "O", type: "PointOnLine", args: ["d"], pos: [4, -0.28571428571428575, 0.28571428571428575], narrow: 100, size: 9, color: [1, 1, 1]},
+    {name: "P", type: "PointOnLine", args: ["c"], pos: [4, -0.7590984016221631, 0.2530328005407211], narrow: 100, size: 9, color: [1, 1, 1]},
     {name: "Wand", type: "Free", pos: [23, 4], pinned: true, color: [1, 1, 1], visible: false},
     {name: "C4", type: "Free", pos: [15, 8], pinned: true, color: [1, 1, 1], visible: false},
     {name: "C6", type: "Free", pos: [19, 8], pinned: true, color: [1, 1, 1], visible: false},

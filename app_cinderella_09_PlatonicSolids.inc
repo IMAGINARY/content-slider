@@ -2,32 +2,13 @@
 
 <script type="text/javascript" src="app_common/js/quickhull3d/quickhull3d.nocache.js"></script>
 
-<script id="app_cinderella_09_csmouseup" type="text/x-cindyscript">
-maxdepth=7;
+<script id="app_cinderella_09_csmouseupX" type="text/x-cindyscript">
 if(|(wx,wy)|>=0.08,
   playanimation(),
   pauseanimation();stopanimation();
 )
 ;
 
-
-
-
-if(|mouse().xy-NoEdges|<3,edges=false);
-if(|mouse().xy-YesEdges|<3,edges=true);
-
-
-addseq(i):=if(i!=sequenz_(-1)&length(sequenz)<maxdepth+1,sequenz=sequenz++[i]);
-
-if(|mouse().xy-C4|<3,addseq(1));
-if(|mouse().xy-C6|<3,addseq(2));
-if(|mouse().xy-C8|<3,addseq(3));
-if(|mouse().xy-C12|<3,addseq(4));
-if(|mouse().xy-C20|<3,addseq(5));
-
-
-if((|mouse().xy-DelOut|<3)&(length(sequenz)>1),sequenz=apply(2..length(sequenz),sequenz_#));
-if((|mouse().xy-DelIn|<3)&(length(sequenz)>1),sequenz=apply(1..length(sequenz)-1,sequenz_#));
 
 
 if(|mouse().xy,presspos|<1&seconds()-presstime<0.2,
@@ -157,11 +138,6 @@ ambient=(1,1,1)*amb;
 fd(d,z):=if(d<200,(d/(d+z)),1)*.8;
 
 render3d();
-highlight(a):=(
-repeat(10,i,
-  fillcircle(a,-i*.1+1.9,alpha->i/10,color->(0.6,0.6,.9)*.6);
- );
-);
 
 
 
@@ -198,26 +174,6 @@ drawtext(Q+(-.7,6.5),"Äusseren entfernen",size->20,color->(1,1,1));
 drawtext(Q+(-.7,1.9),"Inneren entfernen",size->20,color->(1,1,1));
 drawtext(Q+(-.7,-.9),"Perspektive",size->20,color->(1,1,1));
 
-highlight(but):= connect(
-    (
-      off+but+(1,1)*w,
-      off+but+(-1,1)*w,
-      off+but+(-1,-1)*w,
-      off+but+(1,-1)*w,
-      off+but+(1,1)*w
-  ),color->(1,1,1)
-);
-
-dehighlight(but):= fillpoly(
-    (
-      off+but+(1,1)*w,
-      off+but+(-1,1)*w,
-      off+but+(-1,-1)*w,
-      off+but+(1,-1)*w,
-      off+but+(1,1)*w
-  ),color->(1,1,1.5)*.2,alpha->0.7
-
-);
 
 
 //clrscr();
@@ -244,8 +200,6 @@ drawimage(DelIn.xy,"image17",scale->ss);
 drawimage(NoEdges.xy,"image19",scale->ss);
 drawimage(YesEdges.xy,"image20",scale->ss);
 
-
-
 if(sequenz_(-1)==1%length(sequenz)>maxdepth,dehighlight(C4));
 if(sequenz_(-1)==2%length(sequenz)>maxdepth,dehighlight(C6));
 if(sequenz_(-1)==3%length(sequenz)>maxdepth,dehighlight(C8));
@@ -253,23 +207,6 @@ if(sequenz_(-1)==4%length(sequenz)>maxdepth,dehighlight(C12));
 if(sequenz_(-1)==5%length(sequenz)>maxdepth,dehighlight(C20));
 
 if(length(sequenz)==1,dehighlight(DelOut);dehighlight(DelIn));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ;
 </script>
@@ -300,27 +237,42 @@ mat=mmmx*mmmy*mat;
 ;
 </script>
 <script id="app_cinderella_09_csmousedown" type="text/x-cindyscript">
+
 dragging=false;
 if(|mouse().x|<13,
  startx=mouse().x;
  starty=mouse().y;
- dragging=
-
- |mouse().xy,S|>.3
+ dragging=|mouse().xy,S|>.3
 //&|mouse().xy,X|>.3
 //&|mouse().xy,C|>.3
 ;
 );
-
-
 presstime=seconds();
-
-
-
 presspos=mouse().xy;
 
 
-;
+
+
+
+if(|mouse().xy-NoEdges|<3,edges=false);
+if(|mouse().xy-YesEdges|<3,edges=true);
+
+
+addseq(i):=if(i!=sequenz_(-1)&length(sequenz)<maxdepth+1,sequenz=sequenz++[i]);
+
+if(|mouse().xy-C4|<3,addseq(1));
+if(|mouse().xy-C6|<3,addseq(2));
+if(|mouse().xy-C8|<3,addseq(3));
+if(|mouse().xy-C12|<3,addseq(4));
+if(|mouse().xy-C20|<3,addseq(5));
+
+
+if((|mouse().xy-DelOut|<3)&(length(sequenz)>1),sequenz=apply(2..length(sequenz),sequenz_#));
+if((|mouse().xy-DelIn|<3)&(length(sequenz)>1),sequenz=apply(1..length(sequenz)-1,sequenz_#));
+
+
+
+
 </script>
 <script id="app_cinderella_09_csmousedrag" type="text/x-cindyscript">
 if(|mouse().x|<13,
@@ -354,11 +306,9 @@ mmmy=[
 startx=xx;
 starty=yy;
 
-
-
 );
 
-
+if(|(wx,wy)|>0.2,playanimation());
 
 );
 
@@ -370,6 +320,7 @@ starty=yy;
 </script>
 <script id="app_cinderella_09_csinit" type="text/x-cindyscript">
 
+maxdepth=7;
 
 
 col=(0.1,0.65,1);
@@ -953,7 +904,7 @@ addcell(next,count):=(
 
 
 
-sequenz=[5,4,1,3,5,3,4,2];
+//sequenz=[5,4,1,3,5,3,4,2];
 sequenz=[2];
 
 processseq(sequenz):=(
@@ -989,6 +940,28 @@ pause():=(
    stopanimation();
 );
 
+
+highlight(but):= connect(
+    (
+      off+but+(1,1)*w,
+      off+but+(-1,1)*w,
+      off+but+(-1,-1)*w,
+      off+but+(1,-1)*w,
+      off+but+(1,1)*w
+  ),color->(1,1,1)
+);
+
+dehighlight(but):= fillpoly(
+    (
+      off+but+(1,1)*w,
+      off+but+(-1,1)*w,
+      off+but+(-1,-1)*w,
+      off+but+(1,-1)*w,
+      off+but+(1,1)*w
+  ),color->(1,1,1.5)*.2,alpha->0.7
+
+);
+
 </script>
 
     <script type="text/javascript">
@@ -1019,7 +992,7 @@ var cdy09 = createCindy({
     {name: "Q", type: "Free", pos: [4, 0.28149829738933024, -0.22701475595913728], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
     {name: "R", type: "Free", pos: [4, 0.33926128590971266, -0.2735978112175102], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
     {name: "a", type: "Segment", args: ["Q", "R"], pos: [0, 3.225806451612903, 4], size: 3, color: [1, 1, 1]},
-    {name: "S", type: "PointOnLine", args: ["a"], pos: [4, 0.3131313111544739, -0.25252525093102735], narrow: true, size: 4, color: [1, 1, 1]},
+    {name: "S", type: "PointOnLine", args: ["a"], pos: [4, 0.3131313111544739, -0.25252525093102735], narrow: 50, size: 4, color: [1, 1, 1]},
     {name: "C4", type: "Free", pos: [4, 1.9749373433583963, 0.25062656641604014], pinned: true, plane: 1, color: [1, 0, 0], visible: false},
     {name: "C6", type: "Free", pos: [4, 0.875, 0.25], pinned: true, plane: 1, color: [1, 0, 0], visible: false},
     {name: "C8", type: "Free", pos: [4, -0.25, 0.25], pinned: true, plane: 1, color: [1, 0, 0], visible: false},

@@ -4,17 +4,17 @@ mou=mouse().xy;
 if(sel==0,
   dist=|A,mou|-diffr;
   A.xy=olda;
-  rad0=max(dist,1);
+  rad0=max(dist,2);
 );
 if(sel==1,
   dist=|B,mou|-diffr;
   B.xy=oldb;
-  rad1=max(dist,1);
+  rad1=max(dist,2);
 );
 if(sel==2,
   dist=|C,mou|-diffr;
   C.xy=oldc;
-  rad2=max(dist,1);
+  rad2=max(dist,2);
 );
 
 
@@ -127,17 +127,18 @@ oldc=C.xy;
 
 </script>
 <script id="app_cinderella_03_csmouseup" type="text/x-cindyscript">
-sel=-1;
-diffr=0;
+
 </script>
 
 <script id="app_cinderella_03_csmousedown" type="text/x-cindyscript">
+sel=-1;
+diffr=0;
+
 mou=mouse().xy;
 sel=-1;
-
-if((|B.xy,mou|>1)&(|C.xy,mou|>1)&(|D.xy,mou|>1)&(|E.xy,mou|>1)&(abs(|A,mou|-rad0)<1),sel=0;diffr=(|A,mou|-rad0));
-if((|A.xy,mou|>1)&(|C.xy,mou|>1)&(|D.xy,mou|>1)&(|E.xy,mou|>1)&(abs(|B,mou|-rad1)<1),sel=1;diffr=(|B,mou|-rad1));
-if((|A.xy,mou|>1)&(|B.xy,mou|>1)&(|D.xy,mou|>1)&(|E.xy,mou|>1)&(abs(|C,mou|-rad2)<1),sel=2;diffr=(|C,mou|-rad2));
+if(abs(|A,mou|-rad0)<1,sel=0;diffr=(|A,mou|-rad0));
+if(abs(|B,mou|-rad1)<1,sel=1;diffr=(|B,mou|-rad1));
+if(abs(|C,mou|-rad2)<1,sel=2;diffr=(|C,mou|-rad2));
 
 </script>
 
@@ -178,12 +179,12 @@ E.homog=(13, -3, 1);
             transform: [{visibleRect: [-16.291666666666668, 19.5, 26.375, -12.5]}]
             }],
             geometry: [
-            {name: "A", type: "Free", pos: [1.4857142857142855, -4, 1.4081632653061225], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
-            {name: "B", type: "Free", pos: [-1.2, 9, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
-            {name: "C", type: "Free", pos: [12.043333333333337, 6.035, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
-            {name: "D", type: "Free", pos: [4, -1.5, 0.2192982456140351], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:true},
+            {name: "A", type: "Free", pos: [1.4857142857142855, -4, 1.4081632653061225], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
+            {name: "B", type: "Free", pos: [-1.2, 9, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
+            {name: "C", type: "Free", pos: [12.043333333333337, 6.035, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
+            {name: "D", type: "Free", pos: [4, -1.5, 0.2192982456140351], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
             {name: "C3", type: "CircleMr", args: ["D"], radius: 1, size: 3, color: [0, 0, 1], alpha: 0},
-            {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1],narrow:true},
+            {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1],narrow:100},
             {name: "Dummy", type: "Free", pos: [100,100], pinned: false, size: 0, color: [1, 1, 1]}
             ]
             });

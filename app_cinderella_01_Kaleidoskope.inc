@@ -1,5 +1,5 @@
 <div class="app">
-    <script id="app_cinderella_01_csmouseup" type="text/x-cindyscript">
+    <script id="app_cinderella_01_csmouseupX" type="text/x-cindyscript">
 if(|mouse().xy,hot1|<3,type=1);
 if(|mouse().xy,hot2|<3,type=2);
 if(|mouse().xy,hot3|<3,type=3);
@@ -358,6 +358,15 @@ apply(1..4,ind=images_#;
 ;
 </script>
 <script id="app_cinderella_01_csmousedown" type="text/x-cindyscript">
+
+li=[hot1,hot2,hot3];
+got=sort(1..3,|mouse().xy,li_#|)_1;
+if(|mouse().xy,li_got|<4,type=got);
+
+got=sort(1..length(images),|images_#_1,mouse().xy|)_1;
+if(|mouse().xy,images_got_1|<4,sel=got);
+
+
 </script>
 <script id="app_cinderella_01_csinit" type="text/x-cindyscript">
 type=1;
@@ -420,11 +429,11 @@ sel=1;
             {name: "H", type: "Free", pos: [4, 3.1491832864888676, 0.18181818181818182], pinned: true, size: 2, color: [1, 1, 1], visible: false},
             {name: "K", type: "Free", pos: [4, -3.1491832864888676, 0.18181818181818182], pinned: true, size: 2, color: [1, 1, 1], visible: false},
             {name: "e", type: "Segment", args: ["H", "K"], pos: [-0.1818181818181818, 0, 4], size: 3, color: [1, 1, 1]},
-            {name: "L", type: "PointOnLine", args: ["e"], pos: [4, -2.095768880425196, 0.18181818181818185], narrow: true, size: 7, color: [1, 1, 1]},
+            {name: "L", type: "PointOnLine", args: ["e"], pos: [4, -2.095768880425196, 0.18181818181818185], narrow: 100, size: 7, color: [1, 1, 1]},
             {name: "C", type: "Free", pos: [4, 0, 0.16], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "F", type: "Free", pos: [4, 0, 0.12903225806451613], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "a", type: "Segment", args: ["C", "F"], pos: [0, -4, 0], size: 3, color: [1, 1, 1]},
-            {name: "M", type: "PointOnLine", args: ["a"], pos: [4, 0, 0.13995342517954137], narrow: true, size: 7, color: [1, 1, 1]}
+            {name: "M", type: "PointOnLine", args: ["a"], pos: [4, 0, 0.13995342517954137], narrow: 100, size: 7, color: [1, 1, 1]}
           ]
         });
 

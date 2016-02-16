@@ -18,7 +18,6 @@
 
         <script id="app_cinderella_06_csmouseup" type="text/x-cindyscript">
 
-    upaction();
 
     </script>
     <script id="app_cinderella_06_csdraw" type="text/x-cindyscript">
@@ -40,6 +39,10 @@
     if(moving,
 
       move=(mouse().xy-pos)/2;
+      rmove=round(move);
+      dir=special_2-special_1;
+      if((dir_1~=0) & (|rmove.y,move.y|<0.2),move=rmove);
+      if((dir_2~=0) & (|rmove.x,move.x|<0.2),move=rmove);
       if(special_1_1==special_2_1,move_1=0;move_2=restrict(interval,move_2));
       if(special_1_2==special_2_2,move_2=0;move_1=restrict(interval,move_1));
 
@@ -415,7 +418,7 @@
     clrscr();
     drawtext(M+(.5,0),"leicht",color->(1,1,1),size->26);
     drawtext(L+(.5,0),"schwer",color->(1,1,1),size->26);
-    //drawtext(M+(-0.2,-1),"Schwierigkeitsgrad",color->(1,1,1),size->26);
+  //  drawtext(M+(-0.2,-1),"Schwierigkeitsgrad",color->(1,1,1),size->26);
 
     fillpolygon(apply([A,B,C,D,E,F],#+(.03,-.03)),color->(1,1,1)*.0);
 
@@ -574,7 +577,7 @@ reset():=(
             {name: "L", type: "Free", pos: [4, 2.883018915215197, 0.2017656373068423], pinned: true, color: [1, 0, 0], visible: false},
             {name: "M", type: "Free", pos: [4, 0.28610216985784337, 0.2017656373068423], pinned: true, color: [1, 0, 0], visible: false},
             {name: "c", type: "Segment", args: ["L", "M"], pos: [-0.2017656373068423, 0, 4], size: 3, color: [1, 1, 1]},
-            {name: "N", type: "PointOnLine", args: ["c"], pos: [4, 0.2861021698578434, 0.2017656373068423], narrow: true, size: 11, color: [1, 1, 1]},
+            {name: "N", type: "PointOnLine", args: ["c"], pos: [4, 0.2861021698578434, 0.2017656373068423], narrow: 200, size: 11, color: [1, 1, 1]},
             {name: "Dummy", type: "Free", pos: [0, 0.355889724310776, -0.2506265664160401], pinned: false, color: [1, 0, 0], visible: false}
           ]
         });

@@ -1,41 +1,6 @@
 <div class="app">
     <script id="app_cinderella_05_csmouseup" type="text/x-cindyscript">
-        if(pressed,reset());
-        pressed=false;
-    if(moving,
-
-      diff=lastmouse-pos;
-      goalpos=special+diff;
-
-
-
-      hits=select(pegs,|goalpos,#.xy|<2);
-      hits2=select(active,|goalpos,#.xy|<2);
-      if(length(hits)==1 &length(hits2)==0 ,
-        hit=hits_1;
-        middle=select(active,|(goalpos+special)/2,#.xy|<2);
-        if(abs(|special-hit|/unit-2)<0.1&length(middle)==1,
-          active=active++hits;
-          active=active--middle;
-         // playtone(62,channel->9,velocity->.4);
-        special=[];
-        moving=false;
-
-          ,
-          moveback();
-       //   active=active++[special];
-        );
-        ,
-          moveback();
-        //  active=active++[special];
-
-      ) ;
-     // special=[];
-     // moving=false;
-    );
-
-
-    ;
+//upaction();
     </script>
     <script id="app_cinderella_05_csdraw" type="text/x-cindyscript">
     if(!animating,
@@ -70,10 +35,13 @@
 
       lastmouse=mouse().xy;
     );
-
-
+    timestamp=seconds();
+    waiting=true;
+    playanimation();
     </script>
     <script id="app_cinderella_05_csmousedrag" type="text/x-cindyscript">
+    timestamp=seconds();
+
     mpo=mouse().xy;
     if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
        mpo.y>rect_1_2 & mpo.y<rect_3_2&!moving,pressed=true,pressed=false);
@@ -84,6 +52,44 @@
     ;
     </script>
     <script id="app_cinderella_05_csinit" type="text/x-cindyscript">
+    upaction():=(
+    if(pressed,reset());
+        pressed=false;
+    if(moving,
+
+      diff=lastmouse-pos;
+      goalpos=special+diff;
+
+
+
+      hits=select(pegs,|goalpos,#.xy|<2);
+      hits2=select(active,|goalpos,#.xy|<2);
+      if(length(hits)==1 &length(hits2)==0 ,
+        hit=hits_1;
+        middle=select(active,|(goalpos+special)/2,#.xy|<2);
+        if(abs(|special-hit|/unit-2)<0.1&length(middle)==1,
+          active=active++hits;
+          active=active--middle;
+         // playtone(62,channel->9,velocity->.4);
+        special=[];
+        moving=false;
+
+          ,
+          moveback();
+       //   active=active++[special];
+        );
+        ,
+          moveback();
+        //  active=active++[special];
+
+      ) ;
+     // special=[];
+     // moving=false;
+    );
+
+
+    );
+
     animating=false;
 
     //KNOPF POSITION
@@ -151,13 +157,15 @@
         drawcircle(#+off,2,color->(0,0.5,0.2),size->3*3,alpha->0.1);
         drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);
     );
-
+movingfilm=false;
+waiting=false;
     moveback():=(
       diff=mouse().xy-pos;
       nn=round(|diff|/2);
       animation=apply(1..nn,q=#/nn;(q)*pos+(1-q)*mouse().xy);
       animation=animation++[animation_(-1)];
       startindex=1;
+      movingfilm=true;
       playanimation();
     //  drawstuff(pos);
     );
@@ -202,20 +210,32 @@
     </script>
 
     <script id="app_cinderella_05_cstick" type="text/x-cindyscript">
+    err("TICK WAIT:"+waiting+" ANIMATE: "+movingfilm);
+    if(waiting,
+       if(seconds()-timestamp>.5,
+          waiting=false;
+          err("TRIGGER UPACKTION");
+          upaction();
+       )
+    );
+    if(movingfilm,
+              err("MOVINGFILM");
+
     animating=true;
 
     animpos=animation_startindex;
 
     //drawstuff(move);
-    errc("TICK");
+ 
     startindex=startindex+1;
     if(startindex>length(animation),
-
+       movingfilm=false;
        stopanimation();
        animating=false;
        active=active++[special];
        special=[];
        )
+    );
     	</script>
 <script type="text/javascript">
     (function(){

@@ -131,6 +131,8 @@ oldc=C.xy;
 </script>
 
 <script id="app_cinderella_03_csmousedown" type="text/x-cindyscript">
+pauseanimation();
+pendanimation=false;
 sel=-1;
 diffr=0;
 

@@ -5,8 +5,8 @@
 <script id="app_cinderella_08_csmouseupX" type="text/x-cindyscript">
 
 if(|(wx,wy)|>0.05,
-  playanimation(),
-  pauseanimation();stopanimation(); 
+  playanimation();pendinganimation=true,
+  pauseanimation();stopanimation(); pendinganimation=false
 );
 
 
@@ -330,15 +330,15 @@ if(length(objx)>1500,dehighlight(Wand));
 
 
 
-
+pendinganimation=true;
 
 
 
 </script>
 <script id="app_cinderella_08_cstick" type="text/x-cindyscript">
 
- wx=wx*0.998;
- wy=wy*0.998;
+ wx=wx*damping;
+ wy=wy*damping;
 
 if(|(wx,wy)|<0.001,pauseanimation();stopanimation(););
 sp=0.3;
@@ -364,6 +364,7 @@ mat=mmmx*mmmy*mat;
 
 </script>
 <script id="app_cinderella_08_csmousedown" type="text/x-cindyscript">
+damping=0.998;
 startx=mouse().x;
 starty=mouse().y;
 dragging=
@@ -853,15 +854,37 @@ iterdepth=iterdepth+1;
 resetall():=(
    choice=1;
    tchoice=1;
-   P.homog=(4, -0.759098, 0.2530328);
    O.xy=M.xy;
-   L.xy=A.xy;
+  rr=random();
+   P.xy=rr*G+(1-rr)*K;
+   rr=random();
+  
+   L.xy=rr*A+(1-rr)*C;
    W.homog=(4, -2.474666, 0.2666666);
    Rot.homog=(4, -1.781974, 0.1784110);
    Span.homog=(4, -1.51954, 0.2129865);
+   pendinganimation=true;
+   damping=1;
+   tt=0.4;
+   wx=(random()-.5)*.3*tt;
+   wy=(random()+.5)*.1*tt;
+   choice=floor(random()*5);
+   iterdepth=0;
+
+    Rot.xy=gauss(complex(Rot-H)*exp(i*random()))+H;
+
+    Span.xy=H+gauss(complex(diff)*exp(i*oldangle))*2.5
+
+
+
+
 );
 pause():=(
    stopanimation();
+);
+
+resume():=(
+   if(pendinganimation,playanimation());
 );
 
 highlight(but):= connect(
@@ -884,7 +907,13 @@ dehighlight(but):= fillpoly(
   ),color->(1,1,1)*.0,size->2,alpha->0.6
 );
 
-
+damping=1;
+ tt=0.4;
+   wx=(random()-.5)*.3*tt;
+   wy=(random()+.5)*.1*tt;
+   choice=floor(random()*5);
+   iterdepth=0;
+   pendinganimation=true;
 </script>
 
     <script type="text/javascript">
@@ -950,6 +979,8 @@ var cdy08 = createCindy({
                     },
                     resume: function() { 
                       console.log( 'resume platonic' ); 
+                      cdy08.evokeCS('resume();');
+
                     },
                     restart: function( pause_after_restart ) { 
                       console.log( 'restart platonic' ); 

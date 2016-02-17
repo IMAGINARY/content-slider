@@ -273,7 +273,7 @@ hits=sort(hits,|colpos_#,mouse().xy|);
 if(length(hits)>=1,pencolor=hits_1;color=cols_pencolor;setdot());
 
 hits=select(1..17,y,
-   |grouppos_y,mouse().xy|<2
+   |grouppos_y,mouse().xy|<1
 );
 hits=sort(hits,|grouppos_#,mouse().xy|);
 
@@ -1273,7 +1273,7 @@ drawtile2():=(
 
 
 drawing():=(
-	        drawtile2(); 
+	        drawtile2();
             fillpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.05);
             drawpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.3);
             xx=0;
@@ -1315,7 +1315,7 @@ drawing():=(
                   xx=xx+1;
                   if(xx==5,xx=0;yy=yy-1);
                   );
- 
+
             buttonpos=[];
 
             xx=0;
@@ -1633,7 +1633,7 @@ symannot=false;
              new function () {
                  return {
                      pause: function() { console.log( 'pause orna' ); },
-                     resume: function() { console.log( 'resume orna' ); 
+                     resume: function() { console.log( 'resume orna' );
                         cdy07.evokeCS('reset();strokelist=[];Z.x=14;Zsat.x=17;Zdark.x=17.5;Zalpha.x=17.5;Zblur.x=13;pencolor=1;color=cols_1;setdot();group=12;setgr(groups_group);fundsel=false;symannot=false;glowing=false');
 
                    },

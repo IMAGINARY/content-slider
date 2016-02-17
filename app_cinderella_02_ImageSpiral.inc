@@ -4,10 +4,10 @@
 </script>
 <script id="app_cinderella_02_cstick" type="text/x-cindyscript">
 
-   
-      E.xy=gauss(complex(E-D)*exp(.03*i))+D;
-      B.xy=gauss(complex(B)*exp(.003*i));
-      C.xy=gauss(complex(C)*exp(.001*i));
+   ttt=0.5;
+      E.xy=gauss(complex(E-D)*exp(.03*i*ttt))+D;
+      B.xy=gauss(complex(B)*exp(.003*i*ttt));
+      C.xy=gauss(complex(C)*exp(.001*i*ttt));
 
 
 </script>
@@ -102,10 +102,14 @@ images=[
 
 pause():=(
    stopanimation();
+      sel=ceil(random()*6);
+   if(sel>6,sel=6);
+   if(sel<1,sel=1);
 );
 
 resume():=(
    if(pendanimation,playanimation());
+
 );
 
 reset():=(
@@ -114,7 +118,7 @@ C.homog=(4, 1.22893871, 0.43593195);
 D.homog=(4, 1.9, 0.179533);
 E.homog=(5, 3.1, 0.2085930);
 G.homog=(4, 1.8, 0.1488095);
-sel=1;
+//sel=1;
 pendanimation=true;
 
     );

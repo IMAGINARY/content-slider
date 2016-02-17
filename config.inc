@@ -49,7 +49,7 @@ $debugging_enabled = false;
 $debug_cursor_scale = 1;
 
 // touch cursor visualization
-$touch_cursor_visible = true;
+$touch_cursor_visible = false;
 $touch_cursor_html = '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>';
 
 /******************************

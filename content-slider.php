@@ -86,6 +86,9 @@
         }
 ?>
         <script src="js/jssor.slider.min.js"></script>
+<?php if( $disable_console_logging ) : ?>
+        <script src="js/dummy-console.js"></script>
+<?php endif ?>
         <script>
             var content_sliders = [];
             var content_slides = [];

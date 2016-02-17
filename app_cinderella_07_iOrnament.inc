@@ -201,7 +201,7 @@ setdot();
 
 sat=|Xsat,Zsat|/|Xsat,Ysat|;
 dark=|Xdark,Zdark|/|Xdark,Ydark|;
-alpha=(|Xalpha,Zalpha|/|Xalpha,Yalpha|)^2;
+alpha=(|Xalpha,Zalpha|/|Xalpha,Yalpha|)^2*.95+.05;
 blur=(|Xblur,Zblur|/|Xblur,Yblur|);
 E.xy=D+gauss(complex(F-D)*i);
 

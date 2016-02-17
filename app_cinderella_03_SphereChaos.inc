@@ -141,6 +141,13 @@ if(abs(|B,mou|-rad1)<1,sel=1;diffr=(|B,mou|-rad1));
 if(abs(|C,mou|-rad2)<1,sel=2;diffr=(|C,mou|-rad2));
 
 </script>
+<script id="app_cinderella_03_cstick" type="text/x-cindyscript">
+   ttt=0.1;
+      E.xy=gauss(complex(E-D)*exp(.03*i*ttt))+D;
+
+
+
+</script>
 
 
 <script id="app_cinderella_03_csinit" type="text/x-cindyscript">
@@ -156,10 +163,23 @@ sel=-1;
 A.homog=(1.485714, -4, 1.408163);
 B.homog=(-1.2, 9, 1);
 C.homog=(12.043333, 6.035, 1);
-D.homog=(4, -1.5, 0.2192982);
+D.homog=(3,3,1);
 E.homog=(13, -3, 1);
+pendanimation=true;
 
     );
+
+    playanimation();
+resume():=(
+   if(pendanimation,playanimation());
+
+);
+pause():=(
+   stopanimation();
+    
+);
+pendanimation=true;
+
 </script>
 
 
@@ -182,7 +202,7 @@ E.homog=(13, -3, 1);
             {name: "A", type: "Free", pos: [1.4857142857142855, -4, 1.4081632653061225], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
             {name: "B", type: "Free", pos: [-1.2, 9, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
             {name: "C", type: "Free", pos: [12.043333333333337, 6.035, 1], color: [1, 0, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
-            {name: "D", type: "Free", pos: [4, -1.5, 0.2192982456140351], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
+            {name: "D", type: "Free", pos: [3,3,1], size: 6, color: [1, 0.7, 0], alpha: 0.8999999761581421, pointborder: false,size:9,narrow:100},
             {name: "C3", type: "CircleMr", args: ["D"], radius: 1, size: 3, color: [0, 0, 1], alpha: 0},
             {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1],narrow:100},
             {name: "Dummy", type: "Free", pos: [100,100], pinned: false, size: 0, color: [1, 1, 1]}
@@ -193,9 +213,11 @@ current_content_slides.push(
                  return {
                      pause: function() { 
                         console.log( 'pause spheres' ); 
+                        cdy03.evokeCS('pause();');
                      },
                      resume: function() { 
                         console.log( 'resume spheres' );
+                        cdy03.evokeCS('resume();');
                      },
                      restart: function( pause_after_restart ) { 
                         console.log( 'restart spheres' );

@@ -68,11 +68,11 @@
             $content[0][] = "app_cinderella_01_Kaleidoskope.inc";
             $content[0][] = "app_cinderella_04_Doppelpendel.inc";
 
-            $content[1][] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][] = "app_cinderella_06_Ausparken.inc";
+            $content[1][] = "app_cinderella_03_SphereChaos.inc";
+            $content[1][] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][] = "app_cinderella_05_Solitaire.inc";
             $content[1][] = "app_cinderella_09_PlatonicSolids.inc";
-            $content[1][] = "app_cinderella_03_SphereChaos.inc";
 
 //            $content[1][] = "app_cinderella_10_Tree.inc";
             break;

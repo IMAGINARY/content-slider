@@ -357,6 +357,19 @@ apply(1..4,ind=images_#;
 
 ;
 </script>
+
+<script id="app_cinderella_01_cstick" type="text/x-cindyscript">
+
+   ttt=0.5;
+      D.xy=gauss(complex(D)*exp(.03*i*ttt));
+      E.xy=gauss(complex(E)*exp(.03*i*ttt));
+      G.xy=gauss(complex(G)*exp(.03*i*ttt));
+
+
+</script>
+
+
+
 <script id="app_cinderella_01_csmousedown" type="text/x-cindyscript">
 
 li=[hot1,hot2,hot3];
@@ -380,6 +393,15 @@ images=[
 [(28,-16),"bild4",.5]
 ];
 
+pause():=(
+   stopanimation();
+);
+
+
+resume():=(
+   if(pendanimation,playanimation());
+);
+
 reset():=(
 
 A.homog=(4, 0.63313657, -1.04065347);
@@ -389,10 +411,15 @@ E.homog=(4, -1.4651206, 0.23502179);
 G.homog=(4, -1.81823465, -0.2468792697);
 M.homog=(4, 0, 0.13995);
 L.homog=(4, -2.09576888, 0.181818);
+pendanimation=true;
 
 type=1;
 sel=1;
 	);
+pendanimation=true;
+
+  playanimation();
+
 
 
 
@@ -433,7 +460,7 @@ sel=1;
             {name: "C", type: "Free", pos: [4, 0, 0.16], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "F", type: "Free", pos: [4, 0, 0.12903225806451613], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "a", type: "Segment", args: ["C", "F"], pos: [0, -4, 0], size: 3, color: [1, 1, 1]},
-            {name: "M", type: "PointOnLine", args: ["a"], pos: [4, 0, 0.13995342517954137], narrow: 100, size: 7, color: [1, 1, 1]}
+            {name: "M", type: "PointOnLine", args: ["a"], pos: [4, 0, 0.13995342517954137], narrow: 100, size: 0, color: [1, 1, 1],pinned:true}
           ]
         });
 
@@ -442,9 +469,11 @@ sel=1;
                  return {
                      pause: function() { 
                      	console.log( 'pause kaleido' ); 
+                      cdy01.evokeCS('pause();');
                      },
                      resume: function() { 
                      	console.log( 'resume kaleido' );
+                      cdy01.evokeCS('resume();');
                      },
                      restart: function( pause_after_restart ) { 
                      	console.log( 'restart kaleido' );

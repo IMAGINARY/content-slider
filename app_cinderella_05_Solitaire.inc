@@ -26,7 +26,7 @@ upaction();
     found=select(active,|mouse().xy,#.xy|<2);
 
     moving=false;
-    if(length(found)==1,
+    if(length(found)==1&!movingfilm,
     //  playtone(60,channel->9);
       special=found_1;
       active=active--[special];
@@ -37,7 +37,8 @@ upaction();
     );
     timestamp=seconds();
     waiting=true;
-    playanimation();
+    waiting=false;//TOTGELEGT
+    //playanimation();
     </script>
     <script id="app_cinderella_05_csmousedrag" type="text/x-cindyscript">
     timestamp=seconds();
@@ -144,8 +145,8 @@ upaction();
       );
      );
      if(!moving&!stillpossible(),
-       drawtext((-4,4),"Ende:",color->(1,1,1),size->24);
-       drawtext((-4,2.5),length(active)+" sind übrig",color->(1,1,1),size->24);
+       drawtext((-4,4),"Ende:",color->(1,1,1),size->30);
+       drawtext((-4,2.0),length(active)+" sind übrig",color->(1,1,1),size->30);
      );
     );
 
@@ -199,6 +200,8 @@ waiting=false;
     );
 
     reset():=(
+
+    err("RESET");
        pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
        active=pegs--[pegs_(randomint(15)+1)];
        special=[];
@@ -231,6 +234,7 @@ waiting=false;
        animating=false;
        active=active++[special];
        special=[];
+       drawstuff(move);
        )
     );
     	</script>

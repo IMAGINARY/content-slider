@@ -118,7 +118,7 @@
 
 
 
-    <script id="app_cinderella_07_csmouseup" type="text/x-cindyscript">
+    <script id="app_cinderella_07_csmouseupX" type="text/x-cindyscript">
 
 //	stopWebGL();
 if(dragging,
@@ -173,6 +173,11 @@ if(length(hits)==1,
 
 </script>
 <script id="app_cinderella_07_csdraw" type="text/x-cindyscript">
+Z.size=9;
+Zsat.size=9;
+Zdark.size=9;
+Zalpha.size=9;
+Zblur.size=9;
 D.xy=(0,0);
 if(|D-F|>7.8,F.xy=D+(F-D)/|F-D|*7.8);
 if(|D-F|<2,F.xy=D+(F-D)/|F-D|*2);
@@ -190,13 +195,13 @@ if(Zalpha.x<Xalpha.x,Zalpha.xy=Xalpha.xy);
 if(Zalpha.x>Y.x,Zalpha.xy=Yalpha.xy);
 if(Zblur.x<Xblur.x,Zblur.xy=Xblur.xy);
 if(Zblur.x>Yblur.x,Zblur.xy=Yblur.xy);
-size=(|X,Z|/|X,Y|)^1.5*2;
+size=(|X,Z|/|X,Y|)^1.5*2+.3;
 color=cols_pencolor;
 setdot();
 
 sat=|Xsat,Zsat|/|Xsat,Ysat|;
 dark=|Xdark,Zdark|/|Xdark,Ydark|;
-alpha=(|Xalpha,Zalpha|/|Xalpha,Yalpha|)^2;
+alpha=(|Xalpha,Zalpha|/|Xalpha,Yalpha|)^2*.95+.05;
 blur=(|Xblur,Zblur|/|Xblur,Yblur|);
 E.xy=D+gauss(complex(F-D)*i);
 
@@ -255,19 +260,76 @@ drawing();
 <script id="app_cinderella_07_csmousedown" type="text/x-cindyscript">
 //	startWebGL();
 
+if(dragging,
+   strokelist=strokelist++[stroke];
+);
+
+dragging=false;
+
+hits=select(1..ncols,y,
+   |colpos_y,mouse().xy|<2
+);
+hits=sort(hits,|colpos_#,mouse().xy|);
+if(length(hits)>=1,pencolor=hits_1;color=cols_pencolor;setdot());
+
+hits=select(1..17,y,
+   |grouppos_y,mouse().xy|<1
+);
+hits=sort(hits,|grouppos_#,mouse().xy|);
+
+resetdr=false;
+if(length(hits)>=1,
+  resetdr=true;
+  group=hits_1;
+  setgr(groups_group);
+  resetdraw();
+);
+
+
+hits=select(1..6,y,
+   |buttonpos_y,mouse().xy|<.7
+);
+if(length(hits)==1,
+  hit=hits_1;
+  if(buttons_hit=="trash",
+    strokelist=[];
+    reset();
+  );
+  if(buttons_hit=="undo",
+    undo();
+  );
+  if(buttons_hit=="redo",
+    redo();
+  );
+  if(buttons_hit=="fund",
+    fundsel=!fundsel;
+  );
+  if(buttons_hit=="glow",
+    glowing=!glowing;
+    if(glowing,glow(),noglow());
+  );
+  if(buttons_hit=="sym",
+    symannot=!symannot;
+   // if(symannot,glow(),noglow());
+  );
+);
+
+
+if(!resetdr,
+
 st=mouse().xy;
   st=bas*(st-cell_1);
 
 dragging=(mouse().x<10 );
 
-if(|mouse().xy,F.xy|<1 & fundsel,dragging=false);
-if(|mouse().xy,D.xy|<1 & fundsel,dragging=false);
+if(|mouse().xy,F.xy|<1&fundsel,dragging=false);
+if(|mouse().xy,D.xy|<1&fundsel,dragging=false);
 if(dragging,
   clearredo();
   backup();
 );
 stroke=[[size,alpha,cols_pencolor,glowing,blur],[st]];
-
+);
 //draggingAction(st,st);
 
 </script>
@@ -299,7 +361,6 @@ st=en;
 
 </script>
 <script id="app_cinderella_07_csinit" type="text/x-cindyscript">
-maxstrokes=25;
 createimage("WEBGL",1170,1170);
 use("WebGLExperiments");
 WebGLvariables(posa->"point",posb->"point",str->"point");
@@ -381,7 +442,7 @@ groups=["p1","p2","pm","pg","cm","pmm","pmg","pgg","cmm","p4","p4m","p4g","p3","
 strokelist=[];
 buttons=["fund","sym","glow","undo","redo","trash"];
 
-group=12;
+group=17;
 
 
 res=1000;
@@ -1212,7 +1273,7 @@ drawtile2():=(
 
 
 drawing():=(
-	        drawtile2(); 
+	        drawtile2();
             fillpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.05);
             drawpoly([[10,-100],[20,-100],[20,100],[10,100]],color->(1,1,1)*.3);
             xx=0;
@@ -1254,7 +1315,7 @@ drawing():=(
                   xx=xx+1;
                   if(xx==5,xx=0;yy=yy-1);
                   );
- 
+
             buttonpos=[];
 
             xx=0;
@@ -1380,6 +1441,7 @@ setglow(glowing):=if(glowing,glow(),noglow());
 //javascript("document.getElementById('pen').style.display='inline';");
 
 reset():=(
+  err("RESET ORNAMENT");
   backind=0;
   redolist=[];
   clearimage("tile");
@@ -1419,7 +1481,7 @@ resetdraw():=(
 
    sc2=|D-F|;
    C.xy=A-pp(B-A)*str_2;
-   strokecount=max(1,length(strokelist)-maxstrokes);
+   strokecount=1;
    linecount=1;
    playanimation();
 
@@ -1490,38 +1552,38 @@ symannot=false;
     {"name": "A","type": "Free","pos": [-10,-10],"color": [1,0,0],"visible":false,"pinned":true},
     {"name": "B","type": "Free","pos": [10,-10],"color": [1,0,0],"pinned":true,"visible":false},
     {"name": "C","type": "Free","pos": [-10,10],"color": [1,0,0],"pinned":true,"visible":false},
-    {"name": "D","type": "Free","pos": [0,0],"color": [.4,.4,.4],"pinned":true,"visible":true,"narrow":true},
+    {"name": "D","type": "Free","pos": [0,0],"color": [.4,.4,.4],"pinned":true,"visible":true,"narrow":100},
     {"name": "E","type": "Free","pos": [1,0],"color": [.4,.4,.4],"pinned":true,"visible":false},
-    {"name": "F","type": "Free","pos": [5.5,1.5],"color": [1,1,1],"pinned":false,"visible":true,"narrow":true},
+    {"name": "F","type": "Free","pos": [5.5,1.5],"color": [1,1,1],"pinned":false,"visible":true,"narrow":100},
 
     {"name": "X","type": "Free","pos": [ 12.5,ypos],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "Y","type": "Free","pos": [ 17.5,ypos],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "r","type": "Segment","args": ["X","Y"],"color": [.6,.6,.6],"visible":true,size:1.5},
-    {"name": "Z","type": "PointOnLine","pos": [ 14,ypos],"args":["r"],"color": [1,1,1],"visible":true,"narrow":true},
+    {"name": "Z","type": "PointOnLine","pos": [ 14,ypos],"args":["r"],"color": [1,1,1],"visible":true,"narrow":100,size:9},
     {"name": "rx","type": "Segment","args": ["X","Z"],"color": [1,1,1],"visible":true,size:2.5},
 
     {"name": "Xsat","type": "Free","pos": [ 12.5,ypos-ydiff],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "Ysat","type": "Free","pos": [ 17.5,ypos-ydiff],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "rsat","type": "Segment","args": ["Xsat","Ysat"],"color": [.6,.6,.6],"visible":true,size:1.5},
-    {"name": "Zsat","type": "PointOnLine","pos": [ 17,ypos-ydiff],"args":["rsat"],"color": [1,1,1],"visible":true,"narrow":true},
+    {"name": "Zsat","type": "PointOnLine","pos": [ 17,ypos-ydiff],"args":["rsat"],"color": [1,1,1],"visible":true,"narrow":100,size:9},
     {"name": "rxsat","type": "Segment","args": ["Xsat","Zsat"],"color": [1,1,1],"visible":true,size:2.5},
 
     {"name": "Xdark","type": "Free","pos": [ 12.5,ypos-ydiff*2],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "Ydark","type": "Free","pos": [ 17.5,ypos-ydiff*2],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "rdark","type": "Segment","args": ["Xdark","Ydark"],"color": [.6,.6,.6],"visible":true,size:1.5},
-    {"name": "Zdark","type": "PointOnLine","pos": [ 17.5,ypos-ydiff*2],"args":["rdark"],"color": [1,1,1],"visible":true,"narrow":true},
+    {"name": "Zdark","type": "PointOnLine","pos": [ 17.5,ypos-ydiff*2],"args":["rdark"],"color": [1,1,1],"visible":true,"narrow":100,size:9},
     {"name": "rxdark","type": "Segment","args": ["Xdark","Zdark"],"color": [1,1,1],"visible":true,size:2.5},
 
      {"name": "Xalpha","type": "Free","pos": [ 12.5,ypos-ydiff*3],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "Yalpha","type": "Free","pos": [ 17.5,ypos-ydiff*3],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "ralpha","type": "Segment","args": ["Xalpha","Yalpha"],"color": [.6,.6,.6],"visible":true,size:1.5},
-    {"name": "Zalpha","type": "PointOnLine","pos": [ 17.5,ypos-ydiff*3],"args":["ralpha"],"color": [1,1,1],"visible":true,"narrow":true},
+    {"name": "Zalpha","type": "PointOnLine","pos": [ 17.5,ypos-ydiff*3],"args":["ralpha"],"color": [1,1,1],"visible":true,"narrow":100,size:9},
     {"name": "rxalpha","type": "Segment","args": ["Xalpha","Zalpha"],"color": [1,1,1],"visible":true,size:2.5},
 
      {"name": "Xblur","type": "Free","pos": [ 12.5,ypos-ydiff*4],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "Yblur","type": "Free","pos": [ 17.5,ypos-ydiff*4],"color": [1,1,1],"pinned":true,"visible":false},
     {"name": "rblur","type": "Segment","args": ["Xblur","Yblur"],"color": [.6,.6,.6],"visible":true,size:1.5},
-    {"name": "Zblur","type": "PointOnLine","pos": [ 13,ypos-ydiff*4],"args":["rblur"],"color": [1,1,1],"visible":true,"narrow":true},
+    {"name": "Zblur","type": "PointOnLine","pos": [ 13,ypos-ydiff*4],"args":["rblur"],"color": [1,1,1],"visible":true,"narrow":100,size:9},
     {"name": "rxblur","type": "Segment","args": ["Xblur","Zblur"],"color": [1,1,1],"visible":true,size:2.5},
 
 
@@ -1571,8 +1633,8 @@ symannot=false;
              new function () {
                  return {
                      pause: function() { console.log( 'pause orna' ); },
-                     resume: function() { console.log( 'resume orna' ); 
-                        cdy07.evokeCS('reset();strokelist=[]');
+                     resume: function() { console.log( 'resume orna' );
+                        cdy07.evokeCS('reset();strokelist=[];Z.x=14;Zsat.x=17;Zdark.x=17.5;Zalpha.x=17.5;Zblur.x=13;pencolor=1;color=cols_1;setdot();group=17;setgr(groups_group);fundsel=false;symannot=false;glowing=false');
 
                    },
                      restart: function( pause_after_restart ) { console.log( 'restart orna' );

@@ -1,17 +1,24 @@
 <div class="app">
     <script id="app_cinderella_02_csmouseup" type="text/x-cindyscript">
-forall(1..length(images),
-p=images_#_1;
-if(|p,mouse().xy|<3,sel=#)
 
-)
-
-
-
-
-;
 </script>
+<script id="app_cinderella_02_cstick" type="text/x-cindyscript">
+
+   ttt=0.5;
+      E.xy=gauss(complex(E-D)*exp(.03*i*ttt))+D;
+      B.xy=gauss(complex(B)*exp(.003*i*ttt));
+      C.xy=gauss(complex(C)*exp(.001*i*ttt));
+
+
+</script>
+
+
+
 <script id="app_cinderella_02_csdraw" type="text/x-cindyscript">
+
+
+if(pinall,apply(1..length(allpoints()), (allpoints()_#).xy=bck_# ));
+
 restrict(p,mi,ma):=(
   xx=max(min(p.x,ma.x),mi.x);
   yy=max(min(p.y,ma.y),mi.y);
@@ -66,15 +73,25 @@ angle->-w);
 
 
 
-
+bck=apply(allpoints(),#.xy);
 
 ;
 </script>
 <script id="app_cinderella_02_csmousedown" type="text/x-cindyscript">
+pauseanimation();
+pendanimation=false;
+pinall=false;
+
+got=sort(1..length(images),p=images_#_1;|p,mouse().xy|)_1;
+if(|images_got_1,mouse().xy|<5,sel=got;pinall=true;);
+
 </script>
+
+
 <script id="app_cinderella_02_csinit" type="text/x-cindyscript">
 sel=1;
 ss=1.6;
+pendanimation=true;
 images=[
 [(21,1),"test1",.9/ss],
 [(26,1),"test2",.7/ss],
@@ -83,17 +100,29 @@ images=[
 [(21,-10),"test5",.7/ss],
 [(26,-10),"test6",.5/ss]];
 
+pause():=(
+   stopanimation();
+      sel=ceil(random()*6);
+   if(sel>6,sel=6);
+   if(sel<1,sel=1);
+);
+
+resume():=(
+   if(pendanimation,playanimation());
+
+);
 
 reset():=(
-
 B.homog=(4, -0.3346613, 0.39840637);
 C.homog=(4, 1.22893871, 0.43593195);
 D.homog=(4, 1.9, 0.179533);
 E.homog=(5, 3.1, 0.2085930);
 G.homog=(4, 1.8, 0.1488095);
-sel=1;
-    );
+//sel=1;
+pendanimation=true;
 
+    );
+playanimation();
 </script>
 
 <script type="text/javascript">
@@ -120,13 +149,13 @@ sel=1;
             geometry: [
             {name: "B", type: "Free", pos: [4, -0.3346613545816733, 0.39840637450199207], size: 9, color: [0, 1, 0]},
             {name: "C", type: "Free", pos: [4, 1.2289387168822175, 0.4359319522866157], size: 9, color: [0, 1, 0]},
-            {name: "D", type: "Free", pos: [4, 1.9, 0.17953321364452424], pinned: true, size: 3, color: [1, 1, 1], labeled: true, visible: false},
+            {name: "D", type: "Free", pos: [4, 1.9, 0.17953321364452424], pinned: true, size: 7, color: [1, 1, 1], labeled: true, visible: false},
             {name: "C0", type: "CircleMr", args: ["D"], radius: 3, pinned: true, size: 3, color: [1, 1, 1], printname: "$C_{0}$"},
-            {name: "E", type: "Free", pos: [5, 3.1, 0.20859302441322417], pinned: false, size: 5, color: [1, 1, 1]},
+            {name: "E", type: "Free", pos: [5, 3.1, 0.20859302441322417], pinned: false, size: 9, color: [1, 1, 1]},
             {name: "A", type: "Free", pos: [4, 2, 0.14880952380952378], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "F", type: "Free", pos: [4, 1.1, 0.14880952380952378], pinned: true, color: [1, 0, 0], labeled: true, visible: false},
             {name: "a", type: "Segment", args: ["A", "F"], pos: [-0.1488095238095238, 0, 4], size: 3, color: [1, 1, 1], labeled: true},
-            {name: "G", type: "PointOnLine", args: ["a"], pos: [4, 1.8, 0.1488095238095238], size: 7, color: [1, 1, 1], labeled: true}
+            {name: "G", type: "PointOnLine", args: ["a"], pos: [4, 1.8, 0.1488095238095238], size: 9, color: [1, 1, 1], labeled: true}
             ]
         });
 current_content_slides.push(
@@ -134,9 +163,12 @@ current_content_slides.push(
                  return {
                      pause: function() { 
                         console.log( 'pause spheres' ); 
+                        cdy02.evokeCS('pause();');
                      },
                      resume: function() { 
                         console.log( 'resume spheres' );
+                        cdy02.evokeCS('resume();');
+
                      },
                      restart: function( pause_after_restart ) { 
                         console.log( 'restart spheres' );

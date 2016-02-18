@@ -15,6 +15,7 @@
                pts=allmasses()--[K,L,J];
 pts=select(pts,(#.size)<9);
 apply(pts,#:"vold"=#.v);
+apply(pts,#.pinned=true);
 
       sizes=apply(pts,random()*.6+.5);
       colors=apply(pts,random());
@@ -30,7 +31,6 @@ resume():=(
         </script>
 
 <script id='app_cinderella_11_csmove' type='cindyscript'>
-err("FISH");
 
 
           x=S.x;
@@ -135,7 +135,7 @@ drawtext(R1+(.0,-.5),"Schwimm mit den Nachbarn",size->22,color->(1,1,1));
 //drawtext(R+(0,.7),format(dirothers,2),size->24,color->(1,1,1));
 
 drawtext(T1+(.0,-.5),"Anzahl der Nachbarn",size->22,color->(1,1,1));
-drawtext(T+(0,.7),format(anz,0),size->24,color->(1,1,1));
+drawtext(T+(0,.4),format(anz-1,0),size->24,color->(1,1,1));
 
 drawtext(U1+(.0,-.5),"Geschwindigkeit",size->22,color->(1,1,1));
 
@@ -159,28 +159,28 @@ drawtext(U1+(.0,-.5),"Geschwindigkeit",size->22,color->(1,1,1));
                       {name:"C", type:"Free", pos:[-b,-b],color:[0,0,0],size:3,pinned:true},
                       {name:"D", type:"Free", pos:[b,-b],color:[0,0,0],size:3,pinned:true},
                       {name:"E", type:"Free", pos:[b,b],color:[0,0,0],size:3,pinned:true},
-                      {name:"K", type:"Free", pos:[-6,-2],color:[.7,.7,1],size:13},
-                      {name:"J", type:"Free", pos:[4,3],color:[.7,.7,1],size:13},
-                      {name:"L", type:"Free", pos:[-2,7],color:[.7,.7,1],size:13},
+                      {name:"K", type:"Free", pos:[-6,-2],color:[.7,.7,1],size:13,narrow:100},
+                      {name:"J", type:"Free", pos:[4,3],color:[.7,.7,1],size:13,narrow:100},
+                      {name:"L", type:"Free", pos:[-2,7],color:[.7,.7,1],size:13,narrow:100},
 
 
 
     {name:"S1", type:"Free", pos:[10.5,6],color:[0,0,0],pinned:true,size:2},
     {name:"S2", type:"Free", pos:[16,6],color:[0,0,0],pinned:true,size:2},
-    {name:"S", type:"Free", pos:[12.5,6],color:[1,0.5,0.5],pinned:false,size:6},
+    {name:"S", type:"Free", pos:[12.5,6],color:[1,0.5,0.5],pinned:false,size:9,narrow:100},
     {name:"l", type:"Segment", args:["S1","S2"],color:[1,1,1],pinned:false,size:4},
    {name:"R1", type:"Free", pos:[10.5,4],color:[0,0,0],pinned:true,size:2},
     {name:"R2", type:"Free", pos:[16,4],color:[0,0,0],pinned:true,size:2},
-    {name:"R", type:"Free", pos:[11.5,4],color:[1,1,1],pinned:false,size:6},
+    {name:"R", type:"Free", pos:[11.5,4],color:[1,1,1],pinned:false,size:9,narrow:100},
     {name:"m", type:"Segment", args:["R1","R2"],color:[1,1,1],pinned:false,size:4},
    {name:"T1", type:"Free", pos:[10.5,0],color:[0,0,0],pinned:true,size:2},
     {name:"T2", type:"Free", pos:[16,0],color:[0,0,0],pinned:true,size:2},
-    {name:"T", type:"Free", pos:[13,0],color:[0.5,0.5,1],pinned:false,size:6},
+    {name:"T", type:"Free", pos:[13,0],color:[0.5,0.5,1],pinned:false,size:9,narrow:100},
     {name:"o", type:"Segment", args:["T1","T2"],color:[1,1,1],pinned:false,size:4},
 
    {name:"U1", type:"Free", pos:[10.5,-2],color:[0,0,0],pinned:true,size:2},
     {name:"U2", type:"Free", pos:[16,-2],color:[0,0,0],pinned:true,size:2},
-    {name:"U", type:"Free", pos:[12,-2],color:[0.5,0.5,1],pinned:false,size:6},
+    {name:"U", type:"Free", pos:[12,-2],color:[0.5,0.5,1],pinned:false,size:9,narrow:100},
     {name:"r", type:"Segment", args:["U1","U2"],color:[1,1,1],pinned:false,size:4},
 
                       {name:"a", type:"Segment", args:["B","C"],color:[1,1,1],size:1 },

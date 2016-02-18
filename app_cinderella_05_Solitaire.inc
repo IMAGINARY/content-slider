@@ -1,6 +1,60 @@
 <div class="app">
     <script id="app_cinderella_05_csmouseup" type="text/x-cindyscript">
-        if(pressed,reset());
+upaction();
+    </script>
+    <script id="app_cinderella_05_csdraw" type="text/x-cindyscript">
+    if(!animating,
+        drawstuff(mouse().xy),
+        drawstuff(animpos)
+        );
+
+      diff=mouse().xy-pos;
+      goalpos=special+diff;
+
+    fillpoly(rect,color->gray(if(pressed,.3,.5)));
+    drawpoly(rect,color->gray(.8),size->4);
+
+    drawimage(rect_1+(.5,.5),rect_2+(-.5,.5),"replay",alpha->.7);
+
+    ;
+    </script>
+    <script id="app_cinderella_05_csmousedown" type="text/x-cindyscript">
+    mpo=mouse().xy;
+    if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
+       mpo.y>rect_1_2 & mpo.y<rect_3_2,pressed=true);
+
+    found=select(active,|mouse().xy,#.xy|<2);
+
+    moving=false;
+    if(length(found)==1&!movingfilm,
+    //  playtone(60,channel->9);
+      special=found_1;
+      active=active--[special];
+      pos=mouse().xy;
+      moving=true;
+
+      lastmouse=mouse().xy;
+    );
+    timestamp=seconds();
+    waiting=true;
+    waiting=false;//TOTGELEGT
+    //playanimation();
+    </script>
+    <script id="app_cinderella_05_csmousedrag" type="text/x-cindyscript">
+    timestamp=seconds();
+
+    mpo=mouse().xy;
+    if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
+       mpo.y>rect_1_2 & mpo.y<rect_3_2&!moving,pressed=true,pressed=false);
+
+      lastmouse=mouse().xy;
+
+
+    ;
+    </script>
+    <script id="app_cinderella_05_csinit" type="text/x-cindyscript">
+    upaction():=(
+    if(pressed,reset());
         pressed=false;
     if(moving,
 
@@ -35,55 +89,8 @@
     );
 
 
-    ;
-    </script>
-    <script id="app_cinderella_05_csdraw" type="text/x-cindyscript">
-    if(!animating,
-        drawstuff(mouse().xy),
-        drawstuff(animpos)
-        );
-
-      diff=mouse().xy-pos;
-      goalpos=special+diff;
-
-    fillpoly(rect,color->gray(if(pressed,.3,.5)));
-    drawpoly(rect,color->gray(.8),size->4);
-
-    drawimage(rect_1+(.5,.5),rect_2+(-.5,.5),"replay",alpha->.7);
-
-    ;
-    </script>
-    <script id="app_cinderella_05_csmousedown" type="text/x-cindyscript">
-    mpo=mouse().xy;
-    if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
-       mpo.y>rect_1_2 & mpo.y<rect_3_2,pressed=true);
-
-    found=select(active,|mouse().xy,#.xy|<2);
-
-    moving=false;
-    if(length(found)==1,
-    //  playtone(60,channel->9);
-      special=found_1;
-      active=active--[special];
-      pos=mouse().xy;
-      moving=true;
-
-      lastmouse=mouse().xy;
     );
 
-
-    </script>
-    <script id="app_cinderella_05_csmousedrag" type="text/x-cindyscript">
-    mpo=mouse().xy;
-    if(mpo.x>rect_1_1 & mpo.x<rect_2_1 &
-       mpo.y>rect_1_2 & mpo.y<rect_3_2&!moving,pressed=true,pressed=false);
-
-      lastmouse=mouse().xy;
-
-
-    ;
-    </script>
-    <script id="app_cinderella_05_csinit" type="text/x-cindyscript">
     animating=false;
 
     //KNOPF POSITION
@@ -138,8 +145,8 @@
       );
      );
      if(!moving&!stillpossible(),
-       drawtext((-4,4),"Ende:",color->(1,1,1),size->24);
-       drawtext((-4,2.5),length(active)+" sind übrig",color->(1,1,1),size->24);
+       drawtext((-4,4),"Ende:",color->(1,1,1),size->30);
+       drawtext((-4,2.0),length(active)+" sind übrig",color->(1,1,1),size->30);
      );
     );
 
@@ -151,13 +158,15 @@
         drawcircle(#+off,2,color->(0,0.5,0.2),size->3*3,alpha->0.1);
         drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);
     );
-
+movingfilm=false;
+waiting=false;
     moveback():=(
       diff=mouse().xy-pos;
       nn=round(|diff|/2);
       animation=apply(1..nn,q=#/nn;(q)*pos+(1-q)*mouse().xy);
       animation=animation++[animation_(-1)];
       startindex=1;
+      movingfilm=true;
       playanimation();
     //  drawstuff(pos);
     );
@@ -191,6 +200,8 @@
     );
 
     reset():=(
+
+    err("RESET");
        pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
        active=pegs--[pegs_(randomint(15)+1)];
        special=[];
@@ -202,20 +213,30 @@
     </script>
 
     <script id="app_cinderella_05_cstick" type="text/x-cindyscript">
+    if(waiting,
+       if(seconds()-timestamp>.5,
+          waiting=false;
+         // upaction();
+       )
+    );
+    if(movingfilm,
+
     animating=true;
 
     animpos=animation_startindex;
 
     //drawstuff(move);
-    errc("TICK");
+ 
     startindex=startindex+1;
     if(startindex>length(animation),
-
+       movingfilm=false;
        stopanimation();
        animating=false;
        active=active++[special];
        special=[];
+       drawstuff(move);
        )
+    );
     	</script>
 <script type="text/javascript">
     (function(){

@@ -61,17 +61,18 @@
             $content[1][] = "app4.inc";
             break;
         case "Cindy":
+            //$content[0][] = "app_cinderella_00_EventTester.inc";
             $content[0][] = "app_cinderella_11_Fish.inc";
             $content[0][] = "app_cinderella_07_iOrnament.inc";
             $content[0][] = "app_cinderella_08_PolytopeMorpher.inc";
             $content[0][] = "app_cinderella_01_Kaleidoskope.inc";
             $content[0][] = "app_cinderella_04_Doppelpendel.inc";
 
-            $content[1][] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][] = "app_cinderella_06_Ausparken.inc";
+            $content[1][] = "app_cinderella_03_SphereChaos.inc";
+            $content[1][] = "app_cinderella_02_ImageSpiral.inc";
             $content[1][] = "app_cinderella_05_Solitaire.inc";
             $content[1][] = "app_cinderella_09_PlatonicSolids.inc";
-            $content[1][] = "app_cinderella_03_SphereChaos.inc";
 
 //            $content[1][] = "app_cinderella_10_Tree.inc";
             break;
@@ -101,6 +102,9 @@
         }
 ?>
         <script src="js/jssor.slider.min.js"></script>
+<?php if( $disable_console_logging ) : ?>
+        <script src="js/dummy-console.js"></script>
+<?php endif ?>
         <script>
             var content_sliders = [];
             var content_slides = [];
@@ -351,16 +355,22 @@
                 <!-- Arrow Left -->
                 <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Prev, true );">
                     <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
-                        <svg width="110" height="700" class="svg_arrow" style="transform: rotate(180deg);">
-                            <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                        <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
+                            <g transform="translate(45,0)">
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea" />
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                            </g>
                         </svg>
                     </div>
                 </div>
                 <!-- Arrow Right -->
                 <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
                     <div u="arrowright" class="jssor_arrow" style="right:0px;">
-                        <svg width="110" height="700" class="svg_arrow">
-                            <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                        <svg width="200" height="700" class="svg_arrow">
+                            <g transform="translate(45,0)">
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea" />
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                            </g>
                         </svg>
                     </div>
                 </div>

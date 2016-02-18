@@ -10,6 +10,9 @@ $hide_cursor = true;
 // stop propagation of all types of mouse events at document.body
 $disable_mouse_events = false;
 
+// disable console logging
+$disable_console_logging = true;
+
 // disable scrolling
 $disable_scrolling = true;
 
@@ -46,7 +49,7 @@ $debugging_enabled = false;
 $debug_cursor_scale = 1;
 
 // touch cursor visualization
-$touch_cursor_visible = true;
+$touch_cursor_visible = false;
 $touch_cursor_html = '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>';
 
 /******************************

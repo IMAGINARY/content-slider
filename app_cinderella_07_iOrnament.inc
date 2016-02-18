@@ -322,8 +322,8 @@ st=mouse().xy;
 
 dragging=(mouse().x<10 );
 
-if(|mouse().xy,F.xy|<1,dragging=false);
-if(|mouse().xy,D.xy|<1,dragging=false);
+if(|mouse().xy,F.xy|<1&fundsel,dragging=false);
+if(|mouse().xy,D.xy|<1&fundsel,dragging=false);
 if(dragging,
   clearredo();
   backup();

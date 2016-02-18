@@ -279,7 +279,10 @@ em {
     width: 300px;
     height: 1170px;
     overflow: hidden;
+    pointer-events: none;
+/*
     background-color: transparent;
+*/
 }
 
 .svg_arrow {
@@ -298,7 +301,12 @@ em {
     stroke-width:5;
 }
 
-
+.svg_arrow_polyline_toucharea {
+    pointer-events: painted;
+    fill:none;
+    stroke: transparent;
+    stroke-width:60;
+}
 
 
 

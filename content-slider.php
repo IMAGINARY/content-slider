@@ -347,8 +347,11 @@
                 <!-- Arrow Right -->
                 <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
                     <div u="arrowright" class="jssor_arrow" style="right:0px;">
-                        <svg width="110" height="700" class="svg_arrow">
-                            <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                        <svg width="200" height="700" class="svg_arrow">
+                            <g transform="translate(45,0)">
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea" />
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                            </g>
                         </svg>
                     </div>
                 </div>

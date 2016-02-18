@@ -442,7 +442,7 @@ groups=["p1","p2","pm","pg","cm","pmm","pmg","pgg","cmm","p4","p4m","p4g","p3","
 strokelist=[];
 buttons=["fund","sym","glow","undo","redo","trash"];
 
-group=12;
+group=17;
 
 
 res=1000;
@@ -1634,7 +1634,7 @@ symannot=false;
                  return {
                      pause: function() { console.log( 'pause orna' ); },
                      resume: function() { console.log( 'resume orna' );
-                        cdy07.evokeCS('reset();strokelist=[];Z.x=14;Zsat.x=17;Zdark.x=17.5;Zalpha.x=17.5;Zblur.x=13;pencolor=1;color=cols_1;setdot();group=12;setgr(groups_group);fundsel=false;symannot=false;glowing=false');
+                        cdy07.evokeCS('reset();strokelist=[];Z.x=14;Zsat.x=17;Zdark.x=17.5;Zalpha.x=17.5;Zblur.x=13;pencolor=1;color=cols_1;setdot();group=17;setgr(groups_group);fundsel=false;symannot=false;glowing=false');
 
                    },
                      restart: function( pause_after_restart ) { console.log( 'restart orna' );

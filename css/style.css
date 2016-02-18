@@ -246,6 +246,7 @@ em {
 .jssorb10 .dn           (mousedown)
 */
 .jssorb10 {
+    pointer-events: none;
     position: absolute;
     bottom: -168px !important;
 }

@@ -1,0 +1,212 @@
+/*------------------------------------*\
+    RESET
+\*------------------------------------*/
+/* http://meyerweb.com/eric/tools/css/reset/
+    v2.0b1 | 201101
+    NOTE:WORK IN PROGRESS
+    USE WITH CAUTION AND TEST WITH ABANDON */
+
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,
+b,u,i,center,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary,
+time,mark,audio,video{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    font:inherit;
+    vertical-align:baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section{
+    display:block;
+}
+body{
+    line-height:1;
+}
+ol,ul{
+    list-style:none;
+}
+blockquote,q{
+    quotes:none;
+}
+blockquote:before,blockquote:after,
+q:before,q:after{
+    content:’’;
+    content:none;
+}
+/* remember to define visible focus styles!
+:focus{
+    outline:?????;
+} */
+
+/* remember to highlight inserts somehow! */
+ins{
+    text-decoration:none;
+}
+del{
+    text-decoration:line-through;
+}
+
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+
+
+
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+/* GO! */
+
+
+@font-face {
+    font-family: 'regular';
+    src: url('../fonts/BrownStd-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Brown-Regular.woff') format('woff') /* Pretty Modern Browsers */
+}
+
+@font-face {
+    font-family: 'light';
+    src: url('../fonts/brown-light-webfont.woff2') format('woff2') /* Pretty Modern Browsers */
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+body{
+    font-family: 'regular';
+    color: #666;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: #ccc;
+}
+
+em {
+    font-style: italic;
+}
+/*
+#wrapper {
+	overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+*/
+
+.app {
+    position: relative;
+    overflow: hidden;
+    height: 1170px;
+    width: 1560px;
+    color: white;
+    /*background-color: var( --fg-color );*/
+    background-color: black;
+    margin: 10px;
+}
+
+.app_name, .app_description, .app_credits {
+    display: none;
+}
+
+.available_apps {
+    position: relative;
+    margin: 10px;
+}
+
+.reload_button {
+    display: none;
+}
+
+/********************************
+ * fade animations used during page reload
+ ********************************/
+
+ /* make keyframes that tell the start state and the end state of our object */
+ @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+ @-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+ @-moz-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+ @keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+
+.fade-in {
+    opacity:0;  /* make things invisible upon start */
+    -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animation ease-in and repeat it only 1 time */
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value */
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:1s;
+    -moz-animation-duration:1s;
+    animation-duration:1s;
+}
+
+.fade-out {
+    opacity:1;  /* make things invisible upon start */
+    -webkit-animation:fadeOut ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    -moz-animation:fadeOut ease-in 1;
+    animation:fadeOut ease-in 1;
+
+    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value */
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:1s;
+    -moz-animation-duration:1s;
+    animation-duration:1s;
+}
+
+/********************************
+ * debug console
+ ********************************/
+
+.debug_console {
+    box-sizing: border-box;
+    width: 100%;
+    height: 770px;
+    background-color: rgba( 0, 0, 0, 0.85 );
+    font: 28px monospace;
+    color: white;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 20px;
+    z-index: 1000;
+    overflow: hidden;
+    pointer-events: none;
+    -moz-column-count: 6;
+    -webkit-column-count: 6;
+    column-count: 6;
+}
+
+.debug_cursor {
+    position: absolute;
+    z-index: 1001;
+    pointer-events: none;
+    transform-origin: 0% 0%;
+}

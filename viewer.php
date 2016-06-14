@@ -7,12 +7,17 @@
     function filter_filename( $filename )
     {
         $exclude[] = "app_common.inc";
+        $exclude[] = "app1.inc";
+        $exclude[] = "app2.inc";
+        $exclude[] = "app3.inc";
+        $exclude[] = "app4.inc";
+        $exclude[] = "app_cinderella_00_EventTester.inc";
         return !in_array( $filename, $exclude );
     }
 
     function get_app_name( $filename )
     {
-        return preg_replace( array('/^app/','/.inc$/'), array('',''), $filename );
+        return preg_replace( array('/^app_cinderella_[0-9]*_/','/.inc$/'), array('',''), $filename );
     }
 
     $apps = array_values( array_filter( glob("app*.inc"), "filter_filename" ) );

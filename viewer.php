@@ -4,12 +4,18 @@
      ************************************/
     require( 'config.inc' );
 
-    $apps = [];
-    foreach (glob("app*.inc") as $filename)
+    function filter_filename( $filename )
     {
-        if( $filename != "app_common.inc" )
-            $apps[] = $filename;
+        $exclude[] = "app_common.inc";
+        return !in_array( $filename, $exclude );
     }
+
+    function get_app_name( $filename )
+    {
+        return preg_replace( array('/^app/','/.inc$/'), array('',''), $filename );
+    }
+
+    $apps = array_values( array_filter( glob("app*.inc"), "filter_filename" ) );
 
     if( isset($_GET["app"]) )
         $content = $_GET["app"];
@@ -257,7 +263,7 @@
                     $ind7n = str_repeat( $tab, 5 );
                     foreach( $apps as $app )
                     {
-                        $app_name = preg_replace( array('/^app/','/.inc$/'), array('',''), $app );
+                        $app_name = get_app_name( $app );
                         echo $ind7n."<a href=\"?app=$app\">$app_name</a>".($app!=end($apps)?', ':'')."\n";
                     }
 ?>

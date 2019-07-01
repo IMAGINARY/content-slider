@@ -1,41 +1,45 @@
-(function(){
+class HeartBeat {
+    constructor(heartbeat_url, heartbeat_interval_s) {
+        this._heartbeat_url = heartbeat_url;
+        this._heartbeat_interval = heartbeat_interval_s * 1000;
+        this._last_heartbeat = 0;
+        this._enabled = true;
 
-    var heartbeat_interval = document.body.getAttribute( "heartbeat-interval" ) * 1000;
-    var heartbeat_url = document.body.getAttribute( "heartbeat-url" );
-    var last_heartbeat = 0;
+        const thisSendHeartBeat = () => this.sendHeartbeat();
+        setInterval(thisSendHeartBeat, this._heartbeat_interval);
 
-    // also fire on touch and mouse mouse event because they seem to block
-    // proper timer event enqueueing
-    document.body.addEventListener( 'touchmove', send_heartbeat, true );
-    document.body.addEventListener( 'mousemove', send_heartbeat, true );
+        // also fire on touch and mouse mouse event because they seem to block
+        // proper timer event enqueueing
+        document.body.addEventListener('touchmove', thisSendHeartBeat, true);
+        document.body.addEventListener('mousemove', thisSendHeartBeat, true);
+    }
 
-    function send_heartbeat()
-    {
-        var current_time = new Date().getTime();
-        if( current_time - last_heartbeat < heartbeat_interval )
+    sendHeartbeat() {
+        const current_time = new Date().getTime();
+        if (!this._enabled || current_time - this._last_heartbeat < this._heartbeat_interval)
             return;
 
-        last_heartbeat = current_time;
+        this._last_heartbeat = current_time;
 
-        var url = heartbeat_url + "?cache_buster=" + new Date().getTime();
-        var timeout = heartbeat_interval * 0.75;
+        const url = this._heartbeat_url + "?cache_buster=" + new Date().getTime();
+        const timeout = this._heartbeat_interval * 0.75;
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function()
-        {
-            if( xhr.readyState == 4 )
-            {
-                if( xhr.status == 200 )
-                    console.log( "heartbeat OK (url: " + url + ", response: " + xhr.responseText + ")" );
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200)
+                    console.log("heartbeat OK (url: " + url + ", response: " + xhr.responseText + ")");
                 else
-                    console.log( "heartbeat ERROR (url: " + url + ", readyState: " + xhr.readyState + ", status: " + xhr.status + ")" );
+                    console.log("heartbeat ERROR (url: " + url + ", readyState: " + xhr.readyState + ", status: " + xhr.status + ")");
             }
         };
         xhr.timeout = timeout;
-        xhr.ontimeout = function () { console.log( "heartbeat TIMEOUT (url: " + url + ", timeout: " + timeout + "ms)" ); }
-        xhr.open( "GET", url, true );
+        xhr.ontimeout = () => console.log("heartbeat TIMEOUT (url: " + url + ", timeout: " + timeout + "ms)");
+        xhr.open("GET", url, true);
         xhr.send();
     }
 
-    setInterval( send_heartbeat, heartbeat_interval );
-})();
+    setEnabled(enable) {
+        this._enabled = enable;
+    }
+}

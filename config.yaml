@@ -1,0 +1,49 @@
+# all time units are in seconds
+
+# show or hide cursor
+hideCursor: true
+
+# stop propagation of all types of mouse events at document.body
+disableMouseEvents: false
+
+# disable console logging
+disableConsoleLogging: false
+
+# disable scrolling
+disableScrolling: true
+
+# variables subject to (automatic) page reload
+fadeinOnLoadDelay: 15
+reloadDelay: 10800
+idleDelay: 15
+reloadButtonSize: 40px
+reloadButtonHoldTime: 5
+
+# variables subject to sliders
+autoSlideDelay: 180
+appRestartDelay: 10
+
+# variables subject to heartbeat
+heartbeatEnabled: true
+heartbeatInterval: 2
+heartbeatUrl: http://localhost:8081/heartbeat
+heartbeatRespawnDelay: 10
+
+# variables subject to the launch script and built-in web server
+serverHost: localhost
+serverPort: 8081
+contentSliderUrl: http://localhost:8081/index.php
+# TODO: webBrowserCmd: "electron --set-base-background-color=0xFF000000 '".__DIR__."/electron-app' -l {$contentSliderUrl} > /dev/null 2>&1"
+timestampFile: timestamp
+
+# which page to use for the animation in the background (runs in an iframe)
+# currently available: bgWebgl.html, bgSvg.html, bgPlain.html
+backgroundAnimationUrl: bgSvg.html
+
+# touch overlay debugging features
+debuggingEnabled: true
+debugCursorScale: 1
+
+# touch cursor visualization
+touchCursorVisible: true
+touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>'

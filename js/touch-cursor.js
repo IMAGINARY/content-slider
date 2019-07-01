@@ -1,59 +1,106 @@
-(function() {
-    var parent_elem = document.body;
-    var touch_cursors = [];
-    var touch_cursor_html = document.body.getAttribute( "touch-cursor-html" );
+class Cursor {
+    constructor(params) {
+        this._isEnabled = false;
+        this._createCursorElem = pointerEvent => {
+            const cursor = document.createElement("div");
+            cursor.className = 'debug_cursor';
+            cursor.style.display = 'none';
+            cursor.appendChild(params.createCursorElement(pointerEvent));
+            return cursor;
+        };
+        this._parentElem = document.body;
+        this._cursors = {};
+        const that = this;
 
-    function setup_touch_debugging()
-    {
-        for( i = 0; i < 40; i++ )
-        {
-            var dot = document.createElement( "div" );
-            dot.className = 'debug_cursor';
-            dot.innerHTML = touch_cursor_html;
-            dot.style.display = 'none';
+        function addCursor(pointerEvent) {
+            if (typeof that._cursors[pointerEvent.pointerId] !== 'undefined') {
+                return that._cursors[pointerEvent.pointerId];
+            } else {
+                const cursor = that._createCursorElem(pointerEvent);
+                that._cursors[pointerEvent.pointerId] = cursor;
+                that._parentElem.appendChild(cursor);
+                return cursor;
+            }
+        }
 
-            parent_elem.appendChild( dot );
-            parent_elem.addEventListener( 'touchstart', debug_touchstart_event, true );
-            parent_elem.addEventListener( 'touchmove', debug_touchmove_event, true );
-            parent_elem.addEventListener( 'touchend', debug_touchend_event, true );
+        function removeCursor(pointerEvent) {
+            if (typeof that._cursors[pointerEvent.pointerId] !== 'undefined') {
+                const cursor = that._cursors[pointerEvent.pointerId];
+                cursor.remove();
+                delete that._cursors[pointerEvent.pointerId];
+                if (typeof params.removeCursorElement === 'function')
+                    params.removeCursorElement(cursor);
+                return cursor;
+            } else {
+                return undefined;
+            }
+        }
 
-            touch_cursors[ i ] = dot;
+        function moveCursor(cursor, x, y) {
+            cursor.style.display = 'inline';
+            cursor.style.top = y + "px";
+            cursor.style.left = x + "px";
+        }
+
+        function debugPointerDown(pointerEvent) {
+            const cursor = addCursor(pointerEvent);
+            moveCursor(cursor, pointerEvent.pageX, pointerEvent.pageY);
+            if (typeof params.downHandler === 'function')
+                params.downHandler(cursor.firstChild, pointerEvent);
+            return false;
+        }
+
+        function debugPointerMove(pointerEvent) {
+            const cursor = addCursor(pointerEvent);
+            moveCursor(cursor, pointerEvent.pageX, pointerEvent.pageY);
+            if (typeof params.moveHandler === 'function')
+                params.moveHandler(cursor.firstChild, pointerEvent);
+            return false;
+        }
+
+        function debugPointerUp(pointerEvent) {
+            let cursor = addCursor(pointerEvent);
+            if (pointerEvent.pointerType !== 'mouse')
+                cursor = removeCursor(pointerEvent);
+            if (typeof params.upHandler === 'function')
+                params.upHandler(cursor.firstChild, pointerEvent);
+            return false;
+        }
+
+        this._handlers = {
+            debugPointerDown: debugPointerDown,
+            debugPointerMove: debugPointerMove,
+            debugPointerUp: debugPointerUp,
+        };
+    }
+
+    enable() {
+        if (!this._isEnabled) {
+            this._parentElem.addEventListener('pointerdown', this._handlers.debugPointerDown, true);
+            this._parentElem.addEventListener('pointermove', this._handlers.debugPointerMove, true);
+            this._parentElem.addEventListener('pointerup', this._handlers.debugPointerUp, true);
+            this._isEnabled = true;
         }
     }
 
-    function move_dot( dot, x, y )
-    {
-        dot.style.display = 'inline';
-        dot.style.top = y + "px";
-        dot.style.left = x + "px";
+    disable() {
+        if (this._isEnabled) {
+            this._parentElem.removeEventListener('pointerdown', this._handlers.debugPointerDown, true);
+            this._parentElem.removeEventListener('pointermove', this._handlers.debugPointerMove, true);
+            this._parentElem.removeEventListener('pointerup', this._handlers.debugPointerUp, true);
+            Object.getOwnPropertyNames(this._cursors).forEach(pointerId => this._cursors[pointerId].remove());
+            this._isEnabled = false;
+        }
     }
 
-    function debug_touchstart_event( event ) {
-        for( i = 0; i < event.changedTouches.length; i++ )
-            debug_touchstart_event_single( event.changedTouches.item( i ) );
+    setEnabled(enable) {
+        if (enable)
+            this.enable();
+        else
+            this.disable();
     }
 
-    function debug_touchmove_event( event ) {
-        for( i = 0; i < event.changedTouches.length; i++ )
-            debug_touchmove_event_single( event.changedTouches.item( i ) );
+    isEnabled() {
+        return this._isEnabled;
     }
-
-    function debug_touchend_event( event ) {
-        for( i = 0; i < event.changedTouches.length; i++ )
-            debug_touchend_event_single( event.changedTouches.item( i ) );
-    }
-
-    function debug_touchstart_event_single( touch ) {
-        move_dot( touch_cursors[ touch.identifier ], touch.pageX, touch.pageY );
-    }
-
-    function debug_touchmove_event_single( touch ) {
-        move_dot( touch_cursors[ touch.identifier ], touch.pageX, touch.pageY );
-    }
-
-    function debug_touchend_event_single( touch ) {
-        touch_cursors[ touch.identifier ].style.display = 'none';
-    }
-
-    setup_touch_debugging();
-})();
+}

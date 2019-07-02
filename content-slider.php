@@ -89,9 +89,53 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.13.1/js-yaml.min.js"></script>
         <script src="js/dummy-console.js"></script>
+        <script src="js/stop-mouse-event-propagation.js"></script>
+        <script src="js/auto-page-reloader.js"></script>
+        <script src="js/heartbeat.js"></script>
+        <script src="js/touch-cursor.js"></script>
+        <script src="js/debug-overlay.js"></script>
+
         <script>
             const configPromise = $.get('config.yaml').then(configSrc => jsyaml.safeLoad(configSrc), err => console.log(err));
-            configPromise.then(config => console.log(config));
+            $.when(configPromise, $.ready).then(config => {
+                console.log(config);
+
+                window.mouseEventSuppressor = new MouseEventSupporessor();
+                mouseEventSuppressor.setEnabled(config.disableMouseEvents);
+
+                window.pageReloadButtons = new ReloadButtons({
+                    parentElement: document.getElementById('wrapper'),
+                    reloadButtonSize: config.reloadButtonSize,
+                    reloadButtonHoldTime: config.reloadButtonHoldTime,
+                });
+                pageReloadButtons.setEnabled(true);
+
+                window.idleReloader = new IdleReloader({
+                    reloadDelay: config.reloadDelay,
+                    idleDelay: config.idleDelay,
+                });
+                idleReloader.setEnabled(true);
+
+                window.heartbeat = new HeartBeat(config.heartbeatUrl, config.heartbeatInterval);
+                heartbeat.setEnabled(config.heartbeatEnabled);
+
+                const cursorElem = $(config.touchCursorHtml)[0];
+                window.cursor = new Cursor({
+                    createCursorElement: () => {
+                        const cursor = cursorElem.cloneNode(true);
+                        cursor.style.opacity = '0.25';
+                        return cursor;
+                    },
+                    downHandler: cursor => cursor.style.opacity = '1.0',
+                    upHandler: cursor => cursor.style.opacity = '0.25',
+                });
+                cursor.setEnabled(config.touchCursorVisible);
+
+                window.debugOverlay = new DebugOverlay({debugCursorScale: config.debugCursorScale});
+                debugOverlay.setEnabled(config.debuggingEnabled);
+
+                DummyConsole.setEnabled(config.disableConsoleLogging)
+            });
         </script>
         <script>
             var content_sliders = [];
@@ -373,54 +417,6 @@
 
             <div class="page_footer">
             </div>
-
-            <script src="js/stop-mouse-event-propagation.js"></script>
-            <script src="js/auto-page-reloader.js"></script>
-            <script src="js/heartbeat.js"></script>
-            <script src="js/touch-cursor.js"></script>
-            <script src="js/debug-overlay.js"></script>
-            <script>
-                configPromise.then(config => {
-                    window.mouseEventSuppressor = new MouseEventSupporessor();
-                    mouseEventSuppressor.setEnabled(config.disableMouseEvents);
-
-                    window.pageReloadButtons = new ReloadButtons({
-                        parentElement: document.getElementById('wrapper'),
-                        reloadButtonSize: config.reloadButtonSize,
-                        reloadButtonHoldTime: config.reloadButtonHoldTime,
-                    });
-                    pageReloadButtons.setEnabled(true);
-
-                    window.idleReloader = new IdleReloader({
-                        reloadDelay: config.reloadDelay,
-                        idleDelay: config.idleDelay,
-                    });
-                    idleReloader.setEnabled(true);
-
-                    window.heartbeat = new HeartBeat(config.heartbeatUrl, config.heartbeatInterval);
-                    heartbeat.setEnabled(config.heartbeatEnabled);
-
-                    const cursorElem = $(config.touchCursorHtml)[0];
-                    window.cursor = new Cursor({
-                        createCursorElement: () => {
-                            const cursor = cursorElem.cloneNode(true);
-                            cursor.style.opacity = 0.25;
-                            return cursor;
-                        },
-                        downHandler: cursor => cursor.style.opacity = 1.0,
-                        upHandler: cursor => cursor.style.opacity = 0.25,
-                    });
-                    cursor.setEnabled(config.touchCursorVisible);
-
-                    window.debugOverlay = new DebugOverlay({debugCursorScale: config.debugCursorScale});
-                    debugOverlay.setEnabled(config.debuggingEnabled);
-
-                    DummyConsole.setEnabled(config.disableConsoleLogging)
-                });
-            </script>
-            <script>
-
-            </script>
         </div>
     </body>
 </html>

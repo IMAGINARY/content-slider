@@ -1,69 +1,4 @@
-<?php
-    require( 'config.inc' );
-
-//    $day_of_week = date( 'l' );
-    $day_of_week = 'Test';
-    switch( $day_of_week )
-    {
-        case "Monday": // monday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[0][] = "app1.inc";
-            $content[1][] = "app1.inc";
-            $content[1][] = "app2.inc";
-            $content[1][] = "app3.inc";
-            break;
-        case "Tuesday": // tuesday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[1][] = "app1.inc";
-            $content[1][] = "app2.inc";
-            $content[1][] = "app3.inc";
-            break;
-        case "Wednesday": // wednesday
-            $content[0][] = "app3.inc";
-            $content[1][] = "app1.inc";
-            break;
-        case "Thursday": // thursday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[0][] = "app1.inc";
-            $content[1][] = "app1.inc";
-            break;
-        case "Friday": // friday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[0][] = "app1.inc";
-            $content[1][] = "app1.inc";
-            $content[1][] = "app2.inc";
-            $content[1][] = "app3.inc";
-            break;
-        case "Saturday": // saturday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[0][] = "app1.inc";
-            $content[1][] = "app1.inc";
-            $content[1][] = "app2.inc";
-            $content[1][] = "app3.inc";
-            break;
-        case "Sunday": // sunday
-            $content[0][] = "app3.inc";
-            $content[0][] = "app2.inc";
-            $content[1][] = "app1.inc";
-            $content[1][] = "app2.inc";
-            $content[1][] = "app3.inc";
-        case "Test":
-            $content[0][] = "app4.inc";
-            $content[0][] = "app4.inc";
-            $content[0][] = "app4.inc";
-            $content[1][] = "app4.inc";
-            $content[1][] = "app4.inc";
-            $content[1][] = "app4.inc";
-            break;
-    }
-?>
 <!DOCTYPE html>
-<!-- <?=$day_of_week?> -->
 <html>
     <head>
     	<meta charset="utf-8">
@@ -177,11 +112,21 @@
                 rotateSlide();
             }
 
-            jssor_app_slider_starter = function (containerId) {
+            function createSlide(app) {
+                const slide = document.importNode(document.getElementById('slide_template').content, true);
+                slide.querySelector('.app').appendChild(app.domElement);
+                slide.querySelector('.app_name').innerHTML = app.name;
+                slide.querySelector('.app_description').innerHTML = app.description;
+                slide.querySelector('.app_credits').innerHTML = app.credits;
+                console.log(slide);
+                return slide;
+            }
+
+            jssor_app_slider_starter = function (containerId, apps, config) {
                 var options = {
                     $AutoPlay: false,
                     $PauseOnHover: 0,
-                    $Idle: (<?=$auto_slide_delay ?>) * 1000,
+                    $Idle: config.autoSlideDelay * 1000,
                     $DragOrientation: 0,
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -232,29 +177,23 @@
                 init_idle_timer();
 
                 var jssor_slider = new $JssorSlider$(containerId, options);
-                var slides = current_content_slides
                 var slide_restart_timer = null;
                 jssor_slider.$On( $JssorSlider$.$EVT_PARK, function( slideIndex, fromIndex ) {
-                    for( i = 0; i < slides.length; i++ )
+                    for( i = 0; i < apps.length; i++ )
                     {
                         if( i == slideIndex )
-                            slides[ i ].resume();
+                            apps[ i ].resume();
                         else
-                            slides[ i ].pause();
+                            apps[ i ].pause();
                         if( slide_restart_timer !== null )
                             window.clearTimeout( slide_restart_timer );
-                        slide_restart_timer = window.setTimeout( slide_restart_handler, (<?=$app_restart_delay ?>) * 1000 );
+                        slide_restart_timer = window.setTimeout( slide_restart_handler, config.appRestartDelay * 1000 );
                     }
                 } );
+
                 function slide_restart_handler() {
-                    if( !jssor_slider.$IsSliding() )
-                    {
-                        for( i = 0; i < slides.length; i++ )
-                        {
-                            if( i != jssor_slider.$CurrentIndex() )
-                                slides[ i ].restart( true );
-                        }
-                    }
+                    if (!jssor_slider.$IsSliding())
+                        apps.filter((app, index) => index !== jssor_slider.$CurrentIndex()).forEach(app => app.restart(true));
                 }
 
                 // only fire if touch ended on a node that is equal to or is a child node of element
@@ -277,16 +216,44 @@
                 // at ANY LATER TIME BUT NOT NOW
                 window.setTimeout( function() {
                     // restart all slides, but resume only slide 0
-                    for( i = 0; i < slides.length; i++ )
-                        slides[ i ].restart( true );
-                    slides[ 0 ].resume();
-                }, <?=($fadein_on_load_delay < 1 ? 1 : $fadein_on_load_delay ) ?> * 750 );
+                    apps.forEach((app, i) => app.ready.then(app => app.restart(i !== 0)));
+                }, (config.fadeinOnLoadDelay < 1 ? 1 : config.fadeinOnLoadDelay) * 750 );
 
                 return jssor_slider;
             };
         </script>
-    </head>
+        <script type="module">
+            import Application from './js/application.js';
 
+            (async () => {
+                const MyApp = (await import('./app4.js')).default;
+                window.Application = Application;
+                window.MyApp = MyApp;
+                console.log(Application);
+                console.log(MyApp);
+
+                $.when(configPromise, $.ready).then(async config => {
+                    if (config.hideCursor)
+                        document.body.style.cursor = 'none';
+                    if (config.disableScrolling)
+                        document.body.style.overflow = 'hidden';
+
+                    config.apps.forEach(async (appPaths, sliderNum) => {
+                        const slidesWrapper = document.getElementById(`slides${sliderNum}`);
+                        content_slides[sliderNum] = [];
+
+                        const loadApp = appPath => import(appPath).then(appModule => new appModule.default());
+                        const apps = await Promise.all(appPaths.map(loadApp));
+                        console.log(apps);
+                        apps.forEach(app => slidesWrapper.appendChild(createSlide(app)));
+                        console.log(sliderNum, content_sliders);
+                        content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
+                        console.log(sliderNum, content_sliders);
+                    });
+                });
+            })();
+        </script>
+    </head>
     <body
         id="home"
         reload-delay="<?=$reload_delay ?>"
@@ -302,10 +269,6 @@
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
-        style="<?php
-            if( $hide_cursor ) echo "cursor: none;";
-            if( $disable_scrolling ) echo "overflow: hidden;";
-        ?>"
     >
         <div
             id="wrapper"
@@ -336,38 +299,24 @@
             <script>simple_fade_slider('slider_top');</script>
         </div>
 
-<?php
-            for( $s = 0; $s < 2; $s++ ) :
-?>
-            <!-- BEGIN slider <?=$s?> -->
-            <div id="slider<?=$s?>_container" class="content_slider<?=$s?>">
+            <template id="slide_template">
+                <div>
+                    <div class="app"></div>
+                    <div class="app_description"></div>
+                    <div class="app_name"></div>
+                    <div class="app_credits"></div>
+                </div>
+            </template>
+
+            <!-- BEGIN slider 0 -->
+            <div id="slider0_container" class="content_slider0">
                 <!-- Slides Container -->
                 <div class="app_wrapper_bg">
                     <!-- ensure bg color between slides -->
                 </div>
 
-                <div u="slides" id="slides<?=$s?>" class="app_wrapper">;
-                    <script>
-                        content_slides[<?=$s?>] = [];
-                        var current_content_slides = content_slides[<?=$s?>];
-                    </script>
-
-<?php
-                    $tab = '    ';
-                    $ind7n = str_repeat( $tab, 4 );
-                    for( $i = 0; $i < count( $content[ $s ] ); $i++ ) {
-                        echo $ind7n."<!-- BEGIN slide {$s}_{$i} -->\n";
-                        echo $ind7n."<div>\n";
-                        // buffer output and indent
-                        ob_start();
-                        include( $content[ $s ][ $i ] );
-                        $result = ob_get_contents();
-                        ob_end_clean();
-                        print str_replace( "\n", "\n".$tab.$ind7n , $tab.$ind7n.trim( $result ) )."\n";
-                        echo $ind7n."</div>\n";
-                        echo $ind7n."<!-- END slide {$s}_{$i} -->\n";
-                    }
-?>
+                <div u="slides" id="slides0" class="app_wrapper">
+                    <!-- slides will be inserted here -->
                 </div>
 
                 <!--#region Bullet Navigator Skin Begin -->
@@ -375,45 +324,88 @@
                 <!-- bullet navigator container -->
                 <div u="navigator" class="jssorb10">
                     <!-- bullet navigator item prototype -->
-                    <div u="prototype" ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[<?=$s?>].fix_touchend_action( event, this, function() { content_sliders[<?=$s?>].$PlayTo( index ); }, false );"></div>
+                    <div u="prototype"
+                         ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[0].fix_touchend_action( event, this, function() { content_sliders[0].$PlayTo( index ); }, false );"></div>
                 </div>
                 <!--#endregion Bullet Navigator Skin End -->
 
                 <!--#region Arrow Navigator Skin Begin -->
                 <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
                 <!-- Arrow Left -->
-                <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Prev, true );">
-                    <div id="slider<?=$s?>_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
+                <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Prev, true );">
+                    <div id="slider0_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
                         <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                             <g transform="translate(45,0)">
-                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea" />
-                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
                             </g>
                         </svg>
                     </div>
                 </div>
                 <!-- Arrow Right -->
-                <div ontouchend="content_sliders[<?=$s?>].fix_touchend_action( event, this, content_sliders[<?=$s?>].$Next, true );">
+                <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Next, true );">
                     <div u="arrowright" class="jssor_arrow" style="right:0px;">
                         <svg width="200" height="700" class="svg_arrow">
                             <g transform="translate(45,0)">
-                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea" />
-                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline" />
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
                             </g>
                         </svg>
                     </div>
                 </div>
                 <!--#endregion Arrow Navigator Skin End -->
-
-                <script>
-                    content_sliders[<?=$s?>] = jssor_app_slider_starter('slider<?=$s?>_container');
-                </script>
             </div>
-            <!-- END slider <?=$s?> -->
+            <!-- END slider 0 -->
 
-<?php
-            endfor;
-?>
+
+            <!-- BEGIN slider 1 -->
+            <div id="slider1_container" class="content_slider1">
+                <!-- Slides Container -->
+                <div class="app_wrapper_bg">
+                    <!-- ensure bg color between slides -->
+                </div>
+
+                <div u="slides" id="slides1" class="app_wrapper">
+                    <!-- slides will be inserted here -->
+                </div>
+
+                <!--#region Bullet Navigator Skin Begin -->
+                <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
+                <!-- bullet navigator container -->
+                <div u="navigator" class="jssorb10">
+                    <!-- bullet navigator item prototype -->
+                    <div u="prototype"
+                         ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[1].fix_touchend_action( event, this, function() { content_sliders[1].$PlayTo( index ); }, false );"></div>
+                </div>
+                <!--#endregion Bullet Navigator Skin End -->
+
+                <!--#region Arrow Navigator Skin Begin -->
+                <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
+                <!-- Arrow Left -->
+                <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Prev, true );">
+                    <div id="slider1_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
+                        <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
+                            <g transform="translate(45,0)">
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Arrow Right -->
+                <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Next, true );">
+                    <div u="arrowright" class="jssor_arrow" style="right:0px;">
+                        <svg width="200" height="700" class="svg_arrow">
+                            <g transform="translate(45,0)">
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
+                                <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <!--#endregion Arrow Navigator Skin End -->
+            </div>
+            <!-- END slider 1 -->
 
             <div class="page_footer">
             </div>

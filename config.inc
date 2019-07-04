@@ -42,7 +42,7 @@ $timestamp_file = 'timestamp';
 
 // which page to use for the animation in the background (runs in an iframe)
 // currently available: bg_webgl.html, bg_svg.html, bg_plain.html
-$background_animation_url='bg_svg.html';
+$background_animation_url='bg_plain.html';
 
 // touch overlay debugging features
 $debugging_enabled = false;

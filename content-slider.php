@@ -22,6 +22,16 @@
             $.when(configPromise, $.ready).then(config => {
                 console.log(config);
 
+                // set the background animation
+                document.getElementById('bg').src = config.backgroundAnimationUrl;
+
+                // fade-in the whole page after some user-defined delay
+                const wrapper = document.getElementById('wrapper');
+                wrapper.style.animationDelay = `${config.fadeinOnLoadDelay}s`;
+                wrapper.classList.add('fade-in');
+
+                console.log(document.getElementById('wrapper').style.animationDelay,config.fadeinOnLoadDelay);
+
                 window.mouseEventSuppressor = new MouseEventSupporessor();
                 mouseEventSuppressor.setEnabled(config.disableMouseEvents);
 
@@ -235,29 +245,17 @@
     </head>
     <body
         id="home"
-        reload-delay="<?=$reload_delay ?>"
-        idle-delay="<?=$idle_delay ?>"
-        heartbeat-interval="<?=$heartbeat_interval ?>"
-        heartbeat-url="<?=$heartbeat_url?>"
-        fadein-on-load-delay="<?=$fadein_on_load_delay?>"
-        reload-button-size="<?=$reload_button_size ?>"
-        reload-button-hold-time="<?=$reload_button_hold_time ?>"
-        debug-cursor-scale="<?=$debug_cursor_scale ?>"
-        touch-cursor-html="<?=htmlspecialchars( $touch_cursor_html, ENT_QUOTES, false ) ?>"
-
         oncontextmenu="return false;"
         ontouchstart="return false;"
         class="noselect"
     >
         <div
             id="wrapper"
-            class="fade-in"
             animationend="wrapper.classList.remove( 'fade-in' ); wrapper.style.animation = 'none';"
-            style="animation-delay: <?=$fadein_on_load_delay ?>s;"
         >
 
             <!-- background animation outsources into separate iframe to avoid interference with apps -->
-            <iframe width="2160" height="3840" src="<?=$background_animation_url ?>" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
+            <iframe id="bg" width="2160" height="3840" scrolling="no" style="position: absolute; top:0px; left:0px; border: none;"></iframe>
 
             <div class="bg-overlay"></div>
 

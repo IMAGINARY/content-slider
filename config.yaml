@@ -27,18 +27,10 @@ appRestartDelay: 10
 heartbeatEnabled: true
 heartbeatInterval: 2
 heartbeatUrl: http://localhost:8081/heartbeat
-heartbeatRespawnDelay: 10
-
-# variables subject to the launch script and built-in web server
-serverHost: localhost
-serverPort: 8081
-contentSliderUrl: http://localhost:8081/index.php
-# TODO: webBrowserCmd: "electron --set-base-background-color=0xFF000000 '".__DIR__."/electron-app' -l {$contentSliderUrl} > /dev/null 2>&1"
-timestampFile: timestamp
 
 # which page to use for the animation in the background (runs in an iframe)
 # currently available: bgWebgl.html, bgSvg.html, bgPlain.html
-backgroundAnimationUrl: bgSvg.html
+backgroundAnimationUrl: bg_plain.html
 
 # touch overlay debugging features
 debuggingEnabled: true

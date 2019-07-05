@@ -4,7 +4,27 @@
     //  - rkill
     //  - web browser as specified in config.inc
 
-    require( 'config.inc' );
+    /******************************
+     * BEGIN configuration
+     ******************************/
+    // all time units are in seconds
+
+    // variables subject to heartbeat
+    $heartbeat_enabled = true;
+    $heartbeat_interval = 2;
+    $heartbeat_url = 'http://localhost:8081/heartbeat';
+    $heartbeat_respawn_delay = 10;
+
+    // variables subject to the launch script and built-in web server
+    $server_host = 'localhost';
+    $server_port = 8081;
+    $content_slider_url = 'http://localhost:8081/index.php';
+    $web_browser_cmd = "sleep 100000000s";
+    $timestamp_file = 'timestamp';
+
+    /******************************
+     * END configuration
+     ******************************/
 
     if( php_sapi_name() == 'cli-server' )
     {

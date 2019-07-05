@@ -23,35 +23,35 @@
             console.log(config);
 
             // set the background animation
-            document.getElementById('bg').src = config.backgroundAnimationUrl;
+            document.getElementById('bg').src = config['backgroundAnimationUrl'];
 
             // fade-in the whole page after some user-defined delay
             const wrapper = document.getElementById('wrapper');
-            wrapper.style.animationDelay = `${config.fadeinOnLoadDelay}s`;
+            wrapper.style.animationDelay = `${config['fadeinOnLoadDelay']}s`;
             wrapper.classList.add('fade-in');
 
-            console.log(document.getElementById('wrapper').style.animationDelay, config.fadeinOnLoadDelay);
+            console.log(document.getElementById('wrapper').style.animationDelay, config['fadeinOnLoadDelay']);
 
             window.mouseEventSuppressor = new MouseEventSupporessor();
-            mouseEventSuppressor.setEnabled(config.disableMouseEvents);
+            mouseEventSuppressor.setEnabled(config['disableMouseEvents']);
 
             window.pageReloadButtons = new ReloadButtons({
                 parentElement: document.getElementById('wrapper'),
-                reloadButtonSize: config.reloadButtonSize,
-                reloadButtonHoldTime: config.reloadButtonHoldTime,
+                reloadButtonSize: config['reloadButtonSize'],
+                reloadButtonHoldTime: config['reloadButtonHoldTime'],
             });
             pageReloadButtons.setEnabled(true);
 
             window.idleReloader = new IdleReloader({
-                reloadDelay: config.reloadDelay,
-                idleDelay: config.idleDelay,
+                reloadDelay: config['reloadDelay'],
+                idleDelay: config['idleDelay'],
             });
             idleReloader.setEnabled(true);
 
-            window.heartbeat = new HeartBeat(config.heartbeatUrl, config.heartbeatInterval);
-            heartbeat.setEnabled(config.heartbeatEnabled);
+            window.heartbeat = new HeartBeat(config['heartbeatUrl'], config['heartbeatInterval']);
+            heartbeat.setEnabled(config['heartbeatEnabled']);
 
-            const cursorElem = $(config.touchCursorHtml)[0];
+            const cursorElem = $(config['touchCursorHtml'])[0];
             window.cursor = new Cursor({
                 createCursorElement: () => {
                     const cursor = cursorElem.cloneNode(true);
@@ -61,43 +61,41 @@
                 downHandler: cursor => cursor.style.opacity = '1.0',
                 upHandler: cursor => cursor.style.opacity = '0.25',
             });
-            cursor.setEnabled(config.touchCursorVisible);
+            cursor.setEnabled(config['touchCursorVisible']);
 
-            window.debugOverlay = new DebugOverlay({debugCursorScale: config.debugCursorScale});
-            debugOverlay.setEnabled(config.debuggingEnabled);
+            window.debugOverlay = new DebugOverlay({debugCursorScale: config['debugCursorScale']});
+            debugOverlay.setEnabled(config['debuggingEnabled']);
 
-            DummyConsole.setEnabled(config.disableConsoleLogging)
+            DummyConsole.setEnabled(config['disableConsoleLogging'])
         });
     </script>
     <script>
-        var content_sliders = [];
-        var content_slides = [];
+        const content_sliders = [];
+        const content_slides = [];
 
         function refreshAt(hours, minutes, seconds) {
-            var now = new Date();
-            var then = new Date();
+            const now = new Date();
+            const then = new Date();
 
             if (now.getHours() > hours ||
-                (now.getHours() == hours && now.getMinutes() > minutes) ||
-                now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds) {
+                (now.getHours() === hours && now.getMinutes() > minutes) ||
+                now.getHours() === hours && now.getMinutes() === minutes && now.getSeconds() >= seconds) {
                 then.setDate(now.getDate() + 1);
             }
             then.setHours(hours);
             then.setMinutes(minutes);
             then.setSeconds(seconds);
 
-            var timeout = (then.getTime() - now.getTime());
-            setTimeout(function () {
-                window.location.reload(true);
-            }, timeout);
+            const timeout = (then.getTime() - now.getTime());
+            setTimeout(() => window.location.reload(true), timeout);
         }
 
         refreshAt(0, 0, 0);
 
         function simple_fade_slider(containerID) {
 
-            var slides = document.getElementById(containerID).children[0].children;
-            var currSlide = 0;
+            const slides = document.getElementById(containerID).children[0].children;
+            let currSlide = 0;
 
             function rotateSlide() {
                 slides[currSlide].classList.remove('active');
@@ -125,10 +123,10 @@
         }
 
         jssor_app_slider_starter = function (containerId, apps, config) {
-            var options = {
+            const options = {
                 $AutoPlay: false,
                 $PauseOnHover: 0,
-                $Idle: config.autoSlideDelay * 1000,
+                $Idle: config['autoSlideDelay'] * 1000,
                 $DragOrientation: 0,
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -148,7 +146,7 @@
                 }
             };
 
-            var container = document.getElementById(containerId);
+            const container = document.getElementById(containerId);
 
             container.addEventListener('mouseup', non_idle_handler, true);
             container.addEventListener('mousemove', non_idle_handler, true);
@@ -160,7 +158,7 @@
 
             // implemented idle timeout myself since JSSOR idle mode does not
             // reset the timeout on interruption
-            var idle_timer = null;
+            let idle_timer = null;
 
             function init_idle_timer() {
                 if (idle_timer != null)
@@ -168,7 +166,7 @@
                 idle_timer = setTimeout(idle_handler, options.$Idle);
             }
 
-            function non_idle_handler(evt) {
+            function non_idle_handler() {
                 console.log("non_idle_handler");
                 init_idle_timer();
             }
@@ -181,17 +179,17 @@
 
             init_idle_timer();
 
-            var jssor_slider = new $JssorSlider$(containerId, options);
-            var slide_restart_timer = null;
-            jssor_slider.$On($JssorSlider$.$EVT_PARK, function (slideIndex, fromIndex) {
-                for (i = 0; i < apps.length; i++) {
-                    if (i == slideIndex)
+            const jssor_slider = new $JssorSlider$(containerId, options);
+            let slide_restart_timer = null;
+            jssor_slider.$On($JssorSlider$.$EVT_PARK, function (slideIndex) {
+                for (let i = 0; i < apps.length; i++) {
+                    if (i === slideIndex)
                         apps[i].resume();
                     else
                         apps[i].pause();
                     if (slide_restart_timer !== null)
                         window.clearTimeout(slide_restart_timer);
-                    slide_restart_timer = window.setTimeout(slide_restart_handler, config.appRestartDelay * 1000);
+                    slide_restart_timer = window.setTimeout(slide_restart_handler, config['appRestartDelay'] * 1000);
                 }
             });
 
@@ -202,39 +200,39 @@
 
             // only fire if touch ended on a node that is equal to or is a child node of element
             jssor_slider.fix_touchend_action = function (event, element, action, preventDefault) {
-                var changedTouch = event.changedTouches[0];
-                var elementBelow = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
+                const changedTouch = event.changedTouches[0];
+                let elementBelow = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
 
-                while (elementBelow != null && elementBelow != element)
+                while (elementBelow != null && elementBelow !== element)
                     elementBelow = elementBelow.parentElement;
 
-                if (elementBelow == element) {
+                if (elementBelow === element) {
                     action();
                     if (preventDefault)
                         event.preventDefault();
                 }
-            }
+            };
 
             // just put this function into the event loop to be executed
             // at ANY LATER TIME BUT NOT NOW
             window.setTimeout(function () {
                 // restart all slides, but resume only slide 0
                 apps.forEach((app, i) => app.ready.then(app => app.restart(i !== 0)));
-            }, (config.fadeinOnLoadDelay < 1 ? 1 : config.fadeinOnLoadDelay) * 750);
+            }, (config['fadeinOnLoadDelay'] < 1 ? 1 : config['fadeinOnLoadDelay']) * 750);
 
             return jssor_slider;
         };
     </script>
     <script type="module">
         $.when(configPromise, $.ready).then(async config => {
-            if (config.hideCursor)
+            if (config['hideCursor'])
                 document.body.style.cursor = 'none';
-            if (config.disableScrolling)
+            if (config['disableScrolling'])
                 document.body.style.overflow = 'hidden';
 
-            const commonScriptsPromise = Promise.all(config.common.map(scriptUrl => $.getScript(scriptUrl)));
+            const commonScriptsPromise = Promise.all(config['common'].map(scriptUrl => $.getScript(scriptUrl)));
 
-            commonScriptsPromise.then(() => config.apps.forEach(async (appPaths, sliderNum) => {
+            commonScriptsPromise.then(() => config['apps'].forEach(async (appPaths, sliderNum) => {
                 const slidesWrapper = document.getElementById(`slides${sliderNum}`);
                 content_slides[sliderNum] = [];
 
@@ -251,18 +249,18 @@
 </head>
 <body
         id="home"
-        oncontextmenu="return false;"
         ontouchstart="return false;"
+        oncontextmenu="return false;"
         class="noselect"
 >
 <div
         id="wrapper"
-        animationend="wrapper.classList.remove( 'fade-in' ); wrapper.style.animation = 'none';"
+        onanimationend="wrapper.classList.remove( 'fade-in' ); wrapper.style.animation = 'none';"
 >
 
     <!-- background animation outsources into separate iframe to avoid interference with apps -->
-    <iframe id="bg" width="2160" height="3840" scrolling="no"
-            style="position: absolute; top:0px; left:0px; border: none;"></iframe>
+    <iframe id="bg" width="2160" height="3840"
+            style="position: absolute; top:0; left:0; border: none; overflow: hidden;"></iframe>
 
     <div class="bg-overlay"></div>
 
@@ -309,7 +307,7 @@
         <div u="navigator" class="jssorb10">
             <!-- bullet navigator item prototype -->
             <div u="prototype"
-                 ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[0].fix_touchend_action( event, this, function() { content_sliders[0].$PlayTo( index ); }, false );"></div>
+                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[0].fix_touchend_action( event, this, function() { content_sliders[0].$PlayTo( index ); }, false );"></div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
 
@@ -317,22 +315,22 @@
         <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <!-- Arrow Left -->
         <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Prev, true );">
-            <div id="slider0_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
+            <div id="slider0_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0;">
                 <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                     <g transform="translate(45,0)">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"></polyline>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"></polyline>
                     </g>
                 </svg>
             </div>
         </div>
         <!-- Arrow Right -->
         <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Next, true );">
-            <div u="arrowright" class="jssor_arrow" style="right:0px;">
+            <div u="arrowright" class="jssor_arrow" style="right:0;">
                 <svg width="200" height="700" class="svg_arrow">
                     <g transform="translate(45,0)">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"></polyline>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"></polyline>
                     </g>
                 </svg>
             </div>
@@ -359,7 +357,7 @@
         <div u="navigator" class="jssorb10">
             <!-- bullet navigator item prototype -->
             <div u="prototype"
-                 ontouchend="var index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[1].fix_touchend_action( event, this, function() { content_sliders[1].$PlayTo( index ); }, false );"></div>
+                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[1].fix_touchend_action( event, this, function() { content_sliders[1].$PlayTo( index ); }, false );"></div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
 
@@ -367,22 +365,22 @@
         <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <!-- Arrow Left -->
         <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Prev, true );">
-            <div id="slider1_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0px;">
+            <div id="slider1_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0;">
                 <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                     <g transform="translate(45,0)">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"></polyline>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"></polyline>
                     </g>
                 </svg>
             </div>
         </div>
         <!-- Arrow Right -->
         <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Next, true );">
-            <div u="arrowright" class="jssor_arrow" style="right:0px;">
+            <div u="arrowright" class="jssor_arrow" style="right:0;">
                 <svg width="200" height="700" class="svg_arrow">
                     <g transform="translate(45,0)">
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"/>
-                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"/>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline_toucharea"></polyline>
+                        <polyline points="5,0 100,350 5,700" class="svg_arrow_polyline"></polyline>
                     </g>
                 </svg>
             </div>

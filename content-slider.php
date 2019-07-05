@@ -6,20 +6,7 @@
 
     	<title>Content Slider</title>
     	<link rel="stylesheet" href="css/style.css">
-<?php
-        {
-            $tab = '    ';
-            $ind7n = str_repeat( $tab, 2 );
-            echo $ind7n."<!-- BEGIN common app header -->\n";
-            // buffer output and indent
-            ob_start();
-            include( 'app_common.inc' );
-            $result = ob_get_contents();
-            ob_end_clean();
-            print str_replace( "\n", "\n".$ind7n , $ind7n.trim( $result ) )."\n";
-            echo $ind7n."<!-- END common app header -->\n";
-        }
-?>
+
         <script src="js/jssor.slider.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.13.1/js-yaml.min.js"></script>
@@ -223,35 +210,27 @@
             };
         </script>
         <script type="module">
-            import Application from './js/application.js';
+            $.when(configPromise, $.ready).then(async config => {
+                if (config.hideCursor)
+                    document.body.style.cursor = 'none';
+                if (config.disableScrolling)
+                    document.body.style.overflow = 'hidden';
 
-            (async () => {
-                const MyApp = (await import('./app4.js')).default;
-                window.Application = Application;
-                window.MyApp = MyApp;
-                console.log(Application);
-                console.log(MyApp);
+                const commonScriptsPromise = Promise.all(config.common.map(scriptUrl => $.getScript(scriptUrl)));
 
-                $.when(configPromise, $.ready).then(async config => {
-                    if (config.hideCursor)
-                        document.body.style.cursor = 'none';
-                    if (config.disableScrolling)
-                        document.body.style.overflow = 'hidden';
+                commonScriptsPromise.then(() => config.apps.forEach(async (appPaths, sliderNum) => {
+                    const slidesWrapper = document.getElementById(`slides${sliderNum}`);
+                    content_slides[sliderNum] = [];
 
-                    config.apps.forEach(async (appPaths, sliderNum) => {
-                        const slidesWrapper = document.getElementById(`slides${sliderNum}`);
-                        content_slides[sliderNum] = [];
-
-                        const loadApp = appPath => import(appPath).then(appModule => new appModule.default());
-                        const apps = await Promise.all(appPaths.map(loadApp));
-                        console.log(apps);
-                        apps.forEach(app => slidesWrapper.appendChild(createSlide(app)));
-                        console.log(sliderNum, content_sliders);
-                        content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
-                        console.log(sliderNum, content_sliders);
-                    });
-                });
-            })();
+                    const loadApp = appPath => import(appPath).then(appModule => new appModule.default());
+                    const apps = await Promise.all(appPaths.map(loadApp));
+                    console.log(apps);
+                    apps.forEach(app => slidesWrapper.appendChild(createSlide(app)));
+                    console.log(sliderNum, content_sliders);
+                    content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
+                    console.log(sliderNum, content_sliders);
+                }));
+            });
         </script>
     </head>
     <body

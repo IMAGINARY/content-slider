@@ -56,3 +56,6 @@ apps:
   - - ./app1.js
     - ./app4.js
     - ./app4.js
+
+common:
+  - ./js/noop.js

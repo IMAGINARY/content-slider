@@ -13,7 +13,7 @@ disableConsoleLogging: false
 disableScrolling: true
 
 # variables subject to (automatic) page reload
-fadeinOnLoadDelay: 15
+fadeinOnLoadDelay: 1
 reloadDelay: 10800
 idleDelay: 15
 reloadButtonSize: 40px
@@ -41,13 +41,13 @@ touchCursorVisible: true
 touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>'
 
 apps:
-  - - ./app3.js
-    - ./app4.js
-    - ./app4.js
-    - ./app4.js
-  - - ./app1.js
-    - ./app4.js
-    - ./app4.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-counter/CounterApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-object/RaytracerApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-iframe/CarParkIFrameApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-multitouch-paint/PaintApp.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-multitouch-paint/PaintApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-counter/CounterApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/testing-counter/CounterApp.js
 
 common:
-  - ./js/noop.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/0549fa0dcc316b2dc236d0fd1e32e61e3712397f/common/noop.js

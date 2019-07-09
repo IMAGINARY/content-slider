@@ -224,26 +224,43 @@
         };
     </script>
     <script type="module">
+        import ErrorApp from './js/ErrorApp.js';
+
         $.when(configPromise, $.ready).then(async config => {
             if (config['hideCursor'])
                 document.body.style.cursor = 'none';
             if (config['disableScrolling'])
                 document.body.style.overflow = 'hidden';
 
-            const commonScriptsPromise = Promise.all(config['common'].map(scriptUrl => $.getScript(scriptUrl)));
+            for (let scriptUrl of config['common']) {
+                try {
+                    await $.getScript(scriptUrl);
+                } catch (err) {
+                    console.error('Unable to load common script dependency:', scriptUrl, err);
+                }
+            }
 
-            commonScriptsPromise.then(() => config['apps'].forEach(async (appPaths, sliderNum) => {
+            const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
+            const loadSlide = async appUrl => {
+                const app = await (async () => {
+                    try {
+                        return await loadApp(appUrl);
+                    } catch (err) {
+                        return new ErrorApp(`Unable to load app "${appUrl}"`);
+                    }
+                })();
+                return {slide: createSlide(app), app: app};
+            };
+
+            config['apps'].forEach(async (appUrls, sliderNum) => {
                 const slidesWrapper = document.getElementById(`slides${sliderNum}`);
-                content_slides[sliderNum] = [];
-
-                const loadApp = appPath => import(appPath).then(appModule => new appModule.default());
-                const apps = await Promise.all(appPaths.map(loadApp));
-                console.log(apps);
-                apps.forEach(app => slidesWrapper.appendChild(createSlide(app)));
-                console.log(sliderNum, content_sliders);
+                const slidesAndApps = await Promise.all(appUrls.map(loadSlide));
+                const slides = slidesAndApps.map(slideAndApp => slideAndApp.slide);
+                const apps = slidesAndApps.map(slideAndApp => slideAndApp.app);
+                slides.forEach(slide => slidesWrapper.appendChild(slide));
                 content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
-                console.log(sliderNum, content_sliders);
-            }));
+                // TODO: Take care of app.ready() promise
+            });
         });
     </script>
 </head>

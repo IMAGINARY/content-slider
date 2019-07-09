@@ -248,6 +248,7 @@
                     try {
                         return await loadApp(appUrl);
                     } catch (err) {
+                        console.error(err);
                         return new ErrorApp(`Unable to load app "${appUrl}"`);
                     }
                 })();
@@ -259,6 +260,7 @@
                 const slidesAndApps = await Promise.all(appUrls.map(loadSlide));
                 const slides = slidesAndApps.map(slideAndApp => slideAndApp.slide);
                 const apps = slidesAndApps.map(slideAndApp => slideAndApp.app);
+                console.log(apps);
                 slides.forEach(slide => slidesWrapper.appendChild(slide));
                 content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
                 // TODO: Take care of app.ready() promise

@@ -184,9 +184,9 @@
             jssor_slider.$On($JssorSlider$.$EVT_PARK, function (slideIndex) {
                 for (let i = 0; i < apps.length; i++) {
                     if (i === slideIndex)
-                        apps[i].resume();
+                        apps[i].ready.finally(() => apps[i].resume());
                     else
-                        apps[i].pause();
+                        apps[i].ready.finally(() => apps[i].pause());
                     if (slide_restart_timer !== null)
                         window.clearTimeout(slide_restart_timer);
                     slide_restart_timer = window.setTimeout(slide_restart_handler, config['appRestartDelay'] * 1000);
@@ -217,7 +217,9 @@
             // at ANY LATER TIME BUT NOT NOW
             window.setTimeout(function () {
                 // restart all slides, but resume only slide 0
-                apps.forEach((app, i) => app.ready.then(app => app.restart(i !== 0)));
+                apps.forEach((app, i) => {
+                    app.ready.finally(() => app.restart(i !== 0));
+                });
             }, (config['fadeinOnLoadDelay'] < 1 ? 1 : config['fadeinOnLoadDelay']) * 750);
 
             return jssor_slider;

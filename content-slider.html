@@ -10,6 +10,7 @@
     <script src="js/jssor.slider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.13.1/js-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/loadjs/3.6.1/loadjs.min.js"></script>
     <script src="js/dummy-console.js"></script>
     <script src="js/stop-mouse-event-propagation.js"></script>
     <script src="js/auto-page-reloader.js"></script>
@@ -234,13 +235,9 @@
             if (config['disableScrolling'])
                 document.body.style.overflow = 'hidden';
 
-            for (let scriptUrl of config['common']) {
-                try {
-                    await $.getScript(scriptUrl);
-                } catch (err) {
-                    console.error('Unable to load common script dependency:', scriptUrl, err);
-                }
-            }
+            // load common JavaScript dependencies
+            await loadjs(config['common'], {async: false, returnPromise: true})
+                .catch(failedUrls => console.error('loading common script failed:', failedUrls));
 
             const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
             const loadSlide = async appUrl => {

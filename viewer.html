@@ -17,6 +17,7 @@ The `common` URL parameter can be used multiple times to load several libraries.
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/loadjs/3.6.1/loadjs.min.js"></script>
     <script type="module">
         import ErrorApp from './js/ErrorApp.js';
 
@@ -28,14 +29,9 @@ The `common` URL parameter can be used multiple times to load several libraries.
             viewport.style.width = `${window.innerWidth}px`;
             viewport.style.height = `${window.innerHeight}px`;
 
-            // load common libraries
-            for (let scriptUrl of searchParams.getAll('common')) {
-                try {
-                    await $.getScript(scriptUrl);
-                } catch (err) {
-                    console.error('Unable to load common script dependency:', scriptUrl, err);
-                }
-            }
+            // load common JavaScript dependencies
+            await loadjs(searchParams.getAll('common'), {async: false, returnPromise: true})
+                .catch(failedUrls => console.error('loading common script failed:', failedUrls));
 
             // load single app
             window.appUrl = searchParams.get('app');

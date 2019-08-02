@@ -1,0 +1,58 @@
+<!--
+This viewer load a single app. Set the following URL parameters:
+ - common: URL of JavaScript library to load before the app
+ - app: URL of app module to load
+The `common` URL parameter can be used multiple times to load several libraries.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Single app viewer</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="module">
+        import ErrorApp from './js/ErrorApp.js';
+
+        const searchParams = new URLSearchParams(window.location.search);
+
+        $.ready.then(async () => {
+            // set the viewport size
+            const viewport = document.getElementById('viewport');
+            viewport.style.width = `${window.innerWidth}px`;
+            viewport.style.height = `${window.innerHeight}px`;
+
+            // load common libraries
+            for (let scriptUrl of searchParams.getAll('common')) {
+                try {
+                    await $.getScript(scriptUrl);
+                } catch (err) {
+                    console.error('Unable to load common script dependency:', scriptUrl, err);
+                }
+            }
+
+            // load single app
+            window.appUrl = searchParams.get('app');
+            const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
+            window.app = await (async () => {
+                try {
+                    return await loadApp(appUrl);
+                } catch (err) {
+                    console.error(err);
+                    return new ErrorApp(`Unable to load app "${appUrl}"`);
+                }
+            })();
+            viewport.appendChild(app.domElement);
+        });
+    </script>
+</head>
+<body>
+<div id="viewport"></div>
+</body>
+</html>

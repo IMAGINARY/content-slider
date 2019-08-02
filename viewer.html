@@ -49,6 +49,7 @@ The `common` URL parameter can be used multiple times to load several libraries.
                 }
             })();
             viewport.appendChild(app.domElement);
+            window.app.ready.then(() => window.app.resume());
         });
     </script>
 </head>

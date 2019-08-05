@@ -220,6 +220,12 @@
                 });
             }, (config['fadeinOnLoadDelay'] < 1 ? 1 : config['fadeinOnLoadDelay']) * 750);
 
+            // enable or disable bullet navigation
+            if (config.disableBulletNavigation) {
+                const bulletContainer = container.getElementsByClassName('jssorb10')[0];
+                bulletContainer.classList.add('disable_pointer_events');
+            }
+
             return jssor_slider;
         };
     </script>

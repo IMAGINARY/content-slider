@@ -22,6 +22,7 @@ reloadButtonHoldTime: 5
 # variables subject to sliders
 autoSlideDelay: 180
 appRestartDelay: 10
+disableBulletNavigation: true
 
 # variables subject to heartbeat
 heartbeatEnabled: true

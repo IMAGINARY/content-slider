@@ -229,7 +229,7 @@
     <script type="module">
         import ErrorApp from './js/ErrorApp.js';
 
-        $.when(configPromise, $.ready).then(async config => {
+        window.allAppsInitialized = $.when(configPromise, $.ready).then(async config => {
             if (config['hideCursor'])
                 document.body.style.cursor = 'none';
             if (config['disableScrolling'])
@@ -252,17 +252,35 @@
                 return {slide: createSlide(app), app: app};
             };
 
-            config['apps'].forEach(async (appUrls, sliderNum) => {
-                const slidesWrapper = document.getElementById(`slides${sliderNum}`);
+            const createSliderWithSlides = async (appUrls, sliderNum) => {
+                // create
                 const slidesAndApps = await Promise.all(appUrls.map(loadSlide));
                 const slides = slidesAndApps.map(slideAndApp => slideAndApp.slide);
                 const apps = slidesAndApps.map(slideAndApp => slideAndApp.app);
-                console.log(apps);
+
+                // insert
+                const slidesWrapper = document.getElementById(`slides${sliderNum}`);
                 slides.forEach(slide => slidesWrapper.appendChild(slide));
-                content_sliders[sliderNum] = jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config);
-                // TODO: Take care of app.ready() promise
-            });
+
+                // result
+                return {
+                    slider: jssor_app_slider_starter(`slider${sliderNum}_container`, apps, config),
+                    slides: slides,
+                    apps: apps,
+                };
+            };
+
+            const sliders = await Promise.all(config['apps'].map(createSliderWithSlides));
+            const allApps = sliders.reduce((a, c) => a.concat(c.apps), []);
+
+            // the following promise settles when all apps are either ready or failed initialization
+            const reflect = p => p.then(v => ({v, fulfilled: true}), e => ({e, fulfilled: false}));
+            return Promise.all(allApps.map(app => reflect(app.ready))).then(() => sliders);
         });
+
+        window.allAppsInitialized
+            .then(sliders => window.sliders = sliders)
+            .then(() => console.log('All apps initialized (not necessarily successfully)'));
     </script>
 </head>
 <body

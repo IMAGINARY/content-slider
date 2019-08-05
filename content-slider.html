@@ -71,9 +71,6 @@
         });
     </script>
     <script>
-        const content_sliders = [];
-        const content_slides = [];
-
         function refreshAt(hours, minutes, seconds) {
             const now = new Date();
             const then = new Date();
@@ -343,14 +340,14 @@
         <div u="navigator" class="jssorb10">
             <!-- bullet navigator item prototype -->
             <div u="prototype"
-                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[0].fix_touchend_action( event, this, function() { content_sliders[0].$PlayTo( index ); }, false );"></div>
+                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); console.log(index);sliders[0].slider.fix_touchend_action( event, this, function() { sliders[0].slider.$PlayTo( index ); }, false );"></div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
 
         <!--#region Arrow Navigator Skin Begin -->
         <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <!-- Arrow Left -->
-        <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Prev, true );">
+        <div ontouchend="sliders[0].slider.fix_touchend_action( event, this, sliders[0].slider.$Prev, true );">
             <div id="slider0_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0;">
                 <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                     <g transform="translate(45,0)">
@@ -361,7 +358,7 @@
             </div>
         </div>
         <!-- Arrow Right -->
-        <div ontouchend="content_sliders[0].fix_touchend_action( event, this, content_sliders[0].$Next, true );">
+        <div ontouchend="sliders[0].slider.fix_touchend_action( event, this, sliders[0].slider.$Next, true );">
             <div u="arrowright" class="jssor_arrow" style="right:0;">
                 <svg width="200" height="700" class="svg_arrow">
                     <g transform="translate(45,0)">
@@ -393,14 +390,14 @@
         <div u="navigator" class="jssorb10">
             <!-- bullet navigator item prototype -->
             <div u="prototype"
-                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); content_sliders[1].fix_touchend_action( event, this, function() { content_sliders[1].$PlayTo( index ); }, false );"></div>
+                 ontouchend="const index = Array.prototype.indexOf.call(this.parentNode.children,this); sliders[1].slider.fix_touchend_action( event, this, function() { sliders[1].slider.$PlayTo( index ); }, false );"></div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
 
         <!--#region Arrow Navigator Skin Begin -->
         <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <!-- Arrow Left -->
-        <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Prev, true );">
+        <div ontouchend="sliders[1].slider.fix_touchend_action( event, this, sliders[1].slider.$Prev, true );">
             <div id="slider1_arrowleft" u="arrowleft" class="jssor_arrow" style="left:0;">
                 <svg width="200" height="700" class="svg_arrow" style="transform: rotate(180deg);">
                     <g transform="translate(45,0)">
@@ -411,7 +408,7 @@
             </div>
         </div>
         <!-- Arrow Right -->
-        <div ontouchend="content_sliders[1].fix_touchend_action( event, this, content_sliders[1].$Next, true );">
+        <div ontouchend="sliders[1].slider.fix_touchend_action( event, this, sliders[1].slider.$Next, true );">
             <div u="arrowright" class="jssor_arrow" style="right:0;">
                 <svg width="200" height="700" class="svg_arrow">
                     <g transform="translate(45,0)">

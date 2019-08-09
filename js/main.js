@@ -4,7 +4,6 @@ import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';
 import MouseEventSupporessor from './stop-mouse-event-propagation.js';
 import {ReloadButtons, IdleReloader} from './auto-page-reloader.js';
-import HeartBeat from './heartbeat.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 
@@ -84,9 +83,6 @@ function applyConfig(config) {
         idleDelay: config['idleDelay'],
     });
     idleReloader.setEnabled(true);
-
-    window.heartbeat = new HeartBeat(config['heartbeatUrl'], config['heartbeatInterval']);
-    heartbeat.setEnabled(config['heartbeatEnabled']);
 
     const cursorElem = (() => {
         const tempDiv = document.createElement('div');

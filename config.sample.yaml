@@ -24,11 +24,6 @@ autoSlideDelay: 180
 appRestartDelay: 10
 disableBulletNavigation: true
 
-# variables subject to heartbeat
-heartbeatEnabled: false
-heartbeatInterval: 2
-heartbeatUrl: http://localhost:8081/heartbeat
-
 # which page to use for the animation in the background (runs in an iframe)
 # currently available: bgWebgl.html, bgSvg.html, bgPlain.html
 backgroundAnimationUrl: bg_svg.html

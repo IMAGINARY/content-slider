@@ -144,10 +144,10 @@ async function request(obj) {
     });
 }
 
-async function main(options) {
-    const configUrl = new URL(options.configUrl);
+
+async function tryWithConfigUrl(configUrl) {
     try {
-        const configSrc = await request({url: options.configUrl});
+        const configSrc = await request({url: configUrl});
         try {
             const jsYamlOptions = {
                 filename: configUrl,
@@ -175,9 +175,21 @@ async function main(options) {
             }
         } catch (err) {
             console.error("Error while parsing config file:", err.message, err);
+            throw err;
         }
     } catch (err) {
         console.error("Error retrieving config file:", configUrl, err.status, err.statusText, err);
+        throw err;
+    }
+}
+
+async function main(options) {
+    try {
+        await tryWithConfigUrl(new URL(options.configUrl));
+    } catch (err) {
+        const fallbackConfigUrl = new URL('config.sample.yaml', window.location.href);
+        console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
+        await tryWithConfigUrl(fallbackConfigUrl);
     }
 }
 

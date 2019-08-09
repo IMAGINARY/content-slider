@@ -136,10 +136,10 @@ async function request(obj) {
             if (xhr.status >= 200 && xhr.status < 300) {
                 resolve(xhr.response);
             } else {
-                reject(xhr.statusText);
+                reject(xhr);
             }
         };
-        xhr.onerror = () => reject(xhr.statusText);
+        xhr.onerror = () => reject(xhr);
         xhr.send(obj.body);
     });
 }
@@ -178,7 +178,7 @@ async function tryWithConfigUrl(configUrl) {
             throw err;
         }
     } catch (err) {
-        console.error("Error retrieving config file:", configUrl, err.status, err.statusText, err);
+        console.error("Error retrieving config file:", configUrl.href, `${err.status} (${err.statusText})`, err);
         throw err;
     }
 }

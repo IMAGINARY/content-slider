@@ -31,7 +31,7 @@ heartbeatUrl: http://localhost:8081/heartbeat
 
 # which page to use for the animation in the background (runs in an iframe)
 # currently available: bgWebgl.html, bgSvg.html, bgPlain.html
-backgroundAnimationUrl: bg_plain.html
+backgroundAnimationUrl: bg_svg.html
 
 # touch overlay debugging features
 debuggingEnabled: false

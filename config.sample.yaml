@@ -25,7 +25,7 @@ appRestartDelay: 10
 disableBulletNavigation: true
 
 # variables subject to heartbeat
-heartbeatEnabled: true
+heartbeatEnabled: false
 heartbeatInterval: 2
 heartbeatUrl: http://localhost:8081/heartbeat
 
@@ -34,7 +34,7 @@ heartbeatUrl: http://localhost:8081/heartbeat
 backgroundAnimationUrl: bg_plain.html
 
 # touch overlay debugging features
-debuggingEnabled: true
+debuggingEnabled: false
 debugCursorScale: 1
 
 # touch cursor visualization

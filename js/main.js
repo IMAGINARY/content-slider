@@ -175,7 +175,6 @@ async function tryWithConfigUrl(configUrl) {
             }
         } catch (err) {
             console.error("Error while parsing config file:", err.message, err);
-            throw err;
         }
     } catch (err) {
         console.error("Error retrieving config file:", configUrl.href, `${err.status} (${err.statusText})`, err);

@@ -18,7 +18,8 @@ async function initializeAppsAndSlider(config) {
     await loadjs(config['common'], {async: false, returnPromise: true})
         .catch(failedUrls => console.error('loading common script failed:', failedUrls));
 
-    const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
+    // NOTE: app URLs are resolved relative to the config file
+    const loadApp = appUrl => import(new URL(appUrl, config.configUrl)).then(appModule => new appModule.default());
     const loadSlide = async appUrl => {
         const app = await (async () => {
             try {
@@ -143,10 +144,10 @@ async function request(obj) {
     });
 }
 
-async function main() {
-    const configUrl = new URL('config.yaml', window.location.href).href;
+async function main(options) {
+    const configUrl = new URL(options.configUrl);
     try {
-        const configSrc = await request({url: configUrl});
+        const configSrc = await request({url: options.configUrl});
         try {
             const jsYamlOptions = {
                 filename: configUrl,
@@ -154,6 +155,7 @@ async function main() {
                 schema: jsyaml.JSON_SCHEMA,
             };
             const config = jsyaml.safeLoad(configSrc, jsYamlOptions);
+            config.configUrl = configUrl;
             console.log(config);
             await domContentLoaded();
 

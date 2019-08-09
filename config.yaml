@@ -57,4 +57,5 @@ common:
   - ../content-slider-apps/common/js/Cindy.js
   - ../content-slider-apps/common/js/Cindy3D.js
   - ../content-slider-apps/common/js/QuickHull3D.js
+  - https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js
 

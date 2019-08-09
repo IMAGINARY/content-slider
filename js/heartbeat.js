@@ -43,3 +43,5 @@ class HeartBeat {
         this._enabled = enable;
     }
 }
+
+export default HeartBeat;

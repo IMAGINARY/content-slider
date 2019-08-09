@@ -1,3 +1,5 @@
+import Cursor from './touch-cursor.js';
+
 class DebugOverlay {
     constructor(params) {
         this._isEnabled = false;
@@ -12,9 +14,11 @@ class DebugOverlay {
                 const type = pointerEvent.pointerType.substr(0, 1).toUpperCase();
                 const id = pointerEvent.pointerId;
                 const color = pointerEvent.pointerType === 'mouse' ? mouseColor : touchColors[pointerEvent.pointerId % touchColors.length];
-                const cursor = $('<div><svg style="transform: translate(-25%, -50%);"><circle cx="75" cy="75" r="40" stroke="black" stroke-width="3" fill="' + color + '" fill-opacity="0.5"/><line x1="0" y1="75" x2="150" y2="75" stroke="black" stroke-width="3" /><line x1="75" y1="0" x2="75" y2="150" stroke="black" stroke-width="3" /><line x1="0" y1="75" x2="150" y2="75" stroke="white" stroke-width="1" /><line x1="75" y1="0" x2="75" y2="150" stroke="white" stroke-width="1"/><text x="0" y="30" fill="black" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + type + '</text><text x="150" y="30" fill="black" text-anchor="end" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + id + '</text><text x="150" y="140" fill="black" text-anchor="end" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + type + '</text><text x="0" y="140" fill="black" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + id + '</text></svg></div>')[0];
+                const cursor = document.createElement('div');
+                cursor.innerHTML = '<div><svg style="transform: translate(-25%, -50%);"><circle cx="75" cy="75" r="40" stroke="black" stroke-width="3" fill="' + color + '" fill-opacity="0.5"/><line x1="0" y1="75" x2="150" y2="75" stroke="black" stroke-width="3" /><line x1="75" y1="0" x2="75" y2="150" stroke="black" stroke-width="3" /><line x1="0" y1="75" x2="150" y2="75" stroke="white" stroke-width="1" /><line x1="75" y1="0" x2="75" y2="150" stroke="white" stroke-width="1"/><text x="0" y="30" fill="black" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + type + '</text><text x="150" y="30" fill="black" text-anchor="end" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + id + '</text><text x="150" y="140" fill="black" text-anchor="end" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + type + '</text><text x="0" y="140" fill="black" style="font-size: 30px; fill: white; stroke: black; stroke-width: 2px; stroke-linecap: butt; stroke-linejoin: miter;">' + id + '</text></svg></div>';
                 cursor.style.opacity = '0.25';
-                cursor.style.transform = 'scale( ' + params.debugCursorSale + ' )';
+                // FIXME: The pivot point of scaling is totall off
+                cursor.style.transform = 'scale( ' + params.debugCursorScale + ' )';
                 return cursor;
             },
             downHandler: cursor => cursor.style.opacity = '1.0',
@@ -93,6 +97,8 @@ class DebugOverlay {
     }
 
     clear() {
-        $(this._debugConsole).empty();
+        this._debugConsole.innerHTML = '';
     }
 }
+
+export default DebugOverlay;

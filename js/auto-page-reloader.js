@@ -137,3 +137,5 @@ class IdleReloader {
         return this._isEnabled;
     }
 }
+
+export {ReloadButtons, IdleReloader};

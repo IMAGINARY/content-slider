@@ -104,3 +104,5 @@ class Cursor {
         return this._isEnabled;
     }
 }
+
+export default Cursor;

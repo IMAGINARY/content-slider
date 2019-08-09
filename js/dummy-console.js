@@ -26,3 +26,5 @@ class DummyConsole {
         return window.console === _dummyConsole;
     }
 }
+
+export default DummyConsole;

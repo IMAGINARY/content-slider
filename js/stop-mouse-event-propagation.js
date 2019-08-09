@@ -40,3 +40,5 @@ class MouseEventSupporessor {
         return this._isEnabled;
     }
 }
+
+export default MouseEventSupporessor;

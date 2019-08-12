@@ -49,7 +49,7 @@ if [ $# -ne 0 ]; then
 	xset -q
 	echo "====================================================="
 	echo "start the exhibit"
-	php index.php
+	repeat-exhibit ./exhibit-content-slider
 	kill $UNCLUTTER_PID
 	kill $COMPTON_PID
 	wait

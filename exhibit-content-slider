@@ -1,0 +1,21 @@
+#!/bin/bash
+# This script is supposed to run the content-slider exhibit.
+# The wrapper script is supposed to be visible in ps -a resp. ps -u `id -u` to make
+# it easy to kill it (by a script or manually)
+
+PIDS=""
+function finish() {
+  kill $PIDS >/dev/null 2>&1
+}
+trap finish SIGINT SIGTERM EXIT
+
+# Change into the directory of this script
+cd "${0%/*}" || exit 1
+
+# Launch the exhibit in the background
+kiosk-browser $KIOSK_OPTS --kiosk --fullscreen --reload-unresponsive 10 --serve "$(pwd)" index.html &
+PID_UI=$!
+PIDS="$PIDS $PID_UI"
+
+# Wait for the exhibit to finish or until the signal trap is triggered
+wait $PID_UI

@@ -30,8 +30,8 @@ class ReloadButtons {
     fadeOutAndReload() {
         this._parentElem.style.animationsDelay = '0s';
         this._parentElem.style.animation = "";
-        this._parentElem.className = "fade-out";
-        setTimeout(() => location.reload(), 1500);
+        this._parentElem.classList.add("fade-out");
+        this._parentElem.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
     }
 
     enable() {
@@ -83,7 +83,7 @@ class IdleReloader {
         document.body.style.animationsDelay = '0s';
         document.body.style.animation = "";
         document.body.className = "fade-out";
-        setTimeout(() => location.reload(), 1500);
+        document.body.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
     }
 
     enable() {

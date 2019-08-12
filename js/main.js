@@ -64,7 +64,14 @@ function applyConfig(config) {
     // fade-in the whole page after some user-defined delay
     const wrapper = document.getElementById('wrapper');
     wrapper.style.animationDelay = `${config['fadeinOnLoadDelay']}s`;
-    wrapper.classList.add('fade-in');
+    wrapper.style.animationPlayState = 'running';
+    const endOfFadeInHandler = ae => {
+        if (ae.animationName === 'fadeIn') {
+            wrapper.classList.remove('fade-in');
+            wrapper.removeEventListener('animationend', endOfFadeInHandler);
+        }
+    };
+    wrapper.addEventListener('animationend', endOfFadeInHandler);
 
     console.log(document.getElementById('wrapper').style.animationDelay, config['fadeinOnLoadDelay']);
 

@@ -16,14 +16,26 @@ The `common` URL parameter can be used multiple times to load several libraries.
             overflow: hidden;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="vendor/loadjs/3.6.1/loadjs.min.js"></script>
     <script type="module">
         import ErrorApp from './js/ErrorApp.js';
 
-        const searchParams = new URLSearchParams(window.location.search);
+        async function domContentLoaded() {
+            return await new Promise((resolve) => {
+                if (
+                    document.readyState === "complete" ||
+                    (document.readyState !== "loading" && !document.documentElement.doScroll)
+                ) {
+                    setTimeout(resolve, 0);
+                } else {
+                    document.addEventListener("DOMContentLoaded", resolve);
+                }
+            });
+        }
 
-        $.ready.then(async () => {
+        async function init() {
+            const searchParams = new URLSearchParams(window.location.search);
+
             // set the viewport size
             const viewport = document.getElementById('viewport');
             viewport.style.width = `${window.innerWidth}px`;
@@ -46,7 +58,9 @@ The `common` URL parameter can be used multiple times to load several libraries.
             })();
             viewport.appendChild(app.domElement);
             window.app.ready.then(() => window.app.resume());
-        });
+        }
+
+        domContentLoaded().then(init);
     </script>
 </head>
 <body>

@@ -8,7 +8,6 @@ fonts/BrownStd-Regular.woff
 # local and temporary files
 config.yaml
 config.*.yaml
-timestamp
 
 # Created by https://www.gitignore.io/api/webstorm+all
 # Edit at https://www.gitignore.io/?templates=webstorm+all

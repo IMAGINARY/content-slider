@@ -49,7 +49,6 @@ apps:
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/cca43ef80c4578e844e2ff333fe75459cc4487e1/platonic-solids/PlatonicSolidsApp.js
 
 common:
-  - ../content-slider-apps/common/js/Cindy.js
-  - ../content-slider-apps/common/js/Cindy3D.js
-  - ../content-slider-apps/common/js/QuickHull3D.js
-
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/cca43ef80c4578e844e2ff333fe75459cc4487e1/common/js/Cindy.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/cca43ef80c4578e844e2ff333fe75459cc4487e1/common/js/Cindy3D.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/cca43ef80c4578e844e2ff333fe75459cc4487e1/common/js/QuickHull3D.js

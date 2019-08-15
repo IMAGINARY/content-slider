@@ -444,3 +444,14 @@ em {
     pointer-events: none;
     transform-origin: 0% 0%;
 }
+
+/********************************
+ * background frame
+ ********************************/
+
+.bg-body {
+    background-color: #ccc;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

@@ -34,7 +34,8 @@
 
                 renderer = new THREE.WebGLRenderer();
 
-                renderer.setClearColor(0xcccccc, 1);
+                const bgColor = window.getComputedStyle(document.body).backgroundColor;
+                renderer.setClearColor(bgColor, 1);
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(2160, 3840);
 
@@ -90,7 +91,7 @@
         </script>
     </head>
 
-    <body id="home" onload="init();">
+    <body id="home" onload="init();" class="bg-body">
         <div id="canvas"></div>
     </body>
 

@@ -14,8 +14,10 @@ async function initializeAppsAndSlider(config) {
         document.body.style.overflow = 'hidden';
 
     // load common JavaScript dependencies
-    await loadjs(config['common'], {async: false, returnPromise: true})
-        .catch(failedUrls => console.error('loading common script failed:', failedUrls));
+    if (typeof config['common'] !== 'undefined' && config['common'] !== null && config['common'].length > 0) {
+        await loadjs(config['common'], {async: false, returnPromise: true})
+            .catch(failedUrls => console.error('loading common script failed:', failedUrls));
+    }
 
     // NOTE: app URLs are resolved relative to the config file
     const loadApp = appUrl => import(new URL(appUrl, config.configUrl)).then(appModule => new appModule.default());

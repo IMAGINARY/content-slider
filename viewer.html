@@ -42,8 +42,11 @@ The `common` URL parameter can be used multiple times to load several libraries.
             viewport.style.height = `${window.innerHeight}px`;
 
             // load common JavaScript dependencies
-            await loadjs(searchParams.getAll('common'), {async: false, returnPromise: true})
-                .catch(failedUrls => console.error('loading common script failed:', failedUrls));
+            const commonScriptUrls = searchParams.getAll('common');
+            if (commonScriptUrls.length > 0) {
+                await loadjs(commonScriptUrls, {async: false, returnPromise: true})
+                    .catch(failedUrls => console.error('loading common script failed:', failedUrls));
+            }
 
             // load single app
             window.appUrl = searchParams.get('app');

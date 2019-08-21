@@ -1,3 +1,11 @@
+function fadeOutAndReload(element) {
+    element.style.animationsDelay = '0s';
+    element.style.animation = "";
+    element.className = "fade-out";
+    element.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
+    element.style.animationPlayState = 'running';
+}
+
 class ReloadButtons {
     constructor(params) {
         this._isEnabled = false;
@@ -5,7 +13,7 @@ class ReloadButtons {
         this._reloadButtonSize = params.reloadButtonSize;
         this._reloadButtonHoldTime = params.reloadButtonHoldTime * 1000;
 
-        const fadeOutHandler = this.fadeOutAndReload.bind(this);
+        const fadeOutHandler = () => fadeOutAndReload(this._parentElem);
         const dblClickHandler = fadeOutHandler;
         const pointerDownHandler = event => event.target.pressTimeout = setTimeout(fadeOutHandler, this._reloadButtonHoldTime);
         const pointerUpHandler = event => clearTimeout(event.target.pressTimeout) && false;
@@ -25,13 +33,6 @@ class ReloadButtons {
         this._tr.addEventListener('dblclick', dblClickHandler);
         this._tr.addEventListener('pointerdown', pointerDownHandler);
         this._tr.addEventListener('pointerup', pointerUpHandler);
-    }
-
-    fadeOutAndReload() {
-        this._parentElem.style.animationsDelay = '0s';
-        this._parentElem.style.animation = "";
-        this._parentElem.classList.add("fade-out");
-        this._parentElem.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
     }
 
     enable() {
@@ -75,15 +76,8 @@ class IdleReloader {
         this._nonIdleHandler = () => {
             console.log("non_idle_handler for reload");
             clearTimeout(this._idleTimer);
-            this._idleTimer = setTimeout(this.fadeOutAndReload.bind(this), this._idleTimeThreshold);
+            this._idleTimer = setTimeout(() => fadeOutAndReload(document.body), this._idleTimeThreshold);
         }
-    }
-
-    fadeOutAndReload() {
-        document.body.style.animationsDelay = '0s';
-        document.body.style.animation = "";
-        document.body.className = "fade-out";
-        document.body.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
     }
 
     enable() {
@@ -138,4 +132,51 @@ class IdleReloader {
     }
 }
 
-export {ReloadButtons, IdleReloader};
+class ErrorReloader {
+    constructor(params) {
+        this._isEnabled = false;
+        this._reloadDelay = params.reloadDelay * 1000;
+        this._reloadTimeout = 0;
+        this._errorEventListener = error => {
+            if (this._reloadTimeout === 0) {
+                // schedule a reload only if it hasn't been scheduled already
+                console.warn(`An error occurred. Reloading page in ${this._reloadDelay / 1000}s. Call window.abortReload() to prevent this.`);
+                this._reloadTimeout = setTimeout(() => fadeOutAndReload(document.body), this._reloadDelay);
+                window.abortReload = () => {
+                    clearTimeout(this._reloadTimeout);
+                    this._reloadTimeout = 0;
+                    delete window.abortReload;
+                };
+            }
+        };
+    }
+
+    enable() {
+        if (!this._isEnabled) {
+            window.addEventListener('error', this._errorEventListener, true);
+            this._isEnabled = true;
+        }
+    }
+
+    disable() {
+        if (this._isEnabled) {
+            window.removeEventListener('error', this._errorEventListener, true);
+            if (typeof window.abortReload !== 'undefined')
+                window.abortReload();
+            this._isEnabled = false;
+        }
+    }
+
+    setEnabled(enable) {
+        if (enable)
+            this.enable();
+        else
+            this.disable();
+    }
+
+    isEnabled() {
+        return this._isEnabled;
+    }
+}
+
+export {ReloadButtons, IdleReloader, ErrorReloader};

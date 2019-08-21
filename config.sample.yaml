@@ -18,6 +18,7 @@ reloadDelay: 10800
 idleDelay: 15
 reloadButtonSize: 40px
 reloadButtonHoldTime: 5
+reloadOnErrorDelay: -1
 
 # variables subject to sliders
 autoSlideDelay: 180

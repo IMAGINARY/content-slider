@@ -3,7 +3,7 @@ import * as sliderFunctions from './slider-functions.js';
 import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';
 import MouseEventSupporessor from './stop-mouse-event-propagation.js';
-import {ReloadButtons, IdleReloader} from './auto-page-reloader.js';
+import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 
@@ -92,6 +92,11 @@ function applyConfig(config) {
         idleDelay: config['idleDelay'],
     });
     idleReloader.setEnabled(true);
+
+    window.errorReloader = new ErrorReloader({
+        reloadDelay: config['reloadOnErrorDelay']
+    });
+    errorReloader.setEnabled(typeof config['reloadOnErrorDelay'] !== 'undefined' && config['reloadOnErrorDelay'] >= 0);
 
     const cursorElem = (() => {
         const tempDiv = document.createElement('div');

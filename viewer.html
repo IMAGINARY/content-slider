@@ -51,14 +51,7 @@ The `common` URL parameter can be used multiple times to load several libraries.
             // load single app
             window.appUrl = searchParams.get('app');
             const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
-            window.app = await (async () => {
-                try {
-                    return await loadApp(appUrl);
-                } catch (err) {
-                    console.error(err);
-                    return new ErrorApp(`Unable to load app "${appUrl}"`);
-                }
-            })();
+            window.app = await loadApp(appUrl);
             viewport.appendChild(app.domElement);
             window.app.ready.then(() => window.app.resume());
         }

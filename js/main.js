@@ -6,6 +6,21 @@ import MouseEventSupporessor from './stop-mouse-event-propagation.js';
 import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
+import '../vendor/whenzel/1.0.2/whenzel.js';
+
+async function loadApp(absoluteAppUrl, configOverrideProcessor) {
+    const appClass = (await import(absoluteAppUrl)).default;
+    const configOverride = configOverrideProcessor(await appClass.getConfigOverrides());
+    console.log('Loading', appClass.name, 'with config override', configOverride);
+    return new appClass(configOverride);
+}
+
+function processConfigOverrides(overrides, today) {
+    return overrides
+        .filter(override => override.type === 'whenzel')
+        .filter(override => Whenzel.test(override.when, today))
+        .reduce((acc, cur) => Object.assign(acc, cur.config), {});
+}
 
 async function initializeAppsAndSlider(config) {
     if (config['hideCursor'])
@@ -20,11 +35,11 @@ async function initializeAppsAndSlider(config) {
     }
 
     // NOTE: app URLs are resolved relative to the config file
-    const loadApp = appUrl => import(new URL(appUrl, config.configUrl)).then(appModule => new appModule.default());
+    const configOverrideProcessor = overrides => processConfigOverrides(overrides, config.today);
     const loadSlide = async appUrl => {
         const app = await (async () => {
             try {
-                return await loadApp(appUrl);
+                return await loadApp(new URL(appUrl, config.configUrl), configOverrideProcessor);
             } catch (err) {
                 console.error(err);
                 return new ErrorApp(`Unable to load app "${appUrl}"`);
@@ -154,19 +169,36 @@ async function request(obj) {
     });
 }
 
+function parseConfig(configSrc, configUrl) {
+    const jsYamlOptions = {
+        filename: configUrl,
+        onWarning: w => console.warn("Warning while parsing config file:", w),
+        schema: jsyaml.JSON_SCHEMA,
+    };
+    const config = jsyaml.safeLoad(configSrc, jsYamlOptions);
+
+    config.configUrl = configUrl;
+
+    // date override supplied?
+    if (typeof config.today !== 'undefined') {
+        const todaysTimestamp = Date.parse(config.today);
+        if (Number.isNaN(todaysTimestamp))
+            throw new Error(`Invalid timestamp provided for config property 'today': ${config['reloadOnErrorDelay']}`);
+        else
+            config.today = new Date(todaysTimestamp);
+    } else {
+        config.today = new Date();
+    }
+
+    console.log(config);
+    return config;
+}
 
 async function tryWithConfigUrl(configUrl) {
     try {
         const configSrc = await request({url: configUrl});
         try {
-            const jsYamlOptions = {
-                filename: configUrl,
-                onWarning: w => console.warn("Warning while parsing config file:", w),
-                schema: jsyaml.JSON_SCHEMA,
-            };
-            const config = jsyaml.safeLoad(configSrc, jsYamlOptions);
-            config.configUrl = configUrl;
-            console.log(config);
+            const config = parseConfig(configSrc, configUrl);
             await domContentLoaded();
 
             try {

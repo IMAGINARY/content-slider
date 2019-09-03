@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.13.1/js-yaml.min.js';
+import '../vendor/js-yaml/3.13.1/js-yaml.min.js';
 import * as sliderFunctions from './slider-functions.js';
 import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';

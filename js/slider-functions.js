@@ -139,14 +139,7 @@ function jssor_app_slider_starter(containerId, apps, config) {
         }
     };
 
-    // just put this function into the event loop to be executed
-    // at ANY LATER TIME BUT NOT NOW
-    window.setTimeout(function () {
-        // restart all slides, but resume only slide 0
-        apps.forEach((app, i) => {
-            app.ready.finally(() => app.restart(i !== 0));
-        });
-    }, (config['fadeinOnLoadDelay'] < 1 ? 1 : config['fadeinOnLoadDelay']) * 750);
+    apps.forEach((app, i) => app.ready.finally(() => i == jssor_slider.$CurrentIndex() ? app.resume() : app.pause()));
 
     // enable or disable bullet navigation
     if (config.disableBulletNavigation) {

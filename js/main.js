@@ -8,6 +8,20 @@ import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
+function fadeIn(delayInS) {
+    // fade-in the whole page after some user-defined delay
+    const wrapper = document.getElementById('wrapper');
+    wrapper.style.animationDelay = `${delayInS}s`;
+    wrapper.style.animationPlayState = 'running';
+    const endOfFadeInHandler = ae => {
+        if (ae.animationName === 'fadeIn') {
+            wrapper.classList.remove('fade-in');
+            wrapper.removeEventListener('animationend', endOfFadeInHandler);
+        }
+    };
+    wrapper.addEventListener('animationend', endOfFadeInHandler);
+}
+
 async function loadApp(absoluteAppUrl, configOverrideProcessor) {
     const appClass = (await import(absoluteAppUrl)).default;
     const configOverride = configOverrideProcessor(await appClass.getConfigOverrides());
@@ -77,20 +91,6 @@ async function initializeAppsAndSlider(config) {
 function applyConfig(config) {
     // set the background animation
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
-
-    // fade-in the whole page after some user-defined delay
-    const wrapper = document.getElementById('wrapper');
-    wrapper.style.animationDelay = `${config['fadeinOnLoadDelay']}s`;
-    wrapper.style.animationPlayState = 'running';
-    const endOfFadeInHandler = ae => {
-        if (ae.animationName === 'fadeIn') {
-            wrapper.classList.remove('fade-in');
-            wrapper.removeEventListener('animationend', endOfFadeInHandler);
-        }
-    };
-    wrapper.addEventListener('animationend', endOfFadeInHandler);
-
-    console.log(document.getElementById('wrapper').style.animationDelay, config['fadeinOnLoadDelay']);
 
     window.mouseEventSuppressor = new MouseEventSupporessor();
     mouseEventSuppressor.setEnabled(config['disableMouseEvents']);
@@ -177,8 +177,6 @@ function parseConfig(configSrc, configUrl) {
     };
     const config = jsyaml.safeLoad(configSrc, jsYamlOptions);
 
-    config.configUrl = configUrl;
-
     // date override supplied?
     if (typeof config.today !== 'undefined') {
         const todaysTimestamp = Date.parse(config.today);
@@ -189,16 +187,22 @@ function parseConfig(configSrc, configUrl) {
     } else {
         config.today = new Date();
     }
-
-    console.log(config);
     return config;
 }
 
 async function tryWithConfigUrl(configUrl) {
     try {
         const configSrc = await request({url: configUrl});
+        let config = {};
         try {
-            const config = parseConfig(configSrc, configUrl);
+            try {
+                config = parseConfig(configSrc, configUrl);
+            } finally {
+                config.configUrl = configUrl;
+                config.configSrc = configSrc;
+                console.log(config);
+            }
+
             await domContentLoaded();
 
             try {
@@ -218,6 +222,7 @@ async function tryWithConfigUrl(configUrl) {
         } catch (err) {
             console.error("Error while parsing config file:", err.message, err);
         }
+        return config;
     } catch (err) {
         console.error("Error retrieving config file:", configUrl.href, `${err.status} (${err.statusText})`, err);
         throw err;
@@ -226,11 +231,17 @@ async function tryWithConfigUrl(configUrl) {
 
 async function main(options) {
     try {
-        await tryWithConfigUrl(new URL(options.configUrl));
+        try {
+            window.config = await tryWithConfigUrl(new URL(options.configUrl));
+        } catch (err) {
+            const fallbackConfigUrl = new URL('config.sample.yaml', window.location.href);
+            console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
+            window.config = await tryWithConfigUrl(fallbackConfigUrl);
+        }
+        fadeIn(window.config.fadeinOnLoadDelay);
     } catch (err) {
-        const fallbackConfigUrl = new URL('config.sample.yaml', window.location.href);
-        console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
-        await tryWithConfigUrl(fallbackConfigUrl);
+        fadeIn(0);
+        throw err;
     }
 }
 

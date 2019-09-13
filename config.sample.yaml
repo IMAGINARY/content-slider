@@ -41,25 +41,25 @@ touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, 
 # today: '2019-05-27'
 
 apps:
-  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/2048/Game2048App.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/surfer/SurferApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/ifs/IFSApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/iornament/iOrnamentApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/polytope-morpher/PolytopeMorpherApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/kaleidoscope/KaleidoscopeApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/double-pendulum/DoublePendulumApp.js
-  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/car-park/CarParkApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/lunar-lockout/LunarApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/swarm/SwarmApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/sphere-chaos/SphereChaosApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/image-spiral/ImageSpiralApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/solitaire/SolitaireApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/platonic-solids/PlatonicSolidsApp.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/2048/Game2048App.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/surfer/SurferApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/ifs/IFSApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/iornament/iOrnamentApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/polytope-morpher/PolytopeMorpherApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/kaleidoscope/KaleidoscopeApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/double-pendulum/DoublePendulumApp.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/car-park/CarParkApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/space-rescue/SpaceApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/swarm/SwarmApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/sphere-chaos/SphereChaosApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/image-spiral/ImageSpiralApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/solitaire/SolitaireApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/platonic-solids/PlatonicSolidsApp.js
 
 common:
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/Cindy.js
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/Cindy3D.js
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/CindyGL.js
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/QuickHull3D.js
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/katex-plugin.js
-  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/92455c722affe6be2ddc7f333d58e6732d40d565/common/js/symbolic.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/Cindy.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/Cindy3D.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/CindyGL.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/QuickHull3D.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/katex-plugin.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/common/js/symbolic.js

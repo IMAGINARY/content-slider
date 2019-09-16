@@ -18,24 +18,25 @@ function refreshAt(hours, minutes, seconds) {
 // TODO: Do not hard-code the refresh time
 refreshAt(0, 0, 0);
 
-function simple_fade_slider(containerID) {
+function simple_fade_slider(slidesWrapperElement) {
+    const slides = slidesWrapperElement.children;
+    if (slides.length > 0) {
+        let currSlide = 0;
 
-    const slides = document.getElementById(containerID).children[0].children;
-    let currSlide = 0;
-
-    function rotateSlide() {
-        slides[currSlide].classList.remove('active');
-        currSlide++;
-        if (currSlide >= slides.length) {
-            currSlide = 0;
+        function rotateSlide() {
+            slides[currSlide].classList.remove('active');
+            currSlide++;
+            if (currSlide >= slides.length) {
+                currSlide = 0;
+            }
+            slides[currSlide].classList.add('active');
         }
-        slides[currSlide].classList.add('active');
-    }
 
-    setInterval(function () {
+        setInterval(function () {
+            rotateSlide();
+        }, 10000);
         rotateSlide();
-    }, 10000);
-    rotateSlide();
+    }
 }
 
 function createSlide(app) {

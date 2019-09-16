@@ -6,6 +6,7 @@ import MouseEventSupporessor from './stop-mouse-event-propagation.js';
 import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
+import * as MessagesOfTheDayLoader from './MessagesOfTheDayLoader.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
 function fadeIn(delayInS) {
@@ -92,6 +93,19 @@ function applyConfig(config) {
     // set the background animation
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
 
+    // add messages of the day
+    // TODO: a proper user-facing warning
+    if (typeof config.messages.error !== 'undefined')
+        console.warn(config.messages.error); // empty list of messages, no fatal error but output a warning
+    const modSlidesWrapper = document.querySelector('#slider_top [u="slides"]');
+    const createModSlide = message => {
+        const div = document.createElement('div');
+        div.innerHTML = message;
+        return div;
+    };
+    config.messages.filtered.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
+    sliderFunctions.simple_fade_slider(modSlidesWrapper);
+
     window.mouseEventSuppressor = new MouseEventSupporessor();
     mouseEventSuppressor.setEnabled(config['disableMouseEvents']);
 
@@ -169,7 +183,7 @@ async function request(obj) {
     });
 }
 
-function parseConfig(configSrc, configUrl) {
+async function parseConfig(configSrc, configUrl) {
     const jsYamlOptions = {
         filename: configUrl,
         onWarning: w => console.warn("Warning while parsing config file:", w),
@@ -187,6 +201,9 @@ function parseConfig(configSrc, configUrl) {
     } else {
         config.today = new Date();
     }
+
+    config.messages = await MessagesOfTheDayLoader.load(config.messagesUrl, config.today);
+
     return config;
 }
 
@@ -196,7 +213,7 @@ async function tryWithConfigUrl(configUrl) {
         let config = {};
         try {
             try {
-                config = parseConfig(configSrc, configUrl);
+                config = await parseConfig(configSrc, configUrl);
             } finally {
                 config.configUrl = configUrl;
                 config.configSrc = configSrc;

@@ -40,6 +40,9 @@ touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, 
 # ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
 # today: '2019-05-27'
 
+# URL to the file that contains the messages of the day (JSON format)
+messagesUrl: messages.json
+
 apps:
   - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/2048/Game2048App.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/34d18f2c5be3bab5b593f2cd6e9d1f420347fe79/surfer/SurferApp.js

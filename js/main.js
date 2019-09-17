@@ -7,6 +7,7 @@ import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.j
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 import * as MessagesOfTheDayLoader from './MessagesOfTheDayLoader.js';
+import * as AnniversariesLoader from './AnniverariesLoader.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
 function fadeIn(delayInS) {
@@ -94,16 +95,14 @@ function applyConfig(config) {
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
 
     // add messages of the day
-    // TODO: a proper user-facing warning
-    if (typeof config.messages.error !== 'undefined')
-        console.warn(config.messages.error); // empty list of messages, no fatal error but output a warning
+    // TODO: a proper user-facing warning related to parsing the messages files
     const modSlidesWrapper = document.querySelector('#slider_top [u="slides"]');
     const createModSlide = message => {
         const div = document.createElement('div');
         div.innerHTML = message;
         return div;
     };
-    config.messages.filtered.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
+    config.messagesOfTheDay.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
     sliderFunctions.simple_fade_slider(modSlidesWrapper);
 
     window.mouseEventSuppressor = new MouseEventSupporessor();
@@ -202,7 +201,9 @@ async function parseConfig(configSrc, configUrl) {
         config.today = new Date();
     }
 
-    config.messages = await MessagesOfTheDayLoader.load(config.messagesUrl, config.today);
+    config.messages = await MessagesOfTheDayLoader.load(new URL(config.messagesUrl, configUrl), config.today);
+    config.anniversaries = await AnniversariesLoader.load(new URL(config.anniversariesUrl, configUrl), config.today);
+    config.messagesOfTheDay = config.messages.filtered.concat(config.anniversaries.filtered);
 
     return config;
 }

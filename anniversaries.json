@@ -1,0 +1,22 @@
+{
+  "types": [
+    {
+      "type": "birthday",
+      "message": "%name% was born %%years_ago%% years ago. %additional_message%"
+    }
+  ],
+  "anniversaries": [
+    {
+      "type": "birthday",
+      "name": "Carl Friedrich Gauß",
+      "date": "1777-04-30",
+      "every": "year",
+      "additional_message": "Some background info."
+    },
+    {
+      "message": "The Mathematikon has been opened %%month_ago%% month ago.",
+      "date": "2016-02-16",
+      "every": "day"
+    }
+  ]
+}

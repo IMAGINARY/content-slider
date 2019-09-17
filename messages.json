@@ -1,18 +1,6 @@
 [
   {
     "when": "????-??-??",
-    "message": "Interaktive Mathematik<br/> Berühren Sie den Bildschirm!"
-  },
-  {
-    "when": "????-??-??",
-    "message": "Hands-On Mathematik<br/>Berühren Sie den Bildschirm!"
-  },
-  {
-    "when": "????-??-??",
-    "message": "Mathematische Experimente<br/>Berühren Sie den Bildschirm!"
-  },
-  {
-    "when": "????-??-??",
-    "message": "Information und Hintergründe<br/>www.mathematikon.de/imaginary"
+    "message": "Interaktive Mathematik<br/> Berühren Sie den Bildschirm! Hands-On Mathematik<br/>Berühren Sie den Bildschirm! Hands-On Mathematik<br/>Berühren Sie den Bildschirm!"
   }
 ]

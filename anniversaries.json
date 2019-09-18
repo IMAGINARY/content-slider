@@ -3,6 +3,7 @@
     {
       "type": "birthday",
       "message": "%name% wurde vor %%ago(YEARS)%% geboren.%additional_message%",
+      "every": "year",
       "labels": {
         "singular": "|||||||&nbsp;Jahr|||",
         "plural": "|||||||&nbsp;Jahren|||"
@@ -19,7 +20,6 @@
       "type": "birthday",
       "name": "Carl Friedrich Gauß",
       "date": "1777-04-30",
-      "every": "year",
       "additional_message": " Hier könnte Ihr Text stehen."
     },
     {

@@ -37,7 +37,8 @@
         },
         "required": [
           "type",
-          "message"
+          "message",
+          "every"
         ]
       }
     },
@@ -87,8 +88,7 @@
             },
             "required": [
               "type",
-              "date",
-              "every"
+              "date"
             ]
           },
           {

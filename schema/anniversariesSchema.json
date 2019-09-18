@@ -12,6 +12,27 @@
           },
           "message": {
             "type": "string"
+          },
+          "labels": {
+            "type": "object",
+            "properties": {
+              "singular": {
+                "type": "string"
+              },
+              "plural": {
+                "type": "string"
+              },
+              "last": {
+                "type": "string"
+              },
+              "delim": {
+                "type": "string"
+              },
+              "empty": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "required": [
@@ -19,6 +40,27 @@
           "message"
         ]
       }
+    },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "singular": {
+          "type": "string"
+        },
+        "plural": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "delim": {
+          "type": "string"
+        },
+        "empty": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "anniversaries": {
       "type": "array",
@@ -66,6 +108,27 @@
                   "month",
                   "day"
                 ]
+              },
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "singular": {
+                    "type": "string"
+                  },
+                  "plural": {
+                    "type": "string"
+                  },
+                  "last": {
+                    "type": "string"
+                  },
+                  "delim": {
+                    "type": "string"
+                  },
+                  "empty": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
               }
             },
             "required": [

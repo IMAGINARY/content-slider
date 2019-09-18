@@ -33,21 +33,23 @@ async function validateMessages(mods) {
 
 function replaceKeywords(anniversary, now) {
     const date = new Date(anniversary.date);
-    const timespan_years = countdown(date, now, countdown.YEARS);
-    const timespan_month = countdown(date, now, countdown.MONTHS);
-    const timespan_days = countdown(date, now, countdown.DAYS);
     return anniversary.message
         .replace(/(%%([^%]+)%%)/g, (match, $1, $2) => {
             // replace built-in keywords
-            switch ($2) {
-                case 'years_ago':
-                    return timespan_years.years;
-                case 'month_ago':
-                    return timespan_month.months;
-                case 'days_ago':
-                    return timespan_days.days;
-                default:
-                    return $1;
+            const ago_string_regex = /^ago\(((?:DEFAULT|ALL|MILLENNIA|CENTURIES|DECADES|YEARS|MONTHS|WEEKS|DAYS|HOURS|MINUTES|SECONDS|MILLISECONDS)(?:\|(?:DEFAULT|ALL|MILLENNIA|CENTURIES|DECADES|YEARS|MONTHS|WEEKS|DAYS|HOURS|MINUTES|SECONDS|MILLISECONDS))*)\)$/;
+            if (ago_string_regex.test($2)) {
+                const unitsString = ago_string_regex.exec($2)[1];
+                const unitRegex = /DEFAULT|ALL|MILLENNIA|CENTURIES|DECADES|YEARS|MONTHS|WEEKS|DAYS|HOURS|MINUTES|SECONDS|MILLISECONDS/g;
+                const units = Array.from(unitsString.matchAll(unitRegex))
+                    .map(m => m[0])
+                    .reduce((acc, cur) => {
+                        console.log(acc, cur, acc | countdown[cur]);
+                        return acc | countdown[cur];
+                    }, 0);
+                return countdown(date, now, units).toString();
+            } else {
+                // unknown keyword
+                return $1;
             }
         }).replace(/(%([^%]+)%)/g, (match, $1, $2) => {
             // replace keywords corresponding to anniversary properties
@@ -79,21 +81,34 @@ function whenzelize(anniversary, now) {
 }
 
 function whenzelizeAll(anniversaryJson, now) {
-    const messages = {};
-    anniversaryJson.types.forEach(t => messages[t.type] = t.message);
+    const {messages, labels} = anniversaryJson.types.reduce((acc, cur) => {
+        acc.messages[cur.type] = cur.message;
+        acc.labels[cur.type] = cur.labels;
+        return acc;
+    }, {messages: {}, labels: {}});
     const anniversaries = [];
     for (let anniversary of anniversaryJson.anniversaries) {
+        countdown.resetLabels();
+        setCountdownLabels(anniversaryJson.labels);
         if (typeof anniversary.type !== 'undefined') {
+            setCountdownLabels(labels[anniversary.type]);
             anniversary = Object.assign({}, anniversary);
             if (typeof messages[anniversary.type] !== 'undefined')
                 anniversary.message = messages[anniversary.type];
             else
                 throw new Error(`Unknown anniversary type '${anniversary.type}'`);
             delete anniversary.type;
+        } else {
+            setCountdownLabels(anniversary.labels);
         }
         anniversaries.push(whenzelize(anniversary, now));
     }
     return anniversaries;
+}
+
+function setCountdownLabels(labels) {
+    if (typeof labels !== 'undefined')
+        countdown.setLabels(labels.singular, labels.plural, labels.last, labels.delim, labels.empty,);
 }
 
 async function load(url, now) {

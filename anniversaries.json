@@ -2,21 +2,34 @@
   "types": [
     {
       "type": "birthday",
-      "message": "%name% was born %%years_ago%% years ago. %additional_message%"
+      "message": "%name% wurde vor %%ago(YEARS)%% geboren.%additional_message%",
+      "labels": {
+        "singular": "|||||||&nbsp;Jahr|||",
+        "plural": "|||||||&nbsp;Jahren|||"
+      }
     }
   ],
+  "labels": {
+    "delim": " und ",
+    "last": ", ",
+    "empty": ""
+  },
   "anniversaries": [
     {
       "type": "birthday",
       "name": "Carl Friedrich Gauß",
       "date": "1777-04-30",
       "every": "year",
-      "additional_message": "Some background info."
+      "additional_message": " Hier könnte Ihr Text stehen."
     },
     {
-      "message": "The Mathematikon has been opened %%month_ago%% month ago.",
+      "message": "Das Mathematikon wurde vor %%ago(YEARS|MONTHS|DAYS)%% eröffnet.",
       "date": "2016-02-16",
-      "every": "day"
+      "every": "day",
+      "labels": {
+        "singular": "||||&nbsp;Tag||&nbsp;Monat|&nbsp;Jahr|||",
+        "plural": "||||&nbsp;Tagen||&nbsp;Monaten|&nbsp;Jahren|||"
+      }
     }
   ]
 }

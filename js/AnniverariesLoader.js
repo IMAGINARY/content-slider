@@ -1,11 +1,8 @@
+import * as LibLoader from './LibLoader.js';
 import '../vendor/ajv/6.10.2/ajv.min.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
 let countdown; // FIXME: initialized in load()
-const countdownJsPromise = fetch(new URL('../vendor/countdown.js/2.6.0/countdown.min.js', import.meta.url))
-    .then(responde => responde.text())
-    .then(scriptText => eval(scriptText + "; countdown;"));
-
 let validateFuncPromise = getValidateFuncPromise();
 
 async function fetchJson(url) {
@@ -100,8 +97,8 @@ function whenzelizeAll(anniversaryJson, now) {
 }
 
 async function load(url, now) {
-    // FIXME: loading of countdown.js doesn't work via import, so I fetch it async and load it via eval :-(
-    countdown = await countdownJsPromise;
+    // FIXME: loading of countdown.js doesn't work via import and I work around it using a custom libLoader
+    countdown = await LibLoader.countdownjs();
     try {
         const messages = {};
         messages.source = await validateMessages(await fetchJson(url));

@@ -1,6 +1,11 @@
 import '../vendor/ajv/6.10.2/ajv.min.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
+let countdown; // FIXME: initialized in load()
+const countdownJsPromise = fetch(new URL('../vendor/countdown.js/2.6.0/countdown.min.js', import.meta.url))
+    .then(responde => responde.text())
+    .then(scriptText => eval(scriptText + "; countdown;"));
+
 let validateFuncPromise = getValidateFuncPromise();
 
 async function fetchJson(url) {
@@ -29,23 +34,21 @@ async function validateMessages(mods) {
     return mods;
 }
 
-function diffDates(older, newer) {
-    return {years: "yyyy", month: "mm", days: "dd"};
-}
-
 function replaceKeywords(anniversary, now) {
     const date = new Date(anniversary.date);
-    const diff = diffDates(date, now);
+    const timespan_years = countdown(date, now, countdown.YEARS);
+    const timespan_month = countdown(date, now, countdown.MONTHS);
+    const timespan_days = countdown(date, now, countdown.DAYS);
     return anniversary.message
         .replace(/(%%([^%]+)%%)/g, (match, $1, $2) => {
             // replace built-in keywords
             switch ($2) {
                 case 'years_ago':
-                    return diff.years;
+                    return timespan_years.years;
                 case 'month_ago':
-                    return diff.month;
+                    return timespan_month.months;
                 case 'days_ago':
-                    return diff.days;
+                    return timespan_days.days;
                 default:
                     return $1;
             }
@@ -97,6 +100,8 @@ function whenzelizeAll(anniversaryJson, now) {
 }
 
 async function load(url, now) {
+    // FIXME: loading of countdown.js doesn't work via import, so I fetch it async and load it via eval :-(
+    countdown = await countdownJsPromise;
     try {
         const messages = {};
         messages.source = await validateMessages(await fetchJson(url));

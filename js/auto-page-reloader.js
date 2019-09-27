@@ -146,6 +146,7 @@ class ErrorReloader {
                     clearTimeout(this._reloadTimeout);
                     this._reloadTimeout = 0;
                     delete window.abortReload;
+                    console.warn('Scheduled page reloading aborted.');
                 };
             }
         };

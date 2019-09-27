@@ -1,4 +1,4 @@
-import '../vendor/js-yaml/3.13.1/js-yaml.min.js';
+import * as ConfigLoader from './ConfigLoader.js';
 import * as sliderFunctions from './slider-functions.js';
 import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';
@@ -182,14 +182,7 @@ async function request(obj) {
     });
 }
 
-async function parseConfig(configSrc, configUrl) {
-    const jsYamlOptions = {
-        filename: configUrl,
-        onWarning: w => console.warn("Warning while parsing config file:", w),
-        schema: jsyaml.JSON_SCHEMA,
-    };
-    const config = jsyaml.safeLoad(configSrc, jsYamlOptions);
-
+async function preprocessConfig(config) {
     // date override supplied?
     if (typeof config.today !== 'undefined') {
         const todaysTimestamp = Date.parse(config.today);
@@ -201,8 +194,8 @@ async function parseConfig(configSrc, configUrl) {
         config.today = new Date();
     }
 
-    config.messages = await MessagesOfTheDayLoader.load(new URL(config.messagesUrl, configUrl), config.today);
-    config.anniversaries = await AnniversariesLoader.load(new URL(config.anniversariesUrl, configUrl), config.today);
+    config.messages = await MessagesOfTheDayLoader.load(new URL(config.messagesUrl, config.configUrl), config.today);
+    config.anniversaries = await AnniversariesLoader.load(new URL(config.anniversariesUrl, config.configUrl), config.today);
     config.messagesOfTheDay = config.messages.filtered.concat(config.anniversaries.filtered);
 
     return config;
@@ -210,40 +203,40 @@ async function parseConfig(configSrc, configUrl) {
 
 async function tryWithConfigUrl(configUrl) {
     try {
-        const configSrc = await request({url: configUrl});
-        let config = {};
+        const config = await preprocessConfig(await ConfigLoader.load(configUrl));
+        await domContentLoaded();
+
         try {
+            applyConfig(config);
             try {
-                config = await parseConfig(configSrc, configUrl);
-            } finally {
-                config.configUrl = configUrl;
-                config.configSrc = configSrc;
-                console.log(config);
-            }
+                const sliders = await initializeAppsAndSlider(config);
+                console.log('All apps initialized (not necessarily successfully)');
 
-            await domContentLoaded();
-
-            try {
-                applyConfig(config);
-                try {
-                    const sliders = await initializeAppsAndSlider(config);
-                    console.log('All apps initialized (not necessarily successfully)');
-
-                    // store sliders as global variables to ease debugging
-                    window.sliders = sliders;
-                } catch (err) {
-                    console.error("Error during slider and app initialization:", err);
-                }
+                // store sliders as global variables to ease debugging
+                window.sliders = sliders;
             } catch (err) {
-                console.error("Error while applying config:", err);
+                console.error("Error during slider and app initialization:", err);
             }
         } catch (err) {
-            console.error("Error while parsing config file:", err.message, err);
+            console.error("Error while applying config:", err);
         }
+        
         return config;
     } catch (err) {
-        console.error("Error retrieving config file:", configUrl.href, `${err.status} (${err.statusText})`, err);
-        throw err;
+        switch (err.name) {
+            case 'FetchError':
+            case 'HTTPError':
+                console.error("Error retrieving config file:", configUrl.href, `${err.status} (${err.statusText})`, err);
+                throw err;
+            case 'SyntaxError':
+                console.error("Error while parsing config file:", err.message, err);
+                break;
+            case 'ValidationError':
+                console.error("Error while validating config file:", err.message, err);
+                break;
+            default:
+                throw err;
+        }
     }
 }
 

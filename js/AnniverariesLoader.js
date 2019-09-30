@@ -92,7 +92,6 @@ async function load(url, now) {
         const messages = {};
         const json = await Fetcher.fetchJson(url);
         messages.unprocessed = await AjvUtils.validateAndThrowOnError(json, await validateFuncPromise);
-        console.log(messages.unprocessed);
         messages.all = whenzelizeAll(messages.unprocessed, now);
         messages.filtered = messages.all.filter(mod => Whenzel.test(mod.when, now));
         return messages;

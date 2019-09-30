@@ -103,6 +103,14 @@ function applyConfig(config) {
         const slideContentDiv = document.createElement('div');
         slideContentDiv.classList.add('slide-content');
         slideContentDiv.innerHTML = message;
+        const textLen = slideContentDiv.textContent.length;
+        if (textLen > 100) {
+            slideContentDiv.classList.add('slide-content-s');
+        } else if (textLen > 40) {
+            slideContentDiv.classList.add('slide-content-m');
+        } else {
+            slideContentDiv.classList.add('slide-content-l');
+        }
         slideDiv.append(slideContentDiv);
         return slideDiv;
     };

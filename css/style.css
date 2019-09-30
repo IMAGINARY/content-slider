@@ -320,12 +320,6 @@ em {
     left: 3%;
     width: 94%;
     height: 500px;
-	font-size: 90px;
-	line-height: 110px;
-	font-family: "light";
-	text-align: center;
-	text-transform: uppercase;
-	letter-spacing: 4px;
 }
 
 
@@ -355,6 +349,24 @@ em {
 .top_slider_slides .slide .slide-content {
     display: table-cell;
     vertical-align: middle;
+    font-size: 90px;
+    line-height: 1.2;
+    font-family: "light";
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.top_slider_slides .slide .slide-content-s {
+    font-size: 70px;
+}
+
+.top_slider_slides .slide .slide-content-m {
+    font-size: 100px;
+}
+
+.top_slider_slides .slide .slide-content-l {
+    font-size: 130px;
 }
 
 .top_slider_slides div.active {

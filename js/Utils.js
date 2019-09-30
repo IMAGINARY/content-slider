@@ -1,4 +1,6 @@
 import '../vendor/js-yaml/3.13.1/js-yaml.min.js';
+import '../vendor/whenzel/1.0.2/whenzel.js';
+import '../vendor/ajv/6.10.2/ajv.min.js';
 
 function handleHTTPError(response) {
     if (!response.ok) {
@@ -51,4 +53,44 @@ class Fetcher {
     }
 }
 
-export {Fetcher};
+class AjvUtils {
+    static validateAndThrowOnError(subject, validateFunc) {
+        validateFunc(subject);
+
+        if (validateFunc.errors !== null && validateFunc.errors.length > 0) {
+            const error = validateFunc.errors[0];
+            const validationError = new Error(error.dataPath + ": " + error.data + " " + error.message);
+            validationError.name = "ValidationError";
+            throw validationError;
+        }
+
+        return subject;
+    }
+
+    /***
+     * Creates a AJV validation function that utilized the supplied schema and additionally adds a new 'whenzel' string
+     * format for validating Whenzel patterns.
+     * @param jsonOrYamlSchemaUrl The URL the to schema to use for validation via AJV. Can point to a JSON or YAML file.
+     */
+    static async getValidateFunc(jsonOrYamlSchemaUrl) {
+        const ajv = new Ajv({verbose: true, removeAdditional: true});
+
+        // JSON is a subset of YAML, so we can safely use the YAML parser for both
+        const schema = await Fetcher.fetchYaml(jsonOrYamlSchemaUrl);
+
+        // Add a string format for Whenzel patterns
+        const validateWhenzelPattern = pattern => {
+            try {
+                Whenzel.test(pattern);
+                return true;
+            } catch (err) {
+                return false;
+            }
+        };
+        ajv.addFormat("whenzel", validateWhenzelPattern);
+
+        return ajv.compile(schema);
+    }
+}
+
+export {AjvUtils, Fetcher};

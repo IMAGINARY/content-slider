@@ -1,35 +1,9 @@
 import * as LibLoader from './LibLoader.js';
-import '../vendor/ajv/6.10.2/ajv.min.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
+import {AjvUtils, Fetcher} from './Utils.js';
 
 let countdown; // FIXME: initialized in load()
-let validateFuncPromise = getValidateFuncPromise();
-
-async function fetchJson(url) {
-    const response = await fetch(url);
-    if (!response.ok)
-        throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
-    return response.json();
-}
-
-async function getValidateFuncPromise() {
-    const ajv = new Ajv({verbose: true});
-    const schema = await fetchJson(new URL("../schema/anniversariesSchema.json", import.meta.url));
-    return ajv.compile(schema);
-}
-
-async function validateMessages(mods) {
-    const validate = await validateFuncPromise;
-
-    validate(mods);
-
-    if (validate.errors !== null && validate.errors.length > 0) {
-        const error = validate.errors[0];
-        throw new Error(error.dataPath + ": " + error.data + " " + error.message);
-    }
-
-    return mods;
-}
+let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../schema/anniversariesSchema.json", import.meta.url));
 
 function replaceKeywords(anniversary, now) {
     const date = new Date(anniversary.date);
@@ -116,9 +90,10 @@ async function load(url, now) {
     countdown = await LibLoader.countdownjs();
     try {
         const messages = {};
-        messages.source = await validateMessages(await fetchJson(url));
-        console.log(messages.source);
-        messages.all = whenzelizeAll(messages.source, now);
+        const json = await Fetcher.fetchJson(url);
+        messages.unprocessed = await AjvUtils.validateAndThrowOnError(json, await validateFuncPromise);
+        console.log(messages.unprocessed);
+        messages.all = whenzelizeAll(messages.unprocessed, now);
         messages.filtered = messages.all.filter(mod => Whenzel.test(mod.when, now));
         return messages;
     } catch (err) {

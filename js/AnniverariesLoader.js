@@ -16,10 +16,7 @@ function replaceKeywords(anniversary, now) {
                 const unitRegex = /DEFAULT|ALL|MILLENNIA|CENTURIES|DECADES|YEARS|MONTHS|WEEKS|DAYS|HOURS|MINUTES|SECONDS|MILLISECONDS/g;
                 const units = Array.from(unitsString.matchAll(unitRegex))
                     .map(m => m[0])
-                    .reduce((acc, cur) => {
-                        console.log(acc, cur, acc | countdown[cur]);
-                        return acc | countdown[cur];
-                    }, 0);
+                    .reduce((acc, cur) => acc | countdown[cur], 0);
                 return countdown(date, now, units).toString();
             } else {
                 // unknown keyword

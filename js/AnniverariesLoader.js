@@ -47,6 +47,7 @@ function whenzelize(anniversary, now) {
     }
     return {
         when: when,
+        date: date,
         message: replaceKeywords(anniversary, now)
     }
 }
@@ -90,7 +91,9 @@ async function load(url, now) {
         const json = await Fetcher.fetchJson(url);
         messages.unprocessed = await AjvUtils.validateAndThrowOnError(json, await validateFuncPromise);
         messages.all = whenzelizeAll(messages.unprocessed, now);
-        messages.filtered = messages.all.filter(mod => Whenzel.test(mod.when, now));
+        messages.filtered = messages.all
+            .filter(mod => mod.date <= now)
+            .filter(mod => Whenzel.test(mod.when, now));
         return messages;
     } catch (err) {
         err.message = `Unable to process ${url.href}: ${err.message}`;

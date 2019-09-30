@@ -204,6 +204,7 @@ async function preprocessConfig(config) {
 async function tryWithConfigUrl(configUrl) {
     try {
         const config = await preprocessConfig(await ConfigLoader.load(configUrl));
+        console.log(config);
         await domContentLoaded();
 
         try {

@@ -98,9 +98,13 @@ function applyConfig(config) {
     // TODO: a proper user-facing warning related to parsing the messages files
     const modSlidesWrapper = document.querySelector('#slider_top [u="slides"]');
     const createModSlide = message => {
-        const div = document.createElement('div');
-        div.innerHTML = message;
-        return div;
+        const slideDiv = document.createElement('div');
+        slideDiv.classList.add('slide');
+        const slideContentDiv = document.createElement('div');
+        slideContentDiv.classList.add('slide-content');
+        slideContentDiv.innerHTML = message;
+        slideDiv.append(slideContentDiv);
+        return slideDiv;
     };
     config.messagesOfTheDay.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
     sliderFunctions.simple_fade_slider(modSlidesWrapper);
@@ -221,7 +225,7 @@ async function tryWithConfigUrl(configUrl) {
         } catch (err) {
             console.error("Error while applying config:", err);
         }
-        
+
         return config;
     } catch (err) {
         switch (err.name) {

@@ -92,6 +92,9 @@ function applyConfig(config) {
     // set the background animation
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
 
+    // set the credits
+    document.getElementById('credits').innerHTML = config.credits;
+
     window.mouseEventSuppressor = new MouseEventSupporessor();
     mouseEventSuppressor.setEnabled(config['disableMouseEvents']);
 

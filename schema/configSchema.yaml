@@ -91,6 +91,10 @@ properties:
     examples:
       - 2019-09-27
       - 1777-04-30
+  credits:
+    title: Summary of credits
+    description: The credits are shown at the top of the slider and should contain the credits for the slider itself, the apps as well as any used content that deserves it.
+    type: string
   apps:
     title: List of app definitions for the two sliders
     description: The first list belongs to the top, the second one to the bottom slider.
@@ -136,6 +140,7 @@ required:
   - touchCursorHtml
   - messagesUrl
   - anniversariesUrl
+  - credits
   - apps
   - common
 

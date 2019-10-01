@@ -44,6 +44,9 @@ anniversariesUrl: anniversaries.json
 # ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
 # today: '2019-05-27'
 
+# credits for the slider and the apps
+credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen Richter-Gebert (www.cinderella.de)'
+
 apps:
   - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/2048/Game2048App.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/surfer/SurferApp.js

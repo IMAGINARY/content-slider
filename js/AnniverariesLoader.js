@@ -53,26 +53,23 @@ function whenzelize(anniversary, now) {
 }
 
 function whenzelizeAll(anniversaryJson, now) {
-    const {messages, labels} = anniversaryJson.types.reduce((acc, cur) => {
-        acc.messages[cur.type] = cur.message;
-        acc.labels[cur.type] = cur.labels;
+    const anniversaryTypes = anniversaryJson.types.reduce((acc, cur) => {
+        acc[cur.type] = cur;
         return acc;
-    }, {messages: {}, labels: {}});
+    }, {});
     const anniversaries = [];
     for (let anniversary of anniversaryJson.anniversaries) {
         countdown.resetLabels();
         setCountdownLabels(anniversaryJson.labels);
         if (typeof anniversary.type !== 'undefined') {
-            setCountdownLabels(labels[anniversary.type]);
-            anniversary = Object.assign({}, anniversary);
-            if (typeof messages[anniversary.type] !== 'undefined')
-                anniversary.message = messages[anniversary.type];
-            else
+            if (typeof anniversaryTypes[anniversary.type] !== 'undefined') {
+                // merge properties of the type and the current anniversary
+                anniversary = Object.assign(Object.assign({}, anniversaryTypes[anniversary.type]), anniversary);
+            } else {
                 throw new Error(`Unknown anniversary type '${anniversary.type}'`);
-            delete anniversary.type;
-        } else {
-            setCountdownLabels(anniversary.labels);
+            }
         }
+        setCountdownLabels(anniversary.labels);
         anniversaries.push(whenzelize(anniversary, now));
     }
     return anniversaries;

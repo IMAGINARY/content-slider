@@ -16,51 +16,13 @@ properties:
           description: A name for the type that must be unique within the anniversary file.
           type: string
         message:
-          title: Message template
-          description: The message that will be used as a template. Simple keywords of the format %KEYWORD% will be substituted by the property KEYWORD of the actual anniversary. The built-in keyword %%ago(TIMESPAN_SPEC)%% will be replaced by formatted timespan. TIMESPAN_SPEC is a list of units separated by |. Possible units are DEFAULT, ALL, MILLENNIA, CENTURIES, DECADES, YEARS, MONTHS, WEEKS, DAYS, HOURS, MINUTES, SECONDS and MILLISECONDS (DEFAULT being equal to YEARS|MONTHS|DAYS|HOURS|MINUTE|SECONDS).
-          type: string
+          $ref: '#message'
         every:
-          title: Anniversary frequency
-          description: Anniversaries can be every year, every month or even every day.
-          type: string
-          enum: [year, month, day]
+          $ref: '#every'
         labels:
-          title: Labels for formatting durations
-          description: The timespan formatting join each requested unit with a unit label and some delimiters if needed. Check https://github.com/mckamey/countdownjs/tree/v2.6.0#localization for the respective string format.
-          type: object
-          properties:
-            singular:
-              title: Singular unit labels
-              type: string
-              examples:
-                - ' millisecond| second| minute| hour| day| week| month| year| decade| century| millennium'
-                - ' milissegundo| segundo| minuto| hora| dia| semana| mês| ano| década| século| milênio'
-            plural:
-              title: Plural unit labels
-              type: string
-              examples:
-                - ' milliseconds| seconds| minutes| hours| days| weeks| months| years| decades| centuries| millennia'
-                - ' milissegundos| segundos| minutos| horas| dias| semanas| meses| anos| décadas| séculos| milênios'
-            last:
-              title: Label of the delimiter before the last unit
-              type: string
-              examples:
-                - ' and '
-                - ' e '
-                - ' + '
-            delim:
-              title: Label of the delimiter between all units except the last two
-              type: string
-              examples:
-                - ', '
-                - ' + '
-            empty:
-              title: Label to use when all units are zero
-              type: string
-              examples:
-                - ''
-          additionalProperties: false
+          $ref: '#labels'
       required: [type, message, every]
+      additionalProperties: false
       examples:
         - type: 'birthday'
           message: '%name% was born %%ago(YEARS)%% ago.%additional_message%'
@@ -69,6 +31,60 @@ properties:
             singular: '|||||||&nbsp;year|||'
             plural: '|||||||&nbsp;years|||'
   labels:
+    $ref: '#labels'
+  anniversaries:
+    title: List of anniversary events
+    description: Each entry can either be of a specific type or define a new, annonymous type inline.
+    type: array
+    items:
+      oneOf:
+        - title: Anniversary of a specific type
+          description: Typed anniversaries will inherit all the properties of the specified type.
+          type: object
+          properties:
+            type:
+              title: Anniversary type
+              description: Identifier of one of the anniversary types defined in the types section.
+              type: string
+            date:
+              $ref: '#date'
+            every:
+              $ref: '#every'
+          required: [type, date]
+        - title: Inline anniversary definition
+          description: Anniversaries that don't fit into a particular category can be defined inline without assigning a type identifier.
+          type: object
+          properties:
+            message:
+              $ref: '#message'
+            date:
+              $ref: '#date'
+            every:
+              $ref: '#every'
+            labels:
+              $ref: '#labels'
+          required: [message, date, every]
+required: [types, anniversaries]
+definitions:
+  message:
+    $id: '#message'
+    title: Message template
+    description: The message that will be used as a template. Simple keywords of the format %KEYWORD% will be substituted by the property KEYWORD of the actual anniversary. The built-in keyword %%ago(TIMESPAN_SPEC)%% will be replaced by formatted timespan. TIMESPAN_SPEC is a list of units separated by |. Possible units are DEFAULT, ALL, MILLENNIA, CENTURIES, DECADES, YEARS, MONTHS, WEEKS, DAYS, HOURS, MINUTES, SECONDS and MILLISECONDS (DEFAULT being equal to YEARS|MONTHS|DAYS|HOURS|MINUTE|SECONDS).
+    type: string
+  every:
+    $id: '#every'
+    title: Anniversary frequency
+    description: Anniversaries can be every year, every month or even every day.
+    type: string
+    enum: [year, month, day]
+  date:
+    $id: '#date'
+    title: Date of the first of the recurring events
+    description: Only events on or after the given date will be processed.
+    type: string
+    format: date
+  labels:
+    $id: '#labels'
     title: Labels for formatting durations
     description: The timespan formatting join each requested unit with a unit label and some delimiters if needed. Check https://github.com/mckamey/countdownjs/tree/v2.6.0#localization for the respective string format.
     type: object
@@ -104,84 +120,3 @@ properties:
         examples:
           - ''
     additionalProperties: false
-  anniversaries:
-    title: List of anniversary events
-    description: Each entry can either be of a specific type or define a new, annonymous type inline.
-    type: array
-    items:
-      oneOf:
-        - title: Anniversary of a specific type
-          description: Typed anniversaries will inherit all the properties of the specified type.
-          type: object
-          properties:
-            type:
-              title: Anniversary type
-              description: Identifier of one of the anniversary types defined in the types section.
-              type: string
-            date:
-              title: Date of the first of the recurring events
-              description: Only events on or after the given date will be processed.
-              type: string
-              format: date
-            every:
-              title: Anniversary frequency
-              description: Anniversaries can be every year, every month or even every day.
-              type: string
-              enum: [year, month, day]
-          required: [type, date]
-        - title: Inline anniversary definition
-          description: Anniversaries that don't fit into a particular category can be defined inline without assigning a type identifier.
-          type: object
-          properties:
-            message:
-              title: Message template
-              description: The message that will be used as a template. Simple keywords of the format %KEYWORD% will be substituted by the property KEYWORD of the actual anniversary. The built-in keyword %%ago(TIMESPAN_SPEC)%% will be replaced by formatted timespan. TIMESPAN_SPEC is a list of units separated by |. Possible units are DEFAULT, ALL, MILLENNIA, CENTURIES, DECADES, YEARS, MONTHS, WEEKS, DAYS, HOURS, MINUTES, SECONDS and MILLISECONDS (DEFAULT being equal to YEARS|MONTHS|DAYS|HOURS|MINUTE|SECONDS).
-              type: string
-            date:
-              title: Date of the first of the recurring events
-              description: Only events on or after the given date will be processed.
-              type: string
-              format: date
-            every:
-              title: Anniversary frequency
-              description: Anniversaries can be every year, every month or even every day.
-              type: string
-              enum: [year, month, day]
-            labels:
-              title: Labels for formatting durations
-              description: The timespan formatting join each requested unit with a unit label and some delimiters if needed. Check https://github.com/mckamey/countdownjs/tree/v2.6.0#localization for the respective string format.
-              type: object
-              properties:
-                singular:
-                  title: Singular unit labels
-                  type: string
-                  examples:
-                    - ' millisecond| second| minute| hour| day| week| month| year| decade| century| millennium'
-                    - ' milissegundo| segundo| minuto| hora| dia| semana| mês| ano| década| século| milênio'
-                plural:
-                  title: Plural unit labels
-                  type: string
-                  examples:
-                    - ' milliseconds| seconds| minutes| hours| days| weeks| months| years| decades| centuries| millennia'
-                    - ' milissegundos| segundos| minutos| horas| dias| semanas| meses| anos| décadas| séculos| milênios'
-                last:
-                  title: Label of the delimiter before the last unit
-                  type: string
-                  examples:
-                    - ' and '
-                    - ' e '
-                    - ' + '
-                delim:
-                  title: Label of the delimiter between all units except the last two
-                  type: string
-                  examples:
-                    - ', '
-                    - ' + '
-                empty:
-                  title: Label to use when all units are zero
-                  type: string
-                  examples:
-                    - ''
-              additionalProperties: false
-          required: [message, date, every]
-required: [types, anniversaries]

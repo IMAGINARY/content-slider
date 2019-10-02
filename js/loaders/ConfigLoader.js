@@ -1,6 +1,6 @@
-import {AjvUtils, Fetcher} from './Utils.js';
+import {AjvUtils, Fetcher} from '../Utils.js';
 
-let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../schema/configSchema.yaml", import.meta.url));
+let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/configSchema.yaml", import.meta.url));
 
 async function load(url) {
     const yaml = await Fetcher.fetchYaml(url);

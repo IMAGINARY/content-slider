@@ -1,4 +1,4 @@
-import * as ConfigLoader from './ConfigLoader.js';
+import * as ConfigLoader from './loaders/ConfigLoader.js';
 import * as sliderFunctions from './slider-functions.js';
 import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';
@@ -6,8 +6,8 @@ import MouseEventSupporessor from './stop-mouse-event-propagation.js';
 import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
-import * as MessagesOfTheDayLoader from './MessagesOfTheDayLoader.js';
-import * as AnniversariesLoader from './AnniverariesLoader.js';
+import * as MessagesOfTheDayLoader from './loaders/MessagesOfTheDayLoader.js';
+import * as AnniversariesLoader from './loaders/AnniverariesLoader.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
 
 function fadeIn(delayInS) {

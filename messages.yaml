@@ -1,10 +1,4 @@
-[
-  {
-    "when": "????-??-??",
-    "message": "Interaktive Mathematik<br/> Berühren Sie den Bildschirm!"
-  },
-  {
-    "when": "????-??-??",
-    "message": "Hands-On Mathematik<br/>Berühren Sie den Bildschirm!"
-  }
-]
+- when: '????-??-??'
+  message: Interaktive Mathematik<br/> Berühren Sie den Bildschirm!
+- when: '????-??-??'
+  message: Hands-On Mathematik<br/>Berühren Sie den Bildschirm!

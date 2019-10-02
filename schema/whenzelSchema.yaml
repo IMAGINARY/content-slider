@@ -1,0 +1,22 @@
+$schema: 'http://json-schema.org/draft-07/schema#'
+title: List of Whenzel filterable objects
+description: A JSON or YAML file complying with this schema can be used to store user-defined objects that are only applicable in a certain range of dates specified as a Whenzel pattern.
+type: array
+items:
+  title: Whenzel filterable object
+  type: object
+  properties:
+    when:
+      title: Range of dates this entry is applicable
+      description: The range of dates an entry is applicable is specified via a Whenzel date pattern.
+      type: string
+      format: whenzel
+      examples:
+        - ????-12-25
+        - ????-06-21 / ????-09-23
+        - '@christmas-3 / @christmas+3'
+    data:
+      title: Data payload
+      description: A user-defined value that is supposed to be used when the current date matches the Whenzel pattern.
+  required: [when, data]
+  additionalProperties: false

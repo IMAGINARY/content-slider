@@ -5,9 +5,9 @@ let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/message
 
 async function load(url, now) {
     try {
-        const json = await Fetcher.fetchJson(url);
+        const yaml = await Fetcher.fetchYaml(url);
         const messages = {};
-        messages.all = await AjvUtils.validateAndThrowOnError(json, await validateFuncPromise);
+        messages.all = await AjvUtils.validateAndThrowOnError(yaml, await validateFuncPromise);
         messages.filtered = messages.all.filter(mod => Whenzel.test(mod.when, now));
         return messages;
     } catch (err) {

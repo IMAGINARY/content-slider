@@ -85,8 +85,8 @@ async function load(url, now) {
     countdown = await LibLoader.countdownjs();
     try {
         const messages = {};
-        const json = await Fetcher.fetchJson(url);
-        messages.unprocessed = await AjvUtils.validateAndThrowOnError(json, await validateFuncPromise);
+        const yaml = await Fetcher.fetchYaml(url);
+        messages.unprocessed = await AjvUtils.validateAndThrowOnError(yaml, await validateFuncPromise);
         messages.all = whenzelizeAll(messages.unprocessed, now);
         messages.filtered = messages.all
             .filter(mod => mod.date <= now)

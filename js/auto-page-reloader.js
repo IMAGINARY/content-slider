@@ -1,3 +1,5 @@
+import {IdleDetector} from './IdleDetector.js';
+
 function fadeOutAndReload(element) {
     element.style.animationsDelay = '0s';
     element.style.animation = "";
@@ -70,51 +72,23 @@ class IdleReloader {
         this._isEnabled = false;
         this._reloadTimeThreshold = params.reloadDelay * 1000;
         this._idleTimeThreshold = params.idleDelay * 1000;
-        this._thresholdTimer = 0;
-        this._idleTimer = 0;
-
-        this._nonIdleHandler = () => {
-            console.log("non_idle_handler for reload");
-            clearTimeout(this._idleTimer);
-            this._idleTimer = setTimeout(() => fadeOutAndReload(document.body), this._idleTimeThreshold);
-        }
+        this._idleDetector = null;
     }
 
     enable() {
         if (!this._isEnabled) {
-            setTimeout(() => {
-                    console.log("reloading page after " + Math.floor(this._idleTimeThreshold / 1000.0) + "s in idle mode");
+            console.log("reloading page after " + Math.floor(this._reloadTimeThreshold / 1000.0) + "s in idle mode");
+            this._idleDetector = new IdleDetector();
+            this._idleDetector.setTimeout(() => fadeOutAndReload(document.body), this._reloadTimeThreshold, this._idleTimeThreshold);
 
-                    this._nonIdleHandler();
-
-                    document.addEventListener('mouseup', this._nonIdleHandler, true);
-                    document.addEventListener('mousemove', this._nonIdleHandler, true);
-                    document.addEventListener('mousedown', this._nonIdleHandler, true);
-                    document.addEventListener("touchstart", this._nonIdleHandler, true);
-                    document.addEventListener("touchend", this._nonIdleHandler, true);
-                    document.addEventListener("touchcancel", this._nonIdleHandler, true);
-                    document.addEventListener("touchmove", this._nonIdleHandler, true);
-                },
-                this._reloadTimeThreshold
-            );
             this._isEnabled = true;
         }
     }
 
     disable() {
         if (this._isEnabled) {
-            clearTimeout(this._thresholdTimer);
-            clearTimeout(this._idleTimer);
-            this._thresholdTimer = 0;
-            this._idleTimer = 0;
-
-            document.removeEventListener('mouseup', this._nonIdleHandler, true);
-            document.removeEventListener('mousemove', this._nonIdleHandler, true);
-            document.removeEventListener('mousedown', this._nonIdleHandler, true);
-            document.removeEventListener("touchstart", this._nonIdleHandler, true);
-            document.removeEventListener("touchend", this._nonIdleHandler, true);
-            document.removeEventListener("touchcancel", this._nonIdleHandler, true);
-            document.removeEventListener("touchmove", this._nonIdleHandler, true);
+            this._idleDetector.clear();
+            this._idleDetector = null;
 
             this._isEnabled = false;
         }

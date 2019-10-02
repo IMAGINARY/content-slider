@@ -1,3 +1,5 @@
+import {IdleDetector} from "./IdleDetector.js";
+
 function refreshAt(hours, minutes, seconds) {
     const now = new Date();
     const then = new Date();
@@ -73,38 +75,11 @@ function jssor_app_slider_starter(containerId, apps, config) {
         }
     };
 
-    const container = document.getElementById(containerId);
-
-    container.addEventListener('mouseup', non_idle_handler, true);
-    container.addEventListener('mousemove', non_idle_handler, true);
-    container.addEventListener('mousedown', non_idle_handler, true);
-    container.addEventListener("touchstart", non_idle_handler, true);
-    container.addEventListener("touchend", non_idle_handler, true);
-    container.addEventListener("touchcancel", non_idle_handler, true);
-    container.addEventListener("touchmove", non_idle_handler, true);
-
     // implemented idle timeout myself since JSSOR idle mode does not
     // reset the timeout on interruption
-    let idle_timer = null;
-
-    function init_idle_timer() {
-        if (idle_timer != null)
-            clearTimeout(idle_timer);
-        idle_timer = setTimeout(idle_handler, options.$Idle);
-    }
-
-    function non_idle_handler() {
-        console.log("non_idle_handler");
-        init_idle_timer();
-    }
-
-    function idle_handler() {
-        console.log("idle_handler");
-        jssor_slider.$Next();
-        init_idle_timer();
-    }
-
-    init_idle_timer();
+    const container = document.getElementById(containerId);
+    const idleDetector = new IdleDetector({domElement: container});
+    idleDetector.setInterval(() => jssor_slider.$Next(), options.$Idle, config['idleDelay'] * 1000);
 
     const jssor_slider = new $JssorSlider$(containerId, options);
     let slide_restart_timer = null;

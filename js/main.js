@@ -81,7 +81,7 @@ async function initializeAppsAndSlider(config) {
     // the following promise settles when all apps are either ready or failed initialization
     const reflect = p => p.then(v => ({v, fulfilled: true}), e => ({e, fulfilled: false}));
     return Promise.all(allApps.map(app => reflect(app.ready))).then(() => sliders);
-};
+}
 
 function applyConfig(config) {
     // create a new stylesheet for inserting configurable CSS rules
@@ -219,7 +219,7 @@ async function tryWithConfigUrl(configUrl) {
         } catch (err) {
             console.error("Error while applying config:", err);
         }
-        
+
         return config;
     } catch (err) {
         switch (err.name) {
@@ -248,7 +248,7 @@ async function main(options) {
             console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
             window.config = await tryWithConfigUrl(fallbackConfigUrl);
         }
-        fadeIn(window.config.fadeinOnLoadDelay);
+        fadeIn(window.config['fadeinOnLoadDelay']);
     } catch (err) {
         fadeIn(0);
         throw err;

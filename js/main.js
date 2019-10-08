@@ -37,11 +37,6 @@ function processConfigOverrides(overrides, today) {
 }
 
 async function initializeAppsAndSlider(config) {
-    if (config['hideCursor'])
-        document.body.style.cursor = 'none';
-    if (config['disableScrolling'])
-        document.body.style.overflow = 'hidden';
-
     // load common JavaScript dependencies
     if (typeof config['common'] !== 'undefined' && config['common'] !== null && config['common'].length > 0) {
         await loadjs(config['common'], {async: false, returnPromise: true})
@@ -89,6 +84,25 @@ async function initializeAppsAndSlider(config) {
 };
 
 function applyConfig(config) {
+    // create a new stylesheet for inserting configurable CSS rules
+    const sheet = (function () {
+        // Create the <style> tag
+        const style = document.createElement("style");
+        // WebKit hack :(
+        style.appendChild(document.createTextNode(""));
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+        return style.sheet;
+    })();
+
+    // show or hide the cursor
+    if (config['hideCursor'])
+        sheet.insertRule("body { cursor: none; }", sheet.rules.length);
+
+    // hide scrollbars and disable scrolling
+    if (config['disableScrolling'])
+        sheet.insertRule("body { overflow: hidden; }", sheet.rules.length);
+
     // set the background animation
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
 

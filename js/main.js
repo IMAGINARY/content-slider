@@ -97,7 +97,7 @@ function applyConfig(config) {
 
     // show or hide the cursor
     if (config['hideCursor'])
-        sheet.insertRule("body { cursor: none; }", sheet.rules.length);
+        sheet.insertRule("* { cursor: none !important; }", sheet.rules.length);
 
     // hide scrollbars and disable scrolling
     if (config['disableScrolling'])

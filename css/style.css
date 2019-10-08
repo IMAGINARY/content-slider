@@ -191,7 +191,6 @@ em {
     color: white;
     /*background-color: var( --fg-color );*/
     background-color: black;
-    margin-bottom: 10px;
 }
 
 .app_name {
@@ -202,10 +201,7 @@ em {
     float: left;
     text-align: left;
     font-size: 70px;
-    line-height: 28px;
     font-family: "light";
-    margin: 10px 0 0 0;
-
 }
 
 .app_description {
@@ -218,6 +214,7 @@ em {
     text-align: justify;
     font-size: 24px;
     line-height: 28px;
+    margin-top: 10px;
 }
 
 

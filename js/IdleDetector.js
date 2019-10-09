@@ -32,7 +32,7 @@ class IdleDetector {
         this._eventTypes.forEach(type => this._domElement.removeEventListener(type, this._nonIdleHandler, true));
     }
 
-    setTimeout(func, timeoutDelay, ...args) {
+    _setTimeoutInternal(repeat, func, timeoutDelay, ...args) {
         // event handlers should only be active if there are pending timeouts
         if (Object.keys(this._timers).length === 0)
             this._init();
@@ -43,12 +43,17 @@ class IdleDetector {
         const timers = this._timers;
         const timer = {
             id: id,
+            repeat: repeat,
             timeoutDelay: timeoutDelay,
             windowTimeoutId: 0,
-            callback: () => func(...args),
+            callback: function () {
+                if (!repeat)
+                    this.delete();
+                func(...args);
+            },
             reset: function () {
                 window.clearTimeout(this.windowTimeoutId);
-                this.windowTimeoutId = window.setTimeout(() => this.callback(...args), this.timeoutDelay, this);
+                this.windowTimeoutId = window.setTimeout(this.callback.bind(this), this.timeoutDelay);
             },
             clear: function () {
                 window.clearTimeout(this.windowTimeoutId);
@@ -64,7 +69,7 @@ class IdleDetector {
         return id;
     }
 
-    setInterval(func, intervalDelay, timeoutDelay, ...args) {
+    _setIntervalInternal(repeat, func, intervalDelay, timeoutDelay, ...args) {
         // event handlers should only be active if there are pending timeouts
         if (Object.keys(this._timers).length === 0)
             this._init();
@@ -77,19 +82,26 @@ class IdleDetector {
         const timers = this._timers;
         const timer = {
             id: id,
+            repeat: repeat,
+            hasFired: false,
             timeoutDelay: timeoutDelay,
             intervalDelay: intervalDelay,
             windowTimeoutId: 0,
             windowIntervalId: 0,
-            callback: () => func(...args),
+            callback: function () {
+                func(...args)
+                this.hasFired = true;
+            },
             intervalCallback: function () {
                 this.windowIntervalId = window.setInterval(this.callback, this.intervalDelay);
                 this.callback();
             },
             reset: function () {
-                window.clearTimeout(this.windowTimeoutId);
-                window.clearInterval(this.windowIntervalId);
-                this.windowTimeoutId = window.setTimeout(this.intervalCallback.bind(this), this.timeoutDelay);
+                this.clear();
+                if (!this.repeat && this.hasFired)
+                    this.delete();
+                else
+                    this.windowTimeoutId = window.setTimeout(this.intervalCallback.bind(this), this.timeoutDelay);
             },
             clear: function () {
                 window.clearTimeout(this.windowTimeoutId);
@@ -105,6 +117,22 @@ class IdleDetector {
         timers[id] = timer;
         timer.reset();
         return id;
+    }
+
+    setTimeout(func, timeoutDelay, ...args) {
+        return this._setTimeoutInternal(true, func, timeoutDelay, ...args);
+    }
+
+    setTimeoutOnce(func, timeoutDelay, ...args) {
+        return this._setTimeoutInternal(false, func, timeoutDelay, ...args);
+    }
+
+    setInterval(func, intervalDelay, timeoutDelay, ...args) {
+        return this._setIntervalInternal(true, func, intervalDelay, timeoutDelay, ...args);
+    }
+
+    setIntervalOnce(func, intervalDelay, timeoutDelay, ...args) {
+        return this._setIntervalInternal(false, func, intervalDelay, timeoutDelay, ...args);
     }
 
     clearTimeout(id) {

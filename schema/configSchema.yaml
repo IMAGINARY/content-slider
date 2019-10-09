@@ -76,11 +76,11 @@ properties:
     description: The look of the touch cursors can be customized. Raster images or SVG code can be used, but any valid HTML code with inlined CSS should work.
     type: string
   messagesUrl:
-    title: URL to the JSON file that contains the messages of the day
+    title: URL to the JSON or YAML file that contains the messages of the day
     description: The slider reads short messages from this file, filters them based on the current date and displays them at the top of the page. The messages are exchanged every couple of seconds.
     type: string
   anniversariesUrl:
-    title: URL to JSON file that defines the anniversaries.
+    title: URL to JSON or YAML file that defines the anniversaries.
     description: The anniversaries are converted into the message of the day format, filtered based on the current date and displayed in the messages area of the slider.
     type: string
   today:
@@ -91,6 +91,18 @@ properties:
     examples:
       - 2019-09-27
       - 1777-04-30
+  announcementsUrl:
+    title: URL to the JSON or YAML file that contains the announcements
+    description: The slider reads announcements from this file, filters them based on the current date and displays them in a full screen overlay when the slider is idle.
+    type: string
+  announcementDelay:
+    title: Delay (in seconds) before showing an announcement
+    description: The slider needs to be idle for given amount of time before the first announcement is shown. It is also the timespan between two consecutive announcements.
+    type: integer
+  announcementSettingsUrl:
+    title: URL to the JSON or YAML file that contains Whenzel-filterable announcement settings
+    description: The annoucement component takes a couple of settings to configure the appearance of the announcement overlay. Via Whenzel-filtering, different sets of settings can be used at different times. All settings that apply on a certain date will be merged together in order such that settings configured later in the file will overwrite settings given earlier. This allows to configure some defaults at the top and more specific settings towards the bottom of the file.
+    type: string
   apps:
     title: List of app definitions for the two sliders
     description: The first list belongs to the top, the second one to the bottom slider.

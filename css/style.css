@@ -132,7 +132,7 @@ em {
     padding: 50px 0 50px 0;
     background-color: white;
     color: #999;
-    z-index: 10000;
+    z-index: 999;
     position: relative;
 }
 
@@ -448,7 +448,7 @@ em {
     left: 0px;
     top: 0px;
     padding: 20px;
-    z-index: 1000;
+    z-index: 1001;
     overflow: hidden;
     pointer-events: none;
     -moz-column-count: 6;
@@ -472,4 +472,32 @@ em {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+/********************************
+ * announcer
+ ********************************/
+
+.content-slider-announcer-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2160px;
+    height: 3840px;
+    z-index: 10001;
+}
+
+.content-slider-announcer-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.content-slider-announcer-eventMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
 }

@@ -1,0 +1,6 @@
+- when: '#always'
+  message: "1"
+- when: '#always'
+  message: "2"
+- when: '#always'
+  message: "3"

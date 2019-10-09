@@ -40,9 +40,15 @@ touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, 
 # ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
 # today: '2019-05-27'
 
-# URL to the file that contains the messages of the day (JSON or YAML format)
+# URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
 messagesUrl: messages.yaml
 anniversariesUrl: anniversaries.yaml
+announcementsUrl: announcements.yaml
+
+# variables subject to the display of announcements
+announcementDelay: 210
+# additional Whenzel filterable settings for the display of announcements
+announcementSettingsUrl: announcementSettings.yaml
 
 apps:
   - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/2048/Game2048App.js

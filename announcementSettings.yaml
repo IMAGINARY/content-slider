@@ -1,0 +1,60 @@
+- when: '#always'
+  data: {
+      duration: 30000,
+      fadeInDuration: 5000,
+      transformLoopDuration: 20000,
+    }
+- when: '????-03-20 / ????-06-19' # ~ spring
+  data: {
+      themes: ['spring1', 'spring2', 'spring3', 'spring4', 'spring5', 'spring6', 'spring7'],
+      theme_spring1: { mode: 'random', colors: ['#D90452', '#F250D7', '#667302', '#F252AA', '#28541B', '#A4181B', '#D9751E', '#8C1616', '#59A656', '#A6448C', '#BF4A3F']},
+      theme_spring2: { mode: 'periodic', colors: ['#D95B96', '#28541B', '#A4181B', '#D95B96', '#F28705', '#A4181B', '#64732D']},
+      theme_spring3: { mode: 'periodic-supertile', colors: ['#D95B96', '#A4181B', '#D95B96', '#F28705', '#28541B']},
+      theme_spring4: { mode: 'random-supertile', colors: ['#D90452', '#F250D7', '#667302', '#F252AA', '#28541B', '#A4181B', '#D9751E', '#8C1616', '#59A656', '#A6448C', '#BF4A3F']},
+      theme_spring5: { mode: 'periodic', colors: ['#03258C', '#025930', '#D93829']},
+      theme_spring6: { mode: 'periodic-supertile', colors: ['#E87346', '#3B6C6C', '#FF6F5A', '#E84650', '#FF4DB1', '#025930']},
+      theme_spring7: { mode: 'periodic', colors: ['#3178CC', '#346EB2', '#FF6557', '#B2362B']},
+    }
+- when: '????-06-20 / ????-09-22' # ~ summer
+  data: {
+      themes: ['summer1', 'summer2', 'summer3', 'summer4', 'summer5', 'summer6', 'summer7', 'summer8'],
+      theme_summer1: { mode: 'random', colors: ['#BF304A', '#D93B75', '#394052', '#3F7355', '#018790']},
+      theme_summer2: { mode: 'periodic-supertile', colors: ['#F2293A', '#3F3869', '#F27D16']},
+      theme_summer3: { mode: 'periodic', colors: ['#6684A5', '#A1A630', '#595125', '#A64B29', '#B48429']},
+      theme_summer4: { mode: 'periodic-supertile', colors: ['#4E7981', '#36BBD9', '#D95436']},
+      theme_summer5: { mode: 'random-supertile', colors: ['#F2293A', '#4E7981', '#36BBD9', '#279763', '#F29E38', '#D95436']},
+      theme_summer6: { mode: 'periodic', colors: ['#A61C41', '#9377A6', '#4B83A6', '#279763', '#D92929']},
+      theme_summer7: { mode: 'periodic', colors: ['#023E73', '#BF0404', '#D95D41']},
+      theme_summer8: { mode: 'periodic-supertile', colors: ['#023E73', '#3990A1', '#D40073', '#9531A1']}
+    }
+- when: '????-09-21 / ????-12-20' # ~ autumn
+  data: {
+      themes: ['autumn1', 'autumn2', 'autumn3', 'autumn4', 'autumn5', 'autumn6'],
+      theme_autumn1: { mode: 'random', colors: ['#A82413', '#D9326F', '#30392C', '#11105B', '#A64141']},
+      theme_autumn2: { mode: 'random', colors: ['#2E71CA', '#338C30', '#735702', '#D95204', '#BF3604']},
+      theme_autumn3: { mode: 'periodic', colors: ['#3B82BF', '#2B67AB', '#3F4848', '#BF3617']},
+      theme_autumn4: { mode: 'periodic-supertile', colors: ['#D9326F', '#2B67AB', '#3F4848', '#BF3617', '#338C30', '#D95204']},
+      theme_autumn5: { mode: 'periodic', colors: ['#A82413', '#D9326F', '#D95204', '#338C30', '#735702', '#2B67AB']},
+      theme_autumn6: { mode: 'periodic', colors: ['#474A50', '#334812', '#401021', '#A58830', '#A6372D']},
+    }
+- when: '????-12-21 / ????-03-19' # ~ winter
+  data: {
+      themes: ['winter1', 'winter2', 'winter3', 'winter4', 'winter5', 'winter6', 'winter7', 'winter8'],
+      theme_winter1: { mode: 'random', colors: ['#a8626f', '#120F59', '#45578C', '#2C4B6E']},
+      theme_winter2: { mode: 'random', colors: ['#AA7A88', '#8163BF', '#415357', '#4B6294', '#775789']},
+      theme_winter3: { mode: 'periodic', colors: ['#0B2B8C', '#3F5073', '#875B69', '#3C531D', '#b71e11']},
+      theme_winter4: { mode: 'random', colors: ['#45578C', '#66405A', '#3E3766', '#446B94', '#6C5049', '#8C6E54', '#738C16', '#687314', '#595515', '#5C5B81']},
+      theme_winter5: { mode: 'periodic', colors: ['#D91448', '#222940', '#03658C']},
+      theme_winter6: { mode: 'periodic-supertile', colors: ['#D91448', '#222940', '#03658C', '#A67153']},
+      theme_winter7: { mode: 'periodic-supertile', colors: ['#03658C', '#3C531D', '#3C6373', '#F26513', '#D9806C', '#8163BF']},
+      theme_winter8: {mode: 'periodic', colors: ['#D27510', '#1D3EA2', '#3F391A', '#CF370B']},
+    }
+- when: '@christmas-35 / @christmas+3' # ~ christmas
+  data: {
+      themes: ['xmas1', 'xmas2', 'xmas3', 'xmas4', 'xmas5'],
+      theme_xmas1: {mode: 'periodic', colors: ['#F21628', '#40041A', '#5E7312', '#8C0428', '#733119']},
+      theme_xmas2: {mode: 'random', colors: ['#F21628', '#F22E52', '#F24B78', '#148C0F', '#27472A', '#148C0F', '#27472A', '#F26513']},
+      theme_xmas3: {mode: 'periodic-supertile', colors: ['#F21628', '#F22E52', '#F24B78', '#148C0F', '#27472A', '#148C0F', '#27472A', '#F26513']},
+      theme_xmas4: {mode: 'periodic-supertile', colors: ['#F21628', '#F24B78', '#148C0F', '#27472A', '#148C0F']},
+      theme_xmas5: {mode: 'random-supertile', colors: ['#BF0413', '#F20530', '#F2274C', '#F26B83', '#590202', '#00A213', '#006F0D', '#00C117']},
+    }

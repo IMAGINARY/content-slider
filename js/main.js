@@ -8,7 +8,11 @@ import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 import * as MessagesOfTheDayLoader from './loaders/MessagesOfTheDayLoader.js';
 import * as AnniversariesLoader from './loaders/AnniverariesLoader.js';
+import * as WhenzelLoader from './loaders/WhenzelLoader.js';
 import '../vendor/whenzel/1.0.2/whenzel.js';
+import {AnnouncementManager} from './AnnouncementManager.js';
+
+let announcementManager = null;
 
 function fadeIn(delayInS) {
     // fade-in the whole page after some user-defined delay
@@ -158,6 +162,16 @@ function applyConfig(config) {
     debugOverlay.setEnabled(config['debuggingEnabled']);
 
     DummyConsole.setEnabled(config['disableConsoleLogging']);
+
+    // set up the announcer
+    const messages = config.announcements.filtered.map(a => a.message);
+    const collapseOptions = whenzelConfigs => whenzelConfigs.reduce((acc, cur) => Object.assign(acc, cur.data), {});
+    const announcerOptions = collapseOptions(config.announcementSettings.filtered);
+    announcementManager = new AnnouncementManager({
+        messages: messages,
+        delay: config["announcementDelay"] * 1000,
+        announcerOptions: announcerOptions,
+    });
 }
 
 async function domContentLoaded() {
@@ -209,6 +223,8 @@ async function preprocessConfig(config) {
     config.messages = await MessagesOfTheDayLoader.load(new URL(config.messagesUrl, config.configUrl), config.today);
     config.anniversaries = await AnniversariesLoader.load(new URL(config.anniversariesUrl, config.configUrl), config.today);
     config.messagesOfTheDay = config.messages.filtered.concat(config.anniversaries.filtered);
+    config.announcements = await MessagesOfTheDayLoader.load(new URL(config.announcementsUrl, config.configUrl), config.today);
+    config.announcementSettings = await WhenzelLoader.load(new URL(config.announcementSettingsUrl, config.configUrl), config.today);
 
     return config;
 }

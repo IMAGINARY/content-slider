@@ -8,7 +8,7 @@ async function load(url, now) {
         const yaml = await Fetcher.fetchYaml(url);
         const entries = {};
         entries.all = await AjvUtils.validateAndThrowOnError(yaml, await validateFuncPromise);
-        entries.filtered = entries.all.filter(wentry => Whenzel.test(entry.when, now));
+        entries.filtered = entries.all.filter(entry => Whenzel.test(entry.when, now));
         return entries;
     } catch (err) {
         err.message = `Unable to process ${url.href}: ${err.message}`;

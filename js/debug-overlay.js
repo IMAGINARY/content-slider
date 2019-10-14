@@ -56,6 +56,7 @@ class DebugOverlay {
             this._parentElem.addEventListener('mousedown', this._logFunc, true);
             this._parentElem.addEventListener('mousemove', this._logFunc, true);
             this._parentElem.addEventListener('mouseup', this._logFunc, true);
+            this._parentElem.addEventListener('click', this._logFunc, true);
 
             this._parentElem.addEventListener('touchstart', this._logFunc, true);
             this._parentElem.addEventListener('touchmove', this._logFunc, true);
@@ -73,6 +74,7 @@ class DebugOverlay {
             this._parentElem.removeEventListener('mousedown', this._logFunc, true);
             this._parentElem.removeEventListener('mousemove', this._logFunc, true);
             this._parentElem.removeEventListener('mouseup', this._logFunc, true);
+            this._parentElem.removeEventListener('click', this._logFunc, true);
 
             this._parentElem.removeEventListener('touchstart', this._logFunc, true);
             this._parentElem.removeEventListener('touchmove', this._logFunc, true);

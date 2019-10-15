@@ -181,6 +181,7 @@ async function preprocessConfig(config) {
 
 async function tryWithConfigUrl(configUrl) {
     try {
+        console.log(`Trying to load config from ${configUrl}`);
         const config = await preprocessConfig(await ConfigLoader.load(configUrl));
         await domContentLoaded();
 
@@ -223,7 +224,7 @@ async function main(options) {
         try {
             window.config = await tryWithConfigUrl(new URL(options.configUrl));
         } catch (err) {
-            const fallbackConfigUrl = new URL('config.sample.yaml', window.location.href);
+            const fallbackConfigUrl = new URL('cfg/config.sample.yaml', window.location.href);
             console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
             window.config = await tryWithConfigUrl(fallbackConfigUrl);
         }

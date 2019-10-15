@@ -12,7 +12,13 @@
     <script type="module">
         import main from './js/main.js';
 
-        main({configUrl: new URL('config.yaml', window.location.href)});
+        function getConfigUrl() {
+            const searchParams = new URLSearchParams(window.location.search);
+            const urlSuffix = searchParams.has('cfg') ? searchParams.get('cfg') : 'config.sample.yaml';
+            return new URL(`cfg/${urlSuffix}`, window.location.href);
+        }
+
+        main({configUrl: getConfigUrl()});
     </script>
 </head>
 <body

@@ -1,0 +1,77 @@
+# all time units are in seconds
+
+# show or hide cursor
+hideCursor: true
+
+# stop propagation of all types of mouse events at document.body
+disableMouseEvents: false
+
+# disable console logging
+disableConsoleLogging: false
+
+# disable scrolling
+disableScrolling: true
+
+# variables subject to (automatic) page reload
+fadeinOnLoadDelay: 1
+reloadDelay: 10800
+idleDelay: 15
+reloadButtonSize: 40px
+reloadButtonHoldTime: 5
+reloadOnErrorDelay: -1
+
+# variables subject to sliders
+autoSlideDelay: 180
+appRestartDelay: 10
+disableBulletNavigation: true
+
+# which page to use for the animation in the background (runs in an iframe)
+# currently available: bgWebgl.html, bgSvg.html, bgPlain.html
+backgroundAnimationUrl: bg_svg.html
+
+# touch overlay debugging features
+debuggingEnabled: false
+debugCursorScale: 1
+
+# touch cursor visualization
+touchCursorVisible: true
+touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>'
+
+# credits for the slider and the apps
+credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen Richter-Gebert (www.cinderella.de)'
+
+# ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
+# today: '2019-05-27'
+
+# URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
+messagesUrl: mathematikon/messages-of-the-day.yaml
+anniversariesUrl: mathematikon/anniversaries.yaml
+announcementsUrl: mathematikon/announcements.yaml
+
+# variables subject to the display of announcements
+announcementDelay: 210
+# additional Whenzel filterable settings for the display of announcements
+announcementSettingsUrl: common/announcementSettings.yaml
+
+apps:
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/2048/Game2048App.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/surfer/SurferApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/ifs/IFSApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/sphere-chaos/SphereChaosApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/space-rescue/SpaceApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/double-pendulum/DoublePendulumApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/polytope-morpher/PolytopeMorpherApp.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/car-park/CarParkApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/image-spiral/ImageSpiralApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/solitaire/SolitaireApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/kaleidoscope/KaleidoscopeApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/swarm/SwarmApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/iornament/iOrnamentApp.js
+
+common:
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/Cindy.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/Cindy3D.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/CindyGL.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/QuickHull3D.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/katex-plugin.js
+  - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/symbolic.js

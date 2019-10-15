@@ -1,0 +1,50 @@
+# Messages of the day
+#
+## Fillers
+- when: '????-??-??'
+  message: 'Interaktive Mathematik<br/> Berühren Sie den Bildschirm!'
+- when: '????-??-??'
+  message: 'Hands-On Mathematik<br/>Berühren Sie den Bildschirm!'
+- when: '????-??-??'
+  message: 'Mathematik ist schön.<br/>Berühren Sie den Bildschirm!'
+## Holidays and special days
+- when: '????-12-28 / ????-12-31' # New Year's eve
+  message: 'Wir wünschen einen guten Rutsch ins Neue Jahr!'
+- when: '????-01-01 / ????-01-10' # New Year
+  message: 'Das Mathematikon wünscht ein Frohes Neues Jahr!'
+- when: '????-02-14' # Saint Valentine's Day
+  message: 'Happy Valentine’s Day!'
+- when: '????-02-16 / ????-02-20' # Opening of Mathematikon Mall
+  message: 'Happy Birthday, Mathematikon! Am 18.&nbsp;Februar&nbsp;2016 wurden die Mathematikon Shops eröffnet. Seitdem gibt es auch diese interaktive Mathe-Installation.'
+- when: '????-02-29' # Leap day
+  message: 'Heute ist ein Schalttag, erst morgen ist der 1.&nbsp;März.'
+- when: '????-11-11' # Fasching begin
+  message: 'Heute um 11:11&nbsp;Uhr eröffnet die Fasnacht-Saison. Hajo!'
+- when: '????-03-12 / ????-03-16' # pi day / IDM
+  message: 'Der 14.&nbsp;März ist der sogannte Pi-Day, da die Zahl Pi gerundet 3,14 ist. Dieser Tag ist der Internationale Tag der Mathematik!'
+- when: '@easter-5 / @easter' # Easter
+  message: 'Das Mathematikon wünscht Frohe Ostern!'
+- when: '????-04-30 /????-05-01' # Labor day
+  message: 'Wir wünschen einen schönen Maifeiertag!'
+- when: '????-05-04' # May the fourth (Star Wars day)
+  message: 'Heute ist Star-Wars-Tag (May, the fourth). Möge die Macht mit Dir sein!'
+- when: '????-05-12' # International Women In Maths Day
+  message: 'Heute is „International Women in Math Day“, also der internationale Tag der Frauen in der Mathematik.'
+- when: '????-09-01' # Classes begin in Hogwarts
+  message: 'Heute ist Schulstart in Hogwarts, der Schule für Hexerei und Zauberei. Ein neues Jahr voller Abenteuer kann beginnen.'
+- when: '????-10-01 / ????-10-03' # Day of German Unity
+  message: 'Der Tag der Deutschen Einheit am 3.&nbsp;Oktober erinnert an die Wiedervereinigung 1990. Wir wünschen einen schönen Feiertag.'
+- when: '????-10-31' # Halloween
+  message: 'Süßes oder Saures?! Happy Halloween!'
+- when: '????-11-23' # Fibonacci Day
+  message: 'Heute ist Fibonacci-Tag! Die Fibonacci-Folge beginnt so: 0,1,1,2,3,5,8,13&nbsp;(…). Die Datumsschreibweise 11/23&nbsp;(1&nbsp;1&nbsp;2&nbsp;3) ist der Beginn.'
+- when: '????-12-20 / ????-12-27' # Christmas 
+  message: 'Wir wünschen eine fröhliche Weihnachtszeit!'
+- when: '2020-12-16' # Pythagorean Theorem Day
+  message: 'Heute ist ein Tag mit Pythagoras-Datum! Der Satz des Pythagoras a²+b²=c² ist erfüllt, denn 12²+16²=20²'
+- when: '2025-07-24' # Pythagorean Theorem Day
+  message: 'Heute ist ein Tag mit Pythagoras-Datum! Der Satz des Pythagoras a²+b²=c² ist erfüllt, denn 7²+24²=25²'
+- when: '????-11-03' # Feast of Saint Hubertus, patron saint of mathematicians, opticians, metalworkers and hunters.
+  message: 'Heute ist der Gedenktag von Hubertus von Lüttich. Er gilt u.a. als Patron der Mathematiker und Hersteller von mathematischen Geräten.'
+- when: '????-11-15' # Feast of Saint Albertus Magnus, patron saint of scientists
+  message: 'Heute ist der Gedenktag von Albertus Magnus, dem Schutzpatron der Naturwissenschaftler.'

@@ -43,11 +43,6 @@ function processConfigOverrides(overrides, today) {
 }
 
 async function initializeAppsAndSlider(config) {
-    if (config['hideCursor'])
-        document.body.style.cursor = 'none';
-    if (config['disableScrolling'])
-        document.body.style.overflow = 'hidden';
-
     // load common JavaScript dependencies
     if (typeof config['common'] !== 'undefined' && config['common'] !== null && config['common'].length > 0) {
         await loadjs(config['common'], {async: false, returnPromise: true})
@@ -92,11 +87,33 @@ async function initializeAppsAndSlider(config) {
     // the following promise settles when all apps are either ready or failed initialization
     const reflect = p => p.then(v => ({v, fulfilled: true}), e => ({e, fulfilled: false}));
     return Promise.all(allApps.map(app => reflect(app.ready))).then(() => sliders);
-};
+}
 
 function applyConfig(config) {
+    // create a new stylesheet for inserting configurable CSS rules
+    const sheet = (function () {
+        // Create the <style> tag
+        const style = document.createElement("style");
+        // WebKit hack :(
+        style.appendChild(document.createTextNode(""));
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+        return style.sheet;
+    })();
+
+    // show or hide the cursor
+    if (config['hideCursor'])
+        sheet.insertRule("* { cursor: none !important; }", sheet.rules.length);
+
+    // hide scrollbars and disable scrolling
+    if (config['disableScrolling'])
+        sheet.insertRule("body { overflow: hidden; }", sheet.rules.length);
+
     // set the background animation
     document.getElementById('bg').src = config['backgroundAnimationUrl'];
+
+    // set the credits
+    document.getElementById('credits').innerHTML = config.credits;
 
     // add messages of the day
     // TODO: a proper user-facing warning related to parsing the messages files
@@ -187,27 +204,6 @@ async function domContentLoaded() {
     });
 }
 
-async function request(obj) {
-    return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open(obj.method || "GET", obj.url);
-        if (obj.headers) {
-            Object.keys(obj.headers).forEach(key => {
-                xhr.setRequestHeader(key, obj.headers[key]);
-            });
-        }
-        xhr.onload = () => {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                resolve(xhr.response);
-            } else {
-                reject(xhr);
-            }
-        };
-        xhr.onerror = () => reject(xhr);
-        xhr.send(obj.body);
-    });
-}
-
 async function preprocessConfig(config) {
     // date override supplied?
     if (typeof config.today !== 'undefined') {
@@ -231,6 +227,7 @@ async function preprocessConfig(config) {
 
 async function tryWithConfigUrl(configUrl) {
     try {
+        console.log(`Trying to load config from ${configUrl}`);
         const config = await preprocessConfig(await ConfigLoader.load(configUrl));
         console.log(config);
         await domContentLoaded();
@@ -274,11 +271,11 @@ async function main(options) {
         try {
             window.config = await tryWithConfigUrl(new URL(options.configUrl));
         } catch (err) {
-            const fallbackConfigUrl = new URL('config.sample.yaml', window.location.href);
+            const fallbackConfigUrl = new URL('cfg/config.sample.yaml', window.location.href);
             console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
             window.config = await tryWithConfigUrl(fallbackConfigUrl);
         }
-        fadeIn(window.config.fadeinOnLoadDelay);
+        fadeIn(window.config['fadeinOnLoadDelay']);
     } catch (err) {
         fadeIn(0);
         throw err;

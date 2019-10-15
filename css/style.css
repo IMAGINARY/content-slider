@@ -74,14 +74,20 @@ table{
 
 
 @font-face {
-    font-family: 'regular';
-    src: url('../fonts/BrownStd-Regular.eot'); /* IE9 Compat Modes */
-    src: url('../fonts/Brown-Regular.woff') format('woff') /* Pretty Modern Browsers */
+    font-family: 'Brown';
+    src: url('../fonts/Brown-Regular.woff') format('woff'),
+    local('Brown Regular'), local('Brown-Regular');
+    font-weight: normal;
+    font-style: normal;
 }
 
+
 @font-face {
-    font-family: 'light';
-    src: url('../fonts/brown-light-webfont.woff2') format('woff2') /* Pretty Modern Browsers */
+    font-family: 'Brown';
+    src: url('../fonts/brown-light-webfont.woff2') format('woff2'),
+    local('Brown Light'), local('Brown-Light');
+    font-weight: 300;
+    font-style: normal;
 }
 
 .noselect {
@@ -95,7 +101,9 @@ table{
 }
 
 body{
-    font-family: 'regular';
+    font-family: 'Brown', sans-serif;
+    font-weight: normal;
+    font-style: normal;
     color: #666;
     position: absolute;
     left: 0px;
@@ -191,7 +199,6 @@ em {
     color: white;
     /*background-color: var( --fg-color );*/
     background-color: black;
-    margin-bottom: 10px;
 }
 
 .app_name {
@@ -202,10 +209,8 @@ em {
     float: left;
     text-align: left;
     font-size: 70px;
-    line-height: 28px;
-    font-family: "light";
-    margin: 10px 0 0 0;
-
+    font-weight: 300;
+    font-style: normal;
 }
 
 .app_description {
@@ -218,6 +223,7 @@ em {
     text-align: justify;
     font-size: 24px;
     line-height: 28px;
+    margin-top: 10px;
 }
 
 
@@ -351,7 +357,8 @@ em {
     vertical-align: middle;
     font-size: 90px;
     line-height: 1.2;
-    font-family: "light";
+    font-weight: 300;
+    font-style: normal;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 4px;

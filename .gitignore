@@ -7,9 +7,9 @@ fonts/BrownStd-Regular.woff
 fonts/Brown-Bold.woff
 fonts/Brown-Bold.eof
 
-# local and temporary files
-config.yaml
-config.*.yaml
+# local config files for testing and development
+cfg/config.testing.yaml
+cfg/testing
 
 # Created by https://www.gitignore.io/api/webstorm+all
 # Edit at https://www.gitignore.io/?templates=webstorm+all

@@ -37,34 +37,37 @@ debugCursorScale: 1
 touchCursorVisible: true
 touchCursorHtml: '<svg width="21" height="21" style="transform: translate(-50%, -50%);"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="3.5" fill="none" /><circle cx="11" cy="11" r="9" stroke="black" stroke-width="1" fill="red" /></svg>'
 
-# ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
-# today: '2019-05-27'
+# credits for the slider and the apps
+credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen Richter-Gebert (www.cinderella.de)'
 
 # URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
-messagesUrl: messages.yaml
-anniversariesUrl: anniversaries.yaml
-announcementsUrl: announcements.yaml
+messagesUrl: sample/messages.yaml
+anniversariesUrl: sample/anniversaries.yaml
+announcementsUrl: sample/announcements.yaml
 
 # variables subject to the display of announcements
 announcementDelay: 210
 # additional Whenzel filterable settings for the display of announcements
-announcementSettingsUrl: announcementSettings.yaml
+announcementSettingsUrl: common/announcementSettings.yaml
+
+# ISO date string for whenzel config overrides. Will be used in place of actual date if supplied.
+# today: '2019-05-27'
 
 apps:
   - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/2048/Game2048App.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/surfer/SurferApp.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/ifs/IFSApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/iornament/iOrnamentApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/polytope-morpher/PolytopeMorpherApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/kaleidoscope/KaleidoscopeApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/double-pendulum/DoublePendulumApp.js
-  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/car-park/CarParkApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/space-rescue/SpaceApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/swarm/SwarmApp.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/sphere-chaos/SphereChaosApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/space-rescue/SpaceApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/double-pendulum/DoublePendulumApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/polytope-morpher/PolytopeMorpherApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/platonic-solids/PlatonicSolidsApp.js
+  - - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/car-park/CarParkApp.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/image-spiral/ImageSpiralApp.js
     - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/solitaire/SolitaireApp.js
-    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/platonic-solids/PlatonicSolidsApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/kaleidoscope/KaleidoscopeApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/swarm/SwarmApp.js
+    - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/iornament/iOrnamentApp.js
 
 common:
   - https://rawcdn.githack.com/IMAGINARY/content-slider-apps/65b2087d7af7f06f2b5625bbc99c5941d37985d9/common/js/Cindy.js

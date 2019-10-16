@@ -3,7 +3,7 @@ import '../../vendor/whenzel/1.0.2/whenzel.js';
 import {AjvUtils, Fetcher} from '../Utils.js';
 
 let countdown; // FIXME: initialized in load()
-let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/anniversariesSchema.yaml", import.meta.url));
+let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/anniversaries.schema.yaml", import.meta.url));
 
 function replaceKeywords(anniversary, now) {
     const date = new Date(anniversary.date);

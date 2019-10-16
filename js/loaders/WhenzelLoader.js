@@ -1,7 +1,7 @@
 import {AjvUtils, Fetcher} from '../Utils.js';
 import '../../vendor/whenzel/1.0.2/whenzel.js';
 
-let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/whenzelSchema.yaml", import.meta.url));
+let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/whenzel.schema.yaml", import.meta.url));
 
 async function load(url, now) {
     try {

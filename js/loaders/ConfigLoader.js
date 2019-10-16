@@ -1,6 +1,6 @@
 import {AjvUtils, Fetcher} from '../Utils.js';
 
-let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/configSchema.yaml", import.meta.url));
+let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/config.schema.yaml", import.meta.url));
 
 async function load(url, allowUrlParamOverrides) {
     if (typeof allowUrlParamOverrides === 'undefined')

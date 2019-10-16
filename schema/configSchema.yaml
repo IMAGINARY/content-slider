@@ -7,87 +7,108 @@ properties:
     title: Hide the mouse cursor
     description: If set to true, the mouse cursor is hidden when it is moved over the slider. However, this is not absolutely fail proof if apps are adjusting cursor settings as well.
     type: boolean
+    cfg-overridable: true
   disableMouseEvents:
     title: Disable mouse events
     description: If run on a touch screen, the first touch point is usually used to emulate mouse events, which can be confusing for some apps. Disable the mouse events will fire touch events only.
     type: boolean
+    cfg-overridable: true
   disableConsoleLogging:
     title: Disable logging to the developer console
     description: Some apps produce execessive debug output which can fill up the developer console quickly and, depending on the amount of output, can also slow down the slider when the developer console is open. Disabling console logging will discard all data sent to the developer console by the application, even those that might actually be useful.
     type: boolean
+    cfg-overridable: true
   disableScrolling:
     title: Disable scrolling
     description: Disable scrollbars and therefore scrolling in general.
     type: boolean
+    cfg-overridable: true
   fadeinOnLoadDelay:
     title: Delay (in seconds) for fading in the slider
     description: The slider is initially overlayed by black cover that fades away once the slider is fully loaded and all apps have signaled that they are ready to be used. This additional delay can be used to compensate for things like asynchronous image loading that is not actively monitored by the apps.
     type: integer
+    cfg-overridable: true
   reloadDelay:
     title: Delay (in seconds) before reloading the entire page
     description: When the slider is inactive, i.e. there are no input events, it will be reloaded after this delay. This can help in cases where apps have unresolved memory leaks that would break the slider after a certain time. It should not be considered a solution, but rather a workaround for situation where the slider has to run unattended.
     type: integer
+    cfg-overridable: true
   idleDelay:
     title: Time of inactivaty (in seconds) after which the slider is considerd idle
     description: When there are no input events, the slider will be considered idle after the given time and start switching apps on its own.
     type: integer
+    cfg-overridable: true
   reloadButtonSize:
     title: Size of the slider reload buttons (in CSS length units)
     description: The slider has an invisible square reload button at its bottom left and bottom right. This property is used to define the width and height of each button.
     type: string
+    cfg-overridable: true
   reloadButtonHoldTime:
     title: Time (in seconds) the reload button needs to be pressed until it triggers
     description: To avoid accidental page reloads, the reload button does not trigger immediately, but rather after it has been pressed for the given amount of time.
     type: integer
+    cfg-overridable: true
   reloadOnErrorDelay:
     title: Time (in seconds) to wait before reloading the slider after an uncaught error occurred
     description: The slider can be reloaded when an app or the slider throws an exception that is not handled by the slider or the app itself. This helps to work around faulty behavior in apps, e.g. errors that are hard to track down and fix because they occur very infrequently or due to race conditions. Missing resources are not considered errors except when apps track resource loading themselves and throw errors when loading fails. Set this propery to -1 to disable automatic page reloading.
     type: integer
+    cfg-overridable: true
   autoSlideDelay:
     title: Delay (in seconds) between automatice slide transitions
     description: When the slider is idle, it will transition between apps automatically. This property configures how much time is spent at an app before the slider transitions to the next.
     type: integer
+    cfg-overridable: true
   appRestartDelay:
     title: Delay (in seconds) after which inactive apps are restarted
     description: All apps except the ones active on the currently visible slides will be restarted after this delay to restore their initial state. The delay should be long enough to compensate for users accidentaly switching to another app and back, but also short enough to reset apps when a user has most likely lost interest in the current state of an app.
     type: integer
+    cfg-overridable: true
   disableBulletNavigation:
     title: Disable bullet navigation of the slides
     description: The currently active app is indicated via bullets below the respective slider. This property defines if the bullets are just a visual indicator or if they can be used to navigate between apps.
     type: boolean
+    cfg-overridable: true
   backgroundAnimationUrl:
     title: URL to page used as a background
     description: The slider displays another page in the background. It can be a static picture but also any kind of background animation.
     type: string
+    cfg-overridable: false
   debuggingEnabled:
     title: Enable visual debugging features
     description: When enabled, input events will be logged in a separate panel and positions and state of mouse and touch cursors will be visualized.
     type: boolean
+    cfg-overridable: true
   debugCursorScale:
     title: Scale factor of the debug cursors
     description: Depending on the size of the screen used for debugging, different sizes of the debug cursors are useful. In most cases, the debug cursor should be scaled down on a big screen and scaled up on a small screen.
     type: number
+    cfg-overridable: true
   touchCursorVisible:
     title: Visualize the mouse and touch cursors
     description: This property will enable visualization of active touch points as well as the mouse cursor. On certain touch screens, the user might expect the touch point in a different position than it is actually detected, which can be very confusing and frustrating. This can be due to slightly miscalibrated touch overlays or because of the parallax effect that occurs when a display panel is offset quite a bit from the touch surface (e.g. due to thick glass in between). Providing user feedback by visualizing the detected positions of the touch points can mitigate this problem and resolve most of the confusion.
     type: boolean
+    cfg-overridable: true
   touchCursorHtml:
     title: HTML code for touch cursor visualization
     description: The look of the touch cursors can be customized. Raster images or SVG code can be used, but any valid HTML code with inlined CSS should work.
     type: string
+    cfg-overridable: false
   messagesUrl:
     title: URL to the JSON or YAML file that contains the messages of the day
     description: The slider reads short messages from this file, filters them based on the current date and displays them at the top of the page. The messages are exchanged every couple of seconds.
     type: string
+    cfg-overridable: false
   anniversariesUrl:
     title: URL to JSON or YAML file that defines the anniversaries.
     description: The anniversaries are converted into the message of the day format, filtered based on the current date and displayed in the messages area of the slider.
     type: string
+    cfg-overridable: false
   today:
     title: Today's date
     description: When this property is set, the slider will use the supplied date for any date based filtering instead of today's actual date. This is very useful for checking the content of the slider on specific dates without needing to adjust the system clock.
     type: string
     format: date
+    cfg-overridable: true
     examples:
       - 2019-09-27
       - 1777-04-30
@@ -95,22 +116,27 @@ properties:
     title: Summary of credits
     description: The credits are shown at the top of the slider and should contain the credits for the slider itself, the apps as well as any used content that deserves it.
     type: string
+    cfg-overridable: false
   announcementsUrl:
     title: URL to the JSON or YAML file that contains the announcements
     description: The slider reads announcements from this file, filters them based on the current date and displays them in a full screen overlay when the slider is idle.
     type: string
+    cfg-overridable: false
   announcementDelay:
     title: Delay (in seconds) before showing an announcement
     description: The slider needs to be idle for given amount of time before the first announcement is shown. It is also the timespan between two consecutive announcements.
     type: integer
+    cfg-overridable: true
   announcementSettingsUrl:
     title: URL to the JSON or YAML file that contains Whenzel-filterable announcement settings
     description: The annoucement component takes a couple of settings to configure the appearance of the announcement overlay. Via Whenzel-filtering, different sets of settings can be used at different times. All settings that apply on a certain date will be merged together in order such that settings configured later in the file will overwrite settings given earlier. This allows to configure some defaults at the top and more specific settings towards the bottom of the file.
     type: string
+    cfg-overridable: false
   apps:
     title: List of app definitions for the two sliders
     description: The first list belongs to the top, the second one to the bottom slider.
     type: array
+    cfg-overridable: false
     minItems: 2
     maxItems: 2
     items:
@@ -124,6 +150,7 @@ properties:
     title: List of common JavaScript dependencies
     description: Many apps have common JavaScript dependencies, some of which are difficult to load in a module file. Such dependencies can be listed here. They will be loaded before any of the apps will be loaded such that apps can make immediate use of them.
     type: array
+    cfg-overridable: false
     items:
       title: URL to a JavaScript file
       type: string

@@ -225,10 +225,10 @@ async function preprocessConfig(config) {
     return config;
 }
 
-async function tryWithConfigUrl(configUrl) {
+async function tryWithConfigUrl(configUrl, allowUrlParamOverrides) {
     try {
         console.log(`Trying to load config from ${configUrl}`);
-        const config = await preprocessConfig(await ConfigLoader.load(configUrl));
+        const config = await preprocessConfig(await ConfigLoader.load(configUrl, allowUrlParamOverrides));
         console.log(config);
         await domContentLoaded();
 
@@ -260,6 +260,9 @@ async function tryWithConfigUrl(configUrl) {
             case 'ValidationError':
                 console.error("Error while validating config file:", err.message, err);
                 break;
+            case 'OverrideError':
+                console.error("Error while applying config overrides:", err.message, err);
+                break;
             default:
                 throw err;
         }
@@ -269,11 +272,11 @@ async function tryWithConfigUrl(configUrl) {
 async function main(options) {
     try {
         try {
-            window.config = await tryWithConfigUrl(new URL(options.configUrl));
+            window.config = await tryWithConfigUrl(new URL(options.configUrl), true);
         } catch (err) {
             const fallbackConfigUrl = new URL('cfg/config.sample.yaml', window.location.href);
             console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
-            window.config = await tryWithConfigUrl(fallbackConfigUrl);
+            window.config = await tryWithConfigUrl(fallbackConfigUrl, false);
         }
         fadeIn(window.config['fadeinOnLoadDelay']);
     } catch (err) {

@@ -152,6 +152,9 @@ required:
   - touchCursorHtml
   - messagesUrl
   - anniversariesUrl
+  - announcementsUrl
+  - announcementDelay
+  - announcementSettingsUrl
   - credits
   - apps
   - common

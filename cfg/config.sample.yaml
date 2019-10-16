@@ -10,7 +10,7 @@ disableMouseEvents: false
 disableConsoleLogging: false
 
 # disable scrolling
-disableScrolling: true
+disableScrolling: false
 
 # variables subject to (automatic) page reload
 fadeinOnLoadDelay: 1

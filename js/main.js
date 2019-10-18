@@ -9,7 +9,7 @@ import DebugOverlay from './debug-overlay.js';
 import * as MessagesOfTheDayLoader from './loaders/MessagesOfTheDayLoader.js';
 import * as AnniversariesLoader from './loaders/AnniverariesLoader.js';
 import * as WhenzelLoader from './loaders/WhenzelLoader.js';
-import '../vendor/whenzel/1.0.2/whenzel.js';
+import '../vendor/whenzel/1.0.3/whenzel.js';
 import {AnnouncementManager} from './AnnouncementManager.js';
 
 let announcementManager = null;

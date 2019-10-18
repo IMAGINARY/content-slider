@@ -1,5 +1,5 @@
 import * as LibLoader from '../LibLoader.js';
-import '../../vendor/whenzel/1.0.2/whenzel.js';
+import '../../vendor/whenzel/1.0.3/whenzel.js';
 import {AjvUtils, Fetcher} from '../Utils.js';
 
 let countdown; // FIXME: initialized in load()

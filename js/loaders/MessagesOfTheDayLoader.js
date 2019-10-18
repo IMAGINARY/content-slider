@@ -1,5 +1,5 @@
 import {AjvUtils, Fetcher} from '../Utils.js';
-import '../../vendor/whenzel/1.0.2/whenzel.js';
+import '../../vendor/whenzel/1.0.3/whenzel.js';
 
 let validateFuncPromise = AjvUtils.getValidateFunc(new URL("../../schema/messages.schema.yaml", import.meta.url));
 

@@ -1,5 +1,5 @@
 import '../vendor/js-yaml/3.13.1/js-yaml.min.js';
-import '../vendor/whenzel/1.0.2/whenzel.js';
+import '../vendor/whenzel/1.0.3/whenzel.js';
 import '../vendor/ajv/6.10.2/ajv.min.js';
 
 function handleHTTPError(response) {

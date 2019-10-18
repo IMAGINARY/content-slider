@@ -19,6 +19,7 @@ The `common` URL parameter can be used multiple times to load several libraries.
     <script src="vendor/loadjs/3.6.1/loadjs.min.js"></script>
     <script type="module">
         import ErrorApp from './js/ErrorApp.js';
+        import {loadApp, processConfigOverrides} from "./js/main.js";
 
         async function domContentLoaded() {
             return await new Promise((resolve) => {
@@ -41,6 +42,19 @@ The `common` URL parameter can be used multiple times to load several libraries.
             viewport.style.width = `${window.innerWidth}px`;
             viewport.style.height = `${window.innerHeight}px`;
 
+            // date override
+            const today = searchParams.has('today') ? new Date(Date.parse(searchParams.get('today'))) : new Date();
+            console.log("Using date ", today);
+
+            // process config overrides?
+            let configOverrideProcessor;
+            if (searchParams.has('ignoreOverrides')) {
+                configOverrideProcessor = undefined;
+                console.log("Ignoring config overrides");
+            } else {
+                configOverrideProcessor = overrides => processConfigOverrides(overrides, today);
+            }
+
             // load common JavaScript dependencies
             const commonScriptUrls = searchParams.getAll('common');
             if (commonScriptUrls.length > 0) {
@@ -49,9 +63,8 @@ The `common` URL parameter can be used multiple times to load several libraries.
             }
 
             // load single app
-            window.appUrl = searchParams.get('app');
-            const loadApp = appUrl => import(appUrl).then(appModule => new appModule.default());
-            window.app = await loadApp(appUrl);
+            window.appUrl = new URL(searchParams.get('app'), window.location.href);
+            window.app = await loadApp(appUrl, configOverrideProcessor);
             viewport.appendChild(app.domElement);
             window.app.ready.then(() => window.app.resume());
         }

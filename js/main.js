@@ -30,6 +30,10 @@ function fadeIn(delayInS) {
 
 async function loadApp(absoluteAppUrl, configOverrideProcessor) {
     const appClass = (await import(absoluteAppUrl)).default;
+
+    if (typeof configOverrideProcessor !== 'function')
+        configOverrideProcessor = () => new Object();
+
     const configOverride = configOverrideProcessor(await appClass.getConfigOverrides());
     console.log('Loading', appClass.name, 'with config override', configOverride);
     return new appClass(configOverride);
@@ -286,3 +290,4 @@ async function main(options) {
 }
 
 export default main;
+export {main, loadApp, processConfigOverrides};

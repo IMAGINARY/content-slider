@@ -24,7 +24,7 @@
   message: 'Der 14.&nbsp;März ist der sogannte Pi-Day, da die Zahl Pi gerundet 3,14 ist. Dieser Tag ist der Internationale Tag der Mathematik!'
 - when: '@easter-5 / @easter' # Easter
   message: 'Das Mathematikon wünscht Frohe Ostern!'
-- when: '????-04-30 /????-05-01' # Labor day
+- when: '????-04-30 / ????-05-01' # Labor day
   message: 'Wir wünschen einen schönen Maifeiertag!'
 - when: '????-05-04' # May the fourth (Star Wars day)
   message: 'Heute ist Star-Wars-Tag (May, the fourth). Möge die Macht mit Dir sein!'

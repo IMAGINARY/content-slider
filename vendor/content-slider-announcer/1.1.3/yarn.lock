@@ -658,14 +658,14 @@
     through2 "^2.0.3"
 
 "@imaginary-maths/durden@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@imaginary-maths/durden/-/durden-1.0.1.tgz#09c9b4b16853ecfac07f3479a19262ff6510a5fe"
-  integrity sha512-pPksLgIQfN4kO8n4a00oJ1B0V5O57dK+B5fOnQqZTMsJZZijY/9vXiu9gu0ReWG51Ngo93pVxJZta8G/Gsgg8Q==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@imaginary-maths/durden/-/durden-1.0.2.tgz#6ee9367e2c15104d44b0ce136d8c89c64ec5dc0f"
+  integrity sha512-tr+c1F+cSbBWiMf6rG9yP3yocjbIXNz/QRte06/Urae1IkqAs51+/1yAwRZ5O/065ycjSL+FOQS8P6ltIg6NNg==
 
 "@imaginary-maths/text-poster@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@imaginary-maths/text-poster/-/text-poster-1.0.0.tgz#b803e5fef2fe331d88a2e047a542187f1e8c2320"
-  integrity sha512-QtNguyFyyFBWAB62x2ogpma9bAAXgzYvXL0sgTb7KukKS08lzzYP92nb74GVxkeBgTZ4I7b6WxokPKmOgtecpQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@imaginary-maths/text-poster/-/text-poster-1.0.1.tgz#d76be81d3d6b1945f32c02889165a51aeb776009"
+  integrity sha512-Q+lbx6ligj6EMxqyvQizPzOVqw6T1lJB+tpk36UsKXVy3ZMxcnGYRZLAPQro0TUijSBAoyysrXX9el5RdvP2UA==
 
 JSONStream@^1.0.3:
   version "1.3.5"

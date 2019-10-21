@@ -139,7 +139,7 @@ function applyConfig(config) {
         slideDiv.append(slideContentDiv);
         return slideDiv;
     };
-    config.messagesOfTheDay.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
+    config.messages.forToday.forEach(mod => modSlidesWrapper.appendChild(createModSlide(mod.message)));
     sliderFunctions.simple_fade_slider(modSlidesWrapper);
 
     window.mouseEventSuppressor = new MouseEventSupporessor();
@@ -185,13 +185,10 @@ function applyConfig(config) {
     DummyConsole.setEnabled(config['disableConsoleLogging']);
 
     // set up the announcer
-    const messages = config.announcements.filtered.map(a => a.message);
-    const collapseOptions = whenzelConfigs => whenzelConfigs.reduce((acc, cur) => Object.assign(acc, cur.data), {});
-    const announcerOptions = collapseOptions(config.announcementSettings.filtered);
     announcementManager = new AnnouncementManager({
-        messages: messages,
+        messages: config.announcements.forToday.map(entry => entry.message),
         delay: config["announcementDelay"] * 1000,
-        announcerOptions: announcerOptions,
+        announcerOptions: config.announcements.settings.collapsed,
     });
 
     // reload at midnight because a lot of state depends on the date
@@ -223,11 +220,25 @@ async function preprocessConfig(config) {
         config.today = new Date();
     }
 
-    config.messages = await MessagesOfTheDayLoader.load(new URL(config.messagesUrl, config.configUrl), config.today);
-    config.anniversaries = await AnniversariesLoader.load(new URL(config.anniversariesUrl, config.configUrl), config.today);
-    config.messagesOfTheDay = config.messages.filtered.concat(config.anniversaries.filtered);
-    config.announcements = await MessagesOfTheDayLoader.load(new URL(config.announcementsUrl, config.configUrl), config.today);
-    config.announcementSettings = await WhenzelLoader.load(new URL(config.announcementSettingsUrl, config.configUrl), config.today);
+    // messages and announcements of the day
+    const textConfigs = {
+        messages: {urlKey: "messagesUrl", anniversariesUrlKey: "anniversaryMessagesUrl"},
+        announcements: {urlKey: "announcementsUrl", anniversariesUrlKey: "anniversaryAnnouncementsUrl"}
+    };
+    for (let textConfigKey in textConfigs) {
+        config[textConfigKey] = await MessagesOfTheDayLoader.load(new URL(config[textConfigs[textConfigKey].urlKey], config.configUrl), config.today);
+        if (config[textConfigKey].error)
+            console.error(config[textConfigKey].error);
+        config[textConfigKey].anniversaries = await AnniversariesLoader.load(new URL(config[textConfigs[textConfigKey].anniversariesUrlKey], config.configUrl), config.today);
+        if (config[textConfigKey].anniversaries.error)
+            console.error(config[textConfigKey].anniversaries.error);
+        config[textConfigKey].forToday = config[textConfigKey].filtered.concat(config[textConfigKey].anniversaries.filtered);
+    }
+
+    // announcer settings
+    const collapseOptions = whenzelConfigs => whenzelConfigs.reduce((acc, cur) => Object.assign(acc, cur.data), {});
+    config.announcements.settings = await WhenzelLoader.load(new URL(config.announcementSettingsUrl, config.configUrl), config.today);
+    config.announcements.settings.collapsed = collapseOptions(config.announcements.settings.filtered);
 
     return config;
 }
@@ -282,7 +293,7 @@ async function main(options) {
             window.config = await tryWithConfigUrl(new URL(options.configUrl), true);
         } catch (err) {
             const fallbackConfigUrl = new URL('cfg/config.sample.yaml', window.location.href);
-            console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href);
+            console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href, err);
             window.config = await tryWithConfigUrl(fallbackConfigUrl, false);
         }
         fadeIn(window.config['fadeinOnLoadDelay']);

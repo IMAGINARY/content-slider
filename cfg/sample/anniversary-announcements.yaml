@@ -1,0 +1,24 @@
+types:
+  - type: birthday
+    message: '%name% wurde vor %%ago(YEARS)%% geboren.\n@@additional_message%'
+    every: year
+    labels:
+      singular: '||||||| Jahr|||'
+      plural: '||||||| Jahren|||'
+labels:
+  delim: ', '
+  last: ' und '
+  empty: ''
+anniversaries:
+  - type: birthday
+    name: Carl Friedrich Gauß
+    date: '1777-04-30'
+    additional_message: ' Hier könnte Ihr Text stehen.'
+  - message: "@@Das\nMathematikon\n@@wurde vor\n%%ago(YEARS|MONTHS|DAYS)%%\n@@eröffnet."
+    date: '2016-02-16'
+    every: day
+    labels:
+      singular: '|||| Tag|| Monat| Jahr|||'
+      plural: '|||| Tagen|| Monaten| Jahren|||'
+      delim: "\n"
+      last: "\n"

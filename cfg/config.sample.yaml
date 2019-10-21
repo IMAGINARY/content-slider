@@ -42,8 +42,9 @@ credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen 
 
 # URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
 messagesUrl: sample/messages.yaml
-anniversariesUrl: sample/anniversaries.yaml
+anniversaryMessagesUrl: sample/anniversary-messages.yaml
 announcementsUrl: sample/announcements.yaml
+anniversaryAnnouncementsUrl: sample/anniversary-announcements.yaml
 
 # variables subject to the display of announcements
 announcementDelay: 210

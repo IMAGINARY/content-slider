@@ -45,8 +45,9 @@ credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen 
 
 # URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
 messagesUrl: mathematikon/messages-of-the-day.yaml
-anniversariesUrl: mathematikon/anniversaries.yaml
+anniversaryMessagesUrl: mathematikon/anniversary-messages.yaml
 announcementsUrl: mathematikon/announcements.yaml
+anniversaryAnnouncementsUrl: mathematikon/anniversary-announcements.yaml
 
 # variables subject to the display of announcements
 announcementDelay: 210

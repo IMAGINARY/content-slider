@@ -98,8 +98,8 @@ properties:
     description: The slider reads short messages from this file, filters them based on the current date and displays them at the top of the page. The messages are exchanged every couple of seconds.
     type: string
     cfg-overridable: false
-  anniversariesUrl:
-    title: URL to JSON or YAML file that defines the anniversaries.
+  anniversaryMessagesUrl:
+    title: URL to JSON or YAML file that defines the anniversaries used as messages of the day.
     description: The anniversaries are converted into the message of the day format, filtered based on the current date and displayed in the messages area of the slider.
     type: string
     cfg-overridable: false
@@ -120,6 +120,11 @@ properties:
   announcementsUrl:
     title: URL to the JSON or YAML file that contains the announcements
     description: The slider reads announcements from this file, filters them based on the current date and displays them in a full screen overlay when the slider is idle.
+    type: string
+    cfg-overridable: false
+  anniversaryAnnouncementsUrl:
+    title: URL to JSON or YAML file that defines the anniversaries used as announcements.
+    description: The anniversaries are converted into the announcement format, filtered based on the current date and displayed as full-screen announcements.
     type: string
     cfg-overridable: false
   announcementDelay:
@@ -178,8 +183,9 @@ required:
   - touchCursorVisible
   - touchCursorHtml
   - messagesUrl
-  - anniversariesUrl
+  - anniversaryMessagesUrl
   - announcementsUrl
+  - anniversaryAnnouncementsUrl
   - announcementDelay
   - announcementSettingsUrl
   - credits

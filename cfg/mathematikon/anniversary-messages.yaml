@@ -4,7 +4,7 @@ types:
     every: year
     labels:
       singular: '|||||||&nbsp;Jahr|||'
-    plural: '|||||||&nbsp;Jahren|||'
+      plural: '|||||||&nbsp;Jahren|||'
 labels:
   delim: ', '
   last: ' und '

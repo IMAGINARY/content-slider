@@ -11,6 +11,7 @@ import * as AnniversariesLoader from './loaders/AnniverariesLoader.js';
 import * as WhenzelLoader from './loaders/WhenzelLoader.js';
 import '../vendor/whenzel/1.0.3/whenzel.js';
 import {AnnouncementManager} from './AnnouncementManager.js';
+import Debug from './Debug.js';
 
 let announcementManager = null;
 
@@ -94,6 +95,10 @@ async function initializeAppsAndSlider(config) {
 }
 
 function applyConfig(config) {
+    // ensure existance of global IMAGINARY namespace
+    if (typeof window.IMAGINARY === 'undefined')
+        window.IMAGINARY = {};
+
     // create a new stylesheet for inserting configurable CSS rules
     const sheet = (function () {
         // Create the <style> tag
@@ -189,6 +194,12 @@ function applyConfig(config) {
         messages: config.announcements.forToday.map(entry => entry.message),
         delay: config["announcementDelay"] * 1000,
         announcerOptions: config.announcements.settings.collapsed,
+    });
+
+    // create the Debug helper
+    window.IMAGINARY.debug = new Debug({
+        config: config,
+        announcementManager: announcementManager,
     });
 
     // reload at midnight because a lot of state depends on the date

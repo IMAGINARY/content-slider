@@ -6,8 +6,8 @@ types:
       singular: '|||||||&nbsp;Jahr|||'
     plural: '|||||||&nbsp;Jahren|||'
 labels:
-  delim: ' und '
-  last: ', '
+  delim: ', '
+  last: ' und '
   empty: ''
 anniversaries:
   - type: birthday

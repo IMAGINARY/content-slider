@@ -1,5 +1,8 @@
+#############################################
+# Events
+#############################################
 - when: "2019-10-30 / 2020-01-20" # New Station
-  message: "Jetzt neu!\nInteraktive Mathematik-Station\nim Mathematikon\nmit neuen Spielen und neuen Experimenten\nHier ausprobieren!"
+  message: "Neue Spiele und Experimente!\nInterative\nMathematik\nStation\nHier ausprobieren!"
 - when: "2019-03-11 / 2020-03-10" # La La Lab
   message: "Ausstellung\nLa La Lab!\nDie Mathematik der Musik\nVERLÄNGERT BIS 28.3.2019\nin der MAINS\nMathematik-Informatik-Station\nKurfürsten-Anlage 52, Heidelberg"
 - when: "2020-03-11 / 2020-05-10" # I. AM. AI.
@@ -8,9 +11,46 @@
   message: "Das Heidelberg Laureate Forum (HLF)\n20–25 September, 2020\nNetzwerktreffen, mit ausgezeichneten MathematikerInnen und InformatikerInnen und 200 herausragenden NachwuchsforscherInnen."
 - when: "2020-03-11 / 2020-05-10" # Explore Science
   message: "EXPLORE SCIENCE \n24. bis 28. Juni 2020\ndie naturwissenschaftlichen Erlebnistage\nim Luisenpark Mannheim"
+#############################################
+# Holidays and special days
+#############################################
 - when: "????-12-10 / ????-12-26" # X-MAS
   message: "Wir wünschen allen\neine frohe\nWeihnachtszeit!"
 - when: "????-12-27 / ????-12-31" # New Year Slide
   message: "Wir wünschen allen\neinen guten Rutsch ins\nneue Jahr!"
 - when: "????-12-31 / ????-01-15" # New Year
   message: "Wir wünschen allen\neinen guten Start ins\nneue Jahr!"
+- when: "????-02-14" # Saint Valentine"s Day
+  message: "Happy\nValentine’s\nDay!"
+- when: "????-02-16 / ????-02-20" # Opening of Mathematikon Mall
+  message: "Happy\nBirthday\nMathematikon\n@@Am 18. Februar 2016 wurden die Mathematikon Shops eröffnet. Seitdem gibt es auch diese interaktive Mathe-Installation."
+- when: "????-02-29" # Leap day
+  message: "Heute ist ein\nSchalttag\nerst morgen ist der\n1. März"
+- when: "????-11-11" # Fasching begin
+  message: "@@Heute um\n11 nach 11\n@@eröffnet die\nFasnacht-Saison\nHajo!"
+- when: "????-03-12 / ????-03-16" # pi day / IDM
+  message: "14. März\nPi-Day\n@@Die Zahl Pie ist gerundet 3,14. Dieser Tag ist der Internationale Tag der Mathematik!"
+- when: "@easter-5 / @easter" # Easter
+  message: "Das Mathematikon wünscht\nFrohe Ostern!"
+- when: "????-04-30 / ????-05-01" # Labor day
+  message: "Wir wünschen einen schönen\nMaifeiertag!"
+- when: "????-05-04" # May the fourth (Star Wars day)
+  message: "@@Heute ist\nStar\nWars\nTag\n@@(May, the fourth)\n@@Möge die Macht mit Dir sein!"
+- when: "????-05-12" # International Women In Maths Day
+  message: "@@Heute ist der\nInternational\nWomen\nin Math\nDay\n@@also der internationale Tag der Frauen in der Mathematik."
+- when: "????-09-01" # Classes begin in Hogwarts
+  message: "@@Heute ist\nSchulstart\n@@in\nHogwarts\n@@der Schule für Hexerei und Zauberei. Ein neues Jahr voller Abenteuer kann beginnen."
+- when: "????-10-01 / ????-10-03" # Day of German Unity
+  message: "@@Der Tag der\nDeutschen Einheit\n@@am\n3. Oktober\n@@erinnert an die Wiedervereinigung 1990.\n@@Wir wünschen einen schönen Feiertag."
+- when: "????-10-31" # Halloween
+  message: "Süßes\n@@oder\nSaures?!\nHappy Halloween!"
+- when: "????-11-23" # Fibonacci Day
+  message: "@@Heute ist\nFibonacci-Tag\n@@Die Fibonacci-Folge\n@@beginnt mit\n0, 1, 1, 2, 3, 5, 8, 13 (…)\n@@Die Datumsschreibweise\n@@11/23 (1 1 2 3) ist der Beginn"
+- when: "2020-12-16" # Pythagorean Theorem Day
+  message: "@@Heute ist ein\nTag\n@@mit\nPythagoras\nDatum\n@@Der Satz des Pythagoras a²+b²=c² ist erfüllt, denn 12²+16²=20²"
+- when: "2025-07-24" # Pythagorean Theorem Day
+  message: "@@Heute ist ein\nTag\n@@mit\nPythagoras\nDatum\n@@Der Satz des Pythagoras a²+b²=c² ist erfüllt, denn 7²+24²=25²"
+- when: "????-11-03" # Feast of Saint Hubertus, patron saint of mathematicians, opticians, metalworkers and hunters.
+  message: "@@Heute ist der Gedenktag von\nHubertus\n@@von\nLüttich\n@@Er gilt u.a. als Patron der Mathematiker und Hersteller von mathematischen Geräten."
+- when: "????-11-15" # Feast of Saint Albertus Magnus, patron saint of scientists
+  message: "@@Heute ist der Gedenktag von\nAlbertus\nMagnus\n@@dem Schutzpatron der Naturwissenschaftler"

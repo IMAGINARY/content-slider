@@ -79,6 +79,7 @@ Control timing with this options:
 - **duration** (in ms, default 60000): How long the announcement will be shown 
   (without counting fade-in / out animations).  
 - **fadeInDuration** (in ms, default 5000): How much the tiling takes to appear.
+- **fadeOutDuration** (in ms, default 2000): How much the announcement takes to disappear.
 - **transformLoopDuration** (in ms, default 30000): How much a single loop of tiling transformation will take.
 
 #### Durden tiling

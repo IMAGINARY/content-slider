@@ -1,7 +1,7 @@
 import {IdleDetector} from "./IdleDetector.js";
-import '../vendor/content-slider-announcer/1.1.3/assets/js/content-slider-announcer.js';
+import '../vendor/content-slider-announcer/1.2.1/assets/js/content-slider-announcer.js';
 
-const contentSliderAnnouncerHtmlUrl = new URL('../vendor/content-slider-announcer/1.1.3/index.html', import.meta.url);
+const contentSliderAnnouncerHtmlUrl = new URL('../vendor/content-slider-announcer/1.2.1/index.html', import.meta.url);
 
 class AnnouncementManager {
     constructor(options) {

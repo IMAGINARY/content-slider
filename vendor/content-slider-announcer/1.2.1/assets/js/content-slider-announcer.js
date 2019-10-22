@@ -710,7 +710,8 @@ function () {
 
         _this.busy = true;
         var defaultOptions = {
-          duration: 60000
+          duration: 60000,
+          fadeOutDuration: 2000
         };
         var options = Object.assign({}, defaultOptions, userOptions);
         _this.visible = true;
@@ -735,7 +736,7 @@ function () {
         var eventMask = window.document.createElement('div');
         eventMask.classList.add('content-slider-announcer-eventMask');
         eventMask.addEventListener('pointerdown', function () {
-          _this.hide();
+          _this.hide(options.fadeOutDuration);
         });
 
         _this.wrapper.append(_this.iframe);
@@ -744,7 +745,7 @@ function () {
 
         window.document.querySelector('body').append(_this.wrapper);
         _this.hideTimeout = setTimeout(function () {
-          _this.hide();
+          _this.hide(options.fadeOutDuration);
 
           _this.clearTimeoutTimer();
         }, options.duration);
@@ -765,6 +766,8 @@ function () {
     value: function hide() {
       var _this2 = this;
 
+      var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : AnnouncerFrame.HIDE_DELAY;
+
       if (this.busy || !this.visible) {
         return;
       }
@@ -772,13 +775,13 @@ function () {
       this.busy = true;
       this.iframe.contentWindow.postMessage({
         type: 'hide',
-        duration: AnnouncerFrame.HIDE_DELAY
+        duration: duration
       });
       setTimeout(function () {
         _this2.destroyFrame();
 
         _this2.busy = false;
-      }, AnnouncerFrame.HIDE_DELAY);
+      }, duration);
     }
     /**
      * Hide the current announcement immediately.
@@ -979,12 +982,15 @@ function createAnnouncement(announcerSrc, text) {
 }
 /**
  * Hide the announcement
+ *
+ * @param {number} duration
+ *  How much time the announcement takes to disappear.
  */
 
 
-function hideAnnouncement() {
+function hideAnnouncement(duration) {
   if (announcerFrame !== null) {
-    announcerFrame.hide();
+    announcerFrame.hide(duration);
   }
 }
 /**

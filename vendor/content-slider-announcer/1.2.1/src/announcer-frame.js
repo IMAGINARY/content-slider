@@ -41,6 +41,7 @@ export default class AnnouncerFrame {
 
       const defaultOptions = {
         duration: 60000,
+        fadeOutDuration: 2000,
       };
       const options = Object.assign({}, defaultOptions, userOptions);
 
@@ -60,14 +61,14 @@ export default class AnnouncerFrame {
       const eventMask = window.document.createElement('div');
       eventMask.classList.add('content-slider-announcer-eventMask');
       eventMask.addEventListener('pointerdown', () => {
-        this.hide();
+        this.hide(options.fadeOutDuration);
       });
       this.wrapper.append(this.iframe);
       this.wrapper.append(eventMask);
       window.document.querySelector('body').append(this.wrapper);
 
       this.hideTimeout = setTimeout(() => {
-        this.hide();
+        this.hide(options.fadeOutDuration);
         this.clearTimeoutTimer();
       }, options.duration);
 
@@ -82,7 +83,7 @@ export default class AnnouncerFrame {
   /**
    * Hide the current announcement with a fade out animation.
    */
-  hide() {
+  hide(duration = AnnouncerFrame.HIDE_DELAY) {
     if (this.busy || !this.visible) {
       return;
     }
@@ -90,12 +91,12 @@ export default class AnnouncerFrame {
 
     this.iframe.contentWindow.postMessage({
       type: 'hide',
-      duration: AnnouncerFrame.HIDE_DELAY,
+      duration,
     });
     setTimeout(() => {
       this.destroyFrame();
       this.busy = false;
-    }, AnnouncerFrame.HIDE_DELAY);
+    }, duration);
   }
 
   /**

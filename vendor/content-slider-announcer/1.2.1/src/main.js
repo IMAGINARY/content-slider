@@ -24,10 +24,13 @@ function createAnnouncement(announcerSrc, text, options = {}) {
 
 /**
  * Hide the announcement
+ *
+ * @param {number} duration
+ *  How much time the announcement takes to disappear.
  */
-function hideAnnouncement() {
+function hideAnnouncement(duration) {
   if (announcerFrame !== null) {
-    announcerFrame.hide();
+    announcerFrame.hide(duration);
   }
 }
 

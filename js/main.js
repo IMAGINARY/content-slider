@@ -3,7 +3,7 @@ import * as sliderFunctions from './slider-functions.js';
 import ErrorApp from './ErrorApp.js';
 import DummyConsole from './dummy-console.js';
 import MouseEventSupporessor from './stop-mouse-event-propagation.js';
-import {ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
+import {Reloader, ReloadButtons, IdleReloader, ErrorReloader} from './auto-page-reloader.js';
 import Cursor from './touch-cursor.js';
 import DebugOverlay from './debug-overlay.js';
 import * as MessagesOfTheDayLoader from './loaders/MessagesOfTheDayLoader.js';
@@ -193,6 +193,9 @@ function applyConfig(config) {
         delay: config["announcementDelay"] * 1000,
         announcerOptions: announcerOptions,
     });
+
+    // reload at midnight because a lot of state depends on the date
+    Reloader.reloadAtMidNight();
 }
 
 async function domContentLoaded() {

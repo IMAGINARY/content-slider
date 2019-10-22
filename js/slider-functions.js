@@ -1,25 +1,5 @@
 import {IdleDetector} from "./IdleDetector.js";
 
-function refreshAt(hours, minutes, seconds) {
-    const now = new Date();
-    const then = new Date();
-
-    if (now.getHours() > hours ||
-        (now.getHours() === hours && now.getMinutes() > minutes) ||
-        now.getHours() === hours && now.getMinutes() === minutes && now.getSeconds() >= seconds) {
-        then.setDate(now.getDate() + 1);
-    }
-    then.setHours(hours);
-    then.setMinutes(minutes);
-    then.setSeconds(seconds);
-
-    const timeout = (then.getTime() - now.getTime());
-    setTimeout(() => window.location.reload(true), timeout);
-}
-
-// TODO: Do not hard-code the refresh time
-refreshAt(0, 0, 0);
-
 function simple_fade_slider(slidesWrapperElement) {
     const slides = slidesWrapperElement.children;
     if (slides.length > 0) {
@@ -126,4 +106,4 @@ function jssor_app_slider_starter(containerId, apps, config) {
     return jssor_slider;
 }
 
-export {refreshAt, simple_fade_slider, createSlide, jssor_app_slider_starter};
+export {simple_fade_slider, createSlide, jssor_app_slider_starter};

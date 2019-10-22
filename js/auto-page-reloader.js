@@ -1,13 +1,5 @@
 import {IdleDetector} from './IdleDetector.js';
 
-function fadeOutAndReload(element) {
-    element.style.animationsDelay = '0s';
-    element.style.animation = "";
-    element.className = "fade-out";
-    element.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? window.location.reload() : false);
-    element.style.animationPlayState = 'running';
-}
-
 class ReloadButtons {
     constructor(params) {
         this._isEnabled = false;
@@ -15,9 +7,8 @@ class ReloadButtons {
         this._reloadButtonSize = params.reloadButtonSize;
         this._reloadButtonHoldTime = params.reloadButtonHoldTime * 1000;
 
-        const fadeOutHandler = () => fadeOutAndReload(this._parentElem);
-        const dblClickHandler = fadeOutHandler;
-        const pointerDownHandler = event => event.target.pressTimeout = setTimeout(fadeOutHandler, this._reloadButtonHoldTime);
+        const dblClickHandler = () => Reloader.fadeOutAndReload();
+        const pointerDownHandler = event => event.target.pressTimeout = setTimeout(() => Reloader.fadeOutAndReload(), this._reloadButtonHoldTime);
         const pointerUpHandler = event => clearTimeout(event.target.pressTimeout) && false;
 
         this._tl = document.createElement("div");
@@ -67,8 +58,30 @@ class ReloadButtons {
     }
 }
 
-class IdleReloader {
+class Reloader {
+    static reload() {
+        window.location.reload(true);
+    }
+
+    static fadeOutAndReload(element = window.document.body) {
+        element.style.animationsDelay = '0s';
+        element.style.animation = "";
+        element.className = "fade-out";
+        element.addEventListener('animationend', ae => ae.animationName === 'fadeOut' ? Reloader.reload() : false);
+        element.style.animationPlayState = 'running';
+    }
+
+    static reloadAtMidNight() {
+        const now = new Date();
+        const midnight = new Date(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() + 86400000);
+        const midnightOffset = 1 * 1000 /* 1s */;
+        setTimeout(() => Reloader.fadeOutAndReload(), midnight - now + midnightOffset);
+    }
+}
+
+class IdleReloader extends Reloader {
     constructor(params) {
+        super();
         this._isEnabled = false;
         this._reloadTimeThreshold = params.reloadDelay * 1000;
         this._idleTimeThreshold = params.idleDelay * 1000;
@@ -79,7 +92,7 @@ class IdleReloader {
         if (!this._isEnabled) {
             console.log("reloading page after " + Math.floor(this._reloadTimeThreshold / 1000.0) + "s in idle mode");
             this._idleDetector = new IdleDetector();
-            this._idleDetector.setTimeout(() => fadeOutAndReload(document.body), this._reloadTimeThreshold, this._idleTimeThreshold);
+            this._idleDetector.setTimeout(() => Reloader.fadeOutAndReload(), this._reloadTimeThreshold, this._idleTimeThreshold);
 
             this._isEnabled = true;
         }
@@ -106,8 +119,9 @@ class IdleReloader {
     }
 }
 
-class ErrorReloader {
+class ErrorReloader extends Reloader {
     constructor(params) {
+        super();
         this._isEnabled = false;
         this._reloadDelay = params.reloadDelay * 1000;
         this._reloadTimeout = 0;
@@ -115,7 +129,7 @@ class ErrorReloader {
             if (this._reloadTimeout === 0) {
                 // schedule a reload only if it hasn't been scheduled already
                 console.warn(`An error occurred. Reloading page in ${this._reloadDelay / 1000}s. Call window.abortReload() to prevent this.`);
-                this._reloadTimeout = setTimeout(() => fadeOutAndReload(document.body), this._reloadDelay);
+                this._reloadTimeout = setTimeout(() => Reloader.fadeOutAndReload(), this._reloadDelay);
                 window.abortReload = () => {
                     clearTimeout(this._reloadTimeout);
                     this._reloadTimeout = 0;
@@ -154,4 +168,4 @@ class ErrorReloader {
     }
 }
 
-export {ReloadButtons, IdleReloader, ErrorReloader};
+export {Reloader, ReloadButtons, IdleReloader, ErrorReloader};

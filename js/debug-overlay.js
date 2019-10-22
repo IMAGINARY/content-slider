@@ -29,7 +29,7 @@ class DebugOverlay {
             debugConsole.className = 'debug_console';
             return debugConsole;
         })();
-        this._logFunc = event => this.logEvent(event, 'white' /* TODO */);
+        this._logFunc = event => this.logEvent(event, 'white');
     }
 
     log(text, color, object) {

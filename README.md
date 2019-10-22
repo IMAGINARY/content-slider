@@ -1,6 +1,6 @@
 # Content slider
 
-[Online demo.](https://rawcdn.githack.com/IMAGINARY/content-slider/5a3768e808c286f54451305741c24a683d47b599/index.html)<!-- TODO: replace with link to demo of master branch -->
+[Online demo.](https://rawcdn.githack.com/IMAGINARY/content-slider/master/index.html)
 
 This project implements an app player targeting large-scale vertical 16:9 touch displays. The player is split into three main, permanently visible areas:
 - app slider at the top

@@ -14,12 +14,12 @@ anniversaries:
     date: '1892-01-03'
     first_name: 'J. R. R.'
     last_name: 'Tolkien'
-    additional_message: 'Sein Roman „Der Herr der Ringe“ ist eines der erfolgreichsten Bücher des 20. Jahrhunderts.'
+    additional_message: "Sein Roman\n„Der Herr der Ringe“\n@@ist eines der erfolgreichsten Bücher des 20. Jahrhunderts."
   - type: birthday
     date: '1643-01-04'
     first_name: 'Isaac'
     last_name: 'Newton'
-    additional_message: 'Er ist einer der bedeutendsten Wissenschaftler aller Zeiten.'
+    additional_message: 'Er war einer der bedeutendsten Wissenschaftler aller Zeiten.'
   - type: birthday
     date: '1655-01-06'
     first_name: 'Jacob'
@@ -59,7 +59,7 @@ anniversaries:
     date: '1883-02-23'
     first_name: 'Karl'
     last_name: 'Jaspers'
-    additional_message: 'Er war ein deutscher Psychiater und Philosoph von internationaler Bedeutung. Nach 1945 war er an der Neugründung der Uni Heidelberg beteiligt'
+    additional_message: 'Er war ein deutscher Psychiater und Philosoph von internationaler Bedeutung. Nach 1945 war er an der Neugründung der Uni Heidelberg beteiligt.'
   - type: birthday
     date: '1845-03-03'
     first_name: 'Georg'
@@ -99,7 +99,7 @@ anniversaries:
     date: '1596-03-31'
     first_name: 'René'
     last_name: 'Descartes'
-    additional_message: 'Er war ein französischer Philosoph, Mathematiker und Naturwissenschaftler. Von ihm stammt: „cogito ergo sum“ („Ich denke, also bin ich.“).'
+    additional_message: "Er war ein französischer Philosoph, Mathematiker und Naturwissenschaftler.\n@@Von ihm stammt:\n„cogito ergo sum“\n(„Ich denke, also bin ich.“)"
   - type: birthday
     date: '1685-03-31'
     first_name: 'Johann Sebastian'
@@ -119,7 +119,7 @@ anniversaries:
     date: '1921-04-09'
     first_name: 'Mary'
     last_name: 'Jackson'
-    additional_message: 'Sie war eine US-amerikanische Ingenieurin und leistete wesentliche Beiträge zur Luft- und Raumfahrttechnik zur Zeit des „Wettlaufs ins All“.'
+    additional_message: "Sie war eine US-amerikanische Ingenieurin und leistete wesentliche Beiträge zur Luft- und Raumfahrttechnik zur Zeit des\n„Wettlaufs ins All“"
   - type: birthday
     date: '1707-04-15'
     first_name: 'Leonhard'
@@ -149,17 +149,17 @@ anniversaries:
     date: '1777-04-30'
     first_name: 'Carl Friedrich'
     last_name: 'Gauss'
-    additional_message: 'Er war ein deutscher Mathematiker, Statistiker, Astronom, Geodät und Physiker und galt als Princeps Mathematicorum („Fürst der Mathematiker“).'
+    additional_message: "Er war ein deutscher Mathematiker, Statistiker, Astronom, Geodät und Physiker und galt als\n„Princeps Mathematicorum“\n(„Fürst der Mathematiker“)"
   - type: birthday
     date: '1937-05-05'
     first_name: 'Delia'
     last_name: 'Derbyshire'
-    additional_message: 'Sie war eine britische Komponistin, Musikerin und Produzentin. Sie interpretierte die Titelmusik der Fernsehserie „Doctor Who“ elektronisch.'
+    additional_message: "Sie war eine britische Komponistin, Musikerin und Produzentin. Sie interpretierte die Titelmusik der Fernsehserie\n„Doctor Who“\n@@elektronisch."
   - type: birthday
     date: '1906-05-06'
     first_name: 'André'
     last_name: 'Weil'
-    additional_message: 'Er war ein französischer Mathematiker. Er war einer der überragenden Mathematiker des 20. Jahrhunderts.'
+    additional_message: 'Er war einer der überragenden Mathematiker des 20. Jahrhunderts.'
   - type: birthday
     date: '1820-05-12'
     first_name: 'Florence'
@@ -219,7 +219,7 @@ anniversaries:
     date: '1938-07-27'
     first_name: 'Gary'
     last_name: 'Gygax'
-    additional_message: 'Er war ein US-amerikanischer Spieleautor und einer der Erfinder des Pen-&-Paper-Rollenspiels Dungeons & Dragons.'
+    additional_message: "Er war ein US-amerikanischer Spieleautor und einer der Erfinder des Pen-&-Paper-Rollenspiels\n„Dungeons & Dragons“"
   - type: birthday
     date: '1868-07-30'
     first_name: 'Alfred'
@@ -334,12 +334,12 @@ anniversaries:
     date: '1847-11-08'
     first_name: 'Bram'
     last_name: 'Stoker'
-    additional_message: 'Er war ein irischer Schriftsteller. Er wurde hauptsächlich durch seinen Roman Dracula bekannt.'
+    additional_message: 'Er war ein irischer Schriftsteller. Er wurde hauptsächlich durch seinen Roman „Dracula“ bekannt.'
   - type: birthday
     date: '1848-11-08'
     first_name: 'Gottlob'
     last_name: 'Frege'
-    additional_message: 'Er war ein deutscher Logiker, Mathematiker und Philosoph. Er hat als erster eine formale Sprache und, dadurch formale Beweise entwickelt.'
+    additional_message: 'Er war ein deutscher Logiker, Mathematiker und Philosoph. Er hat als erster eine formale Sprache und dadurch formale Beweise entwickelt.'
   - type: birthday
     date: '1934-11-09'
     first_name: 'Carl'
@@ -364,7 +364,7 @@ anniversaries:
     date: '1919-12-08'
     first_name: 'Julia'
     last_name: 'Robinson'
-    additional_message: 'Sie war eine US-amerikanische Mathematikerin. Sie war die erste Frau als Präsidentin der American Mathematical Society.'
+    additional_message: 'Sie war eine US-amerikanische Mathematikerin und die erste Frau als Präsidentin der American Mathematical Society.'
   - type: birthday
     date: '1804-12-10'
     first_name: 'Carl'
@@ -454,7 +454,7 @@ anniversaries:
     date: '1831-06-13'
     first_name: 'James Clerk'
     last_name: 'Maxwell'
-    additional_message: 'Er  war ein schottischer Physiker. Die Maxwell-Gleichungen sind eine der wichtigsten Leistungen der Physik und Mathematik des 19. Jahrhunderts.'
+    additional_message: "Er  war ein schottischer Physiker. Die Maxwell-Gleichungen sind eine der wichtigsten Leistungen der Physik\n@@und Mathematik des\n@@19. Jahrhunderts."
   - type: birthday
     date: '1871-08-30'
     first_name: 'Ernest'

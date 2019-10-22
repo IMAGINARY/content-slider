@@ -2,13 +2,13 @@
 # Events
 #############################################
 - when: "2019-10-30 / 2020-01-20" # New Station
-  message: "Neue Spiele und Experimente!\nInterative\nMathematik\nStation\nHier ausprobieren!"
+  message: "Neue Spiele und Experimente!\nInteraktive\nMathematik\nStation\nHier ausprobieren!"
 - when: "2019-03-11 / 2020-03-10" # La La Lab
-  message: "Ausstellung\nLa La Lab!\nDie Mathematik der Musik\nVERLÄNGERT BIS 28.3.2019\nin der MAINS\nMathematik-Informatik-Station\nKurfürsten-Anlage 52, Heidelberg"
+  message: "Ausstellung\nLa La Lab!\nDie Mathematik der Musik\nVERLÄNGERT BIS 28.3.2020\nin der MAINS\nMathematik-Informatik-Station\nKurfürsten-Anlage 52, Heidelberg"
 - when: "2020-03-11 / 2020-05-10" # I. AM. AI.
-  message: "Neue Ausstellung\nI am A.I.\nKünstliche Intelligenz\nAb 21.4.2020\nin der MAINS\nMathematik-Informatik-Station\nKurfürsten-Anlage 52, Heidelberg"
+  message: "Neue Ausstellung\nI AM A.I.\nKünstliche Intelligenz\nAb 21.4.2020\nin der MAINS\nMathematik-Informatik-Station\nKurfürsten-Anlage 52, Heidelberg"
 - when: "2020-09-20 / 2020-09-25" # HLF 2020
-  message: "Das Heidelberg Laureate Forum (HLF)\n20–25 September, 2020\nNetzwerktreffen, mit ausgezeichneten MathematikerInnen und InformatikerInnen und 200 herausragenden NachwuchsforscherInnen."
+  message: "Heidelberg Laureate Forum\nHLF\n20–25 September 2020\nNetzwerktreffen mit ausgezeichneten Mathematiker*Innen und Informatiker*Innen und 200 herausragenden Nachwuchsforscher*Innen"
 - when: "2020-03-11 / 2020-05-10" # Explore Science
   message: "EXPLORE SCIENCE \n24. bis 28. Juni 2020\ndie naturwissenschaftlichen Erlebnistage\nim Luisenpark Mannheim"
 #############################################
@@ -51,6 +51,6 @@
 - when: "2025-07-24" # Pythagorean Theorem Day
   message: "@@Heute ist ein\nTag\n@@mit\nPythagoras\nDatum\n@@Der Satz des Pythagoras a²+b²=c² ist erfüllt, denn 7²+24²=25²"
 - when: "????-11-03" # Feast of Saint Hubertus, patron saint of mathematicians, opticians, metalworkers and hunters.
-  message: "@@Heute ist der Gedenktag von\nHubertus\n@@von\nLüttich\n@@Er gilt u.a. als Patron der Mathematiker und Hersteller von mathematischen Geräten."
+  message: "@@Heute ist der Gedenktag von\nHubertus\n@@von\nLüttich\n@@Er gilt u.a. als Patron der Mathematiker*Innen und\n@@der Herstellung von mathematischen Geräten."
 - when: "????-11-15" # Feast of Saint Albertus Magnus, patron saint of scientists
-  message: "@@Heute ist der Gedenktag von\nAlbertus\nMagnus\n@@dem Schutzpatron der Naturwissenschaftler"
+  message: "@@Heute ist der Gedenktag von\nAlbertus\nMagnus\n@@dem Schutzpatron der Naturwissenschaftler*Innen"

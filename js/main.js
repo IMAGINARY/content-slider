@@ -12,6 +12,7 @@ import * as WhenzelLoader from './loaders/WhenzelLoader.js';
 import '../vendor/whenzel/1.0.3/whenzel.js';
 import {AnnouncementManager} from './AnnouncementManager.js';
 import Debug from './Debug.js';
+import {errorMsg} from './ErrorMessage.js';
 
 let announcementManager = null;
 
@@ -125,7 +126,6 @@ function applyConfig(config) {
     document.getElementById('credits').innerHTML = config.credits;
 
     // add messages of the day
-    // TODO: a proper user-facing warning related to parsing the messages files
     const modSlidesWrapper = document.querySelector('#slider_top [u="slides"]');
     const createModSlide = message => {
         const slideDiv = document.createElement('div');
@@ -238,11 +238,15 @@ async function preprocessConfig(config) {
     };
     for (let textConfigKey in textConfigs) {
         config[textConfigKey] = await MessagesOfTheDayLoader.load(new URL(config[textConfigs[textConfigKey].urlKey], config.configUrl), config.today);
-        if (config[textConfigKey].error)
+        if (config[textConfigKey].error) {
+            errorMsg(`Error processing ${textConfigKey}.\nPlease check the configuration file.`);
             console.error(config[textConfigKey].error);
+        }
         config[textConfigKey].anniversaries = await AnniversariesLoader.load(new URL(config[textConfigs[textConfigKey].anniversariesUrlKey], config.configUrl), config.today);
-        if (config[textConfigKey].anniversaries.error)
+        if (config[textConfigKey].anniversaries.error) {
+            errorMsg(`Error processing anniversary ${textConfigKey}.\nPlease check the configuration file.`);
             console.error(config[textConfigKey].anniversaries.error);
+        }
         config[textConfigKey].forToday = config[textConfigKey].filtered.concat(config[textConfigKey].anniversaries.filtered);
     }
 

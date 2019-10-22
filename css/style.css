@@ -509,3 +509,16 @@ em {
     width: 100%;
     height: 100%;
 }
+
+/********************************
+ * error message
+ ********************************/
+.error-message {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: Maroon;
+    z-index: 20000;
+    font-size: 64px;
+    text-align: center;
+}

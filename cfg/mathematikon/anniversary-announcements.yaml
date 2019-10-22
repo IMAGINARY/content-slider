@@ -1,2 +1,587 @@
-types: []
-anniversaries: []
+types:
+  - type: birthday
+    message: "Am heutigen Tag feiern wir\nden %%ago(YEARS)%% Geburtstag von\n%first_name%\n%last_name%\n@@%additional_message%"
+    every: year
+    labels:
+      singular: '|||||||.|||'
+      plural: '|||||||.|||'
+labels:
+  delim: ', '
+  last: ' und '
+  empty: ''
+anniversaries:
+  - type: birthday
+    date: '1892-01-03'
+    first_name: 'J. R. R.'
+    last_name: 'Tolkien'
+    additional_message: "Sein Roman\n„Der Herr der Ringe“\n@@ist eines der erfolgreichsten Bücher des 20. Jahrhunderts."
+  - type: birthday
+    date: '1643-01-04'
+    first_name: 'Isaac'
+    last_name: 'Newton'
+    additional_message: 'Er war einer der bedeutendsten Wissenschaftler aller Zeiten.'
+  - type: birthday
+    date: '1655-01-06'
+    first_name: 'Jacob'
+    last_name: 'Bernoulli'
+    additional_message: 'Er hat wesentlich zur Entwicklung der Wahrscheinlichkeitstheorie, Variationsrechnung und zur Untersuchung von Potenzreihen beigetragen.'
+  - type: birthday
+    date: '1942-01-08'
+    first_name: 'Stephen'
+    last_name: 'Hawking'
+    additional_message: 'Er lieferte bedeutende Arbeiten zur Kosmologie, zur allgemeinen Relativitätstheorie und zu Schwarzen Löchern.'
+  - type: birthday
+    date: '1947-01-08'
+    first_name: 'David'
+    last_name: 'Bowie'
+    additional_message: 'Er war ein britischer Musiker, Sänger, Produzent und Schauspieler - einer der einflussreichsten Musiker der Rock- und Popmusik.'
+  - type: birthday
+    date: '1850-01-15'
+    first_name: 'Sofja'
+    last_name: 'Kowalewskaja'
+    additional_message: 'Sie war eine russische Mathematikerin und die weltweit erste Professorin für Mathematik, die selbst Vorlesungen hielt.'
+  - type: birthday
+    date: '1862-01-23'
+    first_name: 'David'
+    last_name: 'Hilbert'
+    additional_message: 'Er gilt als einer der bedeutendsten Mathematiker der Neuzeit.'
+  - type: birthday
+    date: '1877-02-07'
+    first_name: 'G.H.'
+    last_name: 'Hardy'
+    additional_message: 'Er war ein britischer Mathematiker und Mentor des indischen Mathematikers Srinivasa Ramanujan.'
+  - type: birthday
+    date: '1861-02-15'
+    first_name: 'Alfred North'
+    last_name: 'Whitehead'
+    additional_message: 'Bekannt wurde er durch das Standardwerk „Principia Mathematica“ über Logik, das er zusammen mit Bertrand Russell veröffentlichte.'
+  - type: birthday
+    date: '1883-02-23'
+    first_name: 'Karl'
+    last_name: 'Jaspers'
+    additional_message: 'Er war ein deutscher Psychiater und Philosoph von internationaler Bedeutung. Nach 1945 war er an der Neugründung der Uni Heidelberg beteiligt.'
+  - type: birthday
+    date: '1845-03-03'
+    first_name: 'Georg'
+    last_name: 'Cantor'
+    additional_message: 'Er war ein deutscher Mathematiker und lieferte wichtige Beiträge zur modernen Mathematik.'
+  - type: birthday
+    date: '1934-03-09'
+    first_name: 'Yuri'
+    last_name: 'Gagarin'
+    additional_message: 'Er war ein sowjetischer Kosmonaut und der erste Mensch im Weltraum.'
+  - type: birthday
+    date: '1879-03-14'
+    first_name: 'Albert'
+    last_name: 'Einstein'
+    additional_message: 'Er gilt als einer der bedeutendsten theoretischen Physiker. Sein Hauptwerk, die Relativitätstheorie, machte ihn weltberühmt.'
+  - type: birthday
+    date: '1906-03-17'
+    first_name: 'Brigitte'
+    last_name: 'Helm'
+    additional_message: 'Sie war eine deutsche Filmschauspielerin. Bekannt ist sie vor allem für ihre Hauptrolle im deutschen Stummfilm „Metropolis“ von 1927.'
+  - type: birthday
+    date: '1690-03-18'
+    first_name: 'Christian'
+    last_name: 'Goldbach'
+    additional_message: 'Er war ein deutscher Mathematiker. Die Goldbachsche Vermutung: „Jede gerade Zahl, die größer als 2 ist, ist Summe zweier Primzahlen.“'
+  - type: birthday
+    date: '1882-03-23'
+    first_name: 'Emmy'
+    last_name: 'Noether'
+    additional_message: 'Sie war eine deutsche Mathematikerin, die grundlegende Beiträge zur abstrakten Algebra und zur theoretischen Physik lieferte.'
+  - type: birthday
+    date: '1811-03-30'
+    first_name: 'Robert'
+    last_name: 'Bunsen'
+    additional_message: 'Er war ein deutscher Chemiker. In der Alten Aula der Uni Heidelberg erhielt er einen eigens für ihn namentlich gekennzeichneten Sitz.'
+  - type: birthday
+    date: '1596-03-31'
+    first_name: 'René'
+    last_name: 'Descartes'
+    additional_message: "Er war ein französischer Philosoph, Mathematiker und Naturwissenschaftler.\n@@Von ihm stammt:\n„cogito ergo sum“\n(„Ich denke, also bin ich.“)"
+  - type: birthday
+    date: '1685-03-31'
+    first_name: 'Johann Sebastian'
+    last_name: 'Bach'
+    additional_message: 'Er war ein deutscher Komponist, Kantor sowie Orgel- und Cembalovirtuose und gilt als einer der bekanntesten und bedeutendsten Musiker überhaupt.'
+  - type: birthday
+    date: '1776-04-01'
+    first_name: 'Sophie'
+    last_name: 'Germain'
+    additional_message: 'Sie war eine französische Mathematikerin. Insbesondere arbeitete Sie an der letzten Fermat’schen Vermutung und bewies einen Spezialfall.'
+  - type: birthday
+    date: '1915-04-07'
+    first_name: 'Billie'
+    last_name: 'Holiday'
+    additional_message: 'Sie zählt mit Ella Fitzgerald und Sarah Vaughan zu den bedeutendsten US-amerikanischen Jazzsängerinnen.'
+  - type: birthday
+    date: '1921-04-09'
+    first_name: 'Mary'
+    last_name: 'Jackson'
+    additional_message: "Sie war eine US-amerikanische Ingenieurin und leistete wesentliche Beiträge zur Luft- und Raumfahrttechnik zur Zeit des\n„Wettlaufs ins All“"
+  - type: birthday
+    date: '1707-04-15'
+    first_name: 'Leonhard'
+    last_name: 'Euler'
+    additional_message: 'Er war ein Schweizer Mathematiker und Physiker mit bedeutenden Beiträgen u.a. zur Analysis und zur Zahlentheorie.'
+  - type: birthday
+    date: '1858-04-23'
+    first_name: 'Max'
+    last_name: 'Planck'
+    additional_message: 'Er war ein bedeutender deutscher Physiker auf dem Gebiet der theoretischen Physik. Er gilt als Begründer der Quantenphysik.'
+  - type: birthday
+    date: '1849-04-25'
+    first_name: 'Felix'
+    last_name: 'Klein'
+    additional_message: 'Er war ein deutscher Mathematiker. Von ihm stammt das Kleinsche Modell der nichteuklidischen (hyperbolischen) Ebene.'
+  - type: birthday
+    date: '1906-04-28'
+    first_name: 'Kurt'
+    last_name: 'Gödel'
+    additional_message: 'Er war ein österreichischer und später amerikanischer Mathematiker, Philosoph und einer der bedeutendsten Logiker des 20. Jahrhunderts.'
+  - type: birthday
+    date: '1854-04-29'
+    first_name: 'Henri'
+    last_name: 'Poincaré'
+    additional_message: 'Er war ein bedeutender französischer Mathematiker, theoretischer Physiker, theoretischer Astronom und Philosoph.'
+  - type: birthday
+    date: '1777-04-30'
+    first_name: 'Carl Friedrich'
+    last_name: 'Gauss'
+    additional_message: "Er war ein deutscher Mathematiker, Statistiker, Astronom, Geodät und Physiker und galt als\n„Princeps Mathematicorum“\n(„Fürst der Mathematiker“)"
+  - type: birthday
+    date: '1937-05-05'
+    first_name: 'Delia'
+    last_name: 'Derbyshire'
+    additional_message: "Sie war eine britische Komponistin, Musikerin und Produzentin. Sie interpretierte die Titelmusik der Fernsehserie\n„Doctor Who“\n@@elektronisch."
+  - type: birthday
+    date: '1906-05-06'
+    first_name: 'André'
+    last_name: 'Weil'
+    additional_message: 'Er war einer der überragenden Mathematiker des 20. Jahrhunderts.'
+  - type: birthday
+    date: '1820-05-12'
+    first_name: 'Florence'
+    last_name: 'Nightingale'
+    additional_message: 'Sie war eine britische Krankenschwester und Statistikerin. Sie gilt als Pionierin der visuellen Veranschaulichung von Zusammenhängen in der Statistik.'
+  - type: birthday
+    date: '1718-05-16'
+    first_name: 'Maria Gaetana'
+    last_name: 'Agnesi'
+    additional_message: 'Sie war eine italienische Mathematikerin und Philanthropin im Zeitalter der Aufklärung.'
+  - type: birthday
+    date: '1872-05-18'
+    first_name: 'Bertrand'
+    last_name: 'Russell'
+    additional_message: 'Er war ein britischer Philosoph, Mathematiker und Logiker. Als weltweit bekannter Aktivist für Frieden und Abrüstung war er eine Leitfigur des Pazifismus.'
+  - type: birthday
+    date: '1977-05-12'
+    first_name: 'Maryam'
+    last_name: 'Mirzakhani'
+    additional_message: 'Sie war eine iranische Mathematikerin, die 2014 als erste und bislang einzige Frau und erste iranische Person die Fields-Medaille erhielt.'
+  - type: birthday
+    date: '1934-05-23'
+    first_name: 'Robert'
+    last_name: 'Moog'
+    additional_message: 'Er war ein Pionier der elektronischen Musik und der Erfinder des Moog-Synthesizers, eines der ersten weitverbreiteten elektronischen Musikinstrumente.'
+  - type: birthday
+    date: '1899-08-24'
+    first_name: 'Jorge Luis'
+    last_name: 'Borges'
+    additional_message: 'Er war ein argentinischer Schriftsteller und Bibliothekar. Er verfasste eine Vielzahl phantastischer Erzählungen und Gedichte.'
+  - type: birthday
+    date: '1623-06-19'
+    first_name: 'Blaise'
+    last_name: 'Pascal'
+    additional_message: 'Er war ein französischer Mathematiker, Physiker, Literat und christlicher Philosoph. Nach ihm ist unter anderem die Einheit des Drucks benannt.'
+  - type: birthday
+    date: '1864-06-22'
+    first_name: 'Hermann'
+    last_name: 'Minkowski'
+    additional_message: 'Er war ein deutscher Mathematiker und Physiker. Der Minkowski-Raum und die Minkowski-Ungleichung sind nach ihm benannt.'
+  - type: birthday
+    date: '1912-06-23'
+    first_name: 'Alan'
+    last_name: 'Turing'
+    additional_message: 'Er war ein britischer Logiker, Mathematiker, Kryptoanalytiker und Informatiker. Er entwickelte das Berechenbarkeitsmodell der Turingmaschine.'
+  - type: birthday
+    date: '1646-07-01'
+    first_name: 'Gottfried'
+    last_name: 'Leibniz'
+    additional_message: 'Er war ein deutscher Philosoph, Mathematiker, Jurist, Historiker und politischer Berater der frühen Aufklärung.'
+  - type: birthday
+    date: '1928-07-26'
+    first_name: 'Stanley'
+    last_name: 'Kubrick'
+    additional_message: 'Er war ein US-amerikanischer Regisseur, Produzent, Drehbuchautor und Fotograf.'
+  - type: birthday
+    date: '1938-07-27'
+    first_name: 'Gary'
+    last_name: 'Gygax'
+    additional_message: "Er war ein US-amerikanischer Spieleautor und einer der Erfinder des Pen-&-Paper-Rollenspiels\n„Dungeons & Dragons“"
+  - type: birthday
+    date: '1868-07-30'
+    first_name: 'Alfred'
+    last_name: 'Weber'
+    additional_message: 'Er war ein deutscher Nationalökonom und Soziologe und war am nationalökonomischen Lehrstuhl in Heidelberg tätig.'
+  - type: birthday
+    date: '1930-08-05'
+    first_name: 'Neil'
+    last_name: 'Armstrong'
+    additional_message: 'Er war ein US-amerikanischer Testpilot und Astronaut. Am 21. Juli 1969 betrat er als erster Mensch den Mond.'
+  - type: birthday
+    date: '1667-08-06'
+    first_name: 'Johann'
+    last_name: 'Bernoulli'
+    additional_message: 'Er war Schweizer Mathematiker und Arzt. Er löste das von seinem Bruder Jakob gestellte Problem der Kettenlinie.'
+  - type: birthday
+    date: '1921-08-19'
+    first_name: 'Gene'
+    last_name: 'Roddenberry'
+    additional_message: 'Er war ein amerikanischer Drehbuchautor, Fernseh- und Filmproduzent und der Schöpfer von Star Trek (Raumschiff Enterprise).'
+  - type: birthday
+    date: '1874-08-27'
+    first_name: 'Carl'
+    last_name: 'Bosch'
+    additional_message: 'Er war ein deutscher Chemiker, Techniker und Industrieller. 1931 erhielt er den Nobelpreis für Chemie, zusammen mit Friedrich Bergius.'
+  - type: birthday
+    date: '1896-08-28'
+    first_name: 'Léon'
+    last_name: 'Theremin'
+    additional_message: 'Er war ein russischer Physiker und Erfinder und gilt als Wegbereiter für später aufkommende Erfindungen wie Synthesizer oder Drumcomputer.'
+  - type: birthday
+    date: '1917-08-28'
+    first_name: 'Jack'
+    last_name: 'Kirby'
+    additional_message: 'Er war einer der einflussreichsten und bekanntesten Zeichner amerikanischer Comics (z.B. Marvel). Seine Produktivität war legendär.'
+  - type: birthday
+    date: '1797-08-30'
+    first_name: 'Mary'
+    last_name: 'Shelley'
+    additional_message: 'Sie war eine britische Schriftstellerin des frühen 19. Jahrhunderts. Sie ist Autorin von „Frankenstein oder Der moderne Prometheus“ (1818).'
+  - type: birthday
+    date: '1821-08-31'
+    first_name: 'Hermann von'
+    last_name: 'Helmholtz'
+    additional_message: 'Er war ein deutscher Physiologe und Physiker. Er war einer der einflussreichsten Naturwissenschaftler seiner Zeit und u.a. in Heidelberg tätig.'
+  - type: birthday
+    date: '1946-09-05'
+    first_name: 'Freddie'
+    last_name: 'Mercury'
+    additional_message: 'Er war ein britischer Musiker und einer der bedeutendsten Rocksänger der 1970er und 1980er Jahre.'
+  - type: birthday
+    date: '1879-09-06'
+    first_name: 'Max'
+    last_name: 'Schreck'
+    additional_message: 'Er war ein deutscher Schauspieler und spielte u.a. die Titelrolle in dem Stummfilm „Nosferatu – Eine Symphonie des Grauens“.'
+  - type: birthday
+    date: '1942-09-10'
+    first_name: 'Christine'
+    last_name: 'Darden'
+    additional_message: 'Sie war eine US-amerikanische Mathematikerin, Datenanalystin und Luftfahrttechnik-Ingenieurin bei der NASA.'
+  - type: birthday
+    date: '1890-09-15'
+    first_name: 'Agatha'
+    last_name: 'Christie'
+    additional_message: 'Sie war eine britische Schriftstellerin und eine der erfolgreichsten Autorinnen der Literaturgeschichte.'
+  - type: birthday
+    date: '1826-09-17'
+    first_name: 'Bernhard'
+    last_name: 'Riemann'
+    additional_message: 'Er war ein deutscher Mathematiker und wirkte auf vielen mathematischen Gebieten bahnbrechend.'
+  - type: birthday
+    date: '1831-10-06'
+    first_name: 'Richard'
+    last_name: 'Dedekind'
+    additional_message: 'Er war ein deutscher Mathematiker. Er spielte eine wesentliche Rolle bei der Herausarbeitung der abstrakten Algebra.'
+  - type: birthday
+    date: '1940-10-09'
+    first_name: 'John'
+    last_name: 'Lennon'
+    additional_message: 'Er war ein britischer Musiker, Komponist, Autor, Filmschauspieler, Friedensaktivist, Oscar- sowie mehrfacher Grammy-Preisträger.'
+  - type: birthday
+    date: '1956-10-21'
+    first_name: 'Carrie'
+    last_name: 'Fisher'
+    additional_message: 'Sie war eine US-amerikanische Schauspielerin, Komikerin und Autorin. Weltbekannt wurde sie als Prinzessin Leia in den Star-Wars-Filmen.'
+  - type: birthday
+    date: '1929-10-21'
+    first_name: 'Ursula K. Le'
+    last_name: 'Guin'
+    additional_message: 'Sie war eine amerikanische Autorin hauptsächlich phantastischer Literatur, aber auch politischer Utopien.'
+  - type: birthday
+    date: '1811-10-25'
+    first_name: 'Évariste'
+    last_name: 'Galois'
+    additional_message: 'Er war ein französischer Mathematiker und entwickelte die Galoistheorie zur Lösung algebraischer Gleichungen. Er starb mit 20 Jahren bei einem Duell.'
+  - type: birthday
+    date: '1815-10-31'
+    first_name: 'Karl'
+    last_name: 'Weierstrass'
+    additional_message: 'Er war ein deutscher Mathematiker, der sich vor allem um die logisch fundierte Aufarbeitung der Analysis verdient gemacht hat.'
+  - type: birthday
+    date: '1815-11-02'
+    first_name: 'George'
+    last_name: 'Boole'
+    additional_message: 'Er war ein englischer Mathematiker (Autodidakt), Logiker und Philosoph und begründete die moderne mathematische Logik.'
+  - type: birthday
+    date: '1928-11-03'
+    first_name: 'Osamu'
+    last_name: 'Tezuka'
+    additional_message: 'Er war ein japanischer Arzt, Regisseur und Manga-Zeichner und wurde als „Manga no Kami-sama“ („Gott des Manga“) bezeichnet.'
+  - type: birthday
+    date: '1847-11-08'
+    first_name: 'Bram'
+    last_name: 'Stoker'
+    additional_message: 'Er war ein irischer Schriftsteller. Er wurde hauptsächlich durch seinen Roman „Dracula“ bekannt.'
+  - type: birthday
+    date: '1848-11-08'
+    first_name: 'Gottlob'
+    last_name: 'Frege'
+    additional_message: 'Er war ein deutscher Logiker, Mathematiker und Philosoph. Er hat als erster eine formale Sprache und dadurch formale Beweise entwickelt.'
+  - type: birthday
+    date: '1934-11-09'
+    first_name: 'Carl'
+    last_name: 'Sagan'
+    additional_message: 'Er war ein US-amerikanischer Astronom, Astrophysiker, Exobiologe, Fernsehmoderator, Sachbuchautor und Schriftsteller.'
+  - type: birthday
+    date: '1790-11-17'
+    first_name: 'August Ferdinand'
+    last_name: 'Möbius'
+    additional_message: 'Er war ein deutscher Mathematiker und Astronom. Er gilt als Pionier der Topologie.'
+  - type: birthday
+    date: '1792-12-01'
+    first_name: 'Nikolai'
+    last_name: 'Lobatschewski'
+    additional_message: 'Er war ein russischer Mathematiker. Er publizierte als erster eine Arbeit über eine nichteuklidische Geometrie.'
+  - type: birthday
+    date: '1901-12-05'
+    first_name: 'Walt'
+    last_name: 'Disney'
+    additional_message: 'Er war ein US-amerikanischer Trickfilmzeichner und Filmproduzent und eine der prägendsten Persönlichkeiten der Filmbranche des 20. Jahrhunderts.'
+  - type: birthday
+    date: '1919-12-08'
+    first_name: 'Julia'
+    last_name: 'Robinson'
+    additional_message: 'Sie war eine US-amerikanische Mathematikerin und die erste Frau als Präsidentin der American Mathematical Society.'
+  - type: birthday
+    date: '1804-12-10'
+    first_name: 'Carl'
+    last_name: 'Jacobi'
+    additional_message: 'Er war ein deutscher Mathematiker. Man zählt ihn zu den produktivsten und vielseitigsten Mathematikern der Geschichte.'
+  - type: birthday
+    date: '1815-12-10'
+    first_name: 'Ada'
+    last_name: 'Lovelace'
+    additional_message: 'Sie war eine britische Mathematikerin. Die Programmiersprache Ada, die Lovelace Medal sowie der Ada Lovelace Award wurden nach ihr benannt.'
+  - type: birthday
+    date: '1802-12-15'
+    first_name: 'János'
+    last_name: 'Bolyai'
+    additional_message: 'Er war ein ungarischer Mathematiker. Er arbeitete als einer der ersten Mathematiker auf dem Gebiet der nichteuklidischen Geometrie.'
+  - type: birthday
+    date: '1900-12-17'
+    first_name: 'Mary'
+    last_name: 'Cartwright'
+    additional_message: 'Sie war eine englische Mathematikerin, die sich mit Funktionentheorie und Differentialgleichungen beschäftigte.'
+  - type: birthday
+    date: '1706-12-17'
+    first_name: 'Émilie du'
+    last_name: 'Châtelet'
+    additional_message: 'Sie war eine französische Mathematikerin, Physikerin, Philosophin und Übersetzerin der frühen Aufklärung.'
+  - type: birthday
+    date: '1887-12-22'
+    first_name: 'Srinivasa'
+    last_name: 'Ramanujan'
+    additional_message: 'Er war ein indischer Mathematiker mit außergewöhnlichen Fähigkeiten im Umgang mit analytischen und zahlentheoretischen Problemen.'
+  - type: birthday
+    date: '1780-12-26'
+    first_name: 'Mary'
+    last_name: 'Somerville'
+    additional_message: 'Sie war eine schottische Astronomin und Mathematikerin, sowie bekannte Wissenschaftsautorin.'
+  - type: birthday
+    date: '1922-12-28'
+    first_name: 'Stan'
+    last_name: 'Lee'
+    additional_message: 'Er war ein US-amerikanischer Comicautor und -redakteur, Schauspieler und Filmproduzent.'
+  - type: birthday
+    date: '1925-12-31'
+    first_name: 'Daphne'
+    last_name: 'Oram'
+    additional_message: 'Sie war eine britische Komponistin und eine zentrale Figur in der Entwicklung elektronischer Musik.'
+  - type: birthday
+    date: '1898-06-17'
+    first_name: 'Maurits Cornelis'
+    last_name: 'Escher'
+    additional_message: 'Er war ein niederländischer Künstler und Grafiker, der vor allem durch seine Darstellung unmöglicher Figuren bekannt wurde.'
+  - type: birthday
+    date: '1918-05-11'
+    first_name: 'Richard'
+    last_name: 'Feynman'
+    additional_message: 'Er war ein US-amerikanischer Physiker und Nobelpreisträger des Jahres 1965.'
+  - type: birthday
+    date: '1885-10-07'
+    first_name: 'Niels'
+    last_name: 'Bohr'
+    additional_message: 'Er war ein dänischer Physiker. Er erhielt 1921 die Hughes-Medaille der Royal Society und den Nobelpreis für Physik im Jahr 1922.'
+  - type: birthday
+    date: '1887-08-12'
+    first_name: 'Erwin'
+    last_name: 'Schrödinger'
+    additional_message: 'Er war ein österreichischer Physiker (Nobelpreis 1933) und Wissenschaftstheoretiker. Er gilt als einer der Begründer der Quantenmechanik.'
+  - type: birthday
+    date: '1564-02-15'
+    first_name: 'Galileo'
+    last_name: 'Galilei'
+    additional_message: 'Er war ein italienischer Universalgelehrter. Er war Philosoph, Mathematiker, Ingenieur, Physiker, Astronom und Kosmologe.'
+  - type: birthday
+    date: '1564-04-23'
+    first_name: 'William'
+    last_name: 'Shakespeare'
+    additional_message: 'Er war ein englischer Dramatiker, Lyriker und Schauspieler.'
+  - type: birthday
+    date: '1901-12-05'
+    first_name: 'Werner'
+    last_name: 'Heisenberg'
+    additional_message: 'Er war ein deutscher Wissenschaftler und Nobelpreisträger, der zu den bedeutendsten Physikern des 20. Jahrhunderts gehört.'
+  - type: birthday
+    date: '1902-08-08'
+    first_name: 'Paul'
+    last_name: 'Dirac'
+    additional_message: 'Er war ein britischer Physiker, Nobelpreisträger und Mitbegründer der Quantenphysik. Er legte die Grundlagen für den Nachweis von Antimaterie.'
+  - type: birthday
+    date: '1831-06-13'
+    first_name: 'James Clerk'
+    last_name: 'Maxwell'
+    additional_message: "Er  war ein schottischer Physiker. Die Maxwell-Gleichungen sind eine der wichtigsten Leistungen der Physik\n@@und Mathematik des\n@@19. Jahrhunderts."
+  - type: birthday
+    date: '1871-08-30'
+    first_name: 'Ernest'
+    last_name: 'Rutherford'
+    additional_message: 'Er war ein neuseeländischer Physiker, der 1908 den Nobelpreis für Chemie erhielt. Er gilt als einer der bedeutendsten Experimentalphysiker.'
+  - type: birthday
+    date: '1867-11-07'
+    first_name: 'Marie'
+    last_name: 'Curie'
+    additional_message: 'Sie war eine Physikerin und Chemikerin polnischer Herkunft, die in Frankreich lebte und wirkte. Sie erhielt Nobelpreise für Physik und Chemie.'
+  - type: birthday
+    date: '1867-08-25'
+    first_name: 'Michael'
+    last_name: 'Faraday'
+    additional_message: 'Er war ein englischer Naturforscher, der als einer der bedeutendsten Experimentalphysiker gilt.'
+  - type: birthday
+    date: '1901-09-29'
+    first_name: 'Enrico'
+    last_name: 'Fermi'
+    additional_message: 'Er war einer der bedeutendsten Kernphysiker des 20. Jahrhunderts. 1938 erhielt er den Nobelpreis für Physik.'
+  - type: birthday
+    date: '1856-12-18'
+    first_name: 'Sir Joseph John'
+    last_name: 'Thomson'
+    additional_message: 'Er war ein britischer Physiker und Nobelpreisträger für Physik. Er entdeckte 1897 das Elektron.'
+  - type: birthday
+    date: '1929-09-15'
+    first_name: 'Murray'
+    last_name: 'Gell-Mann'
+    additional_message: 'Er war ein US-amerikanischer Physiker. Er erhielt 1969 den Nobelpreis für Physik.'
+  - type: birthday
+    date: '1900-04-25'
+    first_name: 'Wolfgang'
+    last_name: 'Pauli'
+    additional_message: 'Er  war ein österreichischer Wissenschaftler und Nobelpreisträger, der zu den bedeutendsten Physikern des 20. Jahrhunderts zählt.'
+  - type: birthday
+    date: '1891-10-29'
+    first_name: 'James'
+    last_name: 'Chadwick'
+    additional_message: 'Er war ein englischer Physiker. Im Jahr 1935 erhielt er den Nobelpreis für Physik für die Entdeckung des Neutrons.'
+  - type: birthday
+    date: '1845-03-27'
+    first_name: 'Wilhelm'
+    last_name: 'Röntgen'
+    additional_message: 'Er war ein deutscher Physiker. Er entdeckte die nach ihm benannten Röntgenstrahlen und erhielt 1901 den ersten Nobelpreis für Physik.'
+  - type: birthday
+    date: '1904-04-22'
+    first_name: 'J. Robert'
+    last_name: 'Oppenheimer'
+    additional_message: 'Er war ein amerikanischer theoretischer Physiker deutsch-jüdischer Abstammung. Er war wissenschaftlicher Leiter des Manhattan-Projekts.'
+  - type: birthday
+    date: '1844-02-20'
+    first_name: 'Ludwig'
+    last_name: 'Boltzmann'
+    additional_message: 'Er war ein österreichischer Physiker und Philosoph mit bedeutenden Leistungen im Bereich der Thermodynamik und der statistischen Mechanik.'
+  - type: birthday
+    date: '1852-12-15'
+    first_name: 'Antoine Henri'
+    last_name: 'Becquerel'
+    additional_message: 'Er war ein französischer Physiker. Er erhielt 1903 gemeinsam mit Marie und Pierre Curie den Nobelpreis für Physik.'
+  - type: birthday
+    date: '1856-07-10'
+    first_name: 'Nikola'
+    last_name: 'Tesla'
+    additional_message: 'Er war ein Erfinder, Physiker und Elektroingenieur. Er entwickelte zahlreiche Neuerungen auf dem Gebiet der Elektrotechnik.'
+  - type: birthday
+    date: '1908-05-23'
+    first_name: 'John'
+    last_name: 'Bardeen'
+    additional_message: 'Er war ein US-amerikanischer Physiker und zweifacher Nobelpreisträger der Physik.'
+  - type: birthday
+    date: '1892-08-15'
+    first_name: 'Louis de'
+    last_name: 'Broglie'
+    additional_message: 'Er war ein französischer Physiker und erhielt 1929 den Nobelpreis für Physik.'
+  - type: birthday
+    date: '1824-06-26'
+    first_name: 'William Thomson, 1. Baron'
+    last_name: 'Kelvin'
+    additional_message: 'Er war ein Physiker auf den Gebieten der Elektrizitätslehre und der Thermodynamik. Die Einheit Kelvin wurde nach ihm benannt.'
+  - type: birthday
+    date: '1750-03-16'
+    first_name: 'Caroline'
+    last_name: 'Herschel'
+    additional_message: 'Sie war eine deutsche Astronomin. Sie entdeckte mehrere Kometen und entwickelte genaue astronomische Berechnungen.'
+  - type: birthday
+    date: '1878-11-07'
+    first_name: 'Lise'
+    last_name: 'Meitner'
+    additional_message: 'Sie war eine bedeutende österreichische Kernphysikerin. Sie veröffentlichte die erste physikalisch-theoretische Erklärung der Kernspaltung.'
+  - type: birthday
+    date: '1906-12-09'
+    first_name: 'Grace'
+    last_name: 'Hopper'
+    additional_message: 'Sie war eine US-amerikanische Informatikerin und Computerpionierin. Sie erhielt als eine der ersten Frauen die „National Medal of Technology“ der USA.'
+  - type: birthday
+    date: '1928-07-23'
+    first_name: 'Vera'
+    last_name: 'Rubin'
+    additional_message: 'Sie war eine US-amerikanische Astronomin, die sich vorwiegend mit der Erfassung der Verteilung der Dunklen Materie beschäftigte.'
+  - type: birthday
+    date: '1914-11-09'
+    first_name: 'Hedy'
+    last_name: 'Lamarr'
+    additional_message: 'Sie war eine österreichisch-amerikanische Filmschauspielerin und Erfinderin. Bluetooth und WLAN beruhen auf ihren Erfindungen.'
+  - type: birthday
+    date: '1912-02-16'
+    first_name: 'Chien-Shiung'
+    last_name: 'Wu'
+    additional_message: 'Sie war eine chinesisch-amerikanische Physikerin. Ihr wurden zahlreiche Wissenschaftspreise und Ehrendoktorwürden verliehen.'
+  - type: birthday
+    date: '1906-06-28'
+    first_name: 'Maria Goeppert'
+    last_name: 'Mayer'
+    additional_message: 'Sie war eine deutsch-US-amerikanische Physikerin. Sie erhielt 1963 (als zweite Frau überhaupt) den Nobelpreis für Physik.'
+  - type: birthday
+    date: '1900-05-10'
+    first_name: 'Cecilia'
+    last_name: 'Payne-Gaposchkin'
+    additional_message: 'Sie war eine britisch-amerikanische Astronomin. 1956 wurde sie die erste weibliche Professorin für Astronomie der Harvard University.'
+  - type: birthday
+    date: '1920-04-16'
+    first_name: 'Rosalind'
+    last_name: 'Franklin'
+    additional_message: 'Sie war eine britische Biochemikerin und Spezialistin für die Röntgenstrukturanalyse von kristallisierten Makromolekülen.'
+  - type: birthday
+    date: '1937-02-13'
+    first_name: 'Sigmund'
+    last_name: 'Jähn'
+    additional_message: 'Er war ein deutscher Jagdflieger, Kosmonaut und Generalmajor in der DDR. Er flog als erster Deutscher in den Weltraum.'

@@ -491,6 +491,7 @@ em {
     left: 0;
     width: 2160px;
     height: 3840px;
+    overflow: hidden;
     z-index: 10001;
 }
 

@@ -1,6 +1,6 @@
 types:
   - type: birthday
-    message: "Am heutigen Tag feiern wir\nden %%ago(YEARS)%% Geburtstag von\n%first_name%\n%last_name%\n@@%additional_message%"
+    message: "@@Heute ist der\n@@%%ago(YEARS)%% Geburtstag von\n%first_name%\n%last_name%\n@@%additional_message%"
     every: year
     labels:
       singular: '|||||||.|||'

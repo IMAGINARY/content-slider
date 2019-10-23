@@ -532,8 +532,8 @@ anniversaries:
     additional_message: 'Er war ein französischer Physiker und erhielt 1929 den Nobelpreis für Physik.'
   - type: birthday
     date: '1824-06-26'
-    first_name: 'William Thomson, 1. Baron'
-    last_name: 'Kelvin'
+    first_name: 'William Thomson'
+    last_name: '1. Baron Kelvin'
     additional_message: 'Er war ein Physiker auf den Gebieten der Elektrizitätslehre und der Thermodynamik. Die Einheit Kelvin wurde nach ihm benannt.'
   - type: birthday
     date: '1750-03-16'

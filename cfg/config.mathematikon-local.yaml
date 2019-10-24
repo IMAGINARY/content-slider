@@ -44,10 +44,10 @@ credits: 'Station entwickelt von IMAGINARY (www.imaginary.org)<br />und Jürgen 
 # today: '2019-05-27'
 
 # URLs to the files that contain the messages of the day, anniversaries and announcements (JSON or YAML format)
-messagesUrl: ../../USB/messages-of-the-day.yaml
-anniversaryMessagesUrl: ../../USB/anniversary-messages.yaml
-announcementsUrl: ../../USB/announcements.yaml
-anniversaryAnnouncementsUrl: ../../USB/anniversary-announcements.yaml
+messagesUrl: ../../external-config/messages-of-the-day.yaml
+anniversaryMessagesUrl: ../../external-config/anniversary-messages.yaml
+announcementsUrl: ../../external-config/announcements.yaml
+anniversaryAnnouncementsUrl: ../../external-config/anniversary-announcements.yaml
 
 # variables subject to the display of announcements
 announcementDelay: 210

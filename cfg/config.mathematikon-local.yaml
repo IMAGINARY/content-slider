@@ -4,7 +4,7 @@
 hideCursor: true
 
 # stop propagation of all types of mouse events at document.body
-disableMouseEvents: false
+disableMouseEvents: true
 
 # disable console logging
 disableConsoleLogging: false

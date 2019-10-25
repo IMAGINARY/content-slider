@@ -13,6 +13,7 @@ import '../vendor/whenzel/1.0.3/whenzel.js';
 import {AnnouncementManager} from './AnnouncementManager.js';
 import Debug from './Debug.js';
 import {errorMsg} from './ErrorMessage.js';
+import {Fetcher} from "./Utils.js";
 
 let announcementManager = null;
 
@@ -237,12 +238,14 @@ async function preprocessConfig(config) {
         announcements: {urlKey: "announcementsUrl", anniversariesUrlKey: "anniversaryAnnouncementsUrl"}
     };
     for (let textConfigKey in textConfigs) {
-        config[textConfigKey] = await MessagesOfTheDayLoader.load(new URL(config[textConfigs[textConfigKey].urlKey], config.configUrl), config.today);
+        const url = Fetcher.addCacheBuster(new URL(config[textConfigs[textConfigKey].urlKey], config.configUrl));
+        config[textConfigKey] = await MessagesOfTheDayLoader.load(url, config.today);
         if (config[textConfigKey].error) {
             errorMsg(`Error processing ${textConfigKey}.\nPlease check the configuration file.`);
             console.error(config[textConfigKey].error);
         }
-        config[textConfigKey].anniversaries = await AnniversariesLoader.load(new URL(config[textConfigs[textConfigKey].anniversariesUrlKey], config.configUrl), config.today);
+        const anniversariesUrl = Fetcher.addCacheBuster(new URL(config[textConfigs[textConfigKey].anniversariesUrlKey], config.configUrl));
+        config[textConfigKey].anniversaries = await AnniversariesLoader.load(anniversariesUrl, config.today);
         if (config[textConfigKey].anniversaries.error) {
             errorMsg(`Error processing anniversary ${textConfigKey}.\nPlease check the configuration file.`);
             console.error(config[textConfigKey].anniversaries.error);
@@ -251,8 +254,9 @@ async function preprocessConfig(config) {
     }
 
     // announcer settings
+    const announcementSettingsUrl = Fetcher.addCacheBuster(new URL(config.announcementSettingsUrl, config.configUrl));
     const collapseOptions = whenzelConfigs => whenzelConfigs.reduce((acc, cur) => Object.assign(acc, cur.data), {});
-    config.announcements.settings = await WhenzelLoader.load(new URL(config.announcementSettingsUrl, config.configUrl), config.today);
+    config.announcements.settings = await WhenzelLoader.load(announcementSettingsUrl, config.today);
     config.announcements.settings.collapsed = collapseOptions(config.announcements.settings.filtered);
 
     return config;
@@ -305,9 +309,9 @@ async function tryWithConfigUrl(configUrl, allowUrlParamOverrides) {
 async function main(options) {
     try {
         try {
-            window.config = await tryWithConfigUrl(new URL(options.configUrl), true);
+            window.config = await tryWithConfigUrl(Fetcher.addCacheBuster(new URL(options.configUrl)), true);
         } catch (err) {
-            const fallbackConfigUrl = new URL('cfg/config.sample.yaml', window.location.href);
+            const fallbackConfigUrl = Fetcher.addCacheBuster(new URL('cfg/config.sample.yaml', window.location.href));
             console.error("Unable to utilize config ", options.configUrl.href, "\nFalling back to ", fallbackConfigUrl.href, err);
             window.config = await tryWithConfigUrl(fallbackConfigUrl, false);
         }

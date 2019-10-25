@@ -51,6 +51,12 @@ class Fetcher {
         return await fetchAndHandleError(url)
             .then(async response => parseYaml(await response.text(), url));
     }
+
+    static addCacheBuster(url) {
+        url = new URL(url);
+        url.searchParams.append("cachebuster", Date.now());
+        return url;
+    }
 }
 
 class AjvUtils {

@@ -17,7 +17,19 @@ async function load(url, allowUrlParamOverrides) {
             if (typeof allConfigProperties[key] !== 'undefined') {
                 // process only known properties
                 if (allConfigProperties[key]['cfg-overridable']) {
-                    config[key] = value;
+                    switch (allConfigProperties[key]['type']) {
+                        case 'boolean':
+                            config[key] = Boolean(value);
+                            break;
+                        case 'number':
+                        case 'integer':
+                            config[key] = Number(value);
+                            break;
+                        case 'string':
+                        default:
+                            config[key] = value;
+                            break;
+                    }
                 } else {
                     const error = new Error("Unable to override non-overridable property");
                     error.name = "OverrideError";

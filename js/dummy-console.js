@@ -7,6 +7,7 @@ class DummyConsole {
         info: DummyConsole._noop,
         warn: DummyConsole._noop,
         error: DummyConsole._noop,
+        assert: DummyConsole._noop,
     };
 
     static enable() {

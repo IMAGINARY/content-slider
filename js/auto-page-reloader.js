@@ -84,7 +84,6 @@ class IdleReloader extends Reloader {
         super();
         this._isEnabled = false;
         this._reloadTimeThreshold = params.reloadDelay * 1000;
-        this._idleTimeThreshold = params.idleDelay * 1000;
         this._idleDetector = null;
     }
 
@@ -92,7 +91,7 @@ class IdleReloader extends Reloader {
         if (!this._isEnabled) {
             console.log("reloading page after " + Math.floor(this._reloadTimeThreshold / 1000.0) + "s in idle mode");
             this._idleDetector = new IdleDetector();
-            this._idleDetector.setTimeout(() => Reloader.fadeOutAndReload(), this._reloadTimeThreshold, this._idleTimeThreshold);
+            this._idleDetector.setTimeout(() => Reloader.fadeOutAndReload(), this._reloadTimeThreshold);
 
             this._isEnabled = true;
         }

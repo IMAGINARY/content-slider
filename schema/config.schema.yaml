@@ -33,11 +33,6 @@ properties:
     description: When the slider is inactive, i.e. there are no input events, it will be reloaded after this delay. This can help in cases where apps have unresolved memory leaks that would break the slider after a certain time. It should not be considered a solution, but rather a workaround for situation where the slider has to run unattended.
     type: integer
     cfg-overridable: true
-  idleDelay:
-    title: Time of inactivaty (in seconds) after which the slider is considerd idle
-    description: When there are no input events, the slider will be considered idle after the given time and start switching apps on its own.
-    type: integer
-    cfg-overridable: true
   reloadButtonSize:
     title: Size of the slider reload buttons (in CSS length units)
     description: The slider has an invisible square reload button at its bottom left and bottom right. This property is used to define the width and height of each button.
@@ -170,7 +165,6 @@ required:
   - disableScrolling
   - fadeinOnLoadDelay
   - reloadDelay
-  - idleDelay
   - reloadButtonSize
   - reloadButtonHoldTime
   - reloadOnErrorDelay

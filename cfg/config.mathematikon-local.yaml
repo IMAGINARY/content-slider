@@ -15,7 +15,6 @@ disableScrolling: true
 # variables subject to (automatic) page reload
 fadeinOnLoadDelay: 1
 reloadDelay: 10800
-idleDelay: 15
 reloadButtonSize: 40px
 reloadButtonHoldTime: 5
 reloadOnErrorDelay: 10

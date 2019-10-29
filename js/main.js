@@ -160,7 +160,6 @@ function applyConfig(config) {
 
     window.idleReloader = new IdleReloader({
         reloadDelay: config['reloadDelay'],
-        idleDelay: config['idleDelay'],
     });
     idleReloader.setEnabled(true);
 

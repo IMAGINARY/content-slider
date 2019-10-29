@@ -33,9 +33,8 @@ function createSlide(app) {
 
 function jssor_app_slider_starter(containerId, apps, config) {
     const options = {
-        $AutoPlay: false,
+        $AutoPlay: 0,
         $PauseOnHover: 0,
-        $Idle: config['autoSlideDelay'] * 1000,
         $DragOrientation: 0,
         $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
             $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -59,7 +58,7 @@ function jssor_app_slider_starter(containerId, apps, config) {
     // reset the timeout on interruption
     const container = document.getElementById(containerId);
     const idleDetector = new IdleDetector({domElement: container});
-    idleDetector.setInterval(() => jssor_slider.$Next(), options.$Idle, config['idleDelay'] * 1000);
+    idleDetector.setInterval(() => jssor_slider.$Next(), config['autoSlideDelay'] * 1000);
 
     const jssor_slider = new $JssorSlider$(containerId, options);
     let slide_restart_timer = null;
